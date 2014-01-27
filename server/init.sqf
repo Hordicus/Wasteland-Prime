@@ -1,0 +1,1 @@
+execVM "server\systems\townRadar\init.sqf";
