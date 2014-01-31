@@ -4,9 +4,13 @@ _cities = call findCities;
 _config = call compile preprocessFileLineNumbers "server\systems\vehicleTownSpawns\config.sqf";
 _vehicles = [_config, "vehicles"] call CBA_fnc_hashGet;
 _classes = [];
+_lowestChance = 1;
 
 {
 	_classes set [count _classes, _x select 0];
+	if ( _x select 1 < _lowestChance ) then {
+		_lowestChance = _x select 1;
+	};
 } forEach _vehicles;
 
 while { true } do {
@@ -22,8 +26,22 @@ while { true } do {
 		// Bring vehicle count up to max count
 		for "_i" from 1 to ( _maxCount - _currentCount ) do {
 			_pos = [];
-			_class = _vehicles select (floor random count _vehicles) select 0;
 			
+			// Random chance
+			_chance = random 1 + _lowestChance;
+			_possible = [];
+			
+			{
+				if ( 1-(_x select 1) <= _chance ) then {
+					_possible set [count _possible, _x];
+				};
+			} count _vehicles;
+			
+			// Now get a random vehicle that has a chance to spawn.
+			_class = _possible select (floor random count _possible) select 0;
+			
+			// Keep trying until we find a good spot.
+			// Good spot = emptyPosition and no car within 20m
 			while { count _pos == 0 } do {
 				_distance = random _cityRadius - _searchDistance;
 				_direction = random 360;
@@ -45,6 +63,8 @@ while { true } do {
 			_veh setPos _pos;
 			_veh setVelocity [1, 0, 0];
 
+			// Car might be flying...
+			// Once it's done turn dmg back on.
 			_veh spawn {
 				while { true } do {
 					sleep 1;
