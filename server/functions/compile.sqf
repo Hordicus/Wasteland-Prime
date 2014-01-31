@@ -1,0 +1,1 @@
+nearUnits = compileFinal preprocessFileLineNumbers "server\functions\nearUnits.sqf";

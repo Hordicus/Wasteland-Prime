@@ -13,15 +13,13 @@ while { true } do {
 		_pos    = _x select 1;
 		_radius = _x select 2;
 		
-		_entities = _pos nearEntities [["Man", "Air", "Car"], _radius];
-		_animals = _pos nearEntities ["Animal", _radius];
-		_entities = _entities - _animals; // Why are Animals of type Man?
+		_units = [_pos, _radius] call nearUnits;
 		
 		_last = _state select _forEachIndex;
-		_count = count _entities;
+		_count = count _units;
 		
 		if ( _last != _count ) then {
-			["radarUpdate", [_name, _entities]] call CBA_fnc_globalEvent;
+			["radarUpdate", [_name, _units]] call CBA_fnc_globalEvent;
 		};
 		
 		_state set [ _forEachIndex, _count ];
