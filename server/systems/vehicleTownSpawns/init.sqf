@@ -5,6 +5,7 @@ _config = call compile preprocessFileLineNumbers "server\systems\vehicleTownSpaw
 _vehicles = [_config, "vehicles"] call CBA_fnc_hashGet;
 _classes = [];
 _lowestChance = 1;
+_maxPerCity = [_config, "maxPerCity"] call CBA_fnc_hashGet;
 
 {
 	_classes set [count _classes, _x select 0];
@@ -22,6 +23,10 @@ while { true } do {
 		_currentCount = count (_cityCenter nearEntities [_classes, _cityRadius*2]);
 		_maxCount = round (_sqMeters / 8000);
 		_searchDistance = 5;
+		
+		if ( _maxCount > _maxPerCity ) then {
+			_maxCount = _maxPerCity;
+		};
 		
 		// Bring vehicle count up to max count
 		for "_i" from 1 to ( _maxCount - _currentCount ) do {
