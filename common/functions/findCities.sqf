@@ -1,23 +1,18 @@
-private ["_center", "_locations", "_cities", "_pos"];
+private ["_locations", "_cities", "_pos", "_name", "_radius"];
 
-_center = getArray(configFile >> "CfgWorlds" >> worldName >> "centerPosition");
-_locations = nearestLocations [_center, ["NameCityCapital", "nameCity", "NameVillage"], 100000];
+_locations = entities "LocationCityCapital_F";
 _cities = [];
 
 {
-	_pos = locationPosition _x;
-	_radius = (size _x) select 0;
+	_pos = position _x;
+	_name = _x getVariable ["name", ""];
+	_radius = _x getVariable "radius";
 	
-	// The mission can override world using Logic -> Locations -> City
-	_override = _pos nearEntities ["LocationCityCapital_F", _radius];
-	
-	if ( count _override > 0) then {
-		_pos = getPosATL _override;
-		_radius = _override getVariable ['radius', _radius];
+	if ( _name == "" ) then {
+		_name = text ((nearestLocations [_pos, ["NameCityCapital", "nameCity", "NameVillage"], 500]) select 0);
 	};
 	
-
-	_cities set [ count _cities, [text _x, [_pos select 0, _pos select 1], _radius] ];
-} forEach _locations;
+	_cities set [ count _cities, [_name, [_pos select 0, _pos select 1], _radius] ];
+} count _locations;
 
 _cities

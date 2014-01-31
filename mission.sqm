@@ -10,20 +10,19 @@ class Mission
 	addOnsAuto[]=
 	{
 		"A3_Characters_F_BLUFOR",
-		"A3_Modules_F",
-		"A3_Air_F_Heli_Light_01"
+		"A3_Modules_F"
 	};
 	randomSeed=7026045;
 	class Intel
 	{
-		timeOfChanges=1800.0002;
+		resistanceWest=0;
 		startWeather=0.25;
-		startWind=0.1;
-		startWaves=0.1;
+		startWind=0.099999994;
+		startWaves=0.099999994;
 		forecastWeather=0.25;
-		forecastWind=0.1;
-		forecastWaves=0.1;
-		forecastLightnings=0.1;
+		forecastWind=0.099999994;
+		forecastWaves=0.099999994;
+		forecastLightnings=0.099999994;
 		year=2008;
 		month=10;
 		day=11;
@@ -34,7 +33,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=2;
+		items=49;
 		class Item0
 		{
 			side="WEST";
@@ -62,27 +61,863 @@ class Mission
 				class Item0
 				{
 					position[]={3823.4473,310.98999,8873.9531};
-					placement=180;
 					id=1;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 180]";
+					init="this setVariable ['radius', 180];";
 				};
 			};
 		};
-	};
-	class Vehicles
-	{
-		items=1;
-		class Item0
+		class Item2
 		{
-			position[]={4190.29,339,10838.296};
-			id=2;
-			side="EMPTY";
-			vehicle="B_Heli_Light_01_armed_F";
-			skill=0.60000002;
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={5326.1758,333.92337,8565.959};
+					id=2;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item3
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={6149.9492,300.99643,7705.1646};
+					id=3;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 250];";
+				};
+			};
+		};
+		class Item4
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={2732.6846,273.99884,9965.6904};
+					id=4;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item5
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={7069.5488,293.98999,7681.5347};
+					id=5;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 180];";
+				};
+			};
+		};
+		class Item6
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={8457.1543,360.25323,6676.606};
+					id=6;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 120];";
+				};
+			};
+		};
+		class Item7
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9625.5254,209.50937,6553.2085};
+					id=7;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 110];";
+				};
+			};
+		};
+		class Item8
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={10065.309,246.87312,5470.1704};
+					id=8;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 200];";
+				};
+			};
+		};
+		class Item9
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={7534.5166,214.00267,5137.4521};
+					id=9;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item10
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={3052.4104,305.96927,7882.3506};
+					id=10;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 200];";
+				};
+			};
+		};
+		class Item11
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={2008.2468,253.1188,7330.3618};
+					id=11;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 100];";
+				};
+			};
+		};
+		class Item12
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={2520.9868,299.21829,6347.2212};
+					id=12;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 120];";
+				};
+			};
+		};
+		class Item13
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={2748.947,206.69394,5256.7163};
+					id=13;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 300];";
+				};
+			};
+		};
+		class Item14
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={1694.516,144,3808.4331};
+					id=14;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 120];";
+				};
+			};
+		};
+		class Item15
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={1825.5225,5.8730793,2189.6289};
+					id=15;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 180];";
+				};
+			};
+		};
+		class Item16
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4743.0752,269.74127,6789.1753};
+					id=16;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item17
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4483.9512,293.94824,6393.7896};
+					id=17;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item18
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4937.5308,321.01514,5620.8018};
+					id=18;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 100];";
+				};
+			};
+		};
+		class Item19
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={3366.2617,240.03876,4929.6587};
+					id=19;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 120];";
+				};
+			};
+		};
+		class Item20
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4432.02,232.34827,4633.502};
+					id=20;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item21
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={3358.6421,185.95905,3923.5879};
+					id=21;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 100];";
+				};
+			};
+		};
+		class Item22
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={3608.7644,6.8536305,2457.6646};
+					id=22;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item23
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4490.7959,5.98,2445.3921};
+					id=23;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item24
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={5988.2451,271.85757,10270.427};
+					id=24;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 200];";
+				};
+			};
+		};
+		class Item25
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={4982.8926,181.99001,12502.802};
+					id=25;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 100];";
+				};
+			};
+		};
+		class Item26
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={5863.8428,137.27492,4715.5596};
+					id=26;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item27
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={6771.4468,6,2578.0591};
+					id=27;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 550];";
+				};
+			};
+		};
+		class Item28
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={6541.7896,322.0228,6100.77};
+					id=28;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item29
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={8049.6758,6,3289.8025};
+					id=29;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item30
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9167.8359,222.70207,3860.0974};
+					id=30;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item31
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={8620.0859,190.23296,11868.788};
+					id=31;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 200];";
+				};
+			};
+		};
+		class Item32
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={9614.1699,297.81583,8826.0605};
+					id=32;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 250];";
+				};
+			};
+		};
+		class Item33
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={11179.078,201.81973,12267.558};
+					id=33;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 250];";
+				};
+			};
+		};
+		class Item34
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={13351.942,94,12868.938};
+					placement=100;
+					id=34;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 100];";
+				};
+			};
+		};
+		class Item35
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={12302.385,98.014015,10784.502};
+					id=35;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item36
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={10425.827,119.94775,9804.8115};
+					id=36;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 200];";
+				};
+			};
+		};
+		class Item37
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={11963.465,53.998711,9097.0166};
+					id=37;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 250];";
+				};
+			};
+		};
+		class Item38
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={12920.846,5.9953308,10052.645};
+					id=38;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 250]; this setVariable ['name', 'Berezino Docks'];";
+				};
+			};
+		};
+		class Item39
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={12291.359,13.646042,9552.9121};
+					id=39;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 250]; this setVariable ['name', 'Berezino North'];";
+				};
+			};
+		};
+		class Item40
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={10679.176,210.99001,8012.8394};
+					id=40;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 250];";
+				};
+			};
+		};
+		class Item41
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={12169.737,178.57701,7273.0146};
+					placement=150;
+					id=41;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item42
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={12937.488,8.3873196,8041.7607};
+					placement=100;
+					id=42;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 100];";
+				};
+			};
+		};
+		class Item43
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={11226.485,77,6579.354};
+					id=43;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item44
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={13436.379,6.074697,6245.2759};
+					id=44;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 250];";
+				};
+			};
+		};
+		class Item45
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={11283.72,251.8237,5440.4517};
+					id=45;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item46
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={12850.069,173.99042,4447.8125};
+					id=46;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 100];";
+				};
+			};
+		};
+		class Item47
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={12079.576,6.1390967,3500.9636};
+					id=47;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 150];";
+				};
+			};
+		};
+		class Item48
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={10320.063,7.8989925,2210.3757};
+					id=48;
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
+					leader=1;
+					skill=0.60000002;
+					init="this setVariable ['radius', 500];";
+				};
+			};
 		};
 	};
 };
