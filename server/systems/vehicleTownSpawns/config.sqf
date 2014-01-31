@@ -17,5 +17,6 @@ _config = [] call CBA_fnc_hashCreate;
 ]] call CBA_fnc_hashSet;
 
 [_config, "maxPerCity", 20] call CBA_fnc_hashSet;
+[_config, "vehiclesPerMeter", 15000] call CBA_fnc_hashSet;
 
 _config

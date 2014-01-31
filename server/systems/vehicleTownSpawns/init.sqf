@@ -6,6 +6,7 @@ _vehicles = [_config, "vehicles"] call CBA_fnc_hashGet;
 _classes = [];
 _lowestChance = 1;
 _maxPerCity = [_config, "maxPerCity"] call CBA_fnc_hashGet;
+_vehiclesPerMeter = [_config, "vehiclesPerMeter"] call CBA_fnc_hashGet;
 
 {
 	_classes set [count _classes, _x select 0];
@@ -21,7 +22,7 @@ while { true } do {
 		_sqMeters   = (PI * _cityRadius^2);
 	
 		_currentCount = count (_cityCenter nearEntities [_classes, _cityRadius*2]);
-		_maxCount = round (_sqMeters / 8000);
+		_maxCount = round (_sqMeters / _vehiclesPerMeter);
 		_searchDistance = 5;
 		
 		if ( _maxCount > _maxPerCity ) then {
@@ -65,7 +66,7 @@ while { true } do {
 			_veh = createVehicle [_class, _pos, [], 0, "CAN_COLLIDE"];
 			_veh allowDamage false;
 			_veh setDir (random 360);
-			_veh setVelocity [1, 0, 0];
+			_veh setVelocity [0, 0, 1];
 
 			// Car might be flying...
 			// Once it's done turn dmg back on.
@@ -76,6 +77,7 @@ while { true } do {
 					
 					if ( _v select 0 == 0 && _v select 1 == 0 && _v select 2 == 0 ) exitwith {};
 				};
+				_this setDamage 0;
 				_this allowDamage true;
 			};
 		};
