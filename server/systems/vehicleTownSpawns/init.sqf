@@ -57,10 +57,9 @@ while { true } do {
 				};
 			};
 			
-			_veh = createVehicle [_class, [random -1000, random -1000, random 1000], [], 0, "CAN_COLLIDE"];
-			_veh setDir (random 360);
+			_veh = createVehicle [_class, _pos, [], 0, "CAN_COLLIDE"];
 			_veh allowDamage false;
-			_veh setPos _pos;
+			_veh setDir (random 360);
 			_veh setVelocity [1, 0, 0];
 
 			// Car might be flying...
