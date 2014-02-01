@@ -1,7 +1,8 @@
 #define DEBUG_MODE_FULL
 #include "\x\cba\addons\main\script_macros_common.hpp"
+_dir = __FILE__ call getDirectory;
 _cities = call findCities;
-_config = call compile preprocessFileLineNumbers "server\systems\vehicleTownSpawns\config.sqf";
+_config = call compile preprocessFileLineNumbers (_dir + "\config.sqf");
 _vehicles = [_config, "vehicles"] call CBA_fnc_hashGet;
 _classes = [];
 _lowestChance = 1;

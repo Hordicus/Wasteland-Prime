@@ -1,1 +1,2 @@
-nearUnits = compileFinal preprocessFileLineNumbers "server\functions\nearUnits.sqf";
+_dir = __FILE__ call getDirectory;
+nearUnits = compileFinal preprocessFileLineNumbers (_dir + "\nearUnits.sqf");

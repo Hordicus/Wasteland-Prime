@@ -1,5 +1,6 @@
-_h = execVM "server\functions\compile.sqf";
+_dir = __FILE__ call getDirectory;
+_h = execVM (_dir + "\functions\compile.sqf");
 waitUntil { scriptDone _h; };
 
-execVM "server\systems\townRadar\init.sqf";
-execVM "server\systems\vehicleTownSpawns\init.sqf";
+execVM (_dir + "\systems\townRadar\init.sqf");
+execVM (_dir + "\systems\vehicleTownSpawns\init.sqf");

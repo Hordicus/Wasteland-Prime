@@ -19,6 +19,7 @@ while { true } do {
 		_count = count _units;
 		
 		if ( _last != _count ) then {
+			diag_log format["radarUpdate: %1, %2", _name, _units];
 			["radarUpdate", [_name, _units]] call CBA_fnc_globalEvent;
 		};
 		

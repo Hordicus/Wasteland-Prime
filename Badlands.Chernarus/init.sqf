@@ -10,5 +10,5 @@ if ( !isServer || !isDedicated ) then {
 
 if ( isServer ) then {
 	// Server
-	execVM "server\init.sqf";
+	execVM "\server\init.sqf";
 };

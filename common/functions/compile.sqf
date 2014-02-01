@@ -1,1 +1,0 @@
-findCities = compileFinal preprocessFileLineNumbers 'common\functions\findCities.sqf';;
