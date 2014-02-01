@@ -1,0 +1,1 @@
+tools\MakePbo.exe -JN Badlands.Chernarus
