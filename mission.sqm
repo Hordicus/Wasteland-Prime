@@ -655,7 +655,6 @@ class Mission
 				class Item0
 				{
 					position[]={13351.942,94,12868.938};
-					placement=100;
 					id=34;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
@@ -782,7 +781,6 @@ class Mission
 				class Item0
 				{
 					position[]={12169.737,178.57701,7273.0146};
-					placement=150;
 					id=41;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
@@ -801,7 +799,6 @@ class Mission
 				class Item0
 				{
 					position[]={12937.488,8.3873196,8041.7607};
-					placement=100;
 					id=42;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
