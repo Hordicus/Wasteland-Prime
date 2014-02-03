@@ -1,0 +1,1 @@
+hint 'Hello world';
