@@ -38,6 +38,12 @@ class geard {
 			border = "\ca\ui\data\ui_border_scroll_ca.paa";
 		};
 	};
+	
+	class GEAR_picture_btn : GEAR_common {
+		type = CT_STATIC;
+		style = ST_POS; // ST_PICTURE
+		colorBackground[] = {1,1,1,1};
+	};
 
 	class controls {
 		class GEAR_background : GEAR_common {
@@ -50,11 +56,8 @@ class geard {
 			h = safezoneH;
 		};
 		
-		class GEAR_select_guns : GEAR_common {
+		class GEAR_select_guns : GEAR_picture_btn {
 			idc = GEAR_select_guns_idc;
-			type = CT_STATIC;
-			style = ST_POS; // ST_PICTURE
-			colorBackground[] = {1,1,1,1};
 			
 			x = safezoneX + ( safezoneW * 0.01 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.06) + (safezoneH * 0.01)) * 0 );
@@ -62,23 +65,17 @@ class geard {
 			h = safezoneH * 0.06;
 		};
 		
-		class GEAR_select_launchers : GEAR_common {
+		class GEAR_select_launchers : GEAR_picture_btn {
 			idc = GEAR_select_launchers_idc;
-			type = CT_STATIC;
-			style = ST_POS; // ST_PICTURE
-			colorBackground[] = {1,1,1,1};
-			
+
 			x = safezoneX + ( safezoneW * 0.01 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.06) + (safezoneH * 0.01)) * 1 );
 			w = safezoneW * 0.05;
 			h = safezoneH * 0.06;
 		};
 		
-		class GEAR_select_items : GEAR_common {
+		class GEAR_select_items : GEAR_picture_btn {
 			idc = GEAR_select_items_idc;
-			type = CT_STATIC;
-			style = ST_POS; // ST_PICTURE
-			colorBackground[] = {1,1,1,1};
 			
 			x = safezoneX + ( safezoneW * 0.01 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.06) + (safezoneH * 0.01)) * 2 );
@@ -86,10 +83,8 @@ class geard {
 			h = safezoneH * 0.06;
 		};
 		
-		class GEAR_select_wearables : GEAR_common {
-			type = CT_STATIC;
-			style = ST_POS; // ST_PICTURE
-			colorBackground[] = {1,1,1,1};
+		class GEAR_select_wearables : GEAR_picture_btn {
+			idc = GEAR_select_wearables_idc;
 			
 			x = safezoneX + ( safezoneW * 0.01 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.06) + (safezoneH * 0.01)) * 3 );
@@ -106,10 +101,8 @@ class geard {
 			h = safezoneH * 0.5;
 		};
 		
-		class GEAR_select_ammo : GEAR_common {
-			type = CT_STATIC;
-			style = ST_POS; // ST_PICTURE
-			colorBackground[] = {1,1,1,1};
+		class GEAR_select_ammo : GEAR_picture_btn {
+			idc = GEAR_select_ammo_idc;
 			
 			x = safezoneX + ( safezoneW * 0.01 );
 			y = safezoneY + ( safezoneH * 0.52 ) + ( ((safezoneH * 0.06) + (safezoneH * 0.01)) * 0 );
@@ -117,10 +110,8 @@ class geard {
 			h = safezoneH * 0.06;
 		};
 		
-		class GEAR_select_attachments : GEAR_common {
-			type = CT_STATIC;
-			style = ST_POS; // ST_PICTURE
-			colorBackground[] = {1,1,1,1};
+		class GEAR_select_attachments : GEAR_picture_btn {
+			idc = GEAR_select_attachments_idc;
 			
 			x = safezoneX + ( safezoneW * 0.01 );
 			y = safezoneY + ( safezoneH * 0.52 ) + ( ((safezoneH * 0.06) + (safezoneH * 0.01)) * 1 );
