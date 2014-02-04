@@ -545,5 +545,14 @@ class geard {
 			style = 0;
 			text = "";
 		};
+		
+		class GEAR_purchase_info_bg : GEAR_common {
+			type = CT_STATIC;
+			style = 0;
+			y = safezoneY + safezoneH * 0.66;
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*0);
+			w = safezoneW * 0.35;
+			h = safezoneH * 0.33;
+		};
 	};
 };
