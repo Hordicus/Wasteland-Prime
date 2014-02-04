@@ -15,3 +15,6 @@
 #define GEAR_vest_load_idc GEAR_idc_base + 13
 #define GEAR_backpack_load_idc GEAR_idc_base + 14
 #define GEAR_selected_inv_idc GEAR_idc_base + 15
+#define GEAR_primary_bg_idc GEAR_idc_base + 16
+#define GEAR_secondary_bg_idc GEAR_idc_base + 17
+#define GEAR_pistol_bg_idc GEAR_idc_base + 18
