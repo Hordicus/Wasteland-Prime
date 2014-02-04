@@ -475,10 +475,10 @@ class geard {
 		// Items (GPS/map/etc)
 		class GEAR_item_map_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_map_gs.paa";
-			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
-			y = safezoneY + safezoneH * 0.12;
-			w = safezoneW * 0.08;
-			h = safezoneH * 0.08;
+			y = safezoneY + safezoneH * ( 0.99 - 0.048 );
+			x = safezoneX + safezoneW * (0.34);
+			w = safezoneW * 0.048;
+			h = safezoneH * 0.048;
 		};
 		
 		class GEAR_item_map : GEAR_item_map_bg {
@@ -489,10 +489,10 @@ class geard {
 		
 		class GEAR_item_gps_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_gps_gs.paa";
-			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
-			y = safezoneY + safezoneH * (0.12 + (0.09)*1);
-			w = safezoneW * 0.08;
-			h = safezoneH * 0.08;
+			y = safezoneY + safezoneH * ( 0.99 - 0.048 );
+			x = safezoneX + safezoneW * (0.34 + (0.048 + 0.005) * 1);
+			w = safezoneW * 0.048;
+			h = safezoneH * 0.048;
 		};
 		
 		class GEAR_item_gps : GEAR_item_gps_bg {
@@ -503,10 +503,10 @@ class geard {
 		
 		class GEAR_item_radio_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_radio_gs.paa";
-			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
-			y = safezoneY + safezoneH * (0.12 + (0.09)*2);
-			w = safezoneW * 0.08;
-			h = safezoneH * 0.08;
+			y = safezoneY + safezoneH * ( 0.99 - 0.048 );
+			x = safezoneX + safezoneW * (0.34 + (0.048 + 0.005) * 2);
+			w = safezoneW * 0.048;
+			h = safezoneH * 0.048;
 		};
 		
 		class GEAR_item_radio : GEAR_item_radio_bg {
@@ -517,10 +517,10 @@ class geard {
 		
 		class GEAR_item_compass_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_compass_gs.paa";
-			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
-			y = safezoneY + safezoneH * (0.12 + (0.09)*3);
-			w = safezoneW * 0.08;
-			h = safezoneH * 0.08;
+			y = safezoneY + safezoneH * ( 0.99 - 0.048 );
+			x = safezoneX + safezoneW * (0.34 + (0.048 + 0.005) * 3);
+			w = safezoneW * 0.048;
+			h = safezoneH * 0.048;
 		};
 		
 		class GEAR_item_compass : GEAR_item_compass_bg {
@@ -531,10 +531,10 @@ class geard {
 
 		class GEAR_item_watch_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_watch_gs.paa";
-			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
-			y = safezoneY + safezoneH * (0.12 + (0.09)*4);
-			w = safezoneW * 0.08;
-			h = safezoneH * 0.08;
+			y = safezoneY + safezoneH * ( 0.99 - 0.048 );
+			x = safezoneX + safezoneW * (0.34 + (0.048 + 0.005) * 4);
+			w = safezoneW * 0.048;
+			h = safezoneH * 0.048;
 		};
 		
 		class GEAR_item_watch : GEAR_item_watch_bg {
