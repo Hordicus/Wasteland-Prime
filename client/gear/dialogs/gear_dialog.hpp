@@ -119,7 +119,7 @@ class geard {
 
 			x = safezoneX + (safezoneW * 0.05) + (safezoneW * 0.01);
 			y = safezoneY + ( safezoneH * 0.01 );
-			w = safezoneW * 0.2;
+			w = safezoneW * 0.26;
 			h = safezoneH * 0.5;
 		};
 		
@@ -146,7 +146,7 @@ class geard {
 
 			x = safezoneX + (safezoneW * 0.05) + (safezoneW * 0.01);
 			y = safezoneY + ( safezoneH * 0.01 * 2 ) + (safezoneH * 0.5);
-			w = safezoneW * 0.2;
+			w = safezoneW * 0.26;
 			h = safezoneH * 0.47;
 		};
 		
@@ -154,19 +154,19 @@ class geard {
 		class GEAR_select_uniform : GEAR_picture_btn {
 			idc = GEAR_select_uniform_idc;
 			
-			x = safezoneX + (safezoneW * 0.27) + (safezoneW * 0.1 * 0);
+			x = safezoneX + safezoneW * (0.34 + ( 0.01 + 0.08 ) * 0);
 			y = safezoneY + safezoneH * 0.01;
-			w = safezoneW * 0.09;
-			h = safezoneH * 0.09;
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		// Uniform load
 		class GEAR_uniform_load : GEAR_load {
 			idc = GEAR_uniform_load_idc;
 			
-			x = safezoneX + (safezoneW * 0.27) + (safezoneW * 0.1 * 0);
-			y = safezoneY + safezoneH * ( 0.01 + 0.09 );
-			w = safezoneW * 0.09;
+			x = safezoneX + safezoneW * (0.34 + ( 0.01 + 0.08 ) * 0);
+			y = safezoneY + safezoneH * ( 0.01 + 0.08 );
+			w = safezoneW * 0.08;
 			h = safezoneH * 0.01;
 		};
 		
@@ -174,19 +174,19 @@ class geard {
 		class GEAR_select_vest : GEAR_picture_btn {
 			idc = GEAR_select_vest_idc;
 			
-			x = safezoneX + (safezoneW * 0.27) + (safezoneW * 0.1 * 1);
+			x = safezoneX + safezoneW * (0.34 + ( 0.01 + 0.08 ) * 1);
 			y = safezoneY + safezoneH * 0.01;
-			w = safezoneW * 0.09;
-			h = safezoneH * 0.09;
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		// Vest load
 		class GEAR_vest_load : GEAR_load {
 			idc = GEAR_vest_load_idc;
 			
-			x = safezoneX + (safezoneW * 0.27) + (safezoneW * 0.1 * 1);
-			y = safezoneY + safezoneH * ( 0.01 + 0.09 );
-			w = safezoneW * 0.09;
+			x = safezoneX + safezoneW * (0.34 + ( 0.01 + 0.08 ) * 1);
+			y = safezoneY + safezoneH * ( 0.01 + 0.08 );
+			w = safezoneW * 0.08;
 			h = safezoneH * 0.01;
 		};
 		
@@ -194,78 +194,78 @@ class geard {
 		class GEAR_select_backpack : GEAR_picture_btn {
 			idc = GEAR_select_backpack_idc;
 			
-			x = safezoneX + (safezoneW * 0.27) + (safezoneW * 0.1 * 2);
+			x = safezoneX + safezoneW * (0.34 + ( 0.01 + 0.08 ) * 2);
 			y = safezoneY + safezoneH * 0.01;
-			w = safezoneW * 0.09;
-			h = safezoneH * 0.09;
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		// Backpack load
 		class GEAR_backpack_load : GEAR_load {
 			idc = GEAR_backpack_load_idc;
 			
-			x = safezoneX + (safezoneW * 0.27) + (safezoneW * 0.1 * 2);
-			y = safezoneY + safezoneH * ( 0.01 + 0.09 );
-			w = safezoneW * 0.09;
+			x = safezoneX + safezoneW * (0.34 + ( 0.01 + 0.08 ) * 2);
+			y = safezoneY + safezoneH * ( 0.01 + 0.08 );
+			w = safezoneW * 0.08;
 			h = safezoneH * 0.01;
+		};
+		
+		class GEAR_selected_inv : GEAR_list {
+			idc = GEAR_selected_inv_idc;
+
+			x = safezoneX + (safezoneW * 0.34) + (safezoneW * 0.1 * 0);
+			y = safezoneY + ( safezoneH * 0.12 );
+			w = safezoneW * 0.26;
+			h = safezoneH * 0.81;
 		};
 		
 		// Helmet
 		class GEAR_select_helmet : GEAR_picture_btn {
 			// idc = GEAR_select_helmet_idc;
 			
-			x = safezoneX + (safezoneW * 0.3) + (safezoneW * 0.1 * 3);
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 3);
 			y = safezoneY + safezoneH * 0.01;
-			w = safezoneW * 0.09;
-			h = safezoneH * 0.09;
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		// Glasses
 		class GEAR_select_glasses : GEAR_picture_btn {
 			// idc = GEAR_select_helmet_idc;
 			
-			x = safezoneX + (safezoneW * 0.3) + (safezoneW * 0.1 * 4);
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 4);
 			y = safezoneY + safezoneH * 0.01;
-			w = safezoneW * 0.09;
-			h = safezoneH * 0.09;
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		// NVGs
 		class GEAR_select_nvg : GEAR_picture_btn {
 			// idc = GEAR_select_helmet_idc;
 			
-			x = safezoneX + (safezoneW * 0.3) + (safezoneW * 0.1 * 5);
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 5);
 			y = safezoneY + safezoneH * 0.01;
-			w = safezoneW * 0.09;
-			h = safezoneH * 0.09;
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		// Binoculars
 		class GEAR_select_binoculars : GEAR_picture_btn {
 			// idc = GEAR_select_helmet_idc;
 			
-			x = safezoneX + (safezoneW * 0.3) + (safezoneW * 0.1 * 6);
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
 			y = safezoneY + safezoneH * 0.01;
-			w = safezoneW * 0.09;
-			h = safezoneH * 0.09;
-		};
-		
-		class GEAR_selected_inv : GEAR_list {
-			idc = GEAR_selected_inv_idc;
-
-			x = safezoneX + (safezoneW * 0.27) + (safezoneW * 0.1 * 0);
-			y = safezoneY + ( safezoneH * 0.12 );
-			w = safezoneW * 0.19;
-			h = safezoneH * 0.77;
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		// Primary Weapon
 		class GEAR_primary_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_primary_gs.paa";
 			y = safezoneY + ( safezoneH * 0.12 );
-			x = safezoneX + safezoneW * 0.75;
-			w = safezoneW * 0.24;
-			h = safezoneH * 0.14;
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 3);
+			w = safezoneW * 0.26;
+			h = safezoneH * 0.16;
 		};
 		
 		class GEAR_primary : GEAR_primary_bg {
@@ -273,226 +273,212 @@ class geard {
 			style = 0;
 			text = "";
 		};
-		
+
 		class GEAR_primary_muzzle_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_muzzle_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 );
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*0 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + (0.16 + 0.005)*1 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*0);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_primary_muzzle : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 );
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*0 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		class GEAR_primary_muzzle : GEAR_primary_muzzle_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_primary_acc_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_side_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 );
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*1 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + (0.16 + 0.005)*1 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*1);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
-
-		class GEAR_primary_acc : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 );
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*1 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		
+		class GEAR_primary_acc : GEAR_primary_acc_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_primary_optic_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_top_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 );
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*2 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + (0.16 + 0.005)*1 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*2);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_primary_optic : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 );
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*2 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		class GEAR_primary_optic : GEAR_primary_optic_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_primary_mag_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_magazine_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 );
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*3 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + (0.16 + 0.005)*1 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*3);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_primary_mag : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 );
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*3 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		class GEAR_primary_mag : GEAR_primary_mag_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
-		
-		// Secondary Weapon
+
+		// Secondary
 		class GEAR_secondary_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_secondary_gs.paa";
-			y = safezoneY + ( safezoneH * 0.12 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * 0.75;
-			w = safezoneW * 0.24;
-			h = safezoneH * 0.14;
+			y = safezoneY + safezoneH * ( 0.12 + (0.16 + 0.005 + 0.045 + 0.01)*1 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 3);
+			w = safezoneW * 0.26;
+			h = safezoneH * 0.16;
 		};
 		
-		class GEAR_secondary : GEAR_inv_slot {
-			y = safezoneY + ( safezoneH * 0.12 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * 0.75;
-			w = safezoneW * 0.24;
-			h = safezoneH * 0.14;
+		class GEAR_secondary : GEAR_secondary_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
-		
+
 		class GEAR_secondary_muzzle_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_muzzle_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*0 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + ( 0.16 + 0.005 + 0.045 + 0.01 + 0.16 + 0.005 ) );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*0);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_secondary_muzzle : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*0 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		class GEAR_secondary_muzzle : GEAR_secondary_muzzle_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_secondary_acc_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_side_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*1 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + ( 0.16 + 0.005 + 0.045 + 0.01 + 0.16 + 0.005 ) );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*1);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
-
-		class GEAR_secondary_acc : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*1 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		
+		class GEAR_secondary_acc : GEAR_secondary_acc_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_secondary_optic_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_top_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*2 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + ( 0.16 + 0.005 + 0.045 + 0.01 + 0.16 + 0.005 ) );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*2);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_secondary_optic : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*2 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		class GEAR_secondary_optic : GEAR_secondary_optic_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_secondary_mag_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_magazine_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*3 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + ( 0.16 + 0.005 + 0.045 + 0.01 + 0.16 + 0.005 ) );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*3);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_secondary_mag : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 1;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*3 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		class GEAR_secondary_mag : GEAR_secondary_mag_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
-
-		// Pistol Weapon
+		
+		// Pistol
 		class GEAR_pistol_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_hgun_gs.paa";
-			y = safezoneY + ( safezoneH * 0.12 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * 0.75;
-			w = safezoneW * 0.24;
-			h = safezoneH * 0.14;
+			y = safezoneY + safezoneH * ( 0.12 + (0.16 + 0.005 + 0.045 + 0.01)*2 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 3);
+			w = safezoneW * 0.26;
+			h = safezoneH * 0.16;
 		};
 		
-		class GEAR_pistol : GEAR_inv_slot {
-			y = safezoneY + ( safezoneH * 0.12 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * 0.75;
-			w = safezoneW * 0.24;
-			h = safezoneH * 0.14;
+		class GEAR_pistol : GEAR_pistol_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
-		
+
 		class GEAR_pistol_muzzle_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_muzzle_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*0 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + 0.606 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*0);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_pistol_muzzle : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*0 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		class GEAR_pistol_muzzle : GEAR_pistol_muzzle_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_pistol_acc_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_side_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*1 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + 0.606 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*1);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
-
-		class GEAR_pistol_acc : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*1 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		
+		class GEAR_pistol_acc : GEAR_pistol_acc_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_pistol_optic_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_top_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*2 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + 0.606 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*2);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_pistol_optic : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*2 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
+		class GEAR_pistol_optic : GEAR_pistol_optic_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
 		};
 		
 		class GEAR_pistol_mag_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_magazine_gs.paa";
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*3 );
-			w = safezoneW * 0.05625;
+			y = safezoneY + safezoneH * ( 0.12 + 0.606 );
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 )*3 + (0.06125 + 0.005)*3);
+			w = safezoneW * 0.06125;
 			h = safezoneH * 0.045;
 		};
 		
-		class GEAR_pistol_mag : GEAR_inv_slot {
-			y = safezoneY + safezoneH * ( 0.12 + 0.14 + 0.005 ) + ( safeZoneH * 0.19 + 0.01) * 2;
-			x = safezoneX + safezoneW * (0.75 + (0.05625 + 0.005)*3 );
-			w = safezoneW * 0.05625;
-			h = safezoneH * 0.045;
-		};
+		class GEAR_pistol_mag : GEAR_pistol_mag_bg {
+			type = CT_STATIC;
+			style = 0;
+			text = "";
+		};		
 		
 		// Items (GPS/map/etc)
 		class GEAR_item_map_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_map_gs.paa";
-			y = safezoneY + safezoneH * ( 0.99 - 0.05 );
-			x = safezoneX + safezoneW * (0.27);
-			w = safezoneW * 0.05;
-			h = safezoneH * 0.05;
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
+			y = safezoneY + safezoneH * 0.12;
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		class GEAR_item_map : GEAR_item_map_bg {
@@ -503,10 +489,10 @@ class geard {
 		
 		class GEAR_item_gps_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_gps_gs.paa";
-			y = safezoneY + safezoneH * ( 0.99 - 0.05 );
-			x = safezoneX + safezoneW * (0.27 + (0.05 + 0.005) * 1);
-			w = safezoneW * 0.05;
-			h = safezoneH * 0.05;
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
+			y = safezoneY + safezoneH * (0.12 + (0.09)*1);
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		class GEAR_item_gps : GEAR_item_gps_bg {
@@ -517,10 +503,10 @@ class geard {
 		
 		class GEAR_item_radio_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_radio_gs.paa";
-			y = safezoneY + safezoneH * ( 0.99 - 0.05 );
-			x = safezoneX + safezoneW * (0.27 + (0.05 + 0.005) * 2);
-			w = safezoneW * 0.05;
-			h = safezoneH * 0.05;
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
+			y = safezoneY + safezoneH * (0.12 + (0.09)*2);
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		class GEAR_item_radio : GEAR_item_radio_bg {
@@ -531,10 +517,10 @@ class geard {
 		
 		class GEAR_item_compass_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_compass_gs.paa";
-			y = safezoneY + safezoneH * ( 0.99 - 0.05 );
-			x = safezoneX + safezoneW * (0.27 + (0.05 + 0.005) * 3);
-			w = safezoneW * 0.05;
-			h = safezoneH * 0.05;
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
+			y = safezoneY + safezoneH * (0.12 + (0.09)*3);
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		class GEAR_item_compass : GEAR_item_compass_bg {
@@ -545,10 +531,10 @@ class geard {
 
 		class GEAR_item_watch_bg : GEAR_picture_bg {
 			text = "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_watch_gs.paa";
-			y = safezoneY + safezoneH * ( 0.99 - 0.05 );
-			x = safezoneX + safezoneW * (0.27 + (0.05 + 0.005) * 4);
-			w = safezoneW * 0.05;
-			h = safezoneH * 0.05;
+			x = safezoneX + safezoneW * (0.35 + ( 0.01 + 0.08 ) * 6);
+			y = safezoneY + safezoneH * (0.12 + (0.09)*4);
+			w = safezoneW * 0.08;
+			h = safezoneH * 0.08;
 		};
 		
 		class GEAR_item_watch : GEAR_item_watch_bg {
