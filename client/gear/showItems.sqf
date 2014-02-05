@@ -18,3 +18,5 @@ lbClear GEAR_itemslist_idc;
 	lbSetPicture[GEAR_itemslist_idc, _forEachIndex, _img];
 
 } forEach _items;
+
+lbSetCurSel [GEAR_itemslist_idc, 0];
