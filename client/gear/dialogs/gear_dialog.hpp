@@ -112,6 +112,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_guns_idc;
+			onMouseButtonClick = "'guns' call GEAR_showItems";
 		};
 		
 		class GEAR_select_launchers : GEAR_button {
@@ -121,6 +122,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_launchers_idc;
+			onMouseButtonClick = "'launchers' call GEAR_showItems";
 		};
 		
 		class GEAR_select_items : GEAR_button {
@@ -130,6 +132,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_items_idc;
+			onMouseButtonClick = "'items' call GEAR_showItems";
 		};
 		
 		class GEAR_select_wearables : GEAR_button {
@@ -139,6 +142,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_wearables_idc;
+			onMouseButtonClick = "'wearables' call GEAR_showItems";
 		};
 		
 		class GEAR_select_ammo : GEAR_button {
@@ -148,6 +152,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_ammo_idc;
+			onMouseButtonClick = "'ammo' call GEAR_showItems";
 		};
 		
 		class GEAR_select_attachments : GEAR_button {
@@ -157,6 +162,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_attachments_idc;
+			onMouseButtonClick = "'attachments' call GEAR_showItems";
 		};
 	};
 

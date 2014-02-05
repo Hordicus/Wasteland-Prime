@@ -1,0 +1,42 @@
+_config = [] call CBA_fnc_hashCreate;
+
+[_config, "guns", [
+	["hgun_PDW2000_F", 100],
+	["arifle_TRG20_F", 100],
+	["arifle_Mk20_F", 100],
+	["arifle_Mk20_F", 100],
+	["arifle_Mk20C_F", 100],
+	["arifle_Mk20_plain_F", 100],
+	["SMG_02_F", 100],
+	["SMG_01_F", 100],
+	["arifle_SDAR_F", 100],
+	["arifle_Mk20_GL_F", 100],
+	["srifle_GM6_F", 100],
+	["arifle_Katiba_F", 100],
+	["arifle_Katiba_GL_F", 100],
+	["arifle_Katiba_C_F", 100],
+	["srifle_LRR_F", 100],
+	["srifle_EBR_F", 100],
+	["LMG_Mk200_F", 100],
+	["arifle_MX_F", 100],
+	["arifle_MX_GL_F", 100],
+	["arifle_MX_GL_Black_F", 100],
+	["arifle_MX_Black_F", 100],
+	["arifle_MX_SW_F", 100],
+	["arifle_MX_SW_Black_F", 100],
+	["arifle_MXC_F", 100],
+	["arifle_MXC_Black_F", 100],
+	["arifle_MXM_F", 100],
+	["arifle_MXM_Black_F", 100],
+	["LMG_Zafir_F", 100],
+	["srifle_DMR_01_F", 100],
+	["arifle_TRG21_F", 100],
+	["arifle_TRG21_GL_F", 100],
+	["hgun_Pistol_heavy_01_F", 100],
+	["hgun_ACPC2_F", 100],
+	["hgun_Rook40_F", 100],
+	["hgun_P07_F", 100],
+	["hgun_Pistol_heavy_02_F", 100]
+]] call CBA_fnc_hashSet;
+
+_config

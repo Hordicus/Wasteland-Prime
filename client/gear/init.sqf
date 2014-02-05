@@ -20,3 +20,11 @@ _pistol_icon = getText (configFile >> "CfgWeapons" >> (handgunWeapon player) >> 
 // _primary_bg ctrlSetText _primary_icon;
 // _secondary_bg ctrlSetText _secondary_icon;
 // _pistol_bg ctrlSetText _pistol_icon;
+
+if ( isNil "GEAR_showItems" ) then {
+	GEAR_showItems = compileFinal preprocessFileLineNumbers "client\gear\showItems.sqf";
+	GEAR_config    = compileFinal preprocessFileLineNumbers "client\gear\config.sqf";
+	GEAR_itemName  = compileFinal preprocessFileLineNumbers "client\gear\itemName.sqf";
+};
+
+'guns' call GEAR_showItems;
