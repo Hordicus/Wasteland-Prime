@@ -27,7 +27,9 @@ class geard {
 		wholeHeight = 0.45;
 		rowHeight = 0.045;
 		maxHistoryDelay = 1;
-
+		colorSelect[] = {0,0,0,1};
+		colorSelect2[] = {0,0,0,1};
+		
 		class ListScrollBar {
 			color[] = {1, 1, 1, 1};
 			colorActive[] = {1, 1, 1, 1};
@@ -216,6 +218,7 @@ class geard {
 			y = safezoneY + ( safezoneH * 0.01 );
 			w = safezoneW * 0.26;
 			h = safezoneH * 0.5;
+			onLBSelChanged = "_this call GEAR_showItemDetails";
 		};
 		
 		class GEAR_select_ammo_bg : GEAR_button_bg {
