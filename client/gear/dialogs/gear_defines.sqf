@@ -29,6 +29,12 @@
 #define GEAR_select_nvg_idc GEAR_idc_base + 27
 #define GEAR_select_binocular_bg_idc GEAR_idc_base + 28
 #define GEAR_select_binocular_idc GEAR_idc_base + 29
+#define GEAR_select_guns_bg_idc GEAR_idc_base + 30
+#define GEAR_select_launchers_bg_idc GEAR_idc_base + 31
+#define GEAR_select_items_bg_idc GEAR_idc_base + 32
+#define GEAR_select_wearables_bg_idc GEAR_idc_base + 33
+#define GEAR_select_ammo_bg_idc GEAR_idc_base + 34
+
 
 
 // Images

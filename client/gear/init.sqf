@@ -17,6 +17,6 @@ _primary_icon = getText (configFile >> "CfgWeapons" >> (primaryWeapon player) >>
 _secondary_icon = getText (configFile >> "CfgWeapons" >> (secondaryWeapon player) >> "picture");
 _pistol_icon = getText (configFile >> "CfgWeapons" >> (handgunWeapon player) >> "picture");
 
-_primary_bg ctrlSetText _primary_icon;
-_secondary_bg ctrlSetText _secondary_icon;
-_pistol_bg ctrlSetText _pistol_icon;
+// _primary_bg ctrlSetText _primary_icon;
+// _secondary_bg ctrlSetText _secondary_icon;
+// _pistol_bg ctrlSetText _pistol_icon;
