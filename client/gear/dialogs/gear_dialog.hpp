@@ -136,7 +136,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_items_idc;
-			onMouseButtonClick = "'items' call GEAR_showItems";
+			onMouseButtonClick = "'items' call GEAR_showItems; GEAR_activeNav = 'items'; call GEAR_updateTabs;";
 			onMouseEnter = "[_this select 0, 1, 'items'] execVM 'client\gear\rolloverChangeBg.sqf'";
 			onMouseExit  = "[_this select 0, 0, 'items'] execVM 'client\gear\rolloverChangeBg.sqf'";			
 		};
@@ -148,7 +148,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_wearables_idc;
-			onMouseButtonClick = "'wearables' call GEAR_showItems";
+			onMouseButtonClick = "'wearables' call GEAR_showItems; GEAR_activeNav = 'wearables'; call GEAR_updateTabs;";
 			onMouseEnter = "[_this select 0, 1, 'wearables'] execVM 'client\gear\rolloverChangeBg.sqf'";
 			onMouseExit  = "[_this select 0, 0, 'wearables'] execVM 'client\gear\rolloverChangeBg.sqf'";			
 		};
@@ -160,7 +160,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_ammo_idc;
-			onMouseButtonClick = "'ammo' call GEAR_showItemDetails";
+			onMouseButtonClick = "'ammo' call GEAR_showItemDetails; GEAR_activeNav = 'ammo'; call GEAR_updateTabs;";
 			onMouseEnter = "[_this select 0, 1, 'ammo'] execVM 'client\gear\rolloverChangeBg.sqf'";
 			onMouseExit  = "[_this select 0, 0, 'ammo'] execVM 'client\gear\rolloverChangeBg.sqf'";
 		};
@@ -172,7 +172,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_attachments_idc;
-			onMouseButtonClick = "'attachments' call GEAR_showItemDetails";
+			onMouseButtonClick = "'attachments' call GEAR_showItemDetails; GEAR_activeNav = 'attachments'; call GEAR_updateTabs;";
 			onMouseEnter = "[_this select 0, 1, 'attachments'] execVM 'client\gear\rolloverChangeBg.sqf'";
 			onMouseExit  = "[_this select 0, 0, 'attachments'] execVM 'client\gear\rolloverChangeBg.sqf'";
 		};
