@@ -183,7 +183,7 @@ class geard {
 		// Left column
 		class GEAR_select_guns_bg : GEAR_button_bg {
 			idc = GEAR_select_guns_bg_idc;
-			text = "D:\Docs\Arma 3 - Other Profiles\DJRanger\MPMissions\test.Chernarus\client\gear\icons\guns.paa";
+			text = "client\gear\icons\guns.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 0 );
@@ -193,7 +193,7 @@ class geard {
 		
 		class GEAR_select_launchers_bg : GEAR_button_bg {
 			idc = GEAR_select_launchers_bg_idc;
-			text = "D:\Docs\Arma 3 - Other Profiles\DJRanger\MPMissions\test.Chernarus\client\gear\icons\launchers.paa";
+			text = "client\gear\icons\launchers.paa";
 
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 1 );
@@ -203,7 +203,7 @@ class geard {
 		
 		class GEAR_select_items_bg : GEAR_button_bg {
 			idc = GEAR_select_items_bg_idc;
-			text = "D:\Docs\Arma 3 - Other Profiles\DJRanger\MPMissions\test.Chernarus\client\gear\icons\gear.paa";
+			text = "client\gear\icons\gear.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 2 );
@@ -213,7 +213,7 @@ class geard {
 				
 		class GEAR_select_wearables_bg : GEAR_button_bg {
 			idc = GEAR_select_wearables_bg_idc;
-			text = "D:\Docs\Arma 3 - Other Profiles\DJRanger\MPMissions\test.Chernarus\client\gear\icons\wearables.paa";
+			text = "client\gear\icons\wearables.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 3 );
@@ -233,7 +233,7 @@ class geard {
 		
 		class GEAR_select_ammo_bg : GEAR_button_bg {
 			idc = GEAR_select_ammo_bg_idc;
-			text = "D:\Docs\Arma 3 - Other Profiles\DJRanger\MPMissions\test.Chernarus\client\gear\icons\ammo.paa";
+			text = "client\gear\icons\ammo.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.52 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 0 );
@@ -243,7 +243,7 @@ class geard {
 		
 		class GEAR_select_attachments_bg : GEAR_button_bg {
 			idc = GEAR_select_attachments_bg_idc;
-			text = "D:\Docs\Arma 3 - Other Profiles\DJRanger\MPMissions\test.Chernarus\client\gear\icons\attachments.paa";
+			text = "client\gear\icons\attachments.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.52 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 1 );
