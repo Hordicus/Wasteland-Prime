@@ -1,7 +1,7 @@
 private ["_class", "_parent", "_try"];
 _class = _this;
 _parent = "";
-_try = ["CfgWeapons", "CfgMagazines"];
+_try = ["CfgWeapons", "CfgMagazines", "CfgVehicles", "CfgGlasses"];
 
 {
 	if ( isClass (configFile >> _x >> _class ) ) exitwith {
