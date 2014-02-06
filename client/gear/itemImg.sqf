@@ -1,5 +1,5 @@
 private ["_class", "_img"];
 _class = _this;
-_img = getText (configFile >> "cfgWeapons" >> _class >> "picture");
+_img = getText ((_class call GEAR_getConfig) >> "picture");
 
 _img

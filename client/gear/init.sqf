@@ -21,12 +21,18 @@ _pistol_icon = getText (configFile >> "CfgWeapons" >> (handgunWeapon player) >> 
 // _secondary_bg ctrlSetText _secondary_icon;
 // _pistol_bg ctrlSetText _pistol_icon;
 
+GEAR_activeNav = 'guns';
+GEAR_activeSubNav = 'ammo';
+
 if ( isNil "GEAR_showItems" ) then {
 	GEAR_showItems       = compileFinal preprocessFileLineNumbers "client\gear\showItems.sqf";
 	GEAR_config          = compileFinal preprocessFileLineNumbers "client\gear\config.sqf";
 	GEAR_itemName        = compileFinal preprocessFileLineNumbers "client\gear\itemName.sqf";
 	GEAR_itemImg         = compileFinal preprocessFileLineNumbers "client\gear\itemImg.sqf";
 	GEAR_showItemDetails = compileFinal preprocessFileLineNumbers "client\gear\showItemDetails.sqf";
+	GEAR_getConfig       = compileFinal preprocessFileLineNumbers "client\gear\getConfig.sqf";
+	GEAR_updateTabs      = compileFinal preprocessFileLineNumbers "client\gear\updateTabs.sqf";
 };
 
-'guns' call GEAR_showItems;
+GEAR_activeNav call GEAR_showItems;
+call GEAR_updateTabs;

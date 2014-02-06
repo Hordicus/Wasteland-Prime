@@ -1,5 +1,5 @@
 private ["_class", "_name"];
 _class = _this;
-_name = getText (configFile >> "cfgWeapons" >> _class >> "displayName");
+_name = getText ((_class call GEAR_getConfig) >> "displayName");
 
 _name

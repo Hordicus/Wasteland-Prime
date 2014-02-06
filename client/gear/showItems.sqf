@@ -5,7 +5,7 @@ _type = _this;
 _config = call GEAR_config;
 _items = [_config, _type] call CBA_fnc_hashGet;
 
-lbClear GEAR_itemslist_idc;
+lbClear ((findDisplay GEAR_dialog_idc) displayCtrl GEAR_itemslist_idc);
 
 {
 	_name = (_x select 0) call GEAR_ItemName;

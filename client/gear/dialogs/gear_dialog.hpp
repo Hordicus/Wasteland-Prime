@@ -65,7 +65,8 @@ class geard {
 		colorFocused[] = {0,0,0,0.5};
 		colorBackgroundActive[] = {1,1,1,1};
 		
-		colorBackgroundDisabled[] = {0,0,0,0.5};
+		// colorBackground[] = {1,0,0,0.5};
+		colorBackgroundDisabled[] = {1,1,1,1};
 		action = "";
 		
 		offsetX = 0;
@@ -80,9 +81,6 @@ class geard {
 		soundPush[] = {"",0.1,1};
 		soundClick[] = {"",0.1,1};
 		soundEscape[] = {"",0.1,1};
-		
-		onMouseEnter = "[_this select 0, 1] execVM 'client\gear\rolloverChangeBg.sqf'";
-		onMouseExit = "[_this select 0, 0] execVM 'client\gear\rolloverChangeBg.sqf'";
 	};
 	
 	class GEAR_picture_btn : GEAR_common {
@@ -114,7 +112,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_guns_idc;
-			onMouseButtonClick = "'guns' call GEAR_showItems";
+			onMouseButtonClick = "'guns' call GEAR_showItems; GEAR_activeNav = 'guns'; call GEAR_updateTabs;";
+			onMouseEnter = "[_this select 0, 1, 'guns'] execVM 'client\gear\rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'guns'] execVM 'client\gear\rolloverChangeBg.sqf'";
 		};
 		
 		class GEAR_select_launchers : GEAR_button {
@@ -124,7 +124,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_launchers_idc;
-			onMouseButtonClick = "'launchers' call GEAR_showItems";
+			onMouseButtonClick = "'launchers' call GEAR_showItems; GEAR_activeNav = 'launchers'; call GEAR_updateTabs;";
+			onMouseEnter = "[_this select 0, 1, 'launchers'] execVM 'client\gear\rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'launchers'] execVM 'client\gear\rolloverChangeBg.sqf'";
 		};
 		
 		class GEAR_select_items : GEAR_button {
@@ -135,6 +137,8 @@ class geard {
 
 			idc = GEAR_select_items_idc;
 			onMouseButtonClick = "'items' call GEAR_showItems";
+			onMouseEnter = "[_this select 0, 1, 'items'] execVM 'client\gear\rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'items'] execVM 'client\gear\rolloverChangeBg.sqf'";			
 		};
 		
 		class GEAR_select_wearables : GEAR_button {
@@ -145,6 +149,8 @@ class geard {
 
 			idc = GEAR_select_wearables_idc;
 			onMouseButtonClick = "'wearables' call GEAR_showItems";
+			onMouseEnter = "[_this select 0, 1, 'wearables'] execVM 'client\gear\rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'wearables'] execVM 'client\gear\rolloverChangeBg.sqf'";			
 		};
 		
 		class GEAR_select_ammo : GEAR_button {
@@ -154,7 +160,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_ammo_idc;
-			onMouseButtonClick = "'ammo' call GEAR_showItems";
+			onMouseButtonClick = "'ammo' call GEAR_showItemDetails";
+			onMouseEnter = "[_this select 0, 1, 'ammo'] execVM 'client\gear\rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'ammo'] execVM 'client\gear\rolloverChangeBg.sqf'";
 		};
 		
 		class GEAR_select_attachments : GEAR_button {
@@ -164,7 +172,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_attachments_idc;
-			onMouseButtonClick = "'attachments' call GEAR_showItems";
+			onMouseButtonClick = "'attachments' call GEAR_showItemDetails";
+			onMouseEnter = "[_this select 0, 1, 'attachments'] execVM 'client\gear\rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'attachments'] execVM 'client\gear\rolloverChangeBg.sqf'";
 		};
 	};
 
