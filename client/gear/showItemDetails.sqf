@@ -1,28 +1,45 @@
 #include "dialogs\gear_defines.sqf"
-private ["_list", "_index", "_class", "_config", "_compatible_ammo", "_compatible_cows", "_compatible_muzzles", "_compatible_pointers", "_sold_ammo", "_ammo"];
+private ["_index", "_class", "_config", "_compatible_ammo", "_compatible_cows", "_compatible_muzzles", "_compatible_pointers", "_sold_ammo", "_sold_attachments", "_items", "_compatible_attachments"];
 lbClear ((findDisplay GEAR_dialog_idc) displayCtrl GEAR_items_attachments_ammo_idc);
 
-_list   = _this select 0;
-_index  = _this select 1;
+_index  = lbCurSel ((findDisplay GEAR_dialog_idc) displayCtrl GEAR_itemslist_idc);
 _config = call GEAR_config;
 _sold_ammo = [_config, "ammo"] call CBA_fnc_hashGet;
-_class  = _list lbData _index;
+_sold_attachments = [_config, "attachments"] call CBA_fnc_hashGet;
+_class  = lbData [GEAR_itemslist_idc, _index];
 
 _compatible_ammo = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
 _compatible_cows = getArray (configFile >> "CfgWeapons" >> _class >> "WeaponSlotsInfo" >> "CowsSlot" >> "compatibleItems");
 _compatible_muzzles = getArray (configFile >> "CfgWeapons" >> _class >> "WeaponSlotsInfo" >> "MuzzleSlot" >> "compatibleItems");
 _compatible_pointers = getArray (configFile >> "CfgWeapons" >> _class >> "WeaponSlotsInfo" >> "PointerSlot" >> "compatibleItems");
 
-_ammo = [];
+_compatible_attachments = _compatible_cows + _compatible_muzzles + _compatible_pointers;
 
-{
-	_class = _x;
+_items = [];
+
+if ( GEAR_activeSubNav == 'ammo' ) then {
 	{
-		if (_class == _x select 0) then {
-			_ammo set [count _ammo, _x];
-		};
-	} forEach _sold_ammo;
-} forEach _compatible_ammo;
+		_class = _x;
+		{
+			if (_class == _x select 0) then {
+				_items set [count _items, _x];
+			};
+		} forEach _sold_ammo;
+	} forEach _compatible_ammo;
+
+}
+else {
+	if ( GEAR_activeSubNav == 'attachments' ) then {
+		{
+			_class = _x;
+			{
+				if (_class == _x select 0) then {
+					_items set [count _items, _x];
+				};
+			} forEach _sold_attachments;
+		} forEach _compatible_attachments;
+	};
+};
 
 {
 	_name = (_x select 0) call GEAR_ItemName;
@@ -33,4 +50,4 @@ _ammo = [];
 	lbAdd [GEAR_items_attachments_ammo_idc, _string];
 	lbSetData [GEAR_items_attachments_ammo_idc, _forEachIndex, _x select 0];
 	lbSetPicture[GEAR_items_attachments_ammo_idc, _forEachIndex, _img];
-} forEach _ammo;
+} forEach _items;

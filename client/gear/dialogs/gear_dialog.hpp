@@ -160,7 +160,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_ammo_idc;
-			onMouseButtonClick = "'ammo' call GEAR_showItemDetails; GEAR_activeNav = 'ammo'; call GEAR_updateTabs;";
+			onMouseButtonClick = "GEAR_activeSubNav = 'ammo'; call GEAR_showItemDetails; call GEAR_updateTabs;";
 			onMouseEnter = "[_this select 0, 1, 'ammo'] execVM 'client\gear\rolloverChangeBg.sqf'";
 			onMouseExit  = "[_this select 0, 0, 'ammo'] execVM 'client\gear\rolloverChangeBg.sqf'";
 		};
@@ -172,7 +172,7 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_attachments_idc;
-			onMouseButtonClick = "'attachments' call GEAR_showItemDetails; GEAR_activeNav = 'attachments'; call GEAR_updateTabs;";
+			onMouseButtonClick = "GEAR_activeSubNav = 'attachments'; call GEAR_showItemDetails; call GEAR_updateTabs;";
 			onMouseEnter = "[_this select 0, 1, 'attachments'] execVM 'client\gear\rolloverChangeBg.sqf'";
 			onMouseExit  = "[_this select 0, 0, 'attachments'] execVM 'client\gear\rolloverChangeBg.sqf'";
 		};
@@ -228,7 +228,7 @@ class geard {
 			y = safezoneY + ( safezoneH * 0.01 );
 			w = safezoneW * 0.26;
 			h = safezoneH * 0.5;
-			onLBSelChanged = "_this call GEAR_showItemDetails";
+			onLBSelChanged = "call GEAR_showItemDetails";
 		};
 		
 		class GEAR_select_ammo_bg : GEAR_button_bg {
