@@ -20,47 +20,74 @@
 #define GEAR_selected_inv_idc GEAR_idc_base + 15
 
 // Gear
-#define GEAR_select_uniform_idc GEAR_idc_base + 16
-#define GEAR_uniform_load_idc GEAR_idc_base + 17
+#define GEAR_select_uniform_bg_idc GEAR_idc_base + 16
+#define GEAR_select_uniform_idc GEAR_idc_base + 17
+#define GEAR_uniform_load_idc GEAR_idc_base + 18
 
-#define GEAR_select_vest_idc GEAR_idc_base + 18
-#define GEAR_vest_load_idc GEAR_idc_base + 19
+#define GEAR_select_vest_bg_idc GEAR_idc_base + 19
+#define GEAR_select_vest_idc GEAR_idc_base + 20
+#define GEAR_vest_load_idc GEAR_idc_base + 21
 
-#define GEAR_select_backpack_idc GEAR_idc_base + 20
-#define GEAR_backpack_load_idc GEAR_idc_base + 21
+#define GEAR_select_backpack_idc GEAR_idc_base + 22
+#define GEAR_select_backpack_bg_idc GEAR_idc_base + 23
+#define GEAR_backpack_load_idc GEAR_idc_base + 24
 
-#define GEAR_primary_idc GEAR_idc_base + 22
-#define GEAR_primary_muzzle_idc GEAR_idc_base + 23
-#define GEAR_primary_acc_idc GEAR_idc_base + 24
-#define GEAR_primary_optic_idc GEAR_idc_base + 25
-#define GEAR_primary_mag_idc GEAR_idc_base + 26
+#define GEAR_primary_bg_idc GEAR_idc_base + 25
+#define GEAR_primary_idc GEAR_idc_base + 26
+#define GEAR_primary_muzzle_bg_idc GEAR_idc_base + 27
+#define GEAR_primary_muzzle_idc GEAR_idc_base + 28
+#define GEAR_primary_acc_bg_idc GEAR_idc_base + 29
+#define GEAR_primary_acc_idc GEAR_idc_base + 30
+#define GEAR_primary_optic_bg_idc GEAR_idc_base + 31
+#define GEAR_primary_optic_idc GEAR_idc_base + 32
+#define GEAR_primary_mag_bg_idc GEAR_idc_base + 33
+#define GEAR_primary_mag_idc GEAR_idc_base + 34
 
-#define GEAR_secondary_idc GEAR_idc_base + 27
+#define GEAR_secondary_bg_idc GEAR_idc_base + 35
+#define GEAR_secondary_idc GEAR_idc_base + 36
+#define GEAR_secondary_muzzle_bg_idc GEAR_idc_base + 37
 #define GEAR_secondary_muzzle_idc GEAR_idc_base + 38
-#define GEAR_secondary_acc_idc GEAR_idc_base + 29
-#define GEAR_secondary_optic_idc GEAR_idc_base + 30
-#define GEAR_secondary_mag_idc GEAR_idc_base + 31
+#define GEAR_secondary_acc_bg_idc GEAR_idc_base + 39
+#define GEAR_secondary_acc_idc GEAR_idc_base + 40
+#define GEAR_secondary_optic_bg_idc GEAR_idc_base + 41
+#define GEAR_secondary_optic_idc GEAR_idc_base + 42
+#define GEAR_secondary_mag_bg_idc GEAR_idc_base + 43
+#define GEAR_secondary_mag_idc GEAR_idc_base + 44
 
-#define GEAR_pistol_idc GEAR_idc_base + 32
-#define GEAR_pistol_muzzle_idc GEAR_idc_base + 33
-#define GEAR_pistol_acc_idc GEAR_idc_base + 34
-#define GEAR_pistol_optic_idc GEAR_idc_base + 35
-#define GEAR_pistol_mag_idc GEAR_idc_base + 36
+#define GEAR_pistol_bg_idc GEAR_idc_base + 45
+#define GEAR_pistol_idc GEAR_idc_base + 46
+#define GEAR_pistol_muzzle_bg_idc GEAR_idc_base + 47
+#define GEAR_pistol_muzzle_idc GEAR_idc_base + 48
+#define GEAR_pistol_acc_bg_idc GEAR_idc_base + 49
+#define GEAR_pistol_acc_idc GEAR_idc_base + 50
+#define GEAR_pistol_optic_bg_idc GEAR_idc_base + 51
+#define GEAR_pistol_optic_idc GEAR_idc_base + 52
+#define GEAR_pistol_mag_bg_idc GEAR_idc_base + 52
+#define GEAR_pistol_mag_idc GEAR_idc_base + 53
 
-#define GEAR_select_helmet_idc GEAR_idc_base + 37
+#define GEAR_select_helmet_bg_idc GEAR_idc_base + 54
+#define GEAR_select_helmet_idc GEAR_idc_base + 55
 
-#define GEAR_select_glasses_idc GEAR_idc_base + 38
+#define GEAR_select_glasses_bg_idc GEAR_idc_base + 56
+#define GEAR_select_glasses_idc GEAR_idc_base + 57
 
-#define GEAR_select_nvg_idc GEAR_idc_base + 39
+#define GEAR_select_nvg_bg_idc GEAR_idc_base + 58
+#define GEAR_select_nvg_idc GEAR_idc_base + 59
 
-#define GEAR_select_binocular_idc GEAR_idc_base + 40
+#define GEAR_select_binocular_bg_idc GEAR_idc_base + 60
+#define GEAR_select_binocular_idc GEAR_idc_base + 61
 
 // Items
-#define GEAR_item_map_idc GEAR_idc_base + 41
-#define GEAR_item_gps_idc GEAR_idc_base + 42
-#define GEAR_item_radio_idc GEAR_idc_base + 43
-#define GEAR_item_compass_idc GEAR_idc_base + 44
-#define GEAR_item_watch_idc GEAR_idc_base + 45
+#define GEAR_item_map_bg_idc GEAR_idc_base + 62
+#define GEAR_item_map_idc GEAR_idc_base + 63
+#define GEAR_item_gps_bg_idc GEAR_idc_base + 64
+#define GEAR_item_gps_idc GEAR_idc_base + 65
+#define GEAR_item_radio_bg_idc GEAR_idc_base + 66
+#define GEAR_item_radio_idc GEAR_idc_base + 67
+#define GEAR_item_compass_bg_idc GEAR_idc_base + 68
+#define GEAR_item_compass_idc GEAR_idc_base + 69
+#define GEAR_item_watch_bg_idc GEAR_idc_base + 70
+#define GEAR_item_watch_idc GEAR_idc_base + 71
 
 
 
