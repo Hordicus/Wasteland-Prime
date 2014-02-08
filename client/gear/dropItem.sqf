@@ -10,21 +10,103 @@ _valid        = false;
 
 _idcs = [
 	GEAR_select_uniform_idc, GEAR_select_vest_idc, GEAR_select_helmet_idc, GEAR_select_glasses_idc, GEAR_select_nvg_idc, GEAR_select_binocular_idc,
-	GEAR_item_map_idc, GEAR_item_gps_idc, GEAR_item_radio_idc, GEAR_item_compass_idc, GEAR_item_watch_idc, GEAR_primary_idc,
-	GEAR_secondary_idc, GEAR_pistol_idc
+	GEAR_item_map_idc, GEAR_item_gps_idc, GEAR_item_radio_idc, GEAR_item_compass_idc, GEAR_item_watch_idc
 ];
 
 _types = [
 	GEAR_type_uniform, GEAR_type_vest, GEAR_type_helmet, GEAR_type_glasses, GEAR_type_nvg, GEAR_type_binocular,
-	GEAR_type_map, GEAR_type_gps, GEAR_type_radio, GEAR_type_compass, GEAR_type_watch, GEAR_type_primary,
-	GEAR_type_launcher, GEAR_type_pistol
+	GEAR_type_map, GEAR_type_gps, GEAR_type_radio, GEAR_type_compass, GEAR_type_watch
 ];
 
-_target_type = _types select (_idcs find _target);
-_valid = _type == _target_type;
+_type_indexes = [
+	GEAR_index_uniform, GEAR_index_vest, GEAR_index_helmet, GEAR_index_glasses, GEAR_index_nvg, GEAR_index_binocular,
+	GEAR_index_map, GEAR_index_gps, GEAR_index_radio, GEAR_index_compass, GEAR_index_watch
+];
 
-
-if ( _valid ) then {
-	_img = _class call GEAR_itemImg;
-	(_this select 0) ctrlSetText _img;
+_index = _idcs find _target;
+if ( _index >= 0 ) then {
+	_target_type = _types select _index;
+	_type_index = _type_indexes select _index;
+	
+	if ( _type == _target_type ) then {
+		GEAR_activeLoadout set [_type_index, _class];
+	};
+}
+else {
+	switch(_target) do {
+		case (GEAR_primary_idc): {
+			GEAR_activeLoadout set [GEAR_index_primary, _class];
+			GEAR_activeLoadout set [GEAR_index_primary_muzzle, nil];
+			GEAR_activeLoadout set [GEAR_index_primary_acc, nil];
+			GEAR_activeLoadout set [GEAR_index_primary_optic, nil];
+			GEAR_activeLoadout set [GEAR_index_primary_mag, nil];
+		};
+		
+		case (GEAR_secondary_idc): {
+			GEAR_activeLoadout set [GEAR_index_secondary, _class];
+			GEAR_activeLoadout set [GEAR_index_secondary_muzzle, nil];
+			GEAR_activeLoadout set [GEAR_index_secondary_acc, nil];
+			GEAR_activeLoadout set [GEAR_index_secondary_optic, nil];
+			GEAR_activeLoadout set [GEAR_index_secondary_mag, nil];
+		};
+		
+		case (GEAR_pistol_idc): {
+			GEAR_activeLoadout set [GEAR_index_pistol, _class];
+			GEAR_activeLoadout set [GEAR_index_pistol_muzzle, nil];
+			GEAR_activeLoadout set [GEAR_index_pistol_acc, nil];
+			GEAR_activeLoadout set [GEAR_index_pistol_optic, nil];
+			GEAR_activeLoadout set [GEAR_index_pistol_mag, nil];
+		};
+	
+		case (GEAR_primary_muzzle_idc);
+		case (GEAR_secondary_muzzle_idc);
+		case (GEAR_pistol_muzzle_idc): {
+			_gun_offset = -1;
+			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
+			_compatible_muzzles = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "MuzzleSlot" >> "compatibleItems");
+			
+			if ( _class in _compatible_muzzles ) then {
+				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
+			};
+		};
+		
+		case (GEAR_primary_acc_idc);
+		case (GEAR_secondary_acc_idc);
+		case (GEAR_pistol_acc_idc): {
+			_gun_offset = -2;
+			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
+			_compatible_accs = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "PointerSlot" >> "compatibleItems");
+			
+			if ( _class in _compatible_accs ) then {
+				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
+			};
+		};
+		
+		case (GEAR_primary_optic_idc);
+		case (GEAR_secondary_optic_idc);
+		case (GEAR_pistol_optic_idc): {
+			_gun_offset = -3;
+			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
+			_compatible_optics = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "CowsSlot" >> "compatibleItems");
+			
+			if ( _class in _compatible_optics ) then {
+				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
+			};
+		};
+		
+		case (GEAR_primary_mag_idc);
+		case (GEAR_secondary_mag_idc);
+		case (GEAR_pistol_mag_idc): {
+			_gun_offset = -4;
+			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
+			_compatible_mags = getArray (configFile >> "CfgWeapons" >> _gun >> "magazines");
+			
+			if ( _class in _compatible_mags ) then {
+				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
+			};
+		};
+	};
 };
+
+// call GEAR_updateDialogImgs;
+call GEAR_updateDialogImgs;
