@@ -235,7 +235,7 @@ class geard {
 			onLBSelChanged = "call GEAR_showItemDetails";
 		};
 		
-		class GEAR_select_ammo_bg : GEAR_Item {
+		class GEAR_select_ammo_bg : GEAR_button_bg {
 			idc = GEAR_select_ammo_bg_idc;
 			text = "client\gear\icons\ammo.paa";
 			
