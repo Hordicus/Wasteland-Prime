@@ -85,7 +85,7 @@ class geard {
 	class GEAR_Item : GEAR_common {
 		type = CT_ACTIVETEXT;
 		style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-		onLBDrop = "_this execVM 'client\gear\dropItem.sqf'";
+		onLBDrop = "_h = _this execVM 'client\gear\dropItem.sqf'";
 		
 		colorBackground[] = {0,0,0,0.5};
 		color[] = {1,1,1,1};

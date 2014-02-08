@@ -83,10 +83,10 @@
 #define GEAR_item_gps_bg_idc GEAR_idc_base + 64
 #define GEAR_item_gps_idc GEAR_idc_base + 65
 #define GEAR_item_radio_bg_idc GEAR_idc_base + 66
-#define GEAR_item_radio_bg_idc GEAR_idc_base + 67
-#define GEAR_item_compass_idc GEAR_idc_base + 68
+#define GEAR_item_radio_idc GEAR_idc_base + 67
+#define GEAR_item_compass_bg_idc GEAR_idc_base + 68
 #define GEAR_item_compass_idc GEAR_idc_base + 69
-#define GEAR_item_watch_idc GEAR_idc_base + 70
+#define GEAR_item_watch_bg_idc GEAR_idc_base + 70
 #define GEAR_item_watch_idc GEAR_idc_base + 71
 
 
@@ -116,3 +116,24 @@
 #define GEAR_glasses_icon "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_glasses_gs.paa"
 #define GEAR_nvg_icon "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_nvg_gs.paa"
 #define GEAR_binocular_icon "\A3\Ui_f\data\GUI\Rsc\RscDisplayGear\ui_gear_binocular_gs.paa"
+
+// Cfg types
+#define GEAR_type_uniform 801
+#define GEAR_type_vest 701
+#define GEAR_type_backpack 901
+#define GEAR_type_helmet 605
+#define GEAR_type_glasses 603
+#define GEAR_type_muzzle 101
+#define GEAR_type_optic 201
+#define GEAR_type_acc 301
+#define GEAR_type_nvg 616
+#define GEAR_type_binocular 4096
+#define GEAR_type_map 131072
+#define GEAR_type_gps 131073
+#define GEAR_type_radio 131074
+#define GEAR_type_compass 131075
+#define GEAR_type_watch 131076
+#define GEAR_type_primary 1
+#define GEAR_type_pistol 2
+#define GEAR_type_launcher 4
+

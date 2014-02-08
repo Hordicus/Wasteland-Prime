@@ -32,6 +32,9 @@ if ( isNil "GEAR_showItems" ) then {
 	GEAR_showItemDetails = compileFinal preprocessFileLineNumbers "client\gear\showItemDetails.sqf";
 	GEAR_getConfig       = compileFinal preprocessFileLineNumbers "client\gear\getConfig.sqf";
 	GEAR_updateTabs      = compileFinal preprocessFileLineNumbers "client\gear\updateTabs.sqf";
+	GEAR_allowedSlots    = compileFinal preprocessFileLineNumbers "client\gear\allowedSlots.sqf";
+	GEAR_getType         = compileFinal preprocessFileLineNumbers "client\gear\getType.sqf";
+	GEAR_getConfigRoot   = compileFinal preprocessFileLineNumbers "client\gear\getConfigRoot.sqf";
 };
 
 GEAR_activeNav call GEAR_showItems;
