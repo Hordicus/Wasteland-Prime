@@ -267,7 +267,6 @@ class geard {
 		
 		// Uniform
 		class GEAR_select_uniform_bg : GEAR_Item {
-			idc = GEAR_select_uniform_bg_idc;
 			type = CT_STATIC;
 			style = 0;
 			
@@ -296,7 +295,6 @@ class geard {
 		
 		// Vest
 		class GEAR_select_vest_bg : GEAR_Item {
-			idc = GEAR_select_vest_bg_idc;
 			type = CT_STATIC;
 			style = 0;
 			
@@ -325,7 +323,6 @@ class geard {
 		
 		// Backpack
 		class GEAR_select_backpack_bg : GEAR_Item {
-			idc = GEAR_select_backpack_bg_idc;
 			type = CT_STATIC;
 			style = 0;
 			
@@ -363,7 +360,6 @@ class geard {
 		
 		// Helmet
 		class GEAR_select_helmet_bg : GEAR_Item {
-			idc = GEAR_select_helmet_bg_idc;
 			type = CT_STATIC;
 			style = 0;
 			
@@ -382,7 +378,6 @@ class geard {
 		
 		// Glasses
 		class GEAR_select_glasses_bg : GEAR_Item {
-			idc = GEAR_select_glasses_bg_idc;
 			type = CT_STATIC;
 			style = 0;
 
@@ -401,7 +396,6 @@ class geard {
 		
 		// NVGs
 		class GEAR_select_nvg_bg : GEAR_Item {
-			idc = GEAR_select_nvg_bg_idc;
 			type = CT_STATIC;
 			style = 0;
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 ) * 5);
@@ -419,7 +413,6 @@ class geard {
 		
 		// Binoculars
 		class GEAR_select_binocular_bg : GEAR_Item {
-			idc = GEAR_select_binocular_bg_idc;
 			type = CT_STATIC;
 			style = 0;
 			
@@ -444,7 +437,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 ) * 3);
 			w = safezoneW * 0.35;
 			h = safezoneH * 0.12;
-			idc = GEAR_primary_bg_idc;
 		};
 		
 		class GEAR_primary : GEAR_primary_bg {
@@ -461,7 +453,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*0);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_primary_muzzle_bg_idc;
 		};
 		
 		class GEAR_primary_muzzle : GEAR_primary_muzzle_bg {
@@ -478,7 +469,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*1);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_primary_acc_bg_idc;
 		};
 		
 		class GEAR_primary_acc : GEAR_primary_acc_bg {
@@ -495,7 +485,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*2);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_primary_optic_bg_idc;
 		};
 		
 		class GEAR_primary_optic : GEAR_primary_optic_bg {
@@ -512,7 +501,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*3);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_primary_mag_bg_idc;
 		};
 		
 		class GEAR_primary_mag : GEAR_primary_mag_bg {
@@ -530,7 +518,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 ) * 3);
 			w = safezoneW * 0.35;
 			h = safezoneH * 0.12;
-			idc = GEAR_secondary_bg_idc;			
 		};
 		
 		class GEAR_secondary : GEAR_secondary_bg {
@@ -547,7 +534,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*0);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_secondary_muzzle_bg_idc;
 		};
 		
 		class GEAR_secondary_muzzle : GEAR_secondary_muzzle_bg {
@@ -564,7 +550,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*1);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_secondary_acc_bg_idc;
 		};
 		
 		class GEAR_secondary_acc : GEAR_secondary_acc_bg {
@@ -581,7 +566,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*2);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_secondary_optic_bg_idc;
 		};
 		
 		class GEAR_secondary_optic : GEAR_secondary_optic_bg {
@@ -598,7 +582,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*3);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_secondary_mag_bg_idc;
 		};
 		
 		class GEAR_secondary_mag : GEAR_secondary_mag_bg {
@@ -616,7 +599,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 ) * 3);
 			w = safezoneW * 0.35;
 			h = safezoneH * 0.12;
-			idc = GEAR_pistol_bg_idc;
 		};
 		
 		class GEAR_pistol : GEAR_pistol_bg {
@@ -633,7 +615,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*0);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_pistol_muzzle_bg_idc;
 		};
 		
 		class GEAR_pistol_muzzle : GEAR_pistol_muzzle_bg {
@@ -650,7 +631,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*1);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_pistol_acc_bg_idc;
 		};
 		
 		class GEAR_pistol_acc : GEAR_pistol_acc_bg {
@@ -667,7 +647,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*2);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_pistol_optic_bg_idc;
 		};
 		
 		class GEAR_pistol_optic : GEAR_pistol_optic_bg {
@@ -684,7 +663,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*3);
 			w = safezoneW * 0.08375;
 			h = safezoneH * 0.045;
-			idc = GEAR_pistol_mag_bg_idc;
 		};
 		
 		class GEAR_pistol_mag : GEAR_pistol_mag_bg {
@@ -702,7 +680,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.35);
 			w = safezoneW * 0.048;
 			h = safezoneH * 0.048;
-			idc = GEAR_item_map_bg_idc;
 		};
 		
 		class GEAR_item_map : GEAR_item_map_bg {
@@ -719,7 +696,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.35 + (0.048 + 0.005) * 1);
 			w = safezoneW * 0.048;
 			h = safezoneH * 0.048;
-			idc = GEAR_item_gps_bg_idc;
 		};
 		
 		class GEAR_item_gps : GEAR_item_gps_bg {
@@ -736,7 +712,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.35 + (0.048 + 0.005) * 2);
 			w = safezoneW * 0.048;
 			h = safezoneH * 0.048;
-			idc = GEAR_item_radio_bg_idc;
 		};
 		
 		class GEAR_item_radio : GEAR_item_radio_bg {
@@ -753,7 +728,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.35 + (0.048 + 0.005) * 3);
 			w = safezoneW * 0.048;
 			h = safezoneH * 0.048;
-			idc = GEAR_item_compass_bg_idc;
 		};
 		
 		class GEAR_item_compass : GEAR_item_compass_bg {
@@ -770,7 +744,6 @@ class geard {
 			x = safezoneX + safezoneW * (0.35 + (0.048 + 0.005) * 4);
 			w = safezoneW * 0.048;
 			h = safezoneH * 0.048;
-			idc = GEAR_item_watch_bg_idc;
 		};
 		
 		class GEAR_item_watch : GEAR_item_watch_bg {
