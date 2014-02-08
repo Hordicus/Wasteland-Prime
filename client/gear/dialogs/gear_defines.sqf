@@ -111,33 +111,36 @@
 #define GEAR_type_launcher 4
 
 #define GEAR_index_uniform 0
-#define GEAR_index_vest 1
-#define GEAR_index_backpack 2
-#define GEAR_index_helmet 3
-#define GEAR_index_glasses 4
-#define GEAR_index_nvg 5
-#define GEAR_index_binocular 6
+#define GEAR_index_uniform_contents 1
+#define GEAR_index_vest 2
+#define GEAR_index_vest_contents 3
+#define GEAR_index_backpack 4
+#define GEAR_index_backpack_contents 5
+#define GEAR_index_helmet 6
+#define GEAR_index_glasses 7
+#define GEAR_index_nvg 8
+#define GEAR_index_binocular 9
 
-#define GEAR_index_primary 7
-#define GEAR_index_primary_muzzle 8
-#define GEAR_index_primary_acc 9
-#define GEAR_index_primary_optic 10
-#define GEAR_index_primary_mag 11
+#define GEAR_index_primary 10
+#define GEAR_index_primary_muzzle 11
+#define GEAR_index_primary_acc 12
+#define GEAR_index_primary_optic 13
+#define GEAR_index_primary_mag 14
 
-#define GEAR_index_secondary 12
-#define GEAR_index_secondary_muzzle 13
-#define GEAR_index_secondary_acc 14
-#define GEAR_index_secondary_optic 15
-#define GEAR_index_secondary_mag 16
+#define GEAR_index_secondary 15
+#define GEAR_index_secondary_muzzle 16
+#define GEAR_index_secondary_acc 17
+#define GEAR_index_secondary_optic 18
+#define GEAR_index_secondary_mag 19
 
-#define GEAR_index_pistol 17
-#define GEAR_index_pistol_muzzle 18
-#define GEAR_index_pistol_acc 19
-#define GEAR_index_pistol_optic 20
-#define GEAR_index_pistol_mag 21
+#define GEAR_index_pistol 20
+#define GEAR_index_pistol_muzzle 21
+#define GEAR_index_pistol_acc 22
+#define GEAR_index_pistol_optic 23
+#define GEAR_index_pistol_mag 24
 
-#define GEAR_index_map 22
-#define GEAR_index_gps 23
-#define GEAR_index_radio 24
-#define GEAR_index_compass 25
-#define GEAR_index_watch 26
+#define GEAR_index_map 25
+#define GEAR_index_gps 26
+#define GEAR_index_radio 27
+#define GEAR_index_compass 28
+#define GEAR_index_watch 29
