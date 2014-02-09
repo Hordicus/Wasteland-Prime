@@ -37,6 +37,7 @@ else {
 		case (GEAR_select_uniform_idc): {
 			if ( _type == GEAR_type_uniform) then {
 				GEAR_activeLoadout set [GEAR_index_uniform, _class];
+				GEAR_activeLoadout set [GEAR_index_uniform_contents, []];
 			}
 			else {
 			
@@ -46,6 +47,7 @@ else {
 		case (GEAR_select_vest_idc): {
 			if ( _type == GEAR_type_vest) then {
 				GEAR_activeLoadout set [GEAR_index_vest, _class];
+				GEAR_activeLoadout set [GEAR_index_vest_contents, []];
 			}
 			else {
 			
@@ -55,18 +57,31 @@ else {
 		case (GEAR_select_backpack_idc): {
 			if ( _type == GEAR_type_backpack) then {
 				GEAR_activeLoadout set [GEAR_index_backpack, _class];
+				GEAR_activeLoadout set [GEAR_index_backpack_contents, []];
 			}
 			else {
-				// if ( GEAR_type_backpack in _allowedSlots ) then {
+				// Is it allowed in backpacks?
+				if ( GEAR_type_backpack in _allowedSlots && { count GEAR_activeLoadout > GEAR_index_backpack_contents } ) then {
+					// Is there room?
 					_contents = GEAR_activeLoadout select GEAR_index_backpack_contents;
-					if ( isNil "_contents" ) then {
-						_contents = [];
-					};
+					_capacity = (GEAR_activeLoadout select GEAR_index_backpack) call GEAR_getMassCapacity;
+					_total    = _class call GEAR_getMass;
 					
-					_contents set [count _contents, _class];
-					GEAR_activeLoadout set [GEAR_index_backpack_contents, _contents];
-				// };
+					{
+						_total = _total + ( _x call GEAR_getMass );
+					} count _contents;
+					
+					// hint format['Capacity: %1. Total: %2', _capacity, _total];
+					if ( _total <= _capacity ) then {
+						_contents set [count _contents, _class];
+						GEAR_activeLoadout set [GEAR_index_backpack_contents, _contents];
+					}
+					else {
+					};
+				};
 			};
+			
+			GEAR_activeContainer call GEAR_selectContainer; // refresh display
 		};
 	
 		case (GEAR_primary_idc): {

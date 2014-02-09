@@ -23,7 +23,12 @@ if ( isNil "GEAR_showItems" ) then {
 	GEAR_loadoutIndexToIDC = compileFinal preprocessFileLineNumbers "client\gear\loadoutIndexToIDC.sqf";
 	GEAR_IDCToLoadoutIndex = compileFinal preprocessFileLineNumbers "client\gear\IDCToLoadoutIndex.sqf";
 	GEAR_defaultImg        = compileFinal preprocessFileLineNumbers "client\gear\defaultImg.sqf";
+	GEAR_selectContainer   = compileFinal preprocessFileLineNumbers "client\gear\selectContainer.sqf";
+	GEAR_itemPrice         = compileFinal preprocessFileLineNumbers "client\gear\itemPrice.sqf";
+	GEAR_getMass           = compileFinal preprocessFileLineNumbers "client\gear\getMass.sqf";
+	GEAR_getMassCapacity   = compileFinal preprocessFileLineNumbers "client\gear\getMassCapacity.sqf";
 };
 
 GEAR_activeNav call GEAR_showItems;
 call GEAR_updateTabs;
+GEAR_activeContainer call GEAR_selectContainer;

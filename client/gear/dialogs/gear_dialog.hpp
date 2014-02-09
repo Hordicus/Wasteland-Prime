@@ -282,6 +282,7 @@ class geard {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
 			text = GEAR_uniform_icon;
 			idc = GEAR_select_uniform_idc;
+			onMouseButtonClick = "'uniform' call GEAR_selectContainer;";
 		};
 		
 		// Uniform load
@@ -311,6 +312,7 @@ class geard {
 			type = CT_ACTIVETEXT;
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
 			idc = GEAR_select_vest_idc;
+			onMouseButtonClick = "'vest' call GEAR_selectContainer;";
 		};
 		
 		// Vest load
@@ -340,6 +342,7 @@ class geard {
 			type = CT_ACTIVETEXT;
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
 			idc = GEAR_select_backpack_idc;
+			onMouseButtonClick = "'backpack' call GEAR_selectContainer;";
 		};
 		
 		// Backpack load

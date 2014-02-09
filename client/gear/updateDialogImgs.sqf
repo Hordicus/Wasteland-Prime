@@ -3,6 +3,8 @@
 private ['_img', '_idc'];
 
 {
+	if ( !isNil "_x" && { typeName _x == "ARRAY" } ) exitwith{};
+
 	_idc = _forEachIndex call GEAR_loadoutIndexToIDC;
 	_img = '';
 	
