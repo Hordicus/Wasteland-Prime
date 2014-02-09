@@ -28,8 +28,8 @@
 #define GEAR_select_vest_idc GEAR_idc_base + 20
 #define GEAR_vest_load_idc GEAR_idc_base + 21
 
-#define GEAR_select_backpack_idc GEAR_idc_base + 22
-#define GEAR_select_backpack_bg_idc GEAR_idc_base + 23
+#define GEAR_select_backpack_bg_idc GEAR_idc_base + 22
+#define GEAR_select_backpack_idc GEAR_idc_base + 23
 #define GEAR_backpack_load_idc GEAR_idc_base + 24
 
 #define GEAR_primary_bg_idc GEAR_idc_base + 25
