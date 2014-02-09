@@ -34,37 +34,41 @@ if ( _index >= 0 ) then {
 }
 else {
 	switch(_target) do {
-		case (GEAR_select_uniform_idc): {
-			if ( _type == GEAR_type_uniform) then {
-				GEAR_activeLoadout set [GEAR_index_uniform, _class];
-				GEAR_activeLoadout set [GEAR_index_uniform_contents, []];
-			}
-			else {
-			
-			};
-		};
-		
-		case (GEAR_select_vest_idc): {
-			if ( _type == GEAR_type_vest) then {
-				GEAR_activeLoadout set [GEAR_index_vest, _class];
-				GEAR_activeLoadout set [GEAR_index_vest_contents, []];
-			}
-			else {
-			
-			};
-		};
-		
+		case (GEAR_select_uniform_idc);
+		case (GEAR_select_vest_idc);
 		case (GEAR_select_backpack_idc): {
-			if ( _type == GEAR_type_backpack) then {
-				GEAR_activeLoadout set [GEAR_index_backpack, _class];
-				GEAR_activeLoadout set [GEAR_index_backpack_contents, []];
+			_target_type = -1;
+			_target_index = -1;
+			
+			switch(_target) do {
+				case (GEAR_select_uniform_idc): {
+					_target_type = GEAR_type_uniform;
+					_target_index = GEAR_index_uniform;
+				};
+				
+				case (GEAR_select_vest_idc): {
+					_target_type = GEAR_type_vest;
+					_target_index = GEAR_index_vest;
+				};
+				
+				case (GEAR_select_backpack_idc): {
+					_target_type = GEAR_type_backpack;
+					_target_index = GEAR_index_backpack;
+				};
+			};
+			
+			_target_contents_index = _target_index + 1;
+		
+			if ( _type == _target_type) then {
+				GEAR_activeLoadout set [_target_index, _class];
+				GEAR_activeLoadout set [_target_contents_index, []];
 			}
 			else {
-				// Is it allowed in backpacks?
-				if ( GEAR_type_backpack in _allowedSlots && { count GEAR_activeLoadout > GEAR_index_backpack_contents } ) then {
+				// Is it allowed in this container?
+				if ( _target_type in _allowedSlots && { count GEAR_activeLoadout > _target_contents_index } ) then {
 					// Is there room?
-					_contents = GEAR_activeLoadout select GEAR_index_backpack_contents;
-					_capacity = (GEAR_activeLoadout select GEAR_index_backpack) call GEAR_getMassCapacity;
+					_contents = GEAR_activeLoadout select _target_contents_index;
+					_capacity = (GEAR_activeLoadout select _target_index) call GEAR_getMassCapacity;
 					_total    = _class call GEAR_getMass;
 					
 					{
@@ -74,7 +78,7 @@ else {
 					// hint format['Capacity: %1. Total: %2', _capacity, _total];
 					if ( _total <= _capacity ) then {
 						_contents set [count _contents, _class];
-						GEAR_activeLoadout set [GEAR_index_backpack_contents, _contents];
+						GEAR_activeLoadout set [_target_contents_index, _contents];
 					}
 					else {
 					};

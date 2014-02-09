@@ -42,24 +42,30 @@ if ( !isNil "_container_type" ) then {
 };
 
 // Update mass bars
-_index = GEAR_index_backpack;
-_idc   = GEAR_backpack_load_idc;
-if ( count GEAR_activeLoadout > GEAR_index_backpack ) then {
-	_container = GEAR_activeLoadout select _index;
-	_fill = 0;
-	
-	if ( ! isNil "_container" ) then {
-		_items = GEAR_activeLoadout select _index+1;
-		_capacity = _container call GEAR_getMassCapacity;
-		_total = 0;
-		{
-			_total = _total + ( _x call GEAR_getMass );
-		} count _items;
+{
+	_index = _x select 0;
+	_idc   = _x select 1;
+	if ( count GEAR_activeLoadout > _index ) then {
+		_container = GEAR_activeLoadout select _index;
+		_fill = 0;
 		
-		if ( _total > 0 ) then {
-			_fill = _total / _capacity;
+		if ( ! isNil "_container" ) then {
+			_items = GEAR_activeLoadout select _index+1;
+			_capacity = _container call GEAR_getMassCapacity;
+			_total = 0;
+			{
+				_total = _total + ( _x call GEAR_getMass );
+			} count _items;
+			
+			if ( _total > 0 ) then {
+				_fill = _total / _capacity;
+			};
 		};
+		
+		((findDisplay GEAR_dialog_idc) displayCtrl _idc) progressSetPosition _fill;	
 	};
-	
-	((findDisplay GEAR_dialog_idc) displayCtrl _idc) progressSetPosition _fill;	
-};
+} count [
+	[ GEAR_index_uniform, GEAR_uniform_load_idc ],
+	[ GEAR_index_vest, GEAR_vest_load_idc ],
+	[ GEAR_index_backpack, GEAR_backpack_load_idc ]
+];
