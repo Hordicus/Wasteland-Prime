@@ -86,6 +86,7 @@ class geard {
 		type = CT_ACTIVETEXT;
 		style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
 		onLBDrop = "_h = _this execVM 'client\gear\dropItem.sqf'";
+		onMouseButtonClick = "_h = _this execVM 'client\gear\clickItem.sqf'";
 		
 		colorBackground[] = {0,0,0,0.5};
 		color[] = {1,1,1,1};
@@ -282,7 +283,6 @@ class geard {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
 			text = GEAR_uniform_icon;
 			idc = GEAR_select_uniform_idc;
-			onMouseButtonClick = "'uniform' call GEAR_selectContainer;";
 		};
 		
 		// Uniform load
@@ -312,7 +312,6 @@ class geard {
 			type = CT_ACTIVETEXT;
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
 			idc = GEAR_select_vest_idc;
-			onMouseButtonClick = "'vest' call GEAR_selectContainer;";
 		};
 		
 		// Vest load
@@ -342,7 +341,6 @@ class geard {
 			type = CT_ACTIVETEXT;
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
 			idc = GEAR_select_backpack_idc;
-			onMouseButtonClick = "'backpack' call GEAR_selectContainer;";
 		};
 		
 		// Backpack load
@@ -358,6 +356,7 @@ class geard {
 		class GEAR_selected_inv : GEAR_list {
 			idc = GEAR_selected_inv_idc;
 			onLBDrop = "_h = _this execVM 'client\gear\dropItem.sqf'";
+			onMouseButtonClick = "_h = _this execVM 'client\gear\clickItem.sqf'";
 
 			x = safezoneX + (safezoneW * 0.35) + (safezoneW * 0.1 * 0);
 			y = safezoneY + ( safezoneH * 0.12 );

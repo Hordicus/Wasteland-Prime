@@ -3,17 +3,15 @@
 private ['_img', '_idc'];
 
 {
-	if ( !isNil "_x" && {typeName _x != "ARRAY"} ) then {
-		_idc = _forEachIndex call GEAR_loadoutIndexToIDC;
-		_img = '';
-		
-		if ( isNil ("_x") ) then {
-			_img = _idc call GEAR_defaultImg;
-		}
-		else {
-			_img = _x call GEAR_itemImg;
-		};
-		
-		ctrlSetText [_idc, _img];
-	};
+	_idc = _forEachIndex call GEAR_loadoutIndexToIDC;
+	_img = '';
+	
+	if ( isNil ("_x") ) then {
+		_img = _idc call GEAR_defaultImg;
+	}
+	else { if ( typeName _x != "ARRAY" ) then {
+		_img = _x call GEAR_itemImg;
+	}};
+	
+	ctrlSetText [_idc, _img];
 } forEach GEAR_activeLoadout;
