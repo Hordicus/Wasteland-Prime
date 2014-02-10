@@ -51,9 +51,10 @@ else { if ( _btn == 1 ) then { // Right click
 		case (GEAR_secondary_idc);
 		case (GEAR_primary_idc): {
 			GEAR_activeLoadout set [_index, nil];
+			GEAR_activeLoadout set [_index+1, nil];
 			GEAR_activeLoadout set [_index+2, nil];
+			GEAR_activeLoadout set [_index+3, nil];
 			GEAR_activeLoadout set [_index+4, nil];
-			GEAR_activeLoadout set [_index+6, nil];
 			call GEAR_updateDialogImgs;
 		};
 		
