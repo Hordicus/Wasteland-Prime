@@ -29,6 +29,7 @@ if ( isNil "GEAR_showItems" ) then {
 	GEAR_getMassCapacity   = compileFinal preprocessFileLineNumbers "client\gear\getMassCapacity.sqf";
 	GEAR_getRowFromPos     = compileFinal preprocessFileLineNumbers "client\gear\getRowFromPos.sqf";
 	GEAR_validAttachment   = compileFinal preprocessFileLineNumbers "client\gear\validAttachment.sqf";
+	GEAR_getTotalMass      = compileFinal preprocessFileLineNumbers "client\gear\getTotalMass.sqf";
 };
 
 GEAR_activeNav call GEAR_showItems;

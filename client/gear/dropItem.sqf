@@ -78,13 +78,8 @@ else {
 					// Is there room?
 					_contents = GEAR_activeLoadout select _target_contents_index;
 					_capacity = (GEAR_activeLoadout select _target_index) call GEAR_getMassCapacity;
-					_total    = _class call GEAR_getMass;
+					_total    = ([_class] + _contents) call GEAR_getTotalMass;
 					
-					{
-						_total = _total + ( _x call GEAR_getMass );
-					} count _contents;
-					
-					// hint format['Capacity: %1. Total: %2', _capacity, _total];
 					if ( _total <= _capacity ) then {
 						_contents set [count _contents, _class];
 						GEAR_activeLoadout set [_target_contents_index, _contents];
