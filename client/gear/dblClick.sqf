@@ -75,6 +75,23 @@ switch(_type) do {
 	case GEAR_type_radio:      { GEAR_activeLoadout set [GEAR_index_radio, _class]; };
 	case GEAR_type_compass:    { GEAR_activeLoadout set [GEAR_index_compass, _class]; };
 	case GEAR_type_watch:      { GEAR_activeLoadout set [GEAR_index_watch, _class]; };
+	
+	// Ammo
+	case 16;
+	case 256;
+	case 512;
+	case 768;
+	case 1536: {
+		{
+			_gun = _x call _get_item;
+			if ( _gun != "" ) then {
+				_magazines = getArray ( configFile >> "CfgWeapons" >> _gun >> "magazines" );
+				if ( _class in _magazines ) then {
+					GEAR_activeLoadout set [_x + 4, _class];
+				};
+			};
+		} count [GEAR_index_primary, GEAR_index_secondary, GEAR_index_pistol];
+	};
 };
 
 call GEAR_updateDialogImgs;
