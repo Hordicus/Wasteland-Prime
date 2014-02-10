@@ -34,11 +34,20 @@ if ( _index >= 0 ) then {
 }
 else {
 	switch(_target) do {
+		case (GEAR_selected_inv_idc);
 		case (GEAR_select_uniform_idc);
 		case (GEAR_select_vest_idc);
 		case (GEAR_select_backpack_idc): {
 			_target_type = -1;
 			_target_index = -1;
+			
+			if ( _target == GEAR_selected_inv_idc && !(_type in [GEAR_type_uniform, GEAR_type_vest, GEAR_type_backpack])) then {
+				_target = switch(GEAR_activeContainer) do {
+					case 'uniform': {(GEAR_select_uniform_idc)};
+					case 'vest': {(GEAR_select_vest_idc)};
+					case 'backpack': {(GEAR_select_backpack_idc)};
+				};
+			};
 			
 			switch(_target) do {
 				case (GEAR_select_uniform_idc): {

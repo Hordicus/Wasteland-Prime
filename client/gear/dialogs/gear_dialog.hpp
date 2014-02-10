@@ -357,6 +357,7 @@ class geard {
 		
 		class GEAR_selected_inv : GEAR_list {
 			idc = GEAR_selected_inv_idc;
+			onLBDrop = "_h = _this execVM 'client\gear\dropItem.sqf'";
 
 			x = safezoneX + (safezoneW * 0.35) + (safezoneW * 0.1 * 0);
 			y = safezoneY + ( safezoneH * 0.12 );
