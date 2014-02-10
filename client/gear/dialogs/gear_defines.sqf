@@ -62,32 +62,32 @@
 #define GEAR_pistol_acc_idc GEAR_idc_base + 50
 #define GEAR_pistol_optic_bg_idc GEAR_idc_base + 51
 #define GEAR_pistol_optic_idc GEAR_idc_base + 52
-#define GEAR_pistol_mag_bg_idc GEAR_idc_base + 52
-#define GEAR_pistol_mag_idc GEAR_idc_base + 53
+#define GEAR_pistol_mag_bg_idc GEAR_idc_base + 53
+#define GEAR_pistol_mag_idc GEAR_idc_base + 54
 
-#define GEAR_select_helmet_bg_idc GEAR_idc_base + 54
-#define GEAR_select_helmet_idc GEAR_idc_base + 55
+#define GEAR_select_helmet_bg_idc GEAR_idc_base + 55
+#define GEAR_select_helmet_idc GEAR_idc_base + 56
 
-#define GEAR_select_glasses_bg_idc GEAR_idc_base + 56
-#define GEAR_select_glasses_idc GEAR_idc_base + 57
+#define GEAR_select_glasses_bg_idc GEAR_idc_base + 57
+#define GEAR_select_glasses_idc GEAR_idc_base + 58
 
-#define GEAR_select_nvg_bg_idc GEAR_idc_base + 58
-#define GEAR_select_nvg_idc GEAR_idc_base + 59
+#define GEAR_select_nvg_bg_idc GEAR_idc_base + 59
+#define GEAR_select_nvg_idc GEAR_idc_base + 60
 
-#define GEAR_select_binocular_bg_idc GEAR_idc_base + 60
-#define GEAR_select_binocular_idc GEAR_idc_base + 61
+#define GEAR_select_binocular_bg_idc GEAR_idc_base + 61
+#define GEAR_select_binocular_idc GEAR_idc_base + 62
 
 // Items
-#define GEAR_item_map_bg_idc GEAR_idc_base + 62
-#define GEAR_item_map_idc GEAR_idc_base + 63
-#define GEAR_item_gps_bg_idc GEAR_idc_base + 64
-#define GEAR_item_gps_idc GEAR_idc_base + 65
-#define GEAR_item_radio_bg_idc GEAR_idc_base + 66
-#define GEAR_item_radio_idc GEAR_idc_base + 67
-#define GEAR_item_compass_bg_idc GEAR_idc_base + 68
-#define GEAR_item_compass_idc GEAR_idc_base + 69
-#define GEAR_item_watch_bg_idc GEAR_idc_base + 70
-#define GEAR_item_watch_idc GEAR_idc_base + 71
+#define GEAR_item_map_bg_idc GEAR_idc_base + 63
+#define GEAR_item_map_idc GEAR_idc_base + 64
+#define GEAR_item_gps_bg_idc GEAR_idc_base + 65
+#define GEAR_item_gps_idc GEAR_idc_base + 66
+#define GEAR_item_radio_bg_idc GEAR_idc_base + 67
+#define GEAR_item_radio_idc GEAR_idc_base + 68
+#define GEAR_item_compass_bg_idc GEAR_idc_base + 69
+#define GEAR_item_compass_idc GEAR_idc_base + 70
+#define GEAR_item_watch_bg_idc GEAR_idc_base + 71
+#define GEAR_item_watch_idc GEAR_idc_base + 72
 
 
 
@@ -135,7 +135,7 @@
 #define GEAR_type_watch 131076
 #define GEAR_type_primary 1
 #define GEAR_type_pistol 2
-#define GEAR_type_launcher 4
+#define GEAR_type_secondary 4
 
 #define GEAR_index_uniform 0
 #define GEAR_index_uniform_contents 1
