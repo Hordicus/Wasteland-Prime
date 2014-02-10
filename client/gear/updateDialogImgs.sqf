@@ -3,7 +3,7 @@
 private ['_img', '_idc'];
 
 {
-	if ( typeName _x != "ARRAY" ) then {
+	if ( !isNil "_x" && {typeName _x != "ARRAY"} ) then {
 		_idc = _forEachIndex call GEAR_loadoutIndexToIDC;
 		_img = '';
 		

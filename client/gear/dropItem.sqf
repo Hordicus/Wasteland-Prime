@@ -123,7 +123,7 @@ else {
 		case (GEAR_pistol_muzzle_idc): {
 			if ( _type != GEAR_type_muzzle) exitwith{};
 
-			_gun_offset = -1;
+			_gun_offset = -2;
 			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
 			_compatible_muzzles = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "MuzzleSlot" >> "compatibleItems");
 			
@@ -137,7 +137,7 @@ else {
 		case (GEAR_pistol_acc_idc): {
 			if ( _type != GEAR_type_acc) exitwith{};
 		
-			_gun_offset = -2;
+			_gun_offset = -4;
 			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
 			_compatible_accs = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "PointerSlot" >> "compatibleItems");
 			
@@ -151,7 +151,7 @@ else {
 		case (GEAR_pistol_optic_idc): {
 			if ( _type != GEAR_type_optic) exitwith{};
 			
-			_gun_offset = -3;
+			_gun_offset = -6;
 			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
 			_compatible_optics = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "CowsSlot" >> "compatibleItems");
 			
@@ -163,7 +163,7 @@ else {
 		case (GEAR_primary_mag_idc);
 		case (GEAR_secondary_mag_idc);
 		case (GEAR_pistol_mag_idc): {
-			_gun_offset = -4;
+			_gun_offset = -8;
 			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
 			_compatible_mags = getArray (configFile >> "CfgWeapons" >> _gun >> "magazines");
 			
