@@ -105,6 +105,8 @@ switch(_type) do {
 if ( _do_default ) then {
 	// Find room in uniform/vest/backpack and add if possible
 	{
+		if ( !_do_default ) exitwith {};
+		
 		_item = _x call _get_item;
 		_item_type = _item call GEAR_getType;
 		
@@ -112,10 +114,10 @@ if ( _do_default ) then {
 			_contents = GEAR_activeLoadout select (_x + 1);
 			_capacity = _item call GEAR_getMassCapacity;
 			_allowed_slots = _class call GEAR_allowedSlots;
-			if ( _item_type in _allowed_slots && { (([_class] + _contents) call GEAR_getTotalMass) <= _capacity } ) exitwith {
+			if ( _item_type in _allowed_slots && { (([_class] + _contents) call GEAR_getTotalMass) <= _capacity } ) then {
 				GEAR_activeLoadout set [_x+1, (_contents + [_class])];
 				GEAR_activeContainer call GEAR_selectContainer;
-				true
+				_do_default = false;
 			};
 		};
 	
