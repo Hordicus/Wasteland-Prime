@@ -234,6 +234,7 @@ class geard {
 			w = safezoneW * 0.26;
 			h = safezoneH * 0.5;
 			onLBSelChanged = "call GEAR_showItemDetails";
+			onLBDblClick = "_h = _this execVM 'client\gear\dblClick.sqf';";
 		};
 		
 		class GEAR_select_ammo_bg : GEAR_button_bg {
@@ -258,6 +259,7 @@ class geard {
 				
 		class GEAR_items_attachments_ammo : GEAR_list {
 			idc = GEAR_items_attachments_ammo_idc;
+			onLBDblClick = "_h = _this execVM 'client\gear\dblClick.sqf';";
 			canDrag = 1;
 
 			x = safezoneX + (safezoneW * 0.05) + (safezoneW * 0.02);

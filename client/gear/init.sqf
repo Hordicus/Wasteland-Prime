@@ -27,6 +27,8 @@ if ( isNil "GEAR_showItems" ) then {
 	GEAR_itemPrice         = compileFinal preprocessFileLineNumbers "client\gear\itemPrice.sqf";
 	GEAR_getMass           = compileFinal preprocessFileLineNumbers "client\gear\getMass.sqf";
 	GEAR_getMassCapacity   = compileFinal preprocessFileLineNumbers "client\gear\getMassCapacity.sqf";
+	GEAR_getRowFromPos     = compileFinal preprocessFileLineNumbers "client\gear\getRowFromPos.sqf";
+	GEAR_validAttachment   = compileFinal preprocessFileLineNumbers "client\gear\validAttachment.sqf";
 };
 
 GEAR_activeNav call GEAR_showItems;
