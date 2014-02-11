@@ -6,7 +6,6 @@ _dialog = findDisplay GEAR_dialog_idc;
 GEAR_activeNav = 'guns';
 GEAR_activeSubNav = 'ammo';
 GEAR_activeContainer = 'uniform';
-GEAR_activeLoadout = [];
 
 if ( isNil "GEAR_showItems" ) then {
 	GEAR_showItems         = compileFinal preprocessFileLineNumbers "client\gear\showItems.sqf";
@@ -30,6 +29,15 @@ if ( isNil "GEAR_showItems" ) then {
 	GEAR_getRowFromPos     = compileFinal preprocessFileLineNumbers "client\gear\getRowFromPos.sqf";
 	GEAR_validAttachment   = compileFinal preprocessFileLineNumbers "client\gear\validAttachment.sqf";
 	GEAR_getTotalMass      = compileFinal preprocessFileLineNumbers "client\gear\getTotalMass.sqf";
+	GEAR_setLoadout        = compileFinal preprocessFileLineNumbers "client\gear\set_loadout.sqf"; // AUTHOR: aeroson
+	GEAR_toLoadoutArray    = compileFinal preprocessFileLineNumbers "client\gear\toLoadoutArray.sqf";
+};
+
+if ( isNil "GEAR_activeLoadout" ) then {
+	GEAR_activeLoadout = [];
+}
+else {
+	call GEAR_updateDialogImgs;
 };
 
 GEAR_activeNav call GEAR_showItems;
