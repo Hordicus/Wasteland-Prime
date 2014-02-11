@@ -126,12 +126,10 @@ else {
 		case (GEAR_secondary_muzzle_idc);
 		case (GEAR_pistol_muzzle_idc): {
 			if ( _type != GEAR_type_muzzle) exitwith{};
-
 			_gun_offset = -2;
 			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
-			_compatible_muzzles = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "MuzzleSlot" >> "compatibleItems");
 			
-			if ( _class in _compatible_muzzles ) then {
+			if ( [_gun, _class, 'muzzle'] call GEAR_validAttachment ) then {
 				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
 			};
 		};
@@ -140,12 +138,10 @@ else {
 		case (GEAR_secondary_acc_idc);
 		case (GEAR_pistol_acc_idc): {
 			if ( _type != GEAR_type_acc) exitwith{};
-		
 			_gun_offset = -4;
 			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
-			_compatible_accs = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "PointerSlot" >> "compatibleItems");
 			
-			if ( _class in _compatible_accs ) then {
+			if ( [_gun, _class, 'acc'] call GEAR_validAttachment ) then {
 				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
 			};
 		};
@@ -154,12 +150,10 @@ else {
 		case (GEAR_secondary_optic_idc);
 		case (GEAR_pistol_optic_idc): {
 			if ( _type != GEAR_type_optic) exitwith{};
-			
 			_gun_offset = -6;
 			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
-			_compatible_optics = getArray (configFile >> "CfgWeapons" >> _gun >> "WeaponSlotsInfo" >> "CowsSlot" >> "compatibleItems");
 			
-			if ( _class in _compatible_optics ) then {
+			if ( [_gun, _class, 'optic'] call GEAR_validAttachment ) then {
 				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
 			};
 		};
