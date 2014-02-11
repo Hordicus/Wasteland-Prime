@@ -6,7 +6,10 @@ _limit = switch (_this select 2) do {
 	case 'muzzle': {["MuzzleSlot"]};
 	case 'acc': {["PointerSlot"]};
 	case 'optic': {["CowsSlot"]};
-	default {["MuzzleSlot", "PointerSlot", "CowsSlot"]};
+};
+
+if ( isNil "_limit" ) then {
+	_limit = ["MuzzleSlot", "PointerSlot", "CowsSlot"];
 };
 
 _compatible = [];
