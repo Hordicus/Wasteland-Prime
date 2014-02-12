@@ -103,7 +103,33 @@ _config = [] call CBA_fnc_hashCreate;
 	["TMR_launch_NLAW_MPV_F", 100],
 	["launch_RPG32_F", 100],
 	["launch_B_Titan_short_F", 100],
-	["launch_O_Titan_F", 100]
+	["launch_O_Titan_F", 100],
+	
+	["HandGrenade", 10],
+	["MiniGrenade", 10],
+	["SmokeShell", 10],
+	["SmokeShellYellow", 10],
+	["SmokeShellGreen", 10],
+	["SmokeShellRed", 10],
+	["SmokeShellPurple", 10],
+	["SmokeShellOrange", 10],
+	["SmokeShellBlue", 10],
+	["Chemlight_green", 10],
+	["Chemlight_red", 10],
+	["Chemlight_yellow", 10],
+	["Chemlight_blue", 10],
+	["B_IR_Grenade", 10],
+	["O_IR_Grenade", 10],
+	["I_IR_Grenade", 10],
+	
+	["DemoCharge_Remote_Mag", 10],
+	["SatchelCharge_Remote_Mag", 10],
+	["ATMine_Range_Mag", 10],
+	["ClaymoreDirectionalMine_Remote_Mag", 10],
+	["APERSMine_Range_Mag", 10],
+	["APERSBoundingMine_Range_Mag", 10],
+	["SLAMDirectionalMine_Wire_Mag", 10],
+	["APERSTripMine_Wire_Mag", 10]	
 ]] call CBA_fnc_hashSet;
 
 [_config, "items", [
