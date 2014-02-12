@@ -10,7 +10,12 @@ private ['_img', '_idc'];
 		_img = _idc call GEAR_defaultImg;
 	}
 	else { if ( typeName _x != "ARRAY" ) then {
-		_img = _x call GEAR_itemImg;
+		if ( _x == "" ) then {
+			_img = _idc call GEAR_defaultImg;
+		}
+		else {
+			_img = _x call GEAR_itemImg;
+		};
 	}};
 	
 	ctrlSetText [_idc, _img];
