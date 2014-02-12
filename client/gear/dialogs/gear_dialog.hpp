@@ -67,6 +67,7 @@ class geard {
 		// colorBackground[] = {1,0,0,0.5};
 		colorBackgroundDisabled[] = {1,1,1,1};
 		action = "";
+		sizeEx = 0.025;
 		
 		offsetX = 0;
 		offsetY = 0;
@@ -80,6 +81,10 @@ class geard {
 		soundPush[] = {"",0.1,1};
 		soundClick[] = {"",0.1,1};
 		soundEscape[] = {"",0.1,1};
+		
+		// Is there a better way?
+		onMouseEnter = "(_this select 0) ctrlSetTextColor [0,0,0,1];";
+		onMouseExit  = "(_this select 0) ctrlSetTextColor [1,1,1,1];";
 	};
 	
 	class GEAR_Item : GEAR_common {
@@ -795,6 +800,27 @@ class geard {
 			style = 0;
 			idc = GEAR_purchase_info_idc;
 			size = 0.03;
+		};
+		
+		class GEAR_save_loadout : GEAR_button {
+			y = safezoneY + safezoneH * 0.905;
+			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*0 + 0.01);
+			w = safezoneW * 0.1;
+			h = safezoneH * 0.03;
+
+			idc = GEAR_save_loadout_idc;
+			text = "SAVE LOADOUT";
+			action = "call GEAR_saveLoadout";
+		};
+		
+		class GEAR_save_as_preset : GEAR_button {
+			y = safezoneY + safezoneH * 0.94;
+			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*0 + 0.01);
+			w = safezoneW * 0.1;
+			h = safezoneH * 0.03;
+
+			idc = GEAR_save_preset_idc;
+			text = "SAVE AS PRESET";
 		};
 	};
 };

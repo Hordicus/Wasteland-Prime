@@ -90,6 +90,8 @@
 #define GEAR_item_watch_idc GEAR_idc_base + 72
 
 #define GEAR_purchase_info_idc GEAR_idc_base + 73
+#define GEAR_save_loadout_idc GEAR_idc_base + 74
+#define GEAR_save_preset_idc GEAR_idc_base + 75
 
 #define GET(ARRAY, INDEX, DEFAULT) if ( count ARRAY < INDEX || { isNil { ARRAY select INDEX } } ) then { DEFAULT } else { ARRAY select INDEX }
 
