@@ -785,13 +785,16 @@ class geard {
 			idc = GEAR_item_watch_idc;
 		};
 		
-		class GEAR_purchase_info_bg : GEAR_common {
-			type = CT_STATIC;
-			style = 0;
+		class GEAR_purchase_info : GEAR_common {
 			y = safezoneY + safezoneH * 0.66;
 			x = safezoneX + safezoneW * (0.36 + ( 0.01 + 0.08 )*3 + (0.08375 + 0.005)*0);
 			w = safezoneW * 0.35;
 			h = safezoneH * 0.33;
+
+			type = CT_STRUCTURED_TEXT;
+			style = 0;
+			idc = GEAR_purchase_info_idc;
+			size = 0.03;
 		};
 	};
 };

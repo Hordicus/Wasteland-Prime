@@ -89,6 +89,9 @@
 #define GEAR_item_watch_bg_idc GEAR_idc_base + 71
 #define GEAR_item_watch_idc GEAR_idc_base + 72
 
+#define GEAR_purchase_info_idc GEAR_idc_base + 73
+
+#define GET(ARRAY, INDEX, DEFAULT) if ( count ARRAY < INDEX || { isNil { ARRAY select INDEX } } ) then { DEFAULT } else { ARRAY select INDEX }
 
 
 // Images

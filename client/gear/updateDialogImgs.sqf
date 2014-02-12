@@ -1,6 +1,6 @@
 #include "dialogs\gear_defines.sqf"
 
-private ['_img', '_idc', '_tooltip'];
+private ['_img', '_idc', '_tooltip', '_loadout_info'];
 
 {
 	_idc = _forEachIndex call GEAR_loadoutIndexToIDC;
@@ -23,3 +23,7 @@ private ['_img', '_idc', '_tooltip'];
 	ctrlSetText [_idc, _img];
 	((findDisplay GEAR_dialog_idc) displayCtrl _idc) ctrlSetTooltip _tooltip;
 } forEach GEAR_activeLoadout;
+
+_loadout_info = parseText format['Total: $%1', GEAR_activeLoadout call GEAR_loadoutTotal];
+
+((findDisplay GEAR_dialog_idc) displayCtrl GEAR_purchase_info_idc) ctrlSetStructuredText _loadout_info;

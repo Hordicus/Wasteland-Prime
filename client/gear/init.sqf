@@ -31,6 +31,7 @@ if ( isNil "GEAR_showItems" ) then {
 	GEAR_getTotalMass      = compileFinal preprocessFileLineNumbers "client\gear\getTotalMass.sqf";
 	GEAR_setLoadout        = compileFinal preprocessFileLineNumbers "client\gear\set_loadout.sqf"; // AUTHOR: aeroson
 	GEAR_toLoadoutArray    = compileFinal preprocessFileLineNumbers "client\gear\toLoadoutArray.sqf";
+	GEAR_loadoutTotal      = compileFinal preprocessFileLineNumbers "client\gear\loadoutTotal.sqf";
 };
 
 if ( isNil "GEAR_activeLoadout" ) then {
