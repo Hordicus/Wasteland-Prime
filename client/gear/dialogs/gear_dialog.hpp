@@ -1,25 +1,56 @@
 #include "common.hpp"
 #include "gear_defines.sqf"
 
+class GEAR_common {
+	text = "";
+	idc  = -1;
+	colorBackground[] = {0,0,0,0.5};
+	colorText[] = {1,1,1,1};
+	colorDisabled[] = {1,1,1,0.8};
+	colorSelect[] = {1,1,1,1};
+	soundSelect[] = {"", 0.1, 1};
+	border = "#(argb,8,8,3)color(1,1,1,0)";
+	font = FontM;
+	sizeEx = 0.023;
+};
+
+class GEAR_button : GEAR_common {
+	type = CT_BUTTON;
+	style = 0;
+	
+	default = false;
+	colorFocused[] = {0,0,0,0.5};
+	colorBackgroundActive[] = {1,1,1,1};
+	
+	// colorBackground[] = {1,0,0,0.5};
+	colorBackgroundDisabled[] = {1,1,1,1};
+	action = "";
+	sizeEx = 0.025;
+	
+	offsetX = 0;
+	offsetY = 0;
+	offsetPressedX = 0;
+	offsetPressedY = 0;
+	colorShadow[] = {0,0,0,0};
+	colorBorder[] = {0,0,0,0};
+	borderSize = 0;
+	
+	soundEnter[] = {"",0.1,1};
+	soundPush[] = {"",0.1,1};
+	soundClick[] = {"",0.1,1};
+	soundEscape[] = {"",0.1,1};
+	
+	// Is there a better way?
+	onMouseEnter = "(_this select 0) ctrlSetTextColor [0,0,0,1];";
+	onMouseExit  = "(_this select 0) ctrlSetTextColor [1,1,1,1];";
+};
+
 class geard {
 
 	idd = GEAR_dialog_idc;
 	movingEnable = false;
 	enableSimulation = true;
 	onLoad = "execVM 'client\gear\init.sqf'";
-	
-	class GEAR_common {
-		text = "";
-		idc  = -1;
-		colorBackground[] = {0,0,0,0.5};
-		colorText[] = {1,1,1,1};
-		colorDisabled[] = {1,1,1,0.8};
-		colorSelect[] = {1,1,1,1};
-		soundSelect[] = {"", 0.1, 1};
-		border = "#(argb,8,8,3)color(1,1,1,0)";
-		font = FontM;
-		sizeEx = 0.023;
-	};
 	
 	class GEAR_list : GEAR_common {
 		type = CT_LISTBOX;
@@ -40,7 +71,7 @@ class geard {
 			border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
 		};
 	};
-	
+
 	class GEAR_load : GEAR_common {
 		type = CT_PROGRESS;
 		style = 0;
@@ -54,37 +85,6 @@ class geard {
 		style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_VCENTER; // ST_PICTURE
 		colorBackground[] = {0,0,0,0.5};
 		colorText[] = {1,1,1,1};
-	};
-	
-	class GEAR_button : GEAR_common {
-		type = CT_BUTTON;
-		style = 0;
-		
-		default = false;
-		colorFocused[] = {0,0,0,0.5};
-		colorBackgroundActive[] = {1,1,1,1};
-		
-		// colorBackground[] = {1,0,0,0.5};
-		colorBackgroundDisabled[] = {1,1,1,1};
-		action = "";
-		sizeEx = 0.025;
-		
-		offsetX = 0;
-		offsetY = 0;
-		offsetPressedX = 0;
-		offsetPressedY = 0;
-		colorShadow[] = {0,0,0,0};
-		colorBorder[] = {0,0,0,0};
-		borderSize = 0;
-		
-		soundEnter[] = {"",0.1,1};
-		soundPush[] = {"",0.1,1};
-		soundClick[] = {"",0.1,1};
-		soundEscape[] = {"",0.1,1};
-		
-		// Is there a better way?
-		onMouseEnter = "(_this select 0) ctrlSetTextColor [0,0,0,1];";
-		onMouseExit  = "(_this select 0) ctrlSetTextColor [1,1,1,1];";
 	};
 	
 	class GEAR_Item : GEAR_common {
@@ -821,6 +821,79 @@ class geard {
 
 			idc = GEAR_save_preset_idc;
 			text = "SAVE AS PRESET";
+			action = "createDialog 'gear_name_presetd';";
+		};
+	};
+};
+
+class gear_name_presetd {
+	idd = -1;
+	class controlsBackground {
+		class background : GEAR_common {
+			colorBackground[] = {0,0,0,1};
+			type = CT_FRAME;
+			style = 0;
+			
+			y = safeZoneY + safezoneH * (0.5 - 0.12/2);
+			x = safeZoneX + safezoneW * (0.5 - 0.3/2);
+			h = safezoneH * 0.12;
+			w = safezoneW * 0.3;
+		};
+	};
+	
+	class controls {
+		class GEAR_preset_name_label : GEAR_common {
+			type = CT_STATIC;
+			style = 0;
+			y = safeZoneY + safezoneH * (0.5 - 0.12/2 + 0.01);
+			x = safeZoneX + safezoneW * (0.5 - 0.3/2 + 0.01);
+			w = safezoneW * 0.2;
+			h = safezoneH * 0.02;
+			
+			text = "Preset Name:";
+		};
+
+		class GEAR_preset_name : GEAR_common {
+			type = CT_EDIT;
+			style = 0;
+			colorSelection[] = {0,0,0,1};
+			autocomplete = "";
+			idc = GEAR_preset_name_idc;
+			
+			y = safeZoneY + safezoneH * (0.5 - 0.12/2 + 0.035);
+			x = safeZoneX + safezoneW * (0.5 - 0.3/2 + 0.01);
+			w = safezoneW * 0.28;
+			h = safezoneH * 0.02;
+		};
+
+		class GEAR_preset_name_help : GEAR_common {
+			type = CT_STRUCTURED_TEXT;
+			style = 0;
+			
+			y = safeZoneY + safezoneH * (0.5 - 0.12/2 + 0.035 + 0.03);
+			x = safeZoneX + safezoneW * (0.5 - 0.3/2 + 0.01);
+			w = safezoneW * 0.28;
+			h = safezoneH * 0.03;
+			
+			size = 0.023;
+			text = "Use the name of an existing preset to overwrite it.<br />Using a new name will add another preset.";
+		};
+		
+		class GEAR_preset_save : GEAR_button {
+			colorBackground[] = {0,0,0,1};
+			y = safeZoneY + safezoneH * (0.5 - 0.12/2 + 0.12 + 0.005);
+			x = safeZoneX + safezoneW * (0.5 - 0.3/2);
+			h = safezoneH * 0.03;
+			w = safezoneW * 0.1;
+			
+			text = "SAVE";
+			action = "_this call GEAR_saveAsPreset";
+		};
+		
+		class GEAR_preset_cancel : GEAR_preset_save {
+			x = safeZoneX + safezoneW * (0.5 - 0.3/2 + 0.005 + 0.1);
+			text = "CANCEL";
+			action = "closeDialog 0";
 		};
 	};
 };

@@ -33,15 +33,15 @@ if ( isNil "GEAR_showItems" ) then {
 	GEAR_toLoadoutArray    = compileFinal preprocessFileLineNumbers "client\gear\toLoadoutArray.sqf";
 	GEAR_loadoutTotal      = compileFinal preprocessFileLineNumbers "client\gear\loadoutTotal.sqf";
 	GEAR_saveLoadout       = compileFinal preprocessFileLineNumbers "client\gear\saveLoadout.sqf";
+	GEAR_saveAsPreset      = compileFinal preprocessFileLineNumbers "client\gear\saveAsPreset.sqf";
 };
 
 if ( isNil "GEAR_activeLoadout" ) then {
-	GEAR_activeLoadout = [];
-}
-else {
-	call GEAR_updateDialogImgs;
+	GEAR_presets = profileNamespace getVariable ["GEAR_presets", [] call CBA_fnc_hashCreate];
+	GEAR_activeLoadout = profileNamespace getVariable ["GEAR_activeLoadout", []];
 };
 
+call GEAR_updateDialogImgs;
 GEAR_beforeChanges = GEAR_activeLoadout;
 
 GEAR_activeNav call GEAR_showItems;

@@ -1,6 +1,9 @@
 #include "dialogs\gear_defines.sqf"
 private ['_cfg', '_onSave', '_close'];
 
+profileNamespace setVariable ["GEAR_activeLoadout", GEAR_activeLoadout];
+saveProfileNamespace;
+
 _cfg = call GEAR_config;
 _onSave = [_cfg, 'onSave'] call CBA_fnc_hashGet;
 _close = true;
