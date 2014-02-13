@@ -1,19 +1,25 @@
-private ['_class', '_price', '_types'];
+private ['_class', '_types', '_prices', '_classes', '_lookup'];
 _types = ['guns', 'ammo', 'launchers', 'items', 'wearables', 'attachments'];
-_config = call GEAR_config;
 _class = _this;
-_price = -1;
 
-{
-	_items = [_config, _x] call CBA_fnc_hashGet;
+if ( isNil "GEAR_priceLookup" ) then {
+	_config = call GEAR_config;
+	_classes  = [];
+	_prices = [];
 	
 	{
-		if ( _x select 0 == _class ) exitwith {
-			_price = _x select 1;
-		};
-	} count _items;
+		_items = [_config, _x] call CBA_fnc_hashGet;
+		
+		{
+			_classes set [count _classes, _x select 0];
+			_prices set [count _prices, _x select 1];
+			true
+		} count _items;
+		true
+	} count _types;
 	
-	if ( _price > -1 ) exitwith {};	
-} count _types;
+	GEAR_priceLookup = compileFinal str [_classes, _prices];
+};
 
-_price
+_lookup = call GEAR_priceLookup;
+((_lookup select 1) select ((_lookup select 0) find _class))
