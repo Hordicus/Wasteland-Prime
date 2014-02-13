@@ -58,6 +58,17 @@ else { if ( _btn == 1 ) then { // Right click
 			call GEAR_updateDialogImgs;
 		};
 		
+		case (GEAR_itemslist_idc): {
+			if ( GEAR_activeNav == 'presets' ) then {
+				_row = [_this select 0, [_this select 2, _this select 3]] call GEAR_getRowFromPos;
+				_preset = lbData[GEAR_itemslist_idc, _row];
+				lbDelete[GEAR_itemslist_idc, _row];
+				[GEAR_presets, _preset] call CBA_fnc_hashRem;
+				profileNamespace setVariable ["GEAR_presets", GEAR_presets];
+				saveProfileNamespace;
+			};
+		};
+		
 		default {
 			GEAR_activeLoadout set [_index, nil];
 			call GEAR_updateDialogImgs;

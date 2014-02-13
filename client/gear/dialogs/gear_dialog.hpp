@@ -162,6 +162,18 @@ class geard {
 			onMouseExit  = "[_this select 0, 0, 'wearables'] execVM 'client\gear\rolloverChangeBg.sqf'";			
 		};
 		
+		class GEAR_select_presets : GEAR_button {
+			x = safezoneX + ( safezoneW * 0.02 );
+			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 4 );
+			w = safezoneW * 0.05;
+			h = safezoneH * 0.05625;
+
+			idc = GEAR_select_presets_idc;
+			onMouseButtonClick = "'presets' call GEAR_showItems; GEAR_activeNav = 'presets'; call GEAR_updateTabs;";
+			onMouseEnter = "[_this select 0, 1, 'presets'] execVM 'client\gear\rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'presets'] execVM 'client\gear\rolloverChangeBg.sqf'";			
+		};
+		
 		class GEAR_select_ammo : GEAR_button {
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.52 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 0 );
@@ -230,6 +242,16 @@ class geard {
 			h = safezoneH * 0.05625;
 		};
 		
+		class GEAR_select_presets_bg : GEAR_button_bg {
+			idc = GEAR_select_presets_bg_idc;
+			text = "client\gear\icons\presets.paa";
+			
+			x = safezoneX + ( safezoneW * 0.02 );
+			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 4 );
+			w = safezoneW * 0.05;
+			h = safezoneH * 0.05625;
+		};
+		
 		class GEAR_itemslist : GEAR_list {
 			idc = GEAR_itemslist_idc;
 			canDrag = 1;
@@ -240,6 +262,7 @@ class geard {
 			h = safezoneH * 0.5;
 			onLBSelChanged = "call GEAR_showItemDetails";
 			onLBDblClick = "_h = _this execVM 'client\gear\dblClick.sqf';";
+			onMouseButtonClick = "_h = _this execVM 'client\gear\clickItem.sqf'";
 		};
 		
 		class GEAR_select_ammo_bg : GEAR_button_bg {
