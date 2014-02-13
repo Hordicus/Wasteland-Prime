@@ -112,6 +112,13 @@ else {
 
 	if ( _do_default ) then {
 		// Find room in uniform/vest/backpack and add if possible
+		// Start with currently selected container.
+		_activeContainerIndex = switch(GEAR_activeContainer) do {
+			case 'uniform': {GEAR_index_uniform};
+			case 'vest': {GEAR_index_vest};
+			case 'backpack': {GEAR_index_backpack};
+		};
+		
 		{
 			if ( !_do_default ) exitwith {};
 			
@@ -129,7 +136,7 @@ else {
 				};
 			};
 		
-		} count [GEAR_index_uniform, GEAR_index_vest, GEAR_index_backpack];
+		} count [_activeContainerIndex] + ([GEAR_index_uniform, GEAR_index_vest, GEAR_index_backpack] - [_activeContainerIndex]);
 	};
 	
 	call GEAR_updateDialogImgs;
