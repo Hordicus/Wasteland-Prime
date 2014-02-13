@@ -8,32 +8,27 @@ GEAR_activeSubNav = 'ammo';
 GEAR_activeContainer = 'uniform';
 
 if ( isNil "GEAR_showItems" ) then {
-	GEAR_showItems         = compileFinal preprocessFileLineNumbers "client\gear\showItems.sqf";
 	GEAR_config            = compileFinal preprocessFileLineNumbers "client\gear\config.sqf";
-	GEAR_itemName          = compileFinal preprocessFileLineNumbers "client\gear\itemName.sqf";
-	GEAR_itemImg           = compileFinal preprocessFileLineNumbers "client\gear\itemImg.sqf";
-	GEAR_showItemDetails   = compileFinal preprocessFileLineNumbers "client\gear\showItemDetails.sqf";
-	GEAR_getConfig         = compileFinal preprocessFileLineNumbers "client\gear\getConfig.sqf";
-	GEAR_updateTabs        = compileFinal preprocessFileLineNumbers "client\gear\updateTabs.sqf";
-	GEAR_allowedSlots      = compileFinal preprocessFileLineNumbers "client\gear\allowedSlots.sqf";
-	GEAR_getType           = compileFinal preprocessFileLineNumbers "client\gear\getType.sqf";
-	GEAR_getConfigRoot     = compileFinal preprocessFileLineNumbers "client\gear\getConfigRoot.sqf";
-	GEAR_updateDialogImgs  = compileFinal preprocessFileLineNumbers "client\gear\updateDialogImgs.sqf";
-	GEAR_loadoutIndexToIDC = compileFinal preprocessFileLineNumbers "client\gear\loadoutIndexToIDC.sqf";
-	GEAR_IDCToLoadoutIndex = compileFinal preprocessFileLineNumbers "client\gear\IDCToLoadoutIndex.sqf";
-	GEAR_defaultImg        = compileFinal preprocessFileLineNumbers "client\gear\defaultImg.sqf";
-	GEAR_selectContainer   = compileFinal preprocessFileLineNumbers "client\gear\selectContainer.sqf";
-	GEAR_itemPrice         = compileFinal preprocessFileLineNumbers "client\gear\itemPrice.sqf";
-	GEAR_getMass           = compileFinal preprocessFileLineNumbers "client\gear\getMass.sqf";
-	GEAR_getMassCapacity   = compileFinal preprocessFileLineNumbers "client\gear\getMassCapacity.sqf";
-	GEAR_getRowFromPos     = compileFinal preprocessFileLineNumbers "client\gear\getRowFromPos.sqf";
-	GEAR_validAttachment   = compileFinal preprocessFileLineNumbers "client\gear\validAttachment.sqf";
-	GEAR_getTotalMass      = compileFinal preprocessFileLineNumbers "client\gear\getTotalMass.sqf";
+	GEAR_itemName          = compileFinal preprocessFileLineNumbers "client\gear\fnc_itemName.sqf";
+	GEAR_itemImg           = compileFinal preprocessFileLineNumbers "client\gear\fnc_itemImg.sqf";
+	GEAR_getConfig         = compileFinal preprocessFileLineNumbers "client\gear\fnc_getConfig.sqf";
+	GEAR_allowedSlots      = compileFinal preprocessFileLineNumbers "client\gear\fnc_allowedSlots.sqf";
+	GEAR_getType           = compileFinal preprocessFileLineNumbers "client\gear\fnc_getType.sqf";
+	GEAR_getConfigRoot     = compileFinal preprocessFileLineNumbers "client\gear\fnc_getConfigRoot.sqf";
+	GEAR_updateDialogImgs  = compileFinal preprocessFileLineNumbers "client\gear\fnc_updateDialogImgs.sqf";
+	GEAR_loadoutIndexToIDC = compileFinal preprocessFileLineNumbers "client\gear\fnc_loadoutIndexToIDC.sqf";
+	GEAR_IDCToLoadoutIndex = compileFinal preprocessFileLineNumbers "client\gear\fnc_IDCToLoadoutIndex.sqf";
+	GEAR_defaultImg        = compileFinal preprocessFileLineNumbers "client\gear\fnc_defaultImg.sqf";
+	GEAR_selectContainer   = compileFinal preprocessFileLineNumbers "client\gear\fnc_selectContainer.sqf";
+	GEAR_itemPrice         = compileFinal preprocessFileLineNumbers "client\gear\fnc_itemPrice.sqf";
+	GEAR_getMass           = compileFinal preprocessFileLineNumbers "client\gear\fnc_getMass.sqf";
+	GEAR_getMassCapacity   = compileFinal preprocessFileLineNumbers "client\gear\fnc_getMassCapacity.sqf";
+	GEAR_getRowFromPos     = compileFinal preprocessFileLineNumbers "client\gear\fnc_getRowFromPos.sqf";
+	GEAR_validAttachment   = compileFinal preprocessFileLineNumbers "client\gear\fnc_validAttachment.sqf";
+	GEAR_getTotalMass      = compileFinal preprocessFileLineNumbers "client\gear\fnc_getTotalMass.sqf";
 	GEAR_setLoadout        = compileFinal preprocessFileLineNumbers "client\gear\set_loadout.sqf"; // AUTHOR: aeroson
-	GEAR_toLoadoutArray    = compileFinal preprocessFileLineNumbers "client\gear\toLoadoutArray.sqf";
-	GEAR_loadoutTotal      = compileFinal preprocessFileLineNumbers "client\gear\loadoutTotal.sqf";
-	GEAR_saveLoadout       = compileFinal preprocessFileLineNumbers "client\gear\saveLoadout.sqf";
-	GEAR_saveAsPreset      = compileFinal preprocessFileLineNumbers "client\gear\saveAsPreset.sqf";
+	GEAR_toLoadoutArray    = compileFinal preprocessFileLineNumbers "client\gear\fnc_toLoadoutArray.sqf";
+	GEAR_loadoutTotal      = compileFinal preprocessFileLineNumbers "client\gear\fnc_loadoutTotal.sqf";
 };
 
 if ( isNil "GEAR_activeLoadout" ) then {
@@ -44,6 +39,6 @@ if ( isNil "GEAR_activeLoadout" ) then {
 call GEAR_updateDialogImgs;
 GEAR_beforeChanges = GEAR_activeLoadout;
 
-GEAR_activeNav call GEAR_showItems;
-call GEAR_updateTabs;
+'guns' call compile preprocessFileLineNumbers 'client\gear\event_showItems.sqf';
+call compile preprocessFileLineNumbers 'client\gear\event_updateTabs.sqf';
 GEAR_activeContainer call GEAR_selectContainer;
