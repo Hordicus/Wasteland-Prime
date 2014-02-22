@@ -2,3 +2,5 @@ enableDebugConsole = 2;
 respawn = 2;
 respawnDelay = 0;
 disabledAI = 1;
+
+#include "client\gear\dialogs\gear_dialog.hpp"
