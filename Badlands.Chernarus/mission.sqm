@@ -5,12 +5,18 @@ class Mission
 	{
 		"A3_Characters_F_BLUFOR",
 		"A3_Air_F_Heli_Light_01",
-		"A3_Modules_F"
+		"A3_Modules_F",
+		"a3_characters_f_beta",
+		"A3_Characters_F_OPFOR",
+		"A3_Characters_F_INDEP"
 	};
 	addOnsAuto[]=
 	{
+		"A3_Modules_F",
 		"A3_Characters_F_BLUFOR",
-		"A3_Modules_F"
+		"a3_characters_f_beta",
+		"A3_Characters_F_OPFOR",
+		"A3_Characters_F_INDEP"
 	};
 	randomSeed=7026045;
 	class Intel
@@ -33,22 +39,22 @@ class Mission
 	};
 	class Groups
 	{
-		items=49;
+		items=51;
 		class Item0
 		{
-			side="WEST";
+			side="LOGIC";
 			class Vehicles
 			{
 				items=1;
 				class Item0
 				{
-					position[]={4023.3704,323.44934,8878.6396};
+					position[]={3823.4473,310.98999,8873.9531};
 					id=0;
-					side="WEST";
-					vehicle="B_Soldier_F";
-					player="PLAYER COMMANDER";
+					side="LOGIC";
+					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
+					init="this setVariable ['radius', 180];";
 				};
 			};
 		};
@@ -60,13 +66,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3823.4473,310.98999,8873.9531};
+					position[]={5326.1758,333.92337,8565.959};
 					id=1;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 180];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -78,13 +84,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={5326.1758,333.92337,8565.959};
+					position[]={6149.9492,300.99643,7705.1646};
 					id=2;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 250];";
 				};
 			};
 		};
@@ -96,13 +102,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6149.9492,300.99643,7705.1646};
+					position[]={2732.6846,273.99884,9965.6904};
 					id=3;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 250];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -114,13 +120,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2732.6846,273.99884,9965.6904};
+					position[]={7069.5488,293.98999,7681.5347};
 					id=4;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 180];";
 				};
 			};
 		};
@@ -132,13 +138,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={7069.5488,293.98999,7681.5347};
+					position[]={8457.1543,360.25323,6676.606};
 					id=5;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 180];";
+					init="this setVariable ['radius', 120];";
 				};
 			};
 		};
@@ -150,13 +156,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={8457.1543,360.25323,6676.606};
+					position[]={9625.5254,209.50937,6553.2085};
 					id=6;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 120];";
+					init="this setVariable ['radius', 110];";
 				};
 			};
 		};
@@ -168,13 +174,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9625.5254,209.50937,6553.2085};
+					position[]={10065.309,246.87312,5470.1704};
 					id=7;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 110];";
+					init="this setVariable ['radius', 200];";
 				};
 			};
 		};
@@ -186,13 +192,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10065.309,246.87312,5470.1704};
+					position[]={7534.5166,214.00267,5137.4521};
 					id=8;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 200];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -204,13 +210,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={7534.5166,214.00267,5137.4521};
+					position[]={3052.4104,305.96927,7882.3506};
 					id=9;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 200];";
 				};
 			};
 		};
@@ -222,13 +228,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3052.4104,305.96927,7882.3506};
+					position[]={2008.2468,253.1188,7330.3618};
 					id=10;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 200];";
+					init="this setVariable ['radius', 100];";
 				};
 			};
 		};
@@ -240,13 +246,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2008.2468,253.1188,7330.3618};
+					position[]={2520.9868,299.21829,6347.2212};
 					id=11;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 100];";
+					init="this setVariable ['radius', 120];";
 				};
 			};
 		};
@@ -258,13 +264,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2520.9868,299.21829,6347.2212};
+					position[]={2748.947,206.69394,5256.7163};
 					id=12;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 120];";
+					init="this setVariable ['radius', 300];";
 				};
 			};
 		};
@@ -276,13 +282,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2748.947,206.69394,5256.7163};
+					position[]={1694.516,144,3808.4331};
 					id=13;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 300];";
+					init="this setVariable ['radius', 120];";
 				};
 			};
 		};
@@ -294,13 +300,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={1694.516,144,3808.4331};
+					position[]={1825.5225,5.8730793,2189.6289};
 					id=14;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 120];";
+					init="this setVariable ['radius', 180];";
 				};
 			};
 		};
@@ -312,13 +318,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={1825.5225,5.8730793,2189.6289};
+					position[]={4743.0752,269.74127,6789.1753};
 					id=15;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 180];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -330,7 +336,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4743.0752,269.74127,6789.1753};
+					position[]={4483.9512,293.94824,6393.7896};
 					id=16;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
@@ -348,13 +354,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4483.9512,293.94824,6393.7896};
+					position[]={4937.5308,321.01514,5620.8018};
 					id=17;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 100];";
 				};
 			};
 		};
@@ -366,13 +372,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4937.5308,321.01514,5620.8018};
+					position[]={3366.2617,240.03876,4929.6587};
 					id=18;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 100];";
+					init="this setVariable ['radius', 120];";
 				};
 			};
 		};
@@ -384,13 +390,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3366.2617,240.03876,4929.6587};
+					position[]={4432.02,232.34827,4633.502};
 					id=19;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 120];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -402,13 +408,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4432.02,232.34827,4633.502};
+					position[]={3358.6421,185.95905,3923.5879};
 					id=20;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 100];";
 				};
 			};
 		};
@@ -420,13 +426,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3358.6421,185.95905,3923.5879};
+					position[]={3608.7644,6.8536305,2457.6646};
 					id=21;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 100];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -438,7 +444,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3608.7644,6.8536305,2457.6646};
+					position[]={4490.7959,5.98,2445.3921};
 					id=22;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
@@ -456,13 +462,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4490.7959,5.98,2445.3921};
+					position[]={5988.2451,271.85757,10270.427};
 					id=23;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 200];";
 				};
 			};
 		};
@@ -474,13 +480,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={5988.2451,271.85757,10270.427};
+					position[]={4982.8926,181.99001,12502.802};
 					id=24;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 200];";
+					init="this setVariable ['radius', 100];";
 				};
 			};
 		};
@@ -492,13 +498,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4982.8926,181.99001,12502.802};
+					position[]={5863.8428,137.27492,4715.5596};
 					id=25;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 100];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -510,13 +516,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={5863.8428,137.27492,4715.5596};
+					position[]={6771.4468,6,2578.0591};
 					id=26;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 550];";
 				};
 			};
 		};
@@ -528,13 +534,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6771.4468,6,2578.0591};
+					position[]={6541.7896,322.0228,6100.77};
 					id=27;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 550];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -546,7 +552,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={6541.7896,322.0228,6100.77};
+					position[]={8049.6758,6,3289.8025};
 					id=28;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
@@ -564,7 +570,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={8049.6758,6,3289.8025};
+					position[]={9167.8359,222.70207,3860.0974};
 					id=29;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
@@ -582,13 +588,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9167.8359,222.70207,3860.0974};
+					position[]={8620.0859,190.23296,11868.788};
 					id=30;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 200];";
 				};
 			};
 		};
@@ -600,13 +606,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={8620.0859,190.23296,11868.788};
+					position[]={9614.1699,297.81583,8826.0605};
 					id=31;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 200];";
+					init="this setVariable ['radius', 250];";
 				};
 			};
 		};
@@ -618,7 +624,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={9614.1699,297.81583,8826.0605};
+					position[]={11179.078,201.81973,12267.558};
 					id=32;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
@@ -636,13 +642,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={11179.078,201.81973,12267.558};
+					position[]={13351.942,94,12868.938};
 					id=33;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 250];";
+					init="this setVariable ['radius', 100];";
 				};
 			};
 		};
@@ -654,13 +660,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={13351.942,94,12868.938};
+					position[]={12302.385,98.014015,10784.502};
 					id=34;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 100];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -672,13 +678,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={12302.385,98.014015,10784.502};
+					position[]={10425.827,119.94775,9804.8115};
 					id=35;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 200];";
 				};
 			};
 		};
@@ -690,13 +696,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10425.827,119.94775,9804.8115};
+					position[]={11963.465,53.998711,9097.0166};
 					id=36;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 200];";
+					init="this setVariable ['radius', 250];";
 				};
 			};
 		};
@@ -708,13 +714,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={11963.465,53.998711,9097.0166};
+					position[]={12920.846,5.9953308,10052.645};
 					id=37;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 250];";
+					init="this setVariable ['radius', 250]; this setVariable ['name', 'Berezino Docks'];";
 				};
 			};
 		};
@@ -726,13 +732,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={12920.846,5.9953308,10052.645};
+					position[]={12291.359,13.646042,9552.9121};
 					id=38;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 250]; this setVariable ['name', 'Berezino Docks'];";
+					init="this setVariable ['radius', 250]; this setVariable ['name', 'Berezino North'];";
 				};
 			};
 		};
@@ -744,13 +750,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={12291.359,13.646042,9552.9121};
+					position[]={10679.176,210.99001,8012.8394};
 					id=39;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 250]; this setVariable ['name', 'Berezino North'];";
+					init="this setVariable ['radius', 250];";
 				};
 			};
 		};
@@ -762,13 +768,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={10679.176,210.99001,8012.8394};
+					position[]={12169.737,178.57701,7273.0146};
 					id=40;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 250];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -780,13 +786,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={12169.737,178.57701,7273.0146};
+					position[]={12937.488,8.3873196,8041.7607};
 					id=41;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 100];";
 				};
 			};
 		};
@@ -798,13 +804,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={12937.488,8.3873196,8041.7607};
+					position[]={11226.485,77,6579.354};
 					id=42;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 100];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -816,13 +822,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={11226.485,77,6579.354};
+					position[]={13436.379,6.074697,6245.2759};
 					id=43;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 250];";
 				};
 			};
 		};
@@ -834,13 +840,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={13436.379,6.074697,6245.2759};
+					position[]={11283.72,251.8237,5440.4517};
 					id=44;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 250];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -852,13 +858,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={11283.72,251.8237,5440.4517};
+					position[]={12850.069,173.99042,4447.8125};
 					id=45;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 100];";
 				};
 			};
 		};
@@ -870,13 +876,13 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={12850.069,173.99042,4447.8125};
+					position[]={12079.576,6.1390967,3500.9636};
 					id=46;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 100];";
+					init="this setVariable ['radius', 150];";
 				};
 			};
 		};
@@ -888,31 +894,127 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={12079.576,6.1390967,3500.9636};
+					position[]={10320.063,7.8989925,2210.3757};
 					id=47;
 					side="LOGIC";
 					vehicle="LocationCityCapital_F";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 150];";
+					init="this setVariable ['radius', 500];";
 				};
 			};
 		};
 		class Item48
 		{
-			side="LOGIC";
+			side="WEST";
 			class Vehicles
 			{
-				items=1;
+				items=3;
 				class Item0
 				{
-					position[]={10320.063,7.8989925,2210.3757};
+					position[]={-9599.6572,621.89001,22422.857};
 					id=48;
-					side="LOGIC";
-					vehicle="LocationCityCapital_F";
+					side="WEST";
+					vehicle="B_Soldier_F";
+					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
-					init="this setVariable ['radius', 500];";
+				};
+				class Item1
+				{
+					position[]={-9599.6572,621.89001,22422.857};
+					id=49;
+					side="WEST";
+					vehicle="B_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+				};
+				class Item2
+				{
+					position[]={-9599.6572,621.89001,22422.857};
+					id=50;
+					side="WEST";
+					vehicle="B_engineer_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+				};
+			};
+		};
+		class Item49
+		{
+			side="EAST";
+			class Vehicles
+			{
+				items=3;
+				class Item0
+				{
+					position[]={-9599.6572,621.89001,22422.857};
+					id=51;
+					side="EAST";
+					vehicle="O_Soldier_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+				};
+				class Item1
+				{
+					position[]={-9599.6572,621.89001,22422.857};
+					id=52;
+					side="EAST";
+					vehicle="O_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+				};
+				class Item2
+				{
+					position[]={-9599.6572,621.89001,22422.857};
+					id=53;
+					side="EAST";
+					vehicle="O_engineer_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+				};
+			};
+		};
+		class Item50
+		{
+			side="GUER";
+			class Vehicles
+			{
+				items=3;
+				class Item0
+				{
+					position[]={-9599.6572,621.89001,22422.857};
+					id=54;
+					side="GUER";
+					vehicle="I_Soldier_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+				};
+				class Item1
+				{
+					position[]={-9599.6572,621.89001,22422.857};
+					id=55;
+					side="GUER";
+					vehicle="I_medic_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
+				};
+				class Item2
+				{
+					position[]={-9599.6572,621.89001,22422.857};
+					id=56;
+					side="GUER";
+					vehicle="I_engineer_F";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.60000002;
 				};
 			};
 		};
