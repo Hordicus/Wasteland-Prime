@@ -1,6 +1,9 @@
 enableDebugConsole = 2;
-respawn = 2;
+respawn = 3; // BASE
 respawnDelay = 0;
 disabledAI = 1;
 
 #include "client\gear\dialogs\gear_dialog.hpp"
+#include "client\dialogs\common.hpp"
+#include "client\dialogs\styles.hpp"
+#include "client\systems\playerRespawn\dialog\respawnDialog.hpp"

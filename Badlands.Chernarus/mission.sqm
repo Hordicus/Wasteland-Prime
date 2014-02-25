@@ -39,7 +39,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=51;
+		items=52;
 		class Item0
 		{
 			side="LOGIC";
@@ -1015,6 +1015,24 @@ class Mission
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
+				};
+			};
+		};
+		class Item51
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={7648.1704,342.21588,7708.6104};
+					id=57;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="mapCenter";
 				};
 			};
 		};
