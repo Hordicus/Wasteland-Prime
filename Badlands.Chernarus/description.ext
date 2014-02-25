@@ -1,12 +1,43 @@
 enableDebugConsole = 2;
+allowFunctionsRecompile = 1;
+allowFunctionsLog = 1;
 respawn = 3; // BASE
 respawnDelay = 0;
 disabledAI = 1;
+joinUnassigned = 0;
 
 #include "client\gear\dialogs\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
 #include "client\systems\playerRespawn\dialog\respawnDialog.hpp"
+
+class CfgFunctions
+{
+	class COB
+	{
+		class functions
+		{
+			class HALO {file = "client\functions\fn_halo.sqf"};
+		};
+	};
+	
+	class BL
+	{
+		class Client
+		{
+			file = "client\functions";
+			class friendlyState{};
+		};
+		class Common
+		{
+			file = "common\functions";
+			class findCities{};
+			class getDirectory{};
+		};
+		
+		#include "client\systems\playerRespawn\cfgfunctions.hpp"
+	};
+};
 
 class CfgSounds 
 {

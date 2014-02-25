@@ -1,7 +1,7 @@
 private ["_cities","_city","_vehicles","_vehicle","_vehPos","_spawnPos","_distance","_direction"];
 
 // Select city to spawn in
-_cities = call compile preprocessFileLineNumbers 'common\functions\findCities.sqf';
+_cities = call BL_fnc_findCities;
 _city = _cities select floor random count _cities;
 
 // Select vehicle to spawn them near

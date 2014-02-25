@@ -1,5 +1,5 @@
 #include "dialog\defines.sqf"
-_spawn = call playerRespawn_randomSpawnLocation;
+_spawn = call BL_fnc_randomSpawnLocation;
 _loc = _spawn select 1;
 
 if (_this == 'ground' ) then {

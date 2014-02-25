@@ -1,4 +1,4 @@
-_cities = call compile preprocessFileLineNumbers 'common\functions\findCities.sqf';
+_cities = call BL_fnc_findCities;
 
 {
 	_name = format['marker_%1', _x select 0];
@@ -15,7 +15,7 @@ stateHistory = [[], "EMPTY"] call CBA_fnc_hashCreate;
 	
 	_town = _this select 0;
 	_players = _this select 1;
-	_state = _players call friendlyState;
+	_state = _players call BL_fnc_friendlyState;
 	_color = "ColorBlack";
 	
 	switch(_state) do {

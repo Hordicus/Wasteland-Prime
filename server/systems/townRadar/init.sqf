@@ -1,5 +1,5 @@
 #include "\x\cba\addons\main\script_macros_common.hpp"
-_cities = call compile preprocessFileLineNumbers 'common\functions\findCities.sqf';
+_cities = call BL_fnc_findCities;
 _state = [];
 
 // Set up default state
