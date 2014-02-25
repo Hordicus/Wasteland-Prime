@@ -92,6 +92,7 @@ class respawnDialog {
 			h = safezoneH * 0.03;
 			y = safezoneY + safezoneH * ( 0.1 + 0.005 + 0.05 + 0.02 );
 			text = "Random Ground Insert";
+			onMouseButtonClick = "hint 'click'; 'ground' call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_spawnRandomButton.sqf'";
 		};
 		
 		class spawnRandomHALO : RscButton {
@@ -100,6 +101,7 @@ class respawnDialog {
 			h = safezoneH * 0.03;
 			y = safezoneY + safezoneH * ( 0.1 + 0.005 + 0.05 + 0.02 + 0.01 + 0.03);
 			text = "Random Air Drop";
+			onMouseButtonClick = "'air' call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_spawnRandomButton.sqf'";
 		};
 	
 		// Spawn buttons and info lines

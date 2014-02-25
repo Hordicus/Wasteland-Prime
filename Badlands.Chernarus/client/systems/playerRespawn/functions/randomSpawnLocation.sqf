@@ -1,3 +1,5 @@
+private ["_cities","_city","_vehicles","_vehicle","_vehPos","_spawnPos","_distance","_direction"];
+
 // Select city to spawn in
 _cities = call compile preprocessFileLineNumbers 'common\functions\findCities.sqf';
 _city = _cities select floor random count _cities;
@@ -17,4 +19,4 @@ while { count _spawnPos == 0 } do { // findEmptyPosition can fail
 	_spawnPos = _spawnPos findEmptyPosition [0, 5];
 };
 
-_spawnPos
+[_city select 0, _spawnPos]

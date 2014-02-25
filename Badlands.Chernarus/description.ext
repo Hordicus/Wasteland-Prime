@@ -7,3 +7,33 @@ disabledAI = 1;
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
 #include "client\systems\playerRespawn\dialog\respawnDialog.hpp"
+
+class CfgSounds 
+{
+	sounds[] = {}; 
+	class C130_exit 
+	{
+		sound[] = {"sounds\C130_exit.wss", 50, 1};
+		titles[] = {};
+	};
+	class flapping 
+	{
+		sound[] = {"sounds\flapping.ogg", 10, 1};
+		titles[] = {};
+	};
+	class open_chute 
+	{
+		sound[] = {"sounds\open_chute.ogg", 10, 1};
+		titles[] = {};
+	};
+	class para_pilot 
+	{
+		sound[] = {"sounds\para_pilot.ogg", 10, 1};
+		titles[] = {};
+	};
+	class close_chute 
+	{
+		sound[] = {"sounds\close_chute.ogg", 10, 1};
+		titles[] = {};
+	};
+};
