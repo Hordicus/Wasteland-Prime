@@ -6,9 +6,14 @@ playerRespawn_towns = [[], "EMPTY"] call CBA_fnc_hashCreate;
 playerRespawn_beacons = [];
 playerRespawn_lastDeath = getPosATL mapCenter;
 playerRespawnPage = 0;
+playerRespawnOptionEventHandlers = [];
 
 player addEventHandler ["killed", {
 	playerRespawn_lastDeath = getPosATL (_this select 0);
+}];
+
+player addEventHandler ["respawn", {
+	createDialog "respawnDialog";
 }];
 
 ["radarUpdate", {

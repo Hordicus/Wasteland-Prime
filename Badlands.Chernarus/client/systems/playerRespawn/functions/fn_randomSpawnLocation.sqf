@@ -1,11 +1,34 @@
+/* ----------------------------------------------------------------------------
+Function: BL_fnc_randomSpawnLocation
+
+Description:
+	Selects a random safe location near a vehicle in a city.
+	Optionally can select a random city too.
+
+Parameters:
+	_restrictCity - city to spawn in [name, position, radius] (Default: Random selection)
+
+Returns:
+	position
+
+---------------------------------------------------------------------------- */
+
 private ["_cities","_city","_vehicles","_vehicle","_vehPos","_spawnPos","_distance","_direction"];
 
 // Select city to spawn in
 _cities = call BL_fnc_findCities;
 _vehPos = [];
+_restrictCity = [_this, 0, [], []] call BIS_fnc_param;
 
 while { count _vehPos == 0 } do {
-	_city = _cities select floor random count _cities;
+	_city = [];
+	if ( count _restrictCity == 0 ) then {
+		// Select random city if one wasn't provided
+		_city = _cities select floor random count _cities;
+	}
+	else {
+		_city = _restrictCity;
+	};
 
 	// Select vehicle to spawn them near
 	_vehicles = (_city select 1) nearEntities ['Car', _city select 2];

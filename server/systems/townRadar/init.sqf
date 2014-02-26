@@ -20,7 +20,7 @@ while { true } do {
 		
 		if ( _last != _count ) then {
 			diag_log format["radarUpdate: %1, %2", _name, _units];
-			["radarUpdate", [_name, _units, _pos]] call CBA_fnc_globalEvent;
+			["radarUpdate", [_name, _units, [_pos, _radius]]] call CBA_fnc_globalEvent;
 		};
 		
 		_state set [ _forEachIndex, _count ];

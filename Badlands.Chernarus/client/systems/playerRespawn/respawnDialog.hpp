@@ -106,6 +106,7 @@ class respawnDialog {
 	
 		// Spawn buttons and info lines
 		class spawnOptionOne : spawnRandomGround {
+			onMouseButtonClick = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_spawnOptionClick.sqf'";
 			idc = respawnOptionOneIDC;
 			y = spawnOptionY(0);
 			
