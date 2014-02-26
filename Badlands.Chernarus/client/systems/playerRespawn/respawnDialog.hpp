@@ -1,11 +1,11 @@
-#include "defines.sqf"
+#include "functions\macro.sqf"
 #define spawnOptionY(OFFSET) safezoneY + safezoneH * ( 0.24 + 0.005 + 0.05 + 0.02 + (0.01 + 0.03)*OFFSET)
 
 class respawnDialog {
 	idd = respawnDialogIDD;
 	movingEnable = false;
 	enableSimulation = true;
-	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\init.sqf'";
+	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_onLoad.sqf'";
 
 	class controlsBackground {
 		class respawnBackdrop : RscMap {
@@ -92,7 +92,7 @@ class respawnDialog {
 			h = safezoneH * 0.03;
 			y = safezoneY + safezoneH * ( 0.1 + 0.005 + 0.05 + 0.02 );
 			text = "Random Ground Insert";
-			onMouseButtonClick = "hint 'click'; 'ground' call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_spawnRandomButton.sqf'";
+			onMouseButtonClick = "'ground' call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_spawnRandomButton.sqf'";
 		};
 		
 		class spawnRandomHALO : RscButton {
@@ -106,12 +106,14 @@ class respawnDialog {
 	
 		// Spawn buttons and info lines
 		class spawnOptionOne : spawnRandomGround {
+			idc = respawnOptionOneIDC;
 			y = spawnOptionY(0);
 			
 			text = "Zelenogorsk";
 		};
 		
 		class spawnOptionOneInfo : RscText {
+			idc = respawnOptionOneInfoIDC;
 			x = safezoneX + safezoneW * ( 0.1 + 0.02 + 0.15 + 0.01 );
 			y = spawnOptionY(0);
 			w = safezoneW * 0.15;
@@ -121,6 +123,7 @@ class respawnDialog {
 		};
 		
 		class spawnOptionOneDist : RscText {
+			idc = respawnOptionOneDistIDC;
 			style = ST_RIGHT;
 			x = safezoneX + safezoneW * ( 0.1 + 0.74 );
 			y = spawnOptionY(0);
@@ -131,62 +134,77 @@ class respawnDialog {
 		};
 		
 		class spawnOptionTwo : spawnOptionOne {
+			idc = respawnOptionTwoIDC;
 			y = spawnOptionY(1);
 		};
 
 		class spawnOptionTwoInfo : spawnOptionOneInfo {
+			idc = respawnOptionTwoInfoIDC;
 			y = spawnOptionY(1);
 		};
 		
 		class spawnOptionTwoDist : spawnOptionOneDist {
+			idc = respawnOptionTwoDistIDC;
 			y = spawnOptionY(1);
 		};
 
-		class spawnOptionThree : spawnOptionOne {
+		class spawnOptionThree: spawnOptionOne {
+			idc = respawnOptionThreeIDC;
 			y = spawnOptionY(2);
 		};
 		
-		class spawnOptionThreeInfo : spawnOptionOneInfo {
+		class spawnOptionThreeInfo: spawnOptionOneInfo {
+			idc = respawnOptionThreeInfoIDC;
 			y = spawnOptionY(2);
 		};
 
-		class spawnOptionThreeDist : spawnOptionOneDist {
+		class spawnOptionThreeDist: spawnOptionOneDist {
+			idc = respawnOptionThreeDistIDC;
 			y = spawnOptionY(2);
 		};
 
-		class spawnOptionFour : spawnOptionOne {
+		class spawnOptionFour: spawnOptionOne {
+			idc = respawnOptionFourIDC;
 			y = spawnOptionY(3);
 		};
 
-		class spawnOptionFourInfo : spawnOptionOneInfo {
+		class spawnOptionFourInfo: spawnOptionOneInfo {
+			idc = respawnOptionFourInfoIDC;
 			y = spawnOptionY(3);
 		};
 
-		class spawnOptionFourDist : spawnOptionOneDist {
+		class spawnOptionFourDist: spawnOptionOneDist {
+			idc = respawnOptionFourDistIDC;
 			y = spawnOptionY(3);
 		};
 		
-		class spawnOptionFive : spawnOptionOne {
+		class spawnOptionFive: spawnOptionOne {
+			idc = respawnOptionFiveIDC;
 			y = spawnOptionY(4);
 		};
 
-		class spawnOptionFiveInfo : spawnOptionOneInfo {
+		class spawnOptionFiveInfo: spawnOptionOneInfo {
+			idc = respawnOptionFiveInfoIDC;
 			y = spawnOptionY(4);
 		};
 		
-		class spawnOptionFiveDist : spawnOptionOneDist {
+		class spawnOptionFiveDist: spawnOptionOneDist {
+			idc = respawnOptionFiveDistIDC;
 			y = spawnOptionY(4);
 		};
 		
-		class spawnOptionSix : spawnOptionOne {
+		class spawnOptionSix: spawnOptionOne {
+			idc = respawnOptionSixIDC;
 			y = spawnOptionY(5);
 		};
 
-		class spawnOptionSixInfo : spawnOptionOneInfo {
+		class spawnOptionSixInfo: spawnOptionOneInfo {
+			idc = respawnOptionSixInfoIDC;
 			y = spawnOptionY(5);
 		};
 		
-		class spawnOptionSixDist : spawnOptionOneDist {
+		class spawnOptionSixDist: spawnOptionOneDist {
+			idc = respawnOptionSixDistIDC;
 			y = spawnOptionY(5);
 		};
 	};

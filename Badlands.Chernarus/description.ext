@@ -9,7 +9,7 @@ joinUnassigned = 0;
 #include "client\gear\dialogs\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
-#include "client\systems\playerRespawn\dialog\respawnDialog.hpp"
+#include "client\systems\playerRespawn\respawnDialog.hpp"
 
 class CfgFunctions
 {
@@ -27,6 +27,7 @@ class CfgFunctions
 		{
 			file = "client\functions";
 			class friendlyState{};
+			class filterFriendly{};
 		};
 		class Common
 		{

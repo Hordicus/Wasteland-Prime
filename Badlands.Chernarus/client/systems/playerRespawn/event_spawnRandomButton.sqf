@@ -1,4 +1,4 @@
-#include "dialog\defines.sqf"
+#include "functions\macro.sqf"
 _spawn = call BL_fnc_randomSpawnLocation;
 _loc = _spawn select 1;
 
