@@ -2,12 +2,19 @@ private ["_cities","_city","_vehicles","_vehicle","_vehPos","_spawnPos","_distan
 
 // Select city to spawn in
 _cities = call BL_fnc_findCities;
-_city = _cities select floor random count _cities;
+_vehPos = [];
 
-// Select vehicle to spawn them near
-_vehicles = (_city select 1) nearEntities ['Car', _city select 2];
-_vehicle = _vehicles select floor random count _vehicles;
-_vehPos = getPosATL _vehicle;
+while { count _vehPos == 0 } do {
+	_city = _cities select floor random count _cities;
+
+	// Select vehicle to spawn them near
+	_vehicles = (_city select 1) nearEntities ['Car', _city select 2];
+	
+	if ( count _vehicles > 0 ) then {
+		_vehicle = _vehicles select floor random count _vehicles;
+		_vehPos = getPosATL _vehicle;
+	};
+};
 
 _spawnPos = [];
 while { count _spawnPos == 0 } do { // findEmptyPosition can fail
