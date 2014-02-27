@@ -25,7 +25,7 @@ class RscButton : RscCommon {
 	
 	colorBackgroundDisabled[] = {1,1,1,1};
 	action = "";
-	sizeEx = 0.025;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	
 	offsetX = 0;
 	offsetY = 0;
