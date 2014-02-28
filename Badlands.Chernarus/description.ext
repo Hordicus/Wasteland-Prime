@@ -28,11 +28,15 @@ class CfgFunctions
 			file = "client\functions";
 			class friendlyState{};
 			class filterFriendly{};
+			class nearestCity{};
+			class azimuthToBearing{};
+			class directionToString{};
 		};
 		class Common
 		{
 			file = "common\functions";
 			class findCities{};
+			class cityInfo{};
 			class getDirectory{};
 		};
 		

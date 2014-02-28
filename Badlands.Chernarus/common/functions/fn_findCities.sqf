@@ -4,15 +4,7 @@ _locations = entities "LocationCityCapital_F";
 _cities = [];
 
 {
-	_pos = position _x;
-	_name = _x getVariable ["name", ""];
-	_radius = _x getVariable "radius";
-	
-	if ( _name == "" ) then {
-		_name = text ((nearestLocations [_pos, ["NameCityCapital", "nameCity", "NameVillage"], 500]) select 0);
-	};
-	
-	_cities set [ count _cities, [_name, [_pos select 0, _pos select 1], _radius] ];
+	_cities set [ count _cities, _x call BL_fnc_cityInfo ];
 } count _locations;
 
 _cities

@@ -37,9 +37,10 @@ player addEventHandler ["respawn", {
 ['respawnDialogUpdate', {
 	if !( isNull (findDisplay respawnDialogIDD)) then {
 		_options = [];
-		[playerRespawnOptions, {
-			_options = _options + [_value];
-		}] call CBA_fnc_hashEachPair;
-		_options call BL_fnc_showRespawnOptions;
+		{
+			_options = _options + _x;
+		} count (playerRespawnOptions select 2);
+
+		[_options] call BL_fnc_showRespawnOptions;
 	};
 }] call CBA_fnc_addEventHandler;

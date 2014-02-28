@@ -4,4 +4,5 @@ class playerRespawn
 	class randomSpawnLocation{};
 	class showRespawnOptions{};
 	class townRespawnOptions{};
+	class flyingRespawnOptions{};
 };

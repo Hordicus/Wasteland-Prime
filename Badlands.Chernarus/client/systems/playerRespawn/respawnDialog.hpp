@@ -117,7 +117,7 @@ class respawnDialog {
 			idc = respawnOptionOneInfoIDC;
 			x = safezoneX + safezoneW * ( 0.1 + 0.02 + 0.15 + 0.01 );
 			y = spawnOptionY(0);
-			w = safezoneW * 0.15;
+			w = safezoneW * 0.55;
 			h = safezoneH * 0.03;
 
 			text = "Player 1, Player 2, Player 3";

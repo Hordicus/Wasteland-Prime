@@ -40,4 +40,11 @@ ctrlMapAnimCommit _map;
 [] spawn {
 	waitUntil {!isNull(findDisplay respawnDialogIDD)};
 	['respawnDialogUpdate'] call CBA_fnc_localEvent;
+
+	// Track air vehicles while respawnDialog is active
+	while {!isNull(findDisplay respawnDialogIDD)} do {
+		[playerRespawnOptions, 'airVehicles', call BL_fnc_flyingRespawnOptions] call CBA_fnc_hashSet;
+		['respawnDialogUpdate'] call CBA_fnc_localEvent;
+		sleep 0.5;
+	};
 };
