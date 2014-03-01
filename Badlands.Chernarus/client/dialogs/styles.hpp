@@ -23,7 +23,9 @@ class RscButton : RscCommon {
 	colorFocused[] = {0,0,0,0.5};
 	colorBackgroundActive[] = {1,1,1,1};
 	
-	colorBackgroundDisabled[] = {1,1,1,1};
+	colorBackgroundDisabled[] = {0,0,0,0.5};
+	colorDisabled[] = {1,1,1,0.5};
+
 	action = "";
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	
