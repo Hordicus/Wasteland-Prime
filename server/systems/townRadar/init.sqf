@@ -1,30 +1,4 @@
-#include "\x\cba\addons\main\script_macros_common.hpp"
 _cities = call BL_fnc_findCities;
-_state = [];
-
-// Set up default state
 {
-	_state set [ _forEachIndex, 0 ];
-} forEach _cities;
-
-while { true } do {
-	{
-		_name   = _x select 0;
-		_pos    = _x select 1;
-		_radius = _x select 2;
-		
-		_units = [_pos, _radius] call nearUnits;
-		
-		_last = _state select _forEachIndex;
-		_count = count _units;
-		
-		if ( _last != _count ) then {
-			diag_log format["radarUpdate: %1, %2", _name, _units];
-			["radarUpdate", [_name, _units, [_pos, _radius]]] call CBA_fnc_globalEvent;
-		};
-		
-		_state set [ _forEachIndex, _count ];
-	} forEach _cities;
-
-	sleep .1;
-};
+	[_x select 1, _x select 2, "radarUpdate", [_x select 0, [_x select 1, _x select 2]]] call BL_fnc_registerLocWithRadar;
+} count _cities;

@@ -13,8 +13,8 @@ stateHistory = [[], "EMPTY"] call CBA_fnc_hashCreate;
 	private ["_town", "_players", "_color", "_last", "_state"];
 	diag_log format["Got radarUpdate: %1", _this];
 	
-	_town = _this select 0;
-	_players = _this select 1;
+	_players = _this select 0;
+	_town = _this select 1 select 0;
 	_state = _players call BL_fnc_friendlyState;
 	_color = "ColorBlack";
 	

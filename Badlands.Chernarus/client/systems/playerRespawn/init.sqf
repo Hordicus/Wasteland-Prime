@@ -23,9 +23,9 @@ player addEventHandler ["respawn", {
 ["radarUpdate", {
 	private ["_town", "_players", "_state", "_pos"];
 	
-	_town = _this select 0;
-	_players = _this select 1;
-	_pos = _this select 2;
+	_players = _this select 0;
+	_town = _this select 1 select 0;
+	_pos = _this select 1 select 1;
 	_state = _players call BL_fnc_friendlyState;
 	
 	[playerRespawn_towns, _town, [_players, _state, _pos]] call CBA_fnc_hashSet;
