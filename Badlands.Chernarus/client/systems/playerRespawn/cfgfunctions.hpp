@@ -5,4 +5,5 @@ class playerRespawn
 	class showRespawnOptions{};
 	class townRespawnOptions{};
 	class flyingRespawnOptions{};
+	class createSpawnBeacon{};
 };

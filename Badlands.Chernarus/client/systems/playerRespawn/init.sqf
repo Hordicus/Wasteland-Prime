@@ -44,3 +44,14 @@ player addEventHandler ["respawn", {
 		[_options] call BL_fnc_showRespawnOptions;
 	};
 }] call CBA_fnc_addEventHandler;
+
+// Make beacons emit sound
+[] spawn {
+	while { true } do {
+		{
+			(_x select 3) say3D "beacon";
+		} count BL_spawnBeacons;
+		
+		sleep 3;
+	};
+};

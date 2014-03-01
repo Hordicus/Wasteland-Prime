@@ -31,6 +31,9 @@ class CfgFunctions
 			class nearestCity{};
 			class azimuthToBearing{};
 			class directionToString{};
+			class config {
+				file = "config.sqf";
+			};
 		};
 		class Common
 		{
@@ -71,5 +74,10 @@ class CfgSounds
 	{
 		sound[] = {"sounds\close_chute.ogg", 10, 1};
 		titles[] = {};
+	};
+	
+	class beacon { 
+	  sound[] = {"sounds\scoreAdded.wss", 1, 1, 200}; 
+	  titles[] = {}; 
 	};
 };
