@@ -1,6 +1,13 @@
 #include "functions\macro.sqf"
 _dialog = _this select 0;
 
+// Prevent closing of dialog using ESC
+_dialog displayAddEventHandler ["KeyDown", {
+	if ((_this select 1) == 1) then {
+		true
+	}
+}];
+
 // Set up map background
 _map = (_dialog displayCtrl respawnBackdropIDC);
 _map ctrlMapAnimAdd [0, 1, mapCenter];
