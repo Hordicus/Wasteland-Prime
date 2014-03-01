@@ -14,7 +14,6 @@ _map ctrlMapAnimAdd [0, 1, mapCenter];
 _map ctrlEnable false;
 ctrlMapAnimCommit _map;
 
-
 // Things that are selectively shown. Hide by default to avoid 'flash'
 {
 	(_dialog displayCtrl _x) ctrlShow false;
@@ -44,9 +43,12 @@ ctrlMapAnimCommit _map;
 	respawnOptionSixDistIDC
 ];
 
-[] spawn {
+[_dialog] spawn {
 	waitUntil {!isNull(findDisplay respawnDialogIDD)};
+
 	['respawnDialogUpdate'] call CBA_fnc_localEvent;
+	
+	[] call BL_fnc_showPresets;
 
 	// Track air vehicles while respawnDialog is active
 	while {!isNull(findDisplay respawnDialogIDD)} do {

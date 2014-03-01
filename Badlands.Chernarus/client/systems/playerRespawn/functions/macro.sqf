@@ -24,3 +24,5 @@
 #define respawnOptionSixIDC 3017
 #define respawnOptionSixInfoIDC 3018
 #define respawnOptionSixDistIDC 3019
+
+#define respawnListPresetsIDC 3020

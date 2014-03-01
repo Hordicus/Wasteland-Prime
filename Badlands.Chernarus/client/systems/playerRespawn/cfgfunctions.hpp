@@ -7,4 +7,5 @@ class playerRespawn
 	class flyingRespawnOptions{};
 	class createSpawnBeacon{};
 	class beaconRespawnOptions{};
+	class showPresets{};
 };

@@ -39,7 +39,6 @@ player addEventHandler ["respawn", {
 
 ["beaconUpdate", {
 	private ['_players', '_ownerUID', '_state'];
-	diag_log _this;
 	_players  = _this select 0;
 	_ownerUID = _this select 1 select 0;
 	_state = _players call BL_fnc_friendlyState;

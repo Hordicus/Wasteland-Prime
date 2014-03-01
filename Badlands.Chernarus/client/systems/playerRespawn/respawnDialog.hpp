@@ -208,5 +208,26 @@ class respawnDialog {
 			idc = respawnOptionSixDistIDC;
 			y = spawnOptionY(5);
 		};
+		
+		// GEAR stuff
+		class respawnListPresets : RscListNBox {
+			style = 0;
+			colorBackground[] = {1,0,0,0.5};
+			idc = respawnListPresetsIDC;
+			columns[] = {0, 0.04, 0.7};
+			
+			x = safezoneX + safezoneW * ( 0.1 );
+			y = safezoneY + safezoneH * ( 0.57 + 0.02 );
+			w = safezoneW * ( 0.3975 - 0.02 );
+			h = safezoneH * (1 - 0.57 - 0.1 - 0.02 - 0.03 - 0.03);
+		};
+		
+		class respawnActivatePreset : RscButton {
+			text = "Activate Preset";
+			w = safezoneW * 0.15;
+			h = safezoneH * 0.03;
+			x = safezoneX + safezoneW * ( 0.1 + 0.02 );
+			y = safezoneY + safezoneH * ( 0.9 - 0.02 - 0.03 );
+		};
 	};
 };

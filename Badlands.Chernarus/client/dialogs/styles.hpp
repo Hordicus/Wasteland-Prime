@@ -10,7 +10,7 @@ class RscCommon {
 	soundSelect[] = {"", 0.1, 1};
 	border = "#(argb,8,8,3)color(1,1,1,0)";
 	font = FontM;
-	sizeEx = 0.023;
+	sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
 	type = CT_STATIC;
 	style = 0;
 };
@@ -432,4 +432,33 @@ class RscMap {
 		coefMax = 1;
 		color[] = {1, 1, 1, 1};
 	};
+};
+
+class RscListBox : RscCommon {
+	type = CT_LISTBOX;
+	style = ST_MULTI;
+	wholeHeight = 0.45;
+	rowHeight = 0.045;
+	maxHistoryDelay = 1;
+	colorSelect[] = {0,0,0,1};
+	colorSelect2[] = {0,0,0,1};
+	
+	class ListScrollBar {
+		color[] = {1, 1, 1, 1};
+		colorActive[] = {1, 1, 1, 1};
+		colorDisabled[] = {1, 1, 1, 1};
+		thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
+		arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
+		arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
+		border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+	};
+};
+
+class RscListNBox : RscListBox {
+	type = 102;
+	columns[] = {0.3, 0.6, 0.7};
+	drawSideArrows = 0;
+	
+	idcLeft = -2;
+	idcRight = -2;
 };
