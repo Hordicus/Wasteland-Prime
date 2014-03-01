@@ -41,6 +41,7 @@ class CfgFunctions
 			class findCities{};
 			class cityInfo{};
 			class getDirectory{};
+			class playerByUID{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"

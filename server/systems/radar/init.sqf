@@ -19,6 +19,7 @@ _state = [];
 
 while { true } do {
 	{
+		private ["_loc","_radius","_nearUnits","_last","_count"];
 		_loc = _x select 0;
 		_radius = _x select 1;
 		

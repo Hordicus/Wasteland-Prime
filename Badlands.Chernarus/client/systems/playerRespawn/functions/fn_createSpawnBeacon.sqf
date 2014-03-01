@@ -24,6 +24,7 @@ _veh = createVehicle [_model, _loc, [], 0, "CAN_COLLIDE"];
 _veh setDir _dir;
 
 _data = [
+	_type,
 	_ownerUID,
 	_loc,
 	_dir,
@@ -32,5 +33,8 @@ _data = [
 
 BL_spawnBeacons = BL_spawnBeacons + [_data];
 publicVariable "BL_spawnBeacons";
+
+createSpawnBeacon = _data;
+publicVariableServer "createSpawnBeacon";
 
 _data

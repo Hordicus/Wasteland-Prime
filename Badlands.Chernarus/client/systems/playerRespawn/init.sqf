@@ -3,14 +3,17 @@
 // Keep track of towns and beacons
 // Towns
 playerRespawn_towns = [[], "EMPTY"] call CBA_fnc_hashCreate;
-playerRespawn_beacons = [];
+playerRespawn_beacons = [[], "EMPTY"] call CBA_fnc_hashCreate;
 playerRespawn_lastDeath = getPosATL mapCenter;
 
 playerRespawnPage = 0;
 playerRespawnOptionEventHandlers = [];
 
-// Holds current spawn options
+// Holds current spawn options. New spawn options should update this.
 playerRespawnOptions = [[], []] call CBA_fnc_hashCreate;
+
+// Set default for BL_spawnBeacons (publicVariable)
+BL_spawnBeacons = missionNamespace getVariable ['BL_spawnBeacons', []];
 
 player addEventHandler ["killed", {
 	playerRespawn_lastDeath = getPosATL (_this select 0);
@@ -34,6 +37,19 @@ player addEventHandler ["respawn", {
 	['respawnDialogUpdate'] call CBA_fnc_localEvent;
 }] call CBA_fnc_addEventHandler;
 
+["beaconUpdate", {
+	private ['_players', '_ownerUID', '_state'];
+	diag_log _this;
+	_players  = _this select 0;
+	_ownerUID = _this select 1 select 0;
+	_state = _players call BL_fnc_friendlyState;
+	
+	[playerRespawn_beacons, _ownerUID, [_players, _state]] call CBA_fnc_hashSet;
+	[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
+	
+	['respawnDialogUpdate'] call CBA_fnc_localEvent;
+}] call CBA_fnc_addEventHandler;
+
 ['respawnDialogUpdate', {
 	if !( isNull (findDisplay respawnDialogIDD)) then {
 		_options = [];
@@ -49,7 +65,7 @@ player addEventHandler ["respawn", {
 [] spawn {
 	while { true } do {
 		{
-			(_x select 3) say3D "beacon";
+			(_x select 4) say3D "beacon";
 		} count BL_spawnBeacons;
 		
 		sleep 3;
