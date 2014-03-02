@@ -1,5 +1,5 @@
 #include "common.hpp"
-#include "gear_defines.sqf"
+#include "functions\macro.sqf"
 
 class GEAR_common {
 	text = "";
@@ -50,7 +50,7 @@ class geard {
 	idd = GEAR_dialog_idc;
 	movingEnable = false;
 	enableSimulation = true;
-	onLoad = "execVM 'client\gear\init.sqf'";
+	onLoad = "_this call compile preprocessFileLineNumbers 'gear\event_onLoad.sqf'";
 	
 	class GEAR_list : GEAR_common {
 		type = CT_LISTBOX;
@@ -90,8 +90,8 @@ class geard {
 	class GEAR_Item : GEAR_common {
 		type = CT_ACTIVETEXT;
 		style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-		onLBDrop = "_this call compile preprocessFileLineNumbers 'client\gear\event_dropItem.sqf'";
-		onMouseButtonClick = "_this call compile preprocessFileLineNumbers 'client\gear\event_clickItem.sqf'";
+		onLBDrop = "_this call compile preprocessFileLineNumbers 'gear\event_dropItem.sqf'";
+		onMouseButtonClick = "_this call compile preprocessFileLineNumbers 'gear\event_clickItem.sqf'";
 		
 		colorBackground[] = {0,0,0,0.5};
 		color[] = {1,1,1,1};
@@ -121,9 +121,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_guns_idc;
-			onMouseButtonClick = "'guns' call compile preprocessFileLineNumbers 'client\gear\event_showItems.sqf'; GEAR_activeNav = 'guns'; call compile preprocessFileLineNumbers 'client\gear\event_updateTabs.sqf';";
-			onMouseEnter = "[_this select 0, 1, 'guns'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
-			onMouseExit  = "[_this select 0, 0, 'guns'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
+			onMouseButtonClick = "'guns' call compile preprocessFileLineNumbers 'gear\event_showItems.sqf'; GEAR_activeNav = 'guns'; call compile preprocessFileLineNumbers 'gear\event_updateTabs.sqf';";
+			onMouseEnter = "[_this select 0, 1, 'guns'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'guns'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
 		};
 		
 		class GEAR_select_launchers : GEAR_button {
@@ -133,9 +133,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_launchers_idc;
-			onMouseButtonClick = "'launchers' call compile preprocessFileLineNumbers 'client\gear\event_showItems.sqf'; GEAR_activeNav = 'launchers'; call compile preprocessFileLineNumbers 'client\gear\event_updateTabs.sqf';";
-			onMouseEnter = "[_this select 0, 1, 'launchers'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
-			onMouseExit  = "[_this select 0, 0, 'launchers'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
+			onMouseButtonClick = "'launchers' call compile preprocessFileLineNumbers 'gear\event_showItems.sqf'; GEAR_activeNav = 'launchers'; call compile preprocessFileLineNumbers 'gear\event_updateTabs.sqf';";
+			onMouseEnter = "[_this select 0, 1, 'launchers'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'launchers'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
 		};
 		
 		class GEAR_select_items : GEAR_button {
@@ -145,9 +145,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_items_idc;
-			onMouseButtonClick = "'items' call compile preprocessFileLineNumbers 'client\gear\event_showItems.sqf'; GEAR_activeNav = 'items'; call compile preprocessFileLineNumbers 'client\gear\event_updateTabs.sqf';";
-			onMouseEnter = "[_this select 0, 1, 'items'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
-			onMouseExit  = "[_this select 0, 0, 'items'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";			
+			onMouseButtonClick = "'items' call compile preprocessFileLineNumbers 'gear\event_showItems.sqf'; GEAR_activeNav = 'items'; call compile preprocessFileLineNumbers 'gear\event_updateTabs.sqf';";
+			onMouseEnter = "[_this select 0, 1, 'items'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'items'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";			
 		};
 		
 		class GEAR_select_wearables : GEAR_button {
@@ -157,9 +157,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_wearables_idc;
-			onMouseButtonClick = "'wearables' call compile preprocessFileLineNumbers 'client\gear\event_showItems.sqf'; GEAR_activeNav = 'wearables'; call compile preprocessFileLineNumbers 'client\gear\event_updateTabs.sqf';";
-			onMouseEnter = "[_this select 0, 1, 'wearables'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
-			onMouseExit  = "[_this select 0, 0, 'wearables'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";			
+			onMouseButtonClick = "'wearables' call compile preprocessFileLineNumbers 'gear\event_showItems.sqf'; GEAR_activeNav = 'wearables'; call compile preprocessFileLineNumbers 'gear\event_updateTabs.sqf';";
+			onMouseEnter = "[_this select 0, 1, 'wearables'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'wearables'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";			
 		};
 		
 		class GEAR_select_presets : GEAR_button {
@@ -169,9 +169,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_presets_idc;
-			onMouseButtonClick = "'presets' call compile preprocessFileLineNumbers 'client\gear\event_showItems.sqf'; GEAR_activeNav = 'presets'; call compile preprocessFileLineNumbers 'client\gear\event_updateTabs.sqf';";
-			onMouseEnter = "[_this select 0, 1, 'presets'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
-			onMouseExit  = "[_this select 0, 0, 'presets'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";			
+			onMouseButtonClick = "'presets' call compile preprocessFileLineNumbers 'gear\event_showItems.sqf'; GEAR_activeNav = 'presets'; call compile preprocessFileLineNumbers 'gear\event_updateTabs.sqf';";
+			onMouseEnter = "[_this select 0, 1, 'presets'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'presets'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";			
 		};
 		
 		class GEAR_select_ammo : GEAR_button {
@@ -181,9 +181,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_ammo_idc;
-			onMouseButtonClick = "GEAR_activeSubNav = 'ammo'; call call compile preprocessFileLineNumbers 'client\gear\event_showItemDetails.sqf'; call compile preprocessFileLineNumbers 'client\gear\event_updateTabs.sqf';";
-			onMouseEnter = "[_this select 0, 1, 'ammo'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
-			onMouseExit  = "[_this select 0, 0, 'ammo'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
+			onMouseButtonClick = "GEAR_activeSubNav = 'ammo'; call call compile preprocessFileLineNumbers 'gear\event_showItemDetails.sqf'; call compile preprocessFileLineNumbers 'gear\event_updateTabs.sqf';";
+			onMouseEnter = "[_this select 0, 1, 'ammo'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'ammo'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
 		};
 		
 		class GEAR_select_attachments : GEAR_button {
@@ -193,9 +193,9 @@ class geard {
 			h = safezoneH * 0.05625;
 
 			idc = GEAR_select_attachments_idc;
-			onMouseButtonClick = "GEAR_activeSubNav = 'attachments'; call call compile preprocessFileLineNumbers 'client\gear\event_showItemDetails.sqf'; call compile preprocessFileLineNumbers 'client\gear\event_updateTabs.sqf';";
-			onMouseEnter = "[_this select 0, 1, 'attachments'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
-			onMouseExit  = "[_this select 0, 0, 'attachments'] call compile preprocessFileLineNumbers 'client\gear\event_rolloverChangeBg.sqf'";
+			onMouseButtonClick = "GEAR_activeSubNav = 'attachments'; call call compile preprocessFileLineNumbers 'gear\event_showItemDetails.sqf'; call compile preprocessFileLineNumbers 'gear\event_updateTabs.sqf';";
+			onMouseEnter = "[_this select 0, 1, 'attachments'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
+			onMouseExit  = "[_this select 0, 0, 'attachments'] call compile preprocessFileLineNumbers 'gear\event_rolloverChangeBg.sqf'";
 		};
 	};
 
@@ -204,7 +204,7 @@ class geard {
 		// Left column
 		class GEAR_select_guns_bg : GEAR_button_bg {
 			idc = GEAR_select_guns_bg_idc;
-			text = "client\gear\icons\guns.paa";
+			text = "gear\icons\guns.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 0 );
@@ -214,7 +214,7 @@ class geard {
 		
 		class GEAR_select_launchers_bg : GEAR_button_bg {
 			idc = GEAR_select_launchers_bg_idc;
-			text = "client\gear\icons\launchers.paa";
+			text = "gear\icons\launchers.paa";
 
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 1 );
@@ -224,7 +224,7 @@ class geard {
 		
 		class GEAR_select_items_bg : GEAR_button_bg {
 			idc = GEAR_select_items_bg_idc;
-			text = "client\gear\icons\gear.paa";
+			text = "gear\icons\gear.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 2 );
@@ -234,7 +234,7 @@ class geard {
 				
 		class GEAR_select_wearables_bg : GEAR_button_bg {
 			idc = GEAR_select_wearables_bg_idc;
-			text = "client\gear\icons\wearables.paa";
+			text = "gear\icons\wearables.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 3 );
@@ -244,7 +244,7 @@ class geard {
 		
 		class GEAR_select_presets_bg : GEAR_button_bg {
 			idc = GEAR_select_presets_bg_idc;
-			text = "client\gear\icons\presets.paa";
+			text = "gear\icons\presets.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.01 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 4 );
@@ -260,14 +260,14 @@ class geard {
 			y = safezoneY + ( safezoneH * 0.01 );
 			w = safezoneW * 0.26;
 			h = safezoneH * 0.5;
-			onLBSelChanged = "call call compile preprocessFileLineNumbers 'client\gear\event_showItemDetails.sqf'";
-			onLBDblClick = "_this call compile preprocessFileLineNumbers 'client\gear\event_dblClick.sqf';";
-			onMouseButtonClick = "_this call compile preprocessFileLineNumbers 'client\gear\event_clickItem.sqf'";
+			onLBSelChanged = "call call compile preprocessFileLineNumbers 'gear\event_showItemDetails.sqf'";
+			onLBDblClick = "_this call compile preprocessFileLineNumbers 'gear\event_dblClick.sqf';";
+			onMouseButtonClick = "_this call compile preprocessFileLineNumbers 'gear\event_clickItem.sqf'";
 		};
 		
 		class GEAR_select_ammo_bg : GEAR_button_bg {
 			idc = GEAR_select_ammo_bg_idc;
-			text = "client\gear\icons\ammo.paa";
+			text = "gear\icons\ammo.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.52 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 0 );
@@ -277,7 +277,7 @@ class geard {
 		
 		class GEAR_select_attachments_bg : GEAR_button_bg {
 			idc = GEAR_select_attachments_bg_idc;
-			text = "client\gear\icons\attachments.paa";
+			text = "gear\icons\attachments.paa";
 			
 			x = safezoneX + ( safezoneW * 0.02 );
 			y = safezoneY + ( safezoneH * 0.52 ) + ( ((safezoneH * 0.05625) + (safezoneH * 0.01)) * 1 );
@@ -287,7 +287,7 @@ class geard {
 				
 		class GEAR_items_attachments_ammo : GEAR_list {
 			idc = GEAR_items_attachments_ammo_idc;
-			onLBDblClick = "_this call compile preprocessFileLineNumbers 'client\gear\event_dblClick.sqf';";
+			onLBDblClick = "_this call compile preprocessFileLineNumbers 'gear\event_dblClick.sqf';";
 			canDrag = 1;
 
 			x = safezoneX + (safezoneW * 0.05) + (safezoneW * 0.02);
@@ -385,8 +385,8 @@ class geard {
 		
 		class GEAR_selected_inv : GEAR_list {
 			idc = GEAR_selected_inv_idc;
-			onLBDrop = "_this call compile preprocessFileLineNumbers 'client\gear\event_dropItem.sqf'";
-			onMouseButtonClick = "_this call compile preprocessFileLineNumbers 'client\gear\event_clickItem.sqf'";
+			onLBDrop = "_this call compile preprocessFileLineNumbers 'gear\event_dropItem.sqf'";
+			onMouseButtonClick = "_this call compile preprocessFileLineNumbers 'gear\event_clickItem.sqf'";
 
 			x = safezoneX + (safezoneW * 0.35) + (safezoneW * 0.1 * 0);
 			y = safezoneY + ( safezoneH * 0.12 );
@@ -833,7 +833,7 @@ class geard {
 
 			idc = GEAR_save_loadout_idc;
 			text = "SAVE LOADOUT";
-			action = "call compile preprocessFileLineNumbers 'client\gear\event_saveLoadout.sqf'";
+			action = "call compile preprocessFileLineNumbers 'gear\event_saveLoadout.sqf'";
 		};
 		
 		class GEAR_save_as_preset : GEAR_button {
@@ -910,7 +910,7 @@ class gear_name_presetd {
 			w = safezoneW * 0.1;
 			
 			text = "SAVE";
-			action = "_this call compile preprocessFileLineNumbers 'client\gear\event_saveAsPreset.sqf'";
+			action = "_this call compile preprocessFileLineNumbers 'gear\event_saveAsPreset.sqf'";
 		};
 		
 		class GEAR_preset_cancel : GEAR_preset_save {

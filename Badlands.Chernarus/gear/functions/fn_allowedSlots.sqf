@@ -1,7 +1,7 @@
-#include "dialogs\gear_defines.sqf"
+#include "macro.sqf"
 
 private ['_cfg', '_allowedSlots'];
-_cfg = _this call GEAR_getConfig;
+_cfg = _this call GEAR_fnc_getConfig;
 _allowedSlots = getArray (_cfg >> 'allowedSlots');
 
 if ( count _allowedSlots == 0 ) then {

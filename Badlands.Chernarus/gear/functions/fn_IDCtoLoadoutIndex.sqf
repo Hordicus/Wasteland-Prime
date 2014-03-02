@@ -1,4 +1,4 @@
-#include "dialogs\gear_defines.sqf"
+#include "macro.sqf"
 
 private ['_index'];
 _index = -1;

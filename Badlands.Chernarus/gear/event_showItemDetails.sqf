@@ -1,9 +1,9 @@
-#include "dialogs\gear_defines.sqf"
+#include "functions\macro.sqf"
 private ["_index", "_class", "_config", "_compatible_ammo", "_compatible_cows", "_compatible_muzzles", "_compatible_pointers", "_sold_ammo", "_sold_attachments", "_items", "_compatible_attachments"];
 lbClear ((findDisplay GEAR_dialog_idc) displayCtrl GEAR_items_attachments_ammo_idc);
 
 _index  = lbCurSel ((findDisplay GEAR_dialog_idc) displayCtrl GEAR_itemslist_idc);
-_config = call GEAR_config;
+_config = call GEAR_fnc_config;
 _sold_ammo = [_config, "ammo"] call CBA_fnc_hashGet;
 _sold_attachments = [_config, "attachments"] call CBA_fnc_hashGet;
 _class  = lbData [GEAR_itemslist_idc, _index];
@@ -42,8 +42,8 @@ else {
 };
 
 {
-	_name = (_x select 0) call GEAR_ItemName;
-	_img = (_x select 0) call GEAR_ItemImg;
+	_name = (_x select 0) call GEAR_fnc_ItemName;
+	_img = (_x select 0) call GEAR_fnc_ItemImg;
 	_price = _x select 1;
 
 	_string = format['%1 [$%2]', _name, _price];

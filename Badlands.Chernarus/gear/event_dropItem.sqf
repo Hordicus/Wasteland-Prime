@@ -1,11 +1,11 @@
-#include "dialogs\gear_defines.sqf"
+#include "functions\macro.sqf"
 disableSerialization;
 
 _target       = ctrlIDC (_this select 0);
 _dropped      = _this select 4 select 0;
 _class        = _dropped select 2;
-_type         = _class call GEAR_getType;
-_allowedSlots = _class call GEAR_allowedSlots;
+_type         = _class call GEAR_fnc_getType;
+_allowedSlots = _class call GEAR_fnc_allowedSlots;
 _valid        = false;
 
 _idcs = [
@@ -77,8 +77,8 @@ else {
 				if ( _target_type in _allowedSlots && { count GEAR_activeLoadout > _target_contents_index } ) then {
 					// Is there room?
 					_contents = GEAR_activeLoadout select _target_contents_index;
-					_capacity = (GEAR_activeLoadout select _target_index) call GEAR_getMassCapacity;
-					_total    = ([_class] + _contents) call GEAR_getTotalMass;
+					_capacity = (GEAR_activeLoadout select _target_index) call GEAR_fnc_getMassCapacity;
+					_total    = ([_class] + _contents) call GEAR_fnc_getTotalMass;
 					
 					if ( _total <= _capacity ) then {
 						_contents set [count _contents, _class];
@@ -89,7 +89,7 @@ else {
 				};
 			};
 			
-			GEAR_activeContainer call GEAR_selectContainer; // refresh display
+			GEAR_activeContainer call GEAR_fnc_selectContainer; // refresh display
 		};
 	
 		case (GEAR_primary_idc): {
@@ -127,10 +127,10 @@ else {
 		case (GEAR_pistol_muzzle_idc): {
 			if ( _type != GEAR_type_muzzle) exitwith{};
 			_gun_offset = -2;
-			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
+			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_fnc_IDCToLoadoutIndex);
 			
-			if ( [_gun, _class, 'muzzle'] call GEAR_validAttachment ) then {
-				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
+			if ( [_gun, _class, 'muzzle'] call GEAR_fnc_validAttachment ) then {
+				GEAR_activeLoadout set [ _target call GEAR_fnc_IDCToLoadoutIndex, _class ];
 			};
 		};
 		
@@ -139,10 +139,10 @@ else {
 		case (GEAR_pistol_acc_idc): {
 			if ( _type != GEAR_type_acc) exitwith{};
 			_gun_offset = -4;
-			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
+			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_fnc_IDCToLoadoutIndex);
 			
-			if ( [_gun, _class, 'acc'] call GEAR_validAttachment ) then {
-				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
+			if ( [_gun, _class, 'acc'] call GEAR_fnc_validAttachment ) then {
+				GEAR_activeLoadout set [ _target call GEAR_fnc_IDCToLoadoutIndex, _class ];
 			};
 		};
 		
@@ -151,10 +151,10 @@ else {
 		case (GEAR_pistol_optic_idc): {
 			if ( _type != GEAR_type_optic) exitwith{};
 			_gun_offset = -6;
-			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
+			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_fnc_IDCToLoadoutIndex);
 			
-			if ( [_gun, _class, 'optic'] call GEAR_validAttachment ) then {
-				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
+			if ( [_gun, _class, 'optic'] call GEAR_fnc_validAttachment ) then {
+				GEAR_activeLoadout set [ _target call GEAR_fnc_IDCToLoadoutIndex, _class ];
 			};
 		};
 		
@@ -162,15 +162,15 @@ else {
 		case (GEAR_secondary_mag_idc);
 		case (GEAR_pistol_mag_idc): {
 			_gun_offset = -8;
-			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_IDCToLoadoutIndex);
+			_gun = GEAR_activeLoadout select ((_target + _gun_offset) call GEAR_fnc_IDCToLoadoutIndex);
 			_compatible_mags = getArray (configFile >> "CfgWeapons" >> _gun >> "magazines");
 			
 			if ( _class in _compatible_mags ) then {
-				GEAR_activeLoadout set [ _target call GEAR_IDCToLoadoutIndex, _class ];
+				GEAR_activeLoadout set [ _target call GEAR_fnc_IDCToLoadoutIndex, _class ];
 			};
 		};
 	};
 };
 
-// call GEAR_updateDialogImgs;
-call GEAR_updateDialogImgs;
+// call GEAR_fnc_updateDialogImgs;
+call GEAR_fnc_updateDialogImgs;

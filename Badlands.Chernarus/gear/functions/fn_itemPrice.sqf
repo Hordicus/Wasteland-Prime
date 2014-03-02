@@ -2,8 +2,8 @@ private ['_class', '_types', '_prices', '_classes', '_lookup'];
 _types = ['guns', 'ammo', 'launchers', 'items', 'wearables', 'attachments'];
 _class = _this;
 
-if ( isNil "GEAR_priceLookup" ) then {
-	_config = call GEAR_config;
+if ( isNil "GEAR_fnc_priceLookup" ) then {
+	_config = call GEAR_fnc_config;
 	_classes  = [];
 	_prices = [];
 	
@@ -18,8 +18,8 @@ if ( isNil "GEAR_priceLookup" ) then {
 		true
 	} count _types;
 	
-	GEAR_priceLookup = compileFinal str [_classes, _prices];
+	GEAR_fnc_priceLookup = compileFinal str [_classes, _prices];
 };
 
-_lookup = call GEAR_priceLookup;
+_lookup = call GEAR_fnc_priceLookup;
 ((_lookup select 1) select ((_lookup select 0) find _class))

@@ -1,4 +1,4 @@
-#include "dialogs\gear_defines.sqf"
+#include "functions\macro.sqf"
 disableSerialization;
 _dialog = findDisplay GEAR_dialog_idc;
 _button = _this select 0;

@@ -6,7 +6,7 @@ respawnDelay = 0;
 disabledAI = 1;
 joinUnassigned = 0;
 
-#include "client\gear\dialogs\gear_dialog.hpp"
+#include "gear\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
 #include "client\systems\playerRespawn\respawnDialog.hpp"
@@ -46,6 +46,8 @@ class CfgFunctions
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
 	};
+	
+	#include "gear\cfgfunctions.hpp"
 };
 
 class CfgSounds 

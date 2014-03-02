@@ -1,4 +1,4 @@
-#include "dialogs\gear_defines.sqf"
+#include "functions\macro.sqf"
 private ['_color1', '_color2', '_buttons', '_button_names', '_active_buttons'];
 _color1 = [0,0,0,1];
 _color2  = [1,1,1,1];

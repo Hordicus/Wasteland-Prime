@@ -1,7 +1,7 @@
 private ['_class'];
 
 _class = _this;
-_cfg   = _class call GEAR_getConfig;
+_cfg   = _class call GEAR_fnc_getConfig;
 _mass  = 0;
 
 _mass = getNumber ( _cfg >> 'WeaponSlotsInfo' >> 'mass' );

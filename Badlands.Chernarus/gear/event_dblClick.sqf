@@ -1,14 +1,14 @@
-#include "dialogs\gear_defines.sqf"
+#include "functions\macro.sqf"
 _class = (_this select 0) lbData (_this select 1);
 
 if ( GEAR_activeNav == 'presets' ) then {
 	GEAR_activeLoadout = + [GEAR_presets, _class] call CBA_fnc_hashGet; // + creates copy
 
-	call GEAR_updateDialogImgs;
-	GEAR_activeContainer call GEAR_selectContainer;
+	call GEAR_fnc_updateDialogImgs;
+	GEAR_activeContainer call GEAR_fnc_selectContainer;
 }
 else {
-	_type  = _class call GEAR_getType;
+	_type  = _class call GEAR_fnc_getType;
 
 	_get_item = {
 		private ['_class'];
@@ -72,7 +72,7 @@ else {
 			
 			{
 				_gun = _x call _get_item;
-				if ( _gun != "" && {[_gun, _class] call GEAR_validAttachment}) exitwith {
+				if ( _gun != "" && {[_gun, _class] call GEAR_fnc_validAttachment}) exitwith {
 					GEAR_activeLoadout set [_x + _offset, _class];
 					_do_default = false;
 				};
@@ -123,15 +123,15 @@ else {
 			if ( !_do_default ) exitwith {};
 			
 			_item = _x call _get_item;
-			_item_type = _item call GEAR_getType;
+			_item_type = _item call GEAR_fnc_getType;
 			
 			if ( _item != "" ) then {
 				_contents = GEAR_activeLoadout select (_x + 1);
-				_capacity = _item call GEAR_getMassCapacity;
-				_allowed_slots = _class call GEAR_allowedSlots;
-				if ( _item_type in _allowed_slots && { (([_class] + _contents) call GEAR_getTotalMass) <= _capacity } ) then {
+				_capacity = _item call GEAR_fnc_getMassCapacity;
+				_allowed_slots = _class call GEAR_fnc_allowedSlots;
+				if ( _item_type in _allowed_slots && { (([_class] + _contents) call GEAR_fnc_getTotalMass) <= _capacity } ) then {
 					GEAR_activeLoadout set [_x+1, (_contents + [_class])];
-					GEAR_activeContainer call GEAR_selectContainer;
+					GEAR_activeContainer call GEAR_fnc_selectContainer;
 					_do_default = false;
 				};
 			};
@@ -139,5 +139,5 @@ else {
 		} count [_activeContainerIndex] + ([GEAR_index_uniform, GEAR_index_vest, GEAR_index_backpack] - [_activeContainerIndex]);
 	};
 	
-	call GEAR_updateDialogImgs;
+	call GEAR_fnc_updateDialogImgs;
 };

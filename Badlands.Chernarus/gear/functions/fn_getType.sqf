@@ -1,7 +1,7 @@
-#include "dialogs\gear_defines.sqf"
+#include "macro.sqf"
 
 private ['_cfg', '_type', '_root'];
-_cfg = _this call GEAR_getConfig;
+_cfg = _this call GEAR_fnc_getConfig;
 _type = getNumber (_cfg >> 'ItemInfo' >> 'type');
 
 if ( _type == 0 ) then {
@@ -11,7 +11,7 @@ if ( _type == 0 ) then {
 switch ( _type ) do {
 	case 0;
 	case 1: {
-		_root = _this call GEAR_getConfigRoot;
+		_root = _this call GEAR_fnc_getConfigRoot;
 		
 		if ( _root == 'CfgGlasses' ) then {
 			_type = GEAR_type_glasses;
