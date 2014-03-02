@@ -1,5 +1,5 @@
 #include "functions\macro.sqf"
-#define spawnOptionY(OFFSET) safezoneY + safezoneH * ( 0.24 + 0.005 + 0.05 + 0.02 + (0.01 + 0.03)*OFFSET)
+#define spawnOptionY(OFFSET) safezoneY + safezoneH * ( 0.22 + 0.005 + 0.05 + 0.02 + (0.01 + 0.03)*OFFSET)
 
 class respawnDialog {
 	idd = respawnDialogIDD;
@@ -63,7 +63,7 @@ class respawnDialog {
 		
 		class spawnOptionHeader : RscText {
 			x = safezoneX + safezoneW * ( 0.1 + 0.02 );
-			y = safezoneY + safezoneH * ( 0.2 + 0.005 + 0.05 + 0.02);
+			y = safezoneY + safezoneH * ( 0.18 + 0.005 + 0.05 + 0.02);
 			w = safezoneW * 0.15;
 			h = safezoneH * 0.03;
 
@@ -95,11 +95,8 @@ class respawnDialog {
 			onMouseButtonClick = "'ground' call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_spawnRandomButton.sqf'";
 		};
 		
-		class spawnRandomHALO : RscButton {
-			x = safezoneX + safezoneW * ( 0.1 + 0.02 );
-			w = safezoneW * 0.15;
-			h = safezoneH * 0.03;
-			y = safezoneY + safezoneH * ( 0.1 + 0.005 + 0.05 + 0.02 + 0.01 + 0.03);
+		class spawnRandomHALO : spawnRandomGround {
+			y = safezoneY + safezoneH * ( 0.1 + 0.005 + 0.05 + 0.02 + 0.04);
 			text = "Random Air Drop";
 			onMouseButtonClick = "'air' call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_spawnRandomButton.sqf'";
 		};
@@ -207,6 +204,33 @@ class respawnDialog {
 		class spawnOptionSixDist: spawnOptionOneDist {
 			idc = respawnOptionSixDistIDC;
 			y = spawnOptionY(5);
+		};
+		
+		class spawnPagePrev : RscButton {
+			text = "<";
+			style = ST_CENTER;
+			x = safezoneX + safezoneW * ( 0.43 );
+			w = safezoneW * 0.02;
+			h = safezoneH * 0.02;
+			y = safezoneY + safezoneH * ( 0.535 );
+			
+			action = "call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_prevPage.sqf'";
+		};
+		
+		class spawnPages : spawnPagePrev {
+			type = CT_STATIC;
+			x = safezoneX + safezoneW * ( 0.43 + 0.02 );
+			w = safezoneW * 0.1;
+			text = "Page 1 of 10";
+			
+			idc = respawnSpawnPagesIDC;
+		};
+		
+		class spawnPageNext : spawnPagePrev {
+			x = safezoneX + safezoneW * ( 0.43 + 0.02 + 0.1 );
+			text = ">";
+
+			action = "call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_nextPage.sqf'";
 		};
 		
 		// GEAR stuff

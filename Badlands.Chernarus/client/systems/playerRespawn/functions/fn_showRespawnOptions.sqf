@@ -34,6 +34,19 @@ _buttons = [
 	[respawnOptionSixIDC, respawnOptionSixInfoIDC, respawnOptionSixDistIDC]
 ];
 _numButtons = count _buttons;
+_pages = ceil((count _spawn_options)/_numButtons)-1;
+
+if ( _pages < 0 ) then {
+	_pages = 0;
+};
+
+if ( playerRespawnPage < 0 ) then {
+	playerRespawnPage = _pages;
+};
+
+if ( playerRespawnPage > _pages ) then {
+	playerRespawnPage = 0;
+};
 
 playerRespawnOptionEventHandlers = [];
 
@@ -65,3 +78,5 @@ _spawn_options = [_spawn_options, [], { _x select 2 }, "ASCEND"] call BIS_fnc_so
 	_info ctrlShow _show;
 	_dist ctrlShow _show;
 } forEach _buttons;
+
+(_display displayCtrl respawnSpawnPagesIDC) ctrlSetText format['Page %1 of %2', playerRespawnPage+1, _pages+1];
