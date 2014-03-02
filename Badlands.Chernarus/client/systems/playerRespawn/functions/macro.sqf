@@ -27,15 +27,14 @@
 
 #define respawnListPresetsIDC 3020
 #define respawnSpawnPagesIDC 3021
+#define respawnTransactionDetailsIDC 3022
 
 
 #define GEAR_idc_base 2000
 
 // Gear
 #define GEAR_select_uniform_idc GEAR_idc_base + 17
-
 #define GEAR_select_vest_idc GEAR_idc_base + 20
-
 #define GEAR_select_backpack_idc GEAR_idc_base + 23
 
 #define GEAR_primary_idc GEAR_idc_base + 26

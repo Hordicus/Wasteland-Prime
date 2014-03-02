@@ -5,14 +5,21 @@ class RscCommon {
 	idc  = -1;
 	colorBackground[] = {0,0,0,0.5};
 	colorText[] = {1,1,1,1};
+	color[] = {1,1,1,1};
+	colorActive[] = {1,1,1,1};
 	colorDisabled[] = {1,1,1,0.8};
 	colorSelect[] = {1,1,1,1};
-	soundSelect[] = {"", 0.1, 1};
 	border = "#(argb,8,8,3)color(1,1,1,0)";
 	font = FontM;
 	sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
 	type = CT_STATIC;
 	style = 0;
+
+	soundSelect[] = { "", 0, 1 };
+	soundEnter[] = { "", 0, 1 };
+	soundPush[] = { "", 0, 1 };
+	soundClick[] = { "", 0, 1 };
+	soundEscape[] = { "", 0, 1 };
 };
 
 class RscButton : RscCommon {

@@ -49,6 +49,7 @@ ctrlMapAnimCommit _map;
 	['respawnDialogUpdate'] call CBA_fnc_localEvent;
 	
 	[] call BL_fnc_showPresets;
+	[] call BL_fnc_showActiveLoadout;
 
 	// Track air vehicles while respawnDialog is active
 	while {!isNull(findDisplay respawnDialogIDD)} do {

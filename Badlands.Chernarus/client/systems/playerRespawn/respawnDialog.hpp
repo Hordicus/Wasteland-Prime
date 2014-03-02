@@ -28,7 +28,7 @@ class respawnDialog {
 			h = safezoneH * 0.05;
 			colorBackground[] = {0,0,0,1};
 			text = "Player Respawn";
-			sizeEx = 0.04;
+			sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
 		};
 		
 		class respawnControlsBackground : RscCommon {
@@ -94,6 +94,7 @@ class respawnDialog {
 
 		class GEAR_select_uniform : GEAR_select_uniform_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_uniform_icon;
 			idc = GEAR_select_uniform_idc;
 		};
@@ -104,6 +105,7 @@ class respawnDialog {
 
 		class GEAR_select_backpack : GEAR_select_backpack_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_backpack_icon;
 			idc = GEAR_select_backpack_idc;
 		};
@@ -114,6 +116,7 @@ class respawnDialog {
 
 		class GEAR_select_vest : GEAR_select_vest_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_vest_icon;
 			idc = GEAR_select_vest_idc;
 		};
@@ -124,6 +127,7 @@ class respawnDialog {
 		
 		class GEAR_select_helmet : GEAR_select_helmet_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_helmet_icon;
 			idc = GEAR_select_helmet_idc;
 		};
@@ -134,6 +138,7 @@ class respawnDialog {
 		
 		class GEAR_select_glasses : GEAR_select_glasses_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_glasses_icon;
 			idc = GEAR_select_glasses_idc;
 		};
@@ -144,6 +149,7 @@ class respawnDialog {
 		
 		class GEAR_select_nvg : GEAR_select_nvg_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_nvg_icon;
 			idc = GEAR_select_nvg_idc;
 		};
@@ -154,6 +160,7 @@ class respawnDialog {
 		
 		class GEAR_select_binocular : GEAR_select_binocular_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_binocular_icon;
 			idc = GEAR_select_binocular_idc;
 		};
@@ -168,6 +175,7 @@ class respawnDialog {
 		
 		class GEAR_primary : GEAR_primary_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_primary_icon;
 			idc = GEAR_primary_idc;
 		};
@@ -181,6 +189,7 @@ class respawnDialog {
 		
 		class GEAR_primary_muzzle : GEAR_primary_muzzle_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_muzzle_icon;
 			idc = GEAR_primary_muzzle_idc;
 		};
@@ -191,6 +200,7 @@ class respawnDialog {
 		
 		class GEAR_primary_acc : GEAR_primary_acc_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_acc_icon;
 			idc = GEAR_primary_acc_idc;
 		};
@@ -201,6 +211,7 @@ class respawnDialog {
 		
 		class GEAR_primary_optic : GEAR_primary_optic_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_optic_icon;
 			idc = GEAR_primary_optic_idc;
 		};
@@ -211,6 +222,7 @@ class respawnDialog {
 		
 		class GEAR_primary_mag : GEAR_primary_mag_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_mag_icon;
 			idc = GEAR_primary_mag_idc;
 		};
@@ -225,6 +237,7 @@ class respawnDialog {
 		
 		class GEAR_secondary : GEAR_secondary_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_secondary_icon;
 			idc = GEAR_secondary_idc;
 		};
@@ -238,6 +251,7 @@ class respawnDialog {
 		
 		class GEAR_secondary_muzzle : GEAR_secondary_muzzle_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_muzzle_icon;
 			idc = GEAR_secondary_muzzle_idc;
 		};
@@ -248,6 +262,7 @@ class respawnDialog {
 		
 		class GEAR_secondary_acc : GEAR_secondary_acc_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_acc_icon;
 			idc = GEAR_secondary_acc_idc;
 		};
@@ -258,6 +273,7 @@ class respawnDialog {
 		
 		class GEAR_secondary_optic : GEAR_secondary_optic_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_optic_icon;
 			idc = GEAR_secondary_optic_idc;
 		};
@@ -268,6 +284,7 @@ class respawnDialog {
 		
 		class GEAR_secondary_mag : GEAR_secondary_mag_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_mag_icon;
 			idc = GEAR_secondary_mag_idc;
 		};		
@@ -282,6 +299,7 @@ class respawnDialog {
 		
 		class GEAR_pistol : GEAR_pistol_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_pistol_icon;
 			idc = GEAR_pistol_idc;
 		};
@@ -295,6 +313,7 @@ class respawnDialog {
 		
 		class GEAR_pistol_muzzle : GEAR_pistol_muzzle_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_muzzle_icon;
 			idc = GEAR_pistol_muzzle_idc;
 		};
@@ -305,6 +324,7 @@ class respawnDialog {
 		
 		class GEAR_pistol_acc : GEAR_pistol_acc_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_acc_icon;
 			idc = GEAR_pistol_acc_idc;
 		};
@@ -315,6 +335,7 @@ class respawnDialog {
 		
 		class GEAR_pistol_optic : GEAR_pistol_optic_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_optic_icon;
 			idc = GEAR_pistol_optic_idc;
 		};
@@ -325,6 +346,7 @@ class respawnDialog {
 		
 		class GEAR_pistol_mag : GEAR_pistol_mag_bg {
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+			type = CT_ACTIVETEXT;
 			text = GEAR_mag_icon;
 			idc = GEAR_pistol_mag_idc;
 		};		
@@ -481,14 +503,13 @@ class respawnDialog {
 		// GEAR stuff
 		class respawnListPresets : RscListNBox {
 			style = 0;
-			colorBackground[] = {1,0,0,0.5};
 			idc = respawnListPresetsIDC;
 			columns[] = {0, 0.04, 0.7};
 			
 			x = safezoneX + safezoneW * ( 0.1 );
 			y = safezoneY + safezoneH * ( 0.57 + 0.02 );
 			w = safezoneW * ( 0.3975 - 0.02 );
-			h = safezoneH * (1 - 0.57 - 0.1 - 0.02 - 0.03 - 0.03);
+			h = safezoneH * (1 - 0.57 - 0.1 - 0.02 - 0.03 - 0.07 );
 		};
 		
 		class respawnActivatePreset : RscButton {
@@ -496,7 +517,22 @@ class respawnDialog {
 			w = safezoneW * 0.15;
 			h = safezoneH * 0.03;
 			x = safezoneX + safezoneW * ( 0.1 + 0.02 );
+			y = safezoneY + safezoneH * ( 0.9 - 0.02 - 0.03 - 0.03 - 0.01 );
+		};
+		
+		class respawnChangeLoadout : respawnActivatePreset {
+			text = "Change Loadout";
 			y = safezoneY + safezoneH * ( 0.9 - 0.02 - 0.03 );
+		};
+		
+		class transactionDetails : RscStructuredText {
+			idc = respawnTransactionDetailsIDC;
+			w = safezoneW * 0.1975;
+			h = safezoneH * 0.07;
+			x = safezoneX + safezoneW * ( 0.1 + 0.02 + 0.15 + 0.01 );
+			y = safezoneY + safezoneH * ( 0.9 - 0.02 - 0.03 - 0.03 - 0.01 );
+			
+			text = "Cash:<t align='right'>$8000</t><br />Loadout Cost:<t align='right'>$1000</t><br/><br/>Total:<t align='right'>$7000</t>";
 		};
 	};
 };
