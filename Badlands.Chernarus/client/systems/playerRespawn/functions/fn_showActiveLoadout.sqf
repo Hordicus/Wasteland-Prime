@@ -24,7 +24,7 @@ GEAR_activeLoadout = profileNamespace getVariable ["GEAR_activeLoadout", []];
 			};
 		}};
 		
-		ctrlSetText [_idc, _img];
+		(_display displayCtrl _idc) ctrlSetText _img;
 		(_display displayCtrl _idc) ctrlSetTooltip _tooltip;
 	};
 } forEach GEAR_activeLoadout;

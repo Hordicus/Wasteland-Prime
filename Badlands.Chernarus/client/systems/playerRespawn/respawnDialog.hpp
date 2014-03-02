@@ -6,6 +6,7 @@ class respawnDialog {
 	movingEnable = false;
 	enableSimulation = true;
 	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_onLoad.sqf'";
+	onChildDestroyed = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_updateGEARInfo.sqf';";
 	
 	class controlsBackground {
 		class respawnBackdrop : RscMap {
@@ -523,6 +524,8 @@ class respawnDialog {
 		class respawnChangeLoadout : respawnActivatePreset {
 			text = "Change Loadout";
 			y = safezoneY + safezoneH * ( 0.9 - 0.02 - 0.03 );
+			
+			action = "createDialog 'geard';";
 		};
 		
 		class transactionDetails : RscStructuredText {
