@@ -28,7 +28,7 @@ class respawnDialog {
 			h = safezoneH * 0.05;
 			colorBackground[] = {0,0,0,1};
 			text = "Player Respawn";
-			sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
+			sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.5);
 		};
 		
 		class respawnControlsBackground : RscCommon {
