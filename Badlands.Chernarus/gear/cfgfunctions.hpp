@@ -26,7 +26,7 @@ class GEAR {
 		class setLoadout{};
 		
 		class config {
-			file = "gear\config.sqf";
+			file = "gear_config.sqf";
 		};
 	};
 };
