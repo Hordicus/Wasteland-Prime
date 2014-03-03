@@ -2,6 +2,8 @@
 disableSerialization;
 
 _row = lnbCurSelRow respawnListPresetsIDC;
+if ( _row == -1 ) exitwith{}; // No preset selected, do nothing
+
 _presetName = lnbData[respawnListPresetsIDC, [_row, 1]];
 
 GEAR_presets = profileNamespace getVariable ["GEAR_presets", [] call CBA_fnc_hashCreate];

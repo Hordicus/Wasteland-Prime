@@ -9,4 +9,5 @@ class playerRespawn
 	class beaconRespawnOptions{};
 	class showPresets{};
 	class showActiveLoadout{};
+	class playerSetup{};
 };

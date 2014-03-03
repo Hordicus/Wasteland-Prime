@@ -2,6 +2,8 @@
 _spawn = [] call BL_fnc_randomSpawnLocation;
 _loc = _spawn select 1;
 
+[player] call BL_fnc_playerSetup;
+
 if (_this == 'ground' ) then {
 	player setPosATL _loc;
 }
