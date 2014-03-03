@@ -519,6 +519,8 @@ class respawnDialog {
 			h = safezoneH * 0.03;
 			x = safezoneX + safezoneW * ( 0.1 + 0.02 );
 			y = safezoneY + safezoneH * ( 0.9 - 0.02 - 0.03 - 0.03 - 0.01 );
+			
+			action = "call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_activatePreset.sqf'";
 		};
 		
 		class respawnChangeLoadout : respawnActivatePreset {
