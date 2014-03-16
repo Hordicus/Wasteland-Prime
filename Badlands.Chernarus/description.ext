@@ -53,11 +53,6 @@ class CfgFunctions
 class CfgSounds 
 {
 	sounds[] = {}; 
-	class C130_exit 
-	{
-		sound[] = {"sounds\C130_exit.wss", 50, 1};
-		titles[] = {};
-	};
 	class flapping 
 	{
 		sound[] = {"sounds\flapping.ogg", 10, 1};
@@ -71,11 +66,6 @@ class CfgSounds
 	class para_pilot 
 	{
 		sound[] = {"sounds\para_pilot.ogg", 10, 1};
-		titles[] = {};
-	};
-	class close_chute 
-	{
-		sound[] = {"sounds\close_chute.ogg", 10, 1};
 		titles[] = {};
 	};
 	

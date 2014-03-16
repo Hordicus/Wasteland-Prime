@@ -19,7 +19,6 @@
 	[this] call COB_fnc_HALO
 	[this, 4000, true, true, true] call COB_fnc_HALO
 */
-if (!isServer || isDedicated) exitWith {};
 
 //Parameters
 private ["_unit","_altitude","_chemLight","_autoOpen","_saveLoadOut"]; 
@@ -52,10 +51,6 @@ if (isPlayer _unit) then {
 		"dynamicBlur" ppEffectCommit 5;  
 		
 		cutText ["", "BLACK IN", 5];
-		
-		private "_heliNear";
-		_heliNear = nearestObjects [_unit, ["helicopter"], 50];
-		if (count _heliNear == 0) then {playSound "C130_exit"};
 		
 		while {animationState _unit != "para_pilot" && alive _unit} do {
 			playSound "flapping"; //play flapping sound
@@ -201,7 +196,8 @@ if (isPlayer _unit) then {
 	private "_unit";
 	_unit = _this select 0;
 			
-	waitUntil {isTouchingGround _unit || (getPos _unit select 2) < 1 && alive _unit};
+	waitUntil {isTouchingGround _unit || (getPosATL _unit select 2) < 2};
+	_unit action ["Eject", vehicle _unit];
 
 	if (!isPlayer _unit) then {
 		_unit enableAI "ANIM";  //enable the animations
@@ -210,14 +206,6 @@ if (isPlayer _unit) then {
 		_unit setVectorUp [0,0,1]; //set the unit upright
 		sleep 1;
 		_unit allowDamage TRUE; //allow unit to be damaged again
-	} else {	
-		// Parachute closing effect for more immersion
-		playSound "close_chute";//play chute closing sound
-		cutText ["", "BLACK FADED", 999];
-		sleep 2;
-		cutText ["", "BLACK IN", 2];
-		
-		_unit setDamage 0; //heal the unit to 100% in case of injury
 	};
 };
 
