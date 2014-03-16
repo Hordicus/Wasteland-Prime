@@ -39,7 +39,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=51;
+		items=53;
 		class Item0
 		{
 			side="LOGIC";
@@ -1017,6 +1017,64 @@ class Mission
 					skill=0.60000002;
 				};
 			};
+		};
+		class Item51
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={7648.1704,342.21588,7708.6104};
+					id=57;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.60000002;
+					text="mapCenter";
+				};
+			};
+		};
+		class Item52
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={3411.4285,605.61859,19401.428};
+					id=58;
+					side="WEST";
+					vehicle="B_Soldier_F";
+					player="PLAYER COMMANDER";
+					leader=1;
+					skill=0.60000002;
+				};
+			};
+		};
+	};
+	class Markers
+	{
+		items=3;
+		class Item0
+		{
+			position[]={-9702.8574,621.89001,20978.57};
+			name="respawn_west";
+			type="Empty";
+		};
+		class Item1
+		{
+			position[]={-8468.5713,621.89001,20944.285};
+			name="respawn_east";
+			type="Empty";
+		};
+		class Item2
+		{
+			position[]={-9102.8574,621.89001,19898.57};
+			name="respawn_guerrila";
+			type="Empty";
 		};
 	};
 };
