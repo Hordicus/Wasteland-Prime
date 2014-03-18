@@ -223,6 +223,7 @@ class playerMenuDialog {
 			y = safezoneY + safezoneH * ( (0.5 + DIALOG_H/2) - 0.01 - 0.03 );
 			idc = groupLeaveIDC;
 			action = "[] call BL_fnc_leaveGroup;";
+			onMouseButtonClick = "";
 		};
 	};
 };
