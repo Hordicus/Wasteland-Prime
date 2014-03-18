@@ -9,3 +9,5 @@ if ( count BL_groupEventHandlers >= _index ) then {
 	
 	(_eh select 1) call (_eh select 2);
 };
+
+[] call BL_fnc_updateGroupInfo;

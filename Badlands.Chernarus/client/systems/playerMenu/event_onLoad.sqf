@@ -1,5 +1,6 @@
 #include "functions\macro.sqf"
 disableSerialization;
+BL_groupLastClicked = -1;
 
 ((_this select 0) displayCtrl infoTextIDC) ctrlSetStructuredText parseText format["
 <t align='left'>Server Uptime</t> <t align='right'>06:00:00</t><br />
