@@ -16,7 +16,7 @@ if ( ctrlIDC _ctrl == allPlayersIDC ) then {
 		}]];
 	};
 	
-	if !( _player in BL_groupSentInvites ) then {
+	if !( _player in BL_groupSentInvites || _player in BL_groupInvites ) then {
 		_actions set [count _actions, ["Invite to Group", [_player], {
 			_this call BL_fnc_sendGroupInvite;
 			[] call BL_fnc_updateGroupInfo;
