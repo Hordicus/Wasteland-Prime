@@ -22,6 +22,13 @@ _grp = grpNull;
 	};
 } forEach allGroups;
 
+// Reject group invites.
+{
+	if ( !isNil "_x" ) then {
+		_x call BL_fnc_rejectGroupInvite;
+	};
+} forEach BL_groupInvites;
+
 BL_groupInvites = [];
 [player] join _grp;
 
