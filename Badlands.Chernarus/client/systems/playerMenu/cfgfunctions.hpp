@@ -17,8 +17,10 @@ class playerMenu {
 	
 	class inviteToGroup{};
 	class acceptGroupInvite{};
+	class cancelGroupInvite{};
 	class kickFromGroup{};
 	class promoteToLeader{};
 	
 	class flipVehicle{};
+	class playerByName{};
 };
