@@ -62,7 +62,7 @@ class RscText : RscCommon {
 
 class RscStructuredText : RscText {
 	type =  CT_STRUCTURED_TEXT;
-	size = 0.023;
+	size = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
 };
 
 class RscPicture : RscCommon {
@@ -442,8 +442,8 @@ class RscMap {
 };
 
 class RscListBox : RscCommon {
-	type = CT_LISTBOX;
-	style = ST_MULTI;
+	type = 5;
+	style = 16;
 	wholeHeight = 0.45;
 	rowHeight = 0.045;
 	maxHistoryDelay = 1;
@@ -468,4 +468,42 @@ class RscListNBox : RscListBox {
 	
 	idcLeft = -2;
 	idcRight = -2;
+};
+
+class RscEdit : RscCommon {
+	type = 2;
+	colorBackground[] = {0, 0, 0, 1};
+	colorText[] = {0.95, 0.95, 0.95, 1};
+	colorDisabled[] = {1, 1, 1, 0.25};
+	colorSelection[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.5])", 1};
+	autocomplete = "";
+	text = "";
+	size = 0.2;
+	style = "0x00 + 0x40";
+	shadow = 2;
+	
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.65};
+};
+
+class RscXSliderH {
+	type = 43;
+	color[] = {1, 1, 1, 0.6};
+	colorActive[] = {1, 1, 1, 1};
+	colorDisable[] = {1, 1, 1, 0.4};
+	style = "0x400 + 0x10";
+	shadow = 0;
+	x = 0;
+	y = 0;
+	h = 0.029412;
+	w = 0.4;
+	colorDisabled[] = {1, 1, 1, 0.2};
+	arrowEmpty = "\A3\ui_f\data\gui\cfg\slider\arrowEmpty_ca.paa";
+	arrowFull = "\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
+	border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
+	thumb = "\A3\ui_f\data\gui\cfg\slider\thumb_ca.paa";
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.65};
 };

@@ -10,6 +10,7 @@ joinUnassigned = 0;
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
 #include "client\systems\playerRespawn\respawnDialog.hpp"
+#include "client\systems\playerMenu\playerMenu.hpp"
 
 class CfgFunctions
 {
@@ -45,6 +46,7 @@ class CfgFunctions
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
+		#include "client\systems\playerMenu\cfgfunctions.hpp"
 	};
 	
 	#include "gear\cfgfunctions.hpp"
