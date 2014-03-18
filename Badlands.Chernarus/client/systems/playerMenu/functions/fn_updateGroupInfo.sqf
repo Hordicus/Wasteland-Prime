@@ -13,7 +13,7 @@ _leaveGrp ctrlShow false;
 [[], _display] call BL_fnc_setGroupButtons;
 
 {
-	if ( count units group _x == 1 && _x != player ) then {
+	if ( !(_x in units group player) && side _x == playerSide ) then {
 		_index = _allPlayers lbAdd (name _x);
 		
 		if ( (name _x) in BL_groupSentInvites ) then {
