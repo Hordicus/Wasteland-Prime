@@ -15,9 +15,11 @@ class playerMenu {
 	class updateGroupInfo{};
 	class leaveGroup{};
 	
-	class inviteToGroup{};
+	class sendGroupInvite{};
 	class acceptGroupInvite{};
 	class cancelGroupInvite{};
+	class rejectGroupInvite{};
+	
 	class kickFromGroup{};
 	class promoteToLeader{};
 	

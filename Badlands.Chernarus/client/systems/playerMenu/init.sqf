@@ -14,3 +14,7 @@ player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
 ['groupCancelInvite', {
 	BL_groupInvites set [BL_groupInvites find (_this select 1), nil];
 }] call CBA_fnc_addLocalEventHandler;
+
+['rejectInvite', {
+	BL_groupSentInvites set [BL_groupSentInvites find (_this select 1), nil];
+}] call CBA_fnc_addLocalEventHandler;

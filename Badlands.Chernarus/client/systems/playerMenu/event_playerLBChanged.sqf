@@ -5,13 +5,44 @@ _actions = [];
 
 if ( ctrlIDC _ctrl == allPlayersIDC ) then {
 	_player = lbText [allPlayersIDC, lbCurSel allPlayersIDC];
-	_actions set [count _actions, ["Invite to Group", [_player], {
-		_this call BL_fnc_inviteToGroup;
-		[] call BL_fnc_updateGroupInfo;
+	
+	if ( _player in BL_groupSentInvites ) then {
+		_actions set [count _actions, ["Cancel Invite", [_player], {
+			_this call BL_fnc_cancelGroupInvite;
+			[] call BL_fnc_updateGroupInfo;
 
-		// Will trigger this script again
-		lbSetCurSel [groupPlayersIDC, lbCurSel groupPlayersIDC];			
-	}]];
+			// Will trigger this script again
+			lbSetCurSel [allPlayersIDC, lbCurSel allPlayersIDC];			
+		}]];
+	};
+	
+	if !( _player in BL_groupSentInvites ) then {
+		_actions set [count _actions, ["Invite to Group", [_player], {
+			_this call BL_fnc_sendGroupInvite;
+			[] call BL_fnc_updateGroupInfo;
+
+			// Will trigger this script again
+			lbSetCurSel [allPlayersIDC, lbCurSel allPlayersIDC];			
+		}]];
+	};
+	
+	if ( _player in BL_groupInvites ) then {
+		_actions set [count _actions, ["Accept Invite", [_player], {
+			_this call BL_fnc_acceptGroupInvite;
+			[] call BL_fnc_updateGroupInfo;
+
+			// Will trigger this script again
+			lbSetCurSel [allPlayersIDC, lbCurSel allPlayersIDC];			
+		}]];
+		
+		_actions set [count _actions, ["Reject Invite", [_player], {
+			_this call BL_fnc_rejectGroupInvite;
+			[] call BL_fnc_updateGroupInfo;
+
+			// Will trigger this script again
+			lbSetCurSel [allPlayersIDC, lbCurSel allPlayersIDC];			
+		}]];
+	};
 }
 else {
 	_player = lbText [groupPlayersIDC, lbCurSel groupPlayersIDC];

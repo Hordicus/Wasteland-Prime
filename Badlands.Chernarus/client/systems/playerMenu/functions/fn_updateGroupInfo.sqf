@@ -14,7 +14,15 @@ _leaveGrp ctrlShow false;
 
 {
 	if ( count units group _x == 1 && _x != player ) then {
-		_allPlayers lbAdd (name _x);
+		_index = _allPlayers lbAdd (name _x);
+		
+		if ( (name _x) in BL_groupSentInvites ) then {
+			_allPlayers lbSetPicture [_index, "client\systems\playerMenu\icons\inviteSent.paa"];
+		};
+		
+		if ( (name _x) in BL_groupInvites ) then {
+			_allPlayers lbSetPicture [_index, "client\systems\playerMenu\icons\inviteReceived.paa"];
+		};
 	};
 } forEach allUnits;
 

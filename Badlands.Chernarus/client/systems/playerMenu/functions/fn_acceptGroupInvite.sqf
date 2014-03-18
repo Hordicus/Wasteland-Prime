@@ -22,7 +22,7 @@ _grp = grpNull;
 	};
 } forEach allGroups;
 
-BL_groupInvites set [BL_groupInvites find _player, nil];
+BL_groupInvites = [];
 [player] join _grp;
 
 _grp
