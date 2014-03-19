@@ -33,14 +33,4 @@ BL_groupLastClicked = -1;
 )];
 
 [_this select 0] call BL_fnc_updateGroupInfo;
-
-// Player inv
-_playerInv = ((_this select 0) displayCtrl playerInventoryIDC);
-{
-	_itemName = BL_playerInventoryHandlers select (
-		BL_playerInventoryCodes find _x
-	) select 1;
-
-	_index = _playerInv lbAdd _itemName;
-	_playerInv lbSetData [_index, _x];
-} forEach (player getVariable ['BL_playerInv', []]);
+[_this select 0] call BL_fnc_updatePlayerInv;

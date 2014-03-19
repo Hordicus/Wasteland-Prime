@@ -18,4 +18,6 @@ _playerInv = player getVariable ['BL_playerInv', []];
 _playerInv set [count _playerInv, _item];
 player setVariable ['BL_playerInv', _playerInv, true];
 
+[] call BL_fnc_updatePlayerInv;
+
 _playerInv

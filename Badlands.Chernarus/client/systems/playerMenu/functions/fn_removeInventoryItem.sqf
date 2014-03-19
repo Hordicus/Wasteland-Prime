@@ -23,4 +23,6 @@ if ( _index > -1 ) then {
 	player setVariable ['BL_playerInv', _playerInv, true];
 };
 
+[] call BL_fnc_updatePlayerInv;
+
 _playerInv
