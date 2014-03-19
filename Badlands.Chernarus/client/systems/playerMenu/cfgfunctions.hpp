@@ -13,6 +13,7 @@ class playerMenu {
 	
 	class setGroupButtons{};
 	class updateGroupInfo{};
+	class updateInfoText{};
 	class leaveGroup{};
 	
 	class sendGroupInvite{};

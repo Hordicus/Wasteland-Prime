@@ -2,21 +2,12 @@
 disableSerialization;
 BL_groupLastClicked = -1;
 
-((_this select 0) displayCtrl infoTextIDC) ctrlSetStructuredText parseText format["
-<t align='left'>Server Uptime</t> <t align='right'>06:00:00</t><br />
-<t align='left'>Blufor Players</t> <t align='right'>%1/%2</t><br />
-<t align='left'>Opfor Players</t> <t align='right'>%3/%4</t><br />
-<t align='left'>Indy Players</t> <t align='right'>%5/%6</t><br />
-<t align='left'>Server FPS</t> <t align='right'>30 FPS</t><br />
-<t align='left'>Money</t> <t align='right'>$50000</t><br />
-",
-{ side _x == blufor } count playableUnits,
-playableSlotsNumber blufor,
-{ side _x == opfor } count playableUnits,
-playableSlotsNumber opfor,
-{ side _x == resistance } count playableUnits,
-playableSlotsNumber resistance
-];
+[(_this select 0)] spawn {
+	while { !isNull (_this select 0) } do {
+		[(_this select 0)] call BL_fnc_updateInfoText;
+		sleep 1;
+	};
+};
 
 ((_this select 0) displayCtrl dropMoneyAmountIDC) ctrlSetText "$2500";
 
@@ -39,6 +30,5 @@ playableSlotsNumber resistance
 ((_this select 0) displayCtrl airViewDistanceValueIDC) ctrlSetText format['%1m', (
 	sliderPosition ((_this select 0) displayCtrl airViewDistanceIDC)
 )];
-
 
 [_this select 0] call BL_fnc_updateGroupInfo;
