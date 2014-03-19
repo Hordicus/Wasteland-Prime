@@ -7,8 +7,14 @@ BL_playerInventoryHandlers = [];
 BL_playerInventoryCodes = [];
 
 ['groupInvite', {
-	BL_groupInvites set [count BL_groupInvites, _this select 1];
+	BL_groupInvites set [count BL_groupInvites, _this select 1];	
 	[] call BL_fnc_updateGroupInfo;
+	
+	(_this select 1) spawn {
+		titleText [format['%1 has invited you to join a group.', _this], "PLAIN", 0];
+		sleep 5;
+		titleFadeOut 2;
+	};
 }] call CBA_fnc_addLocalEventHandler;
 
 ['groupCancelInvite', {
