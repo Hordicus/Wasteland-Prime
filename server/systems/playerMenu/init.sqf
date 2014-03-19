@@ -1,4 +1,9 @@
+private ['_mission_start'];
+_mission_start = diag_tickTime;
 while { true } do {
-	['fpsUpdate', [round diag_fps]] call CBA_fnc_globalEvent;
+	['serverUpdate', [
+		round diag_fps,
+		diag_tickTime - _mission_start
+	]] call CBA_fnc_globalEvent;
 	sleep 10;
 };

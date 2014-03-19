@@ -1,6 +1,7 @@
 BL_groupInvites = [];
 BL_groupSentInvites = [];
 BL_avgServerFps = 0;
+BL_serverUpTime = 0;
 
 ['groupInvite', {
 	BL_groupInvites set [count BL_groupInvites, _this select 1];
@@ -17,8 +18,9 @@ BL_avgServerFps = 0;
 	[] call BL_fnc_updateGroupInfo;
 }] call CBA_fnc_addLocalEventHandler;
 
-['fpsUpdate', {
+['serverUpdate', {
 	BL_avgServerFps = (_this select 0);
+	BL_serverUpTime = (_this select 1);
 }] call CBA_fnc_addEventHandler;
 
 [] spawn {

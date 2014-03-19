@@ -4,6 +4,7 @@ BL_groupLastClicked = -1;
 
 [(_this select 0)] spawn {
 	while { !isNull (_this select 0) } do {
+		BL_serverUpTime = BL_serverUpTime + 1;
 		[(_this select 0)] call BL_fnc_updateInfoText;
 		sleep 1;
 	};
