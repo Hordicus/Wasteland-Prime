@@ -2,12 +2,6 @@ BL_groupInvites = [];
 BL_groupSentInvites = [];
 BL_avgServerFps = 0;
 
-player addEventHandler ['respawn', {
-	player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
-}];
-
-player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
-
 ['groupInvite', {
 	BL_groupInvites set [count BL_groupInvites, _this select 1];
 	[] call BL_fnc_updateGroupInfo;
@@ -27,4 +21,14 @@ player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
 	BL_avgServerFps = (_this select 0);
 }] call CBA_fnc_addEventHandler;
 
+[] spawn {
+	waitUntil {!isNull player && player == player};
+	waitUntil{!isNil "BIS_fnc_init"};
+	waitUntil {!(isNull (findDisplay 46))};
+
+	player addEventHandler ['respawn', {
+		player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
+	}];
+
+	player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
 };
