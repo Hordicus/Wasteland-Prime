@@ -26,4 +26,9 @@ class playerMenu {
 	
 	class flipVehicle{};
 	class playerByName{};
+	
+	class addInventoryType{};
+	class removeInventoryType{};
+	class addInventoryItem{};
+	class removeInventoryItem{};
 };

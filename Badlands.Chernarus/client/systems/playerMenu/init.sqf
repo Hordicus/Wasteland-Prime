@@ -3,6 +3,9 @@ BL_groupSentInvites = [];
 BL_avgServerFps = 0;
 BL_serverUpTime = 0;
 
+BL_playerInventoryHandlers = [];
+BL_playerInventoryCodes = [];
+
 ['groupInvite', {
 	BL_groupInvites set [count BL_groupInvites, _this select 1];
 	[] call BL_fnc_updateGroupInfo;

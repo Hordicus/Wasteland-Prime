@@ -158,11 +158,13 @@ class playerMenuDialog {
 			x = safezoneX + safezoneW * ( 0.5 + DIALOG_W/2 - 0.01 - 0.2 );
 			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + 0.135 + 0.005 + 0.15);
 			text = "Use";
+			action = "'use' call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_clickInvBtn.sqf'";
 		};
 		
 		class playerInvDrop : playerInvUse {
 			text = "Drop";
 			x = safezoneX + safezoneW * ( 0.5 + DIALOG_W/2 - 0.01 - 0.2 + 0.005 + 0.05 );
+			action = "'drop' call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_clickInvBtn.sqf'";
 		};
 		
 		class groupManagement : RscCommon {
