@@ -73,21 +73,29 @@ player addEventHandler ["respawn", {
 
 // Register beacon types with playerMenu
 ['airBeacon', 'Air Beacon', [], {
-	['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
-	['airBeacon'] call BL_fnc_removeInventoryItem;
+	[15, [], {
+		['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
+		['airBeacon'] call BL_fnc_removeInventoryItem;
+	}] call BL_fnc_animDoWork;
 },
 {
-	_model = 'airBeaconModel' call BL_fnc_config;
-	createVehicle [_model, getPosATL player, [], 0, "CAN_COLLIDE"];
-	['airBeacon'] call BL_fnc_removeInventoryItem;
+	[5, [], {
+		_model = 'airBeaconModel' call BL_fnc_config;
+		createVehicle [_model, getPosATL player, [], 0, "CAN_COLLIDE"];
+		['airBeacon'] call BL_fnc_removeInventoryItem;
+	}] call BL_fnc_animDoWork;
 }] call BL_fnc_addInventoryType;
 
 ['groundBeacon', 'Ground Beacon', [], {
-	['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
-	['groundBeacon'] call BL_fnc_removeInventoryItem;
+	[15, [], {
+		['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
+		['groundBeacon'] call BL_fnc_removeInventoryItem;
+	}] call BL_fnc_animDoWork;
 },
 {
-	_model = 'groundBeaconModel' call BL_fnc_config;
-	createVehicle [_model, getPosATL player, [], 0, "CAN_COLLIDE"];
-	['groundBeacon'] call BL_fnc_removeInventoryItem;
+	[5, [], {
+		_model = 'groundBeaconModel' call BL_fnc_config;
+		createVehicle [_model, getPosATL player, [], 0, "CAN_COLLIDE"];
+		['groundBeacon'] call BL_fnc_removeInventoryItem;
+	}] call BL_fnc_animDoWork;
 }] call BL_fnc_addInventoryType;

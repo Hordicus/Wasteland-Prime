@@ -32,6 +32,7 @@ class CfgFunctions
 			class nearestCity{};
 			class azimuthToBearing{};
 			class directionToString{};
+			class animDoWork{};
 			class config {
 				file = "config.sqf";
 			};
