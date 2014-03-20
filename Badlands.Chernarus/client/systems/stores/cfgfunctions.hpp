@@ -3,5 +3,6 @@ class BL_Store {
 		file = "client\systems\stores\functions";
 		class showStore{};
 		class showItems{};
+		class itemFromIndex{};
 	};
 };

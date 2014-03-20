@@ -1,51 +1,86 @@
+/*
+	Description:
+	Creates store dialog and sets it up.
+	
+	Parameter(s):
+	_title - Store title shown at top of dialog.
+	_categories - Categories and the items that belong to them
+	_onItemSel - Function to call when a user selects an item.
+		Can be used to show information about an item.
+		Function will get 2 parameters.
+		_pane - Where the item has been selected. 'items' or 'cart'
+		_item - Item as defined in _categories
+	
+	_onCartChange - Function to call when the cart is updated.
+		Use this to update cartInfo.
+		Function will get 2 parameters.
+		_itemsInCart - Array of items that have been added to cart as defined in categories
+		_purchaseBtn - Reference to the purchase button.
+
+	Example:
+	[
+		"General Store", // Title
+		[
+			// If only one Category then the category drop down will be hidden
+			["General Store", [
+				["Air Beacon", 5000],
+				["Ground Beacon", 5000],
+				["Repair kit", 500]
+			]]
+		],
+		{
+			_pane = _this select 0;
+			_item = _this select 1;
+			
+			hint format['%1 selected', _item select 0];
+		},
+		
+		{
+			_items = _this select 0;
+			_purchaseBtn = _this select 1;
+			
+			_total = 0;
+			{
+				_total = _total + (_x select 1);
+			} forEach _items;
+			
+			hint format["Your total is %1", _total];
+			
+			if ( _total > playerMoney ) then {
+				_purchaseBtn ctrlEnable false;
+			}
+			else {
+				_purchaseBtn ctrlEnable true;
+			};
+		}
+	] call BL_Store_fnc_showStore;
+	
+	Returns:
+	Nothing
+*/
+
 #include "macro.sqf"
 disableSerialization;
 
-/*
-[
-	"General Store", // Title
-	[
-		// Categories
-		// If only one Category then the category drop down will be hidden
-		["General Store", [
-			["Item One", "lbData"],
-			["Item Two", "lbData"],
-			["Item Three", "lbData"]
-		]]
-	],
-	
-	// Function to call when item is selected
-	{
-		_pane = _this select 0; // 'items' or 'cart'
-		_itemText = _this select 1;
-		_lbData = _this select 2;
-	},
-	
-	// Function to call when cart is updated.
-	{
-	
-	}
-];
-*/
-
-private ['_title', '_items', '_onItemSel', '_cartChange', '_itemBtnOne'];
+private ['_title', '_items', '_onItemSel', '_onCartChange'];
 _title      = [_this, 0, "Store", [""]] call BIS_fnc_param;
 _items      = [_this, 1, [], [[]]] call BIS_fnc_param;
 _onItemSel  = [_this, 2, {}, [{}]] call BIS_fnc_param;
-_cartChange = [_this, 3, {}, [{}]] call BIS_fnc_param;
+_onCartChange = [_this, 3, {}, [{}]] call BIS_fnc_param;
 
-private ['_dialog', '_titleCtrl', '_catCtrl', '_itemsCtrl'];
+private ['_dialog', '_titleCtrl', '_catCtrl', '_itemsCtrl', '_addRemoveBtn'];
 createDialog 'storeDialog';
 _dialog = uiNamespace getVariable 'storeDialog';
 _titleCtrl = _dialog displayCtrl storeTitleIDC;
 _catCtrl   = _dialog displayCtrl storeCategoriesIDC;
 _itemsCtrl = _dialog displayCtrl storeItemsIDC;
-_itemBtnOne = _dialog displayCtrl itemBtnOneIDC;
+_addRemoveBtn = _dialog displayCtrl addRemoveBtnIDC;
 
-uiNamespace setVariable ['storeCfg', _this];
+uiNamespace setVariable ['storeCfg', [_title, _items, _onItemSel, _onCartChange]];
+uiNamespace setVariable ['storeLastPane', ""];
 
 _titleCtrl ctrlSetText _title;
-_itemBtnOne ctrlShow false;
+_addRemoveBtn ctrlShow false;
 
 if ( count _items < 2 ) then {
 	// One or zero item categories.

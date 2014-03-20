@@ -49,14 +49,15 @@ class storeDialog {
 			y = safezoneY + safezoneH * (0.16);
 		};
 		
-		class itemBtnOne : RscButton {
-			idc = itemBtnOneIDC;
+		class addRemoveBtn : RscButton {
+			idc = addRemoveBtnIDC;
 			w = safezoneW * (0.26);
 			h = safezoneH * (0.03);
 			x = safezoneX + safezoneW * (0.1 + 0.27);
 			y = safezoneY + safezoneH * (0.16 + 0.45);
 			
 			text = "Add To Cart";
+			action = "_this call compile preprocessFileLineNumbers 'client\systems\stores\event_addRemoveItem.sqf'";
 		};
 		
 		class cart : storeItems {
