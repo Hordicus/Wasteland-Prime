@@ -50,9 +50,9 @@ class CfgFunctions
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
 		#include "client\systems\playerMenu\cfgfunctions.hpp"
-		#include "client\systems\stores\cfgfunctions.hpp"		
 	};
-	
+
+	#include "client\systems\stores\cfgfunctions.hpp"
 	#include "gear\cfgfunctions.hpp"
 	#include "logistics\cfgfunctions.hpp"
 };
