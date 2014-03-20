@@ -16,6 +16,13 @@ if ( _lastPane == "items" ) then {
 else { if ( _lastPane == "cart" ) then {
 	// User clicked remove from cart
 	_cart lbDelete lbCurSel _cart;
+	
+	if ( (lbCurSel _cart) == -1 ) then {
+		// Nothing selected anymore.
+		// Probably removed last item.
+	
+		(_dialog displayCtrl addRemoveBtnIDC) ctrlShow false;
+	};
 }};
 
 _dialog = uiNamespace getVariable 'storeDialog';
