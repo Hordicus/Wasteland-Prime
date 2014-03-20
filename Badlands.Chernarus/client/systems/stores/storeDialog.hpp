@@ -36,6 +36,8 @@ class storeDialog {
 			h = safezoneH * (0.75 - 0.03);
 			x = safezoneX + safezoneW * (0.1);
 			y = safezoneY + safezoneH * (0.16 + 0.03);
+
+			onLbSelChanged = "_this call compile preprocessFileLineNumbers 'client\systems\stores\event_onItemSelected.sqf'";
 		};
 		
 		class selectedItemInfo : RscStructuredText {

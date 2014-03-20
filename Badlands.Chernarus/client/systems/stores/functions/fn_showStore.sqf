@@ -28,7 +28,7 @@ disableSerialization;
 ];
 */
 
-private ['_title', '_items', '_onItemSel', '_cartChange'];
+private ['_title', '_items', '_onItemSel', '_cartChange', '_itemBtnOne'];
 _title      = [_this, 0, "Store", [""]] call BIS_fnc_param;
 _items      = [_this, 1, [], [[]]] call BIS_fnc_param;
 _onItemSel  = [_this, 2, {}, [{}]] call BIS_fnc_param;
@@ -40,10 +40,12 @@ _dialog = uiNamespace getVariable 'storeDialog';
 _titleCtrl = _dialog displayCtrl storeTitleIDC;
 _catCtrl   = _dialog displayCtrl storeCategoriesIDC;
 _itemsCtrl = _dialog displayCtrl storeItemsIDC;
+_itemBtnOne = _dialog displayCtrl itemBtnOneIDC;
 
-uiNamespace setVariable ['storeItems', _items];
+uiNamespace setVariable ['storeCfg', _this];
 
 _titleCtrl ctrlSetText _title;
+_itemBtnOne ctrlShow false;
 
 if ( count _items < 2 ) then {
 	// One or zero item categories.
