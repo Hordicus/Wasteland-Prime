@@ -6,3 +6,4 @@
 #define cartIDC 5005
 #define cartInfoIDC 5006
 #define purchaseIDC 5007
+#define storeTitleIDC 5008
