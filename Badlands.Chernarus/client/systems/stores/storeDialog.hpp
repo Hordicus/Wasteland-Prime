@@ -26,6 +26,8 @@ class storeDialog {
 			h = safezoneH * (0.03);
 			x = safezoneX + safezoneW * (0.1);
 			y = safezoneY + safezoneH * (0.16);
+			
+			onLbSelChanged = "_this call compile preprocessFileLineNumbers 'client\systems\stores\event_onCatChange.sqf'";
 		};
 	
 		class storeItems : RscListBox {

@@ -7,3 +7,5 @@
 #define cartInfoIDC 5006
 #define purchaseIDC 5007
 #define storeTitleIDC 5008
+
+#define SHOW_ALL_TEXT "Show All"
