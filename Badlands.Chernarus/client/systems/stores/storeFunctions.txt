@@ -1,0 +1,10 @@
+Items to Purchase
+Categories
+Filter by categories
+Item Info area
+
+Cart
+Add/remove from cart
+
+Purchase Info area (for showing room available/left in containers).
+	Possible other uses for other types of shops.
