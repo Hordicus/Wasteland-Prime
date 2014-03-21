@@ -50,6 +50,7 @@ class CfgFunctions
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
 		#include "client\systems\playerMenu\cfgfunctions.hpp"
+		#include "client\systems\buildingStore\cfgfunctions.hpp"
 	};
 
 	#include "client\systems\stores\cfgfunctions.hpp"
