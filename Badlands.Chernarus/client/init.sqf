@@ -4,3 +4,5 @@ execVM 'addons\fpsFix\vehicleManager.sqf';
 
 waituntil {!(isNull (findDisplay 46))};
 createDialog 'respawnDialog';
+
+execVM 'logistics\init.sqf';

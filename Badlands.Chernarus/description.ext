@@ -11,6 +11,7 @@ joinUnassigned = 0;
 #include "client\dialogs\styles.hpp"
 #include "client\systems\playerRespawn\respawnDialog.hpp"
 #include "client\systems\playerMenu\playerMenu.hpp"
+#include "logistics\objectContents.hpp"
 
 class CfgFunctions
 {
@@ -51,6 +52,7 @@ class CfgFunctions
 	};
 	
 	#include "gear\cfgfunctions.hpp"
+	#include "logistics\cfgfunctions.hpp"
 };
 
 class CfgSounds 
