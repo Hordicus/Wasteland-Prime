@@ -10,6 +10,7 @@
 		Function will get 2 parameters.
 		_pane - Where the item has been selected. 'items' or 'cart'
 		_item - Item as defined in _categories
+		_selectedItemInfoCtrl - Structured Text ctrl to update with information
 	
 	_onCartChange - Function to call when the cart is updated.
 		Use this to update cartInfo.
