@@ -16,6 +16,7 @@
 		Use this to update cartInfo.
 		Function will get 2 parameters.
 		_itemsInCart - Array of items that have been added to cart as defined in categories
+		_cartInfoCtrl - Reference to the cart info area.
 		_purchaseBtn - Reference to the purchase button.
 		
 	_onPurchase - Function to call when purchase button is clicked
@@ -43,7 +44,7 @@
 		
 		{
 			_items = _this select 0;
-			_purchaseBtn = _this select 1;
+			_purchaseBtn = _this select 2;
 			
 			_total = 0;
 			{

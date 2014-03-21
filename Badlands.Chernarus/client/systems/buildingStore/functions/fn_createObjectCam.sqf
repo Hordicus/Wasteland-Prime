@@ -7,13 +7,13 @@ _obj = _class createVehicleLocal _objPos;
 _obj enableSimulation false;
 _obj setPosATL _objPos;
 
-_objSize = _obj call LOG_fnc_objectSize;
+_objDim = _obj call LOG_fnc_objectDemensions;
 
 _cam = "camera" camCreate [0,0,0];
 _cam camSetPos (position _obj);
 _cam cameraEffect ["INTERNAL", "BACK", _renderTarget];
 _cam camSetTarget _obj;
-_cam camSetRelPos [sizeOf _class, 0, (_objSize select 2)/2];
+_cam camSetRelPos [sizeOf _class, 0, (_objDim select 2)/2];
 _cam camCommit 0;
 
 _obj setDir -45;

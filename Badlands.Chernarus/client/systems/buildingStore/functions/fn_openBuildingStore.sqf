@@ -1,3 +1,5 @@
+buildingStoreLoadingArea = [_this, 0, [0,0,0], [[]], [3]] call BIS_fnc_param;
+
 _buildingStore = [
 	["Concrete", [
 		["", "Land_CncBarrier_F", 100],
@@ -39,15 +41,79 @@ _buildingStore = [
 			<t size='1.2'>%1</t><br />
 			<br />
 			<t font='Zeppelin33'>Price:</t> %2<br />
-			<br />
+			<t font='Zeppelin33'>Size:</t> %3<br />
 			<br />
 			<br />
 			<img image='#(argb,256,256,1)r2t(rendertarget45,1.0)' size='13'/>
-		", _item select 0, _item select 2];
+		", _item select 0, _item select 2, (_item select 1) call LOG_fnc_objectSize];
 	},
 	
 	{
-
+		(_this select 2) ctrlEnable true;
+		_container = objNull;
+		{
+			if ( _x call LOG_fnc_containerSize > 0 ) exitwith {
+				_container = _x;
+			};
+		} forEach (nearestObjects [buildingStoreLoadingArea, ["All"], 5]);
+		
+		if ( isNull _container ) then {
+			_purchaseTotal = 0;
+			{
+				_purchaseTotal = _purchaseTotal + (_x select 2);
+			} forEach (_this select 0);
+		
+			(_this select 1) ctrlSetStructuredText parseText format["
+				<br />
+				No container found in the loading<br />
+				area. You will only be able to<br />
+				purchase one item at a time.<br />
+				<br />
+				<t font='Zeppelin33'>Money:</t> $%1<br />
+				<t font='Zeppelin33'>Purchase Total:</t> $%2<br />
+			",
+				0,
+				_purchaseTotal
+			];
+			
+			if ( count (_this select 0) > 1 ) then {
+				(_this select 2) ctrlEnable false;
+			};
+		}
+		else {
+			_containerSize = _container call LOG_fnc_containerSize;
+			_roomUsed = _container call LOG_fnc_roomUsed;
+			
+			_cartSize = 0;
+			_purchaseTotal = 0;
+			{
+				_cartSize = _cartSize + ((_x select 1) call LOG_fnc_objectSize);
+				_purchaseTotal = _purchaseTotal + (_x select 2);
+			} forEach (_this select 0);
+		
+			(_this select 1) ctrlSetStructuredText parseText format["
+				<br />
+				<t font='Zeppelin33'>Container Size:</t> %1<br />
+				<t font='Zeppelin33'>Container Room Used:</t> %2<br />
+				<br />
+				<t font='Zeppelin33'>Cart Item(s) Size:</t> %3<br />
+				<t font='Zeppelin33'>Room left:</t> %4<br />
+				<br />
+				<t font='Zeppelin33'>Money:</t> $%5<br />
+				<t font='Zeppelin33'>Purchase Total:</t> $%6<br />
+			",
+				_containerSize,
+				_roomUsed,
+				_cartSize,
+				_containerSize - _roomUsed - _cartSize,
+				0,
+				_purchaseTotal
+			];
+			
+			if ( _containerSize - _roomUsed - _cartSize < 0 ) then {
+				(_this select 2) ctrlEnable false;
+			};
+		};
 	},
 	
 	{
