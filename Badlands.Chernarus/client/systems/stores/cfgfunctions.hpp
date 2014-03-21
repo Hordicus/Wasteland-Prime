@@ -4,5 +4,6 @@ class BL_Store {
 		class showStore{};
 		class showItems{};
 		class itemFromIndex{};
+		class cartItems{};
 	};
 };

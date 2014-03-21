@@ -16,6 +16,11 @@
 		Function will get 2 parameters.
 		_itemsInCart - Array of items that have been added to cart as defined in categories
 		_purchaseBtn - Reference to the purchase button.
+		
+	_onPurchase - Function to call when purchase button is clicked
+		Use this to give the player the items in their cart.
+		Function will get 1 parameter.
+		_itemsInCart - Array of items that have been added to cart as defined in categories
 
 	Example:
 	[
@@ -52,6 +57,10 @@
 			else {
 				_purchaseBtn ctrlEnable true;
 			};
+		},
+		
+		{
+			// Give player item
 		}
 	] call BL_Store_fnc_showStore;
 	
@@ -63,10 +72,11 @@
 disableSerialization;
 
 private ['_title', '_items', '_onItemSel', '_onCartChange'];
-_title      = [_this, 0, "Store", [""]] call BIS_fnc_param;
-_items      = [_this, 1, [], [[]]] call BIS_fnc_param;
-_onItemSel  = [_this, 2, {}, [{}]] call BIS_fnc_param;
+_title        = [_this, 0, "Store", [""]] call BIS_fnc_param;
+_items        = [_this, 1, [], [[]]] call BIS_fnc_param;
+_onItemSel    = [_this, 2, {}, [{}]] call BIS_fnc_param;
 _onCartChange = [_this, 3, {}, [{}]] call BIS_fnc_param;
+_onPurchase   = [_this, 4, {}, [{}]] call BIS_fnc_param;
 
 private ['_dialog', '_titleCtrl', '_catCtrl', '_itemsCtrl', '_addRemoveBtn'];
 createDialog 'storeDialog';
@@ -76,7 +86,7 @@ _catCtrl   = _dialog displayCtrl storeCategoriesIDC;
 _itemsCtrl = _dialog displayCtrl storeItemsIDC;
 _addRemoveBtn = _dialog displayCtrl addRemoveBtnIDC;
 
-uiNamespace setVariable ['storeCfg', [_title, _items, _onItemSel, _onCartChange]];
+uiNamespace setVariable ['storeCfg', [_title, _items, _onItemSel, _onCartChange, _onPurchase]];
 uiNamespace setVariable ['storeLastPane', ""];
 
 _titleCtrl ctrlSetText _title;

@@ -25,14 +25,9 @@ else { if ( _lastPane == "cart" ) then {
 	};
 }};
 
-_dialog = uiNamespace getVariable 'storeDialog';
 _storeCfg = uiNamespace getVariable 'storeCfg';
 _cart = _dialog displayCtrl cartIDC;
 
 // Get items in cart
-_items = [];
-for "_i" from 0 to (lbSize _cart)-1 do {
-	_items set [_i, (_cart lbData _i) call BL_Store_fnc_itemFromIndex];
-};
-
+_items = [] call BL_Store_fnc_cartItems;
 [_items, _dialog displayCtrl purchaseIDC] call (_storeCfg select 3);

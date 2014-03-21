@@ -84,6 +84,7 @@ class storeDialog {
 			y = safezoneY + safezoneH * (0.16 + 0.45 + 0.28);
 			
 			text = "Purchase";
+			action = "_this call compile preprocessFileLineNumbers 'client\systems\stores\event_clickPurchase.sqf'";
 		};
 		
 		class cancel : purchase {
