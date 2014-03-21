@@ -49,7 +49,11 @@ _buildingStore = [
 	},
 	
 	{
-		(_this select 2) ctrlEnable true;
+		_cartItems = _this select 0;
+		_cartInfo = _this select 1;
+		_purchaseBtn = _this select 2;
+		
+		_purchaseBtn ctrlEnable false;
 		_container = [buildingStoreLoadingArea] call BL_fnc_findContainerInArea;
 		
 		{
@@ -62,9 +66,9 @@ _buildingStore = [
 			_purchaseTotal = 0;
 			{
 				_purchaseTotal = _purchaseTotal + (_x select 2);
-			} forEach (_this select 0);
+			} forEach _cartItems;
 		
-			(_this select 1) ctrlSetStructuredText parseText format["
+			_cartInfo ctrlSetStructuredText parseText format["
 				<br />
 				No container found in the loading<br />
 				area. You will only be able to<br />
@@ -77,8 +81,8 @@ _buildingStore = [
 				_purchaseTotal
 			];
 			
-			if ( count (_this select 0) > 1 ) then {
-				(_this select 2) ctrlEnable false;
+			if ( count (_this select 0) == 1 ) then {
+				_purchaseBtn ctrlEnable true;
 			};
 		}
 		else {
@@ -90,7 +94,7 @@ _buildingStore = [
 			{
 				_cartSize = _cartSize + ((_x select 1) call LOG_fnc_objectSize);
 				_purchaseTotal = _purchaseTotal + (_x select 2);
-			} forEach (_this select 0);
+			} forEach _cartItems;
 		
 			(_this select 1) ctrlSetStructuredText parseText format["
 				<br />
@@ -111,8 +115,8 @@ _buildingStore = [
 				_purchaseTotal
 			];
 			
-			if ( _containerSize - _roomUsed - _cartSize < 0 ) then {
-				(_this select 2) ctrlEnable false;
+			if ( _containerSize - _roomUsed - _cartSize >= 0 && count _cartItems > 0) then {
+				_purchaseBtn ctrlEnable true;
 			};
 		};
 	},

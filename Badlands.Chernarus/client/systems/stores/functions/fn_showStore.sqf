@@ -87,12 +87,14 @@ _titleCtrl = _dialog displayCtrl storeTitleIDC;
 _catCtrl   = _dialog displayCtrl storeCategoriesIDC;
 _itemsCtrl = _dialog displayCtrl storeItemsIDC;
 _addRemoveBtn = _dialog displayCtrl addRemoveBtnIDC;
+_purchaseBtn = _dialog displayCtrl purchaseIDC;
 
 uiNamespace setVariable ['storeCfg', [_title, _items, _onItemSel, _onCartChange, _onPurchase]];
 uiNamespace setVariable ['storeLastPane', ""];
 
 _titleCtrl ctrlSetText _title;
 _addRemoveBtn ctrlShow false;
+_purchaseBtn ctrlEnable false;
 
 if ( count _items < 2 ) then {
 	// One or zero item categories.
@@ -124,3 +126,6 @@ else {
 };
 
 [_items] call BL_Store_fnc_showItems;
+
+// Trigger cart update. Should set cart info with any initial info.
+[[], _dialog displayCtrl cartInfoIDC, _purchaseBtn] call _onCartChange;
