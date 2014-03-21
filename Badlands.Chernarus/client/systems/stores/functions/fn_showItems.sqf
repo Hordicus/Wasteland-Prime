@@ -48,7 +48,7 @@ else {
 private ['_index'];
 {
 	_index = _itemsCtrl lbAdd (_x select 0);
-	_itemsCtrl lbSetData [_index, str (_x select 1)];
+	_itemsCtrl lbSetData [_index, _x select 1];
 } forEach _itemsToShow;
 
 _itemsToShow
