@@ -2,12 +2,14 @@ _buildingStore = [
 	["Concrete", [
 		["", "Land_CncBarrier_F", 100],
 		["", "Land_CncWall1_F", 100],
-		["", "Land_CncWall4_F", 100]
+		["", "BlockConcrete_F", 100],
+		["", "Land_RampConcrete_F", 100],
+		["", "Land_RampConcreteHigh_F", 100]
 	]],
 	["Sandbags", [
-		["", "Land_BagFence_Round_F", 100],
+		["", "Land_BagBunker_Small_F", 100],
 		["", "Land_BagFence_Long_F", 100],
-		["", "Land_BagFence_End_F", 100]
+		["", "Land_BagFence_Round_F", 100]
 	]]
 ];
 
@@ -23,8 +25,10 @@ _buildingStore = [
 	_buildingStore,
 	{
 		if ( !isNil "buildingStoreCam" ) then {
+			(buildingStoreCam select 0) cameraEffect ["TERMINATE", "BACK"];
 			camDestroy (buildingStoreCam select 0);
 			deleteVehicle (buildingStoreCam select 1);
+			deleteVehicle (buildingStoreCam select 2);
 		};
 		
 		_item = _this select 1;
@@ -43,22 +47,7 @@ _buildingStore = [
 	},
 	
 	{
-		_items = _this select 0;
-		_purchaseBtn = _this select 1;
-		
-		_total = 0;
-		{
-			_total = _total + (_x select 1);
-		} forEach _items;
-		
-		hint format["Your total is %1", _total];
-		
-		if ( _total > playerMoney ) then {
-			_purchaseBtn ctrlEnable false;
-		}
-		else {
-			_purchaseBtn ctrlEnable true;
-		};
+
 	},
 	
 	{
