@@ -50,7 +50,8 @@ _buildingStore = [
 	
 	{
 		(_this select 2) ctrlEnable true;
-		_container = objNull;
+		_container = [buildingStoreLoadingArea] call BL_fnc_findContainerInArea;
+		
 		{
 			if ( _x call LOG_fnc_containerSize > 0 ) exitwith {
 				_container = _x;
@@ -117,6 +118,21 @@ _buildingStore = [
 	},
 	
 	{
-		// Give player item
+		_container = [buildingStoreLoadingArea] call BL_fnc_findContainerInArea;
+		_cartClasses = [];
+		_purchaseTotal = 0;
+		
+		{
+			_cartClasses set [_forEachIndex, _x select 1];
+			_purchaseTotal = _purchaseTotal + (_x select 2);
+		} forEach (_this select 0);
+		
+		if ( !isNull _container ) then {
+			[_cartClasses, _container] call LOG_fnc_loadInObject;
+		}
+		else {
+			// TODO: Create obj on server
+			createVehicle [(_cartClasses select 0), buildingStoreLoadingArea, [], 0, "CAN_COLLIDE"];
+		};
 	}
 ] call BL_Store_fnc_showStore;
