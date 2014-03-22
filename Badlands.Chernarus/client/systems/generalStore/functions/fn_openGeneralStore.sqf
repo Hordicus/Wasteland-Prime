@@ -23,7 +23,7 @@ _generalStore = 'generalStore' call BL_fnc_config;
 		(_this select 2) ctrlSetStructuredText parseText format ["
 			<br />
 			<t size='1.2'>%1</t><br />
-			<t font='Zeppelin33'>Price:</t> $%2<br />
+			<t font='PuristaMedium'>Price:</t> $%2<br />
 			<br />
 			%3
 		", _item select 0, _item select 1, _item select 2];
@@ -45,8 +45,8 @@ _generalStore = 'generalStore' call BL_fnc_config;
 		
 		_cartInfo ctrlSetStructuredText parseText format ["
 			<br />
-			<t font='Zeppelin33'>Money:</t> $%1<br />
-			<t font='Zeppelin33'>Total:</t> $%2<br />
+			<t font='PuristaMedium'>Money:</t> $%1<br />
+			<t font='PuristaMedium'>Total:</t> $%2<br />
 		", _money, _cartTotal];
 		
 		if ( /*_money >= _cartTotal &&*/ count _cartItems > 0) then {

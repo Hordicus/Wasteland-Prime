@@ -10,7 +10,6 @@
 */
 
 private ['_buildingStore', '_dialog'];
-disableSerialization;
 buildingStoreLoadingArea = [_this, 0, [0,0,0], [[]], [3]] call BIS_fnc_param;
 _buildingStore = 'buildingStore' call BL_fnc_config;
 
@@ -42,8 +41,8 @@ _dialog = [
 			<br />
 			<t size='1.2'>%1</t><br />
 			<br />
-			<t font='Zeppelin33'>Price:</t> %2<br />
-			<t font='Zeppelin33'>Size:</t> %3<br />
+			<t font='PuristaMedium'>Price:</t> %2<br />
+			<t font='PuristaMedium'>Size:</t> %3<br />
 			<br />
 			<br />
 			<img image='#(argb,256,256,1)r2t(rendertarget45,1.0)' size='13'/>
@@ -78,8 +77,8 @@ _dialog = [
 				area. You will only be able to<br />
 				purchase one item at a time.<br />
 				<br />
-				<t font='Zeppelin33'>Money:</t> $%1<br />
-				<t font='Zeppelin33'>Purchase Total:</t> $%2<br />
+				<t font='PuristaMedium'>Money:</t> $%1<br />
+				<t font='PuristaMedium'>Purchase Total:</t> $%2<br />
 			",
 				0,
 				_purchaseTotal
@@ -102,14 +101,14 @@ _dialog = [
 		
 			(_this select 1) ctrlSetStructuredText parseText format["
 				<br />
-				<t font='Zeppelin33'>Container Size:</t> %1<br />
-				<t font='Zeppelin33'>Container Room Used:</t> %2<br />
+				<t font='PuristaMedium'>Container Size:</t> %1<br />
+				<t font='PuristaMedium'>Container Room Used:</t> %2<br />
 				<br />
-				<t font='Zeppelin33'>Cart Item(s) Size:</t> %3<br />
-				<t font='Zeppelin33'>Room left:</t> %4<br />
+				<t font='PuristaMedium'>Cart Item(s) Size:</t> %3<br />
+				<t font='PuristaMedium'>Room left:</t> %4<br />
 				<br />
-				<t font='Zeppelin33'>Money:</t> $%5<br />
-				<t font='Zeppelin33'>Purchase Total:</t> $%6<br />
+				<t font='PuristaMedium'>Money:</t> $%5<br />
+				<t font='PuristaMedium'>Purchase Total:</t> $%6<br />
 			",
 				_containerSize,
 				_roomUsed,
@@ -148,6 +147,8 @@ _dialog = [
 ] call BL_Store_fnc_showStore;
 
 _dialog spawn {
+	disableSerialization;
+
 	// Destroy object cam when dialog is closed
 	waitUntil { isNull _this };
 	
