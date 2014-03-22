@@ -1,3 +1,16 @@
+/*
+	Description:
+	Opens the building store dialog.
+	
+	Parameter(s):
+	_loadingArea - Where to look for containers and spawn objects
+	
+	Returns:
+	None
+*/
+
+private ['_buildingStore', '_dialog'];
+disableSerialization;
 buildingStoreLoadingArea = [_this, 0, [0,0,0], [[]], [3]] call BIS_fnc_param;
 _buildingStore = 'buildingStore' call BL_fnc_config;
 
@@ -8,9 +21,11 @@ _buildingStore = 'buildingStore' call BL_fnc_config;
 	} forEach (_x select 1);
 } forEach _buildingStore;
 
-[
+_dialog = [
 	"Building Store", // Title
 	_buildingStore,
+	
+	// Show item info
 	{
 		if ( !isNil "buildingStoreCam" ) then {
 			(buildingStoreCam select 0) cameraEffect ["TERMINATE", "BACK"];
@@ -19,6 +34,7 @@ _buildingStore = 'buildingStore' call BL_fnc_config;
 			deleteVehicle (buildingStoreCam select 2);
 		};
 		
+		private ['_item'];
 		_item = _this select 1;
 		buildingStoreCam = [_item select 1, "rendertarget45"] call BL_fnc_createObjectCam;
 		
@@ -34,7 +50,9 @@ _buildingStore = 'buildingStore' call BL_fnc_config;
 		", _item select 0, _item select 2, (_item select 1) call LOG_fnc_objectSize];
 	},
 	
+	// Cart update
 	{
+		private ["_cartItems","_cartInfo","_purchaseBtn","_container","_purchaseTotal","_containerSize","_roomUsed","_cartSize"];
 		_cartItems = _this select 0;
 		_cartInfo = _this select 1;
 		_purchaseBtn = _this select 2;
@@ -107,7 +125,9 @@ _buildingStore = 'buildingStore' call BL_fnc_config;
 		};
 	},
 	
+	// Purchase
 	{
+		private ["_container","_cartClasses","_purchaseTotal"];
 		_container = [buildingStoreLoadingArea] call BL_fnc_findContainerInArea;
 		_cartClasses = [];
 		_purchaseTotal = 0;
@@ -126,3 +146,15 @@ _buildingStore = 'buildingStore' call BL_fnc_config;
 		};
 	}
 ] call BL_Store_fnc_showStore;
+
+_dialog spawn {
+	// Destroy object cam when dialog is closed
+	waitUntil { isNull _this };
+	
+	if ( !isNil "buildingStoreCam" ) then {
+		(buildingStoreCam select 0) cameraEffect ["TERMINATE", "BACK"];
+		camDestroy (buildingStoreCam select 0);
+		deleteVehicle (buildingStoreCam select 1);
+		deleteVehicle (buildingStoreCam select 2);
+	};
+};

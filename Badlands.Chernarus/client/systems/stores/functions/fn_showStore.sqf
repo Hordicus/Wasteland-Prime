@@ -67,7 +67,7 @@
 	] call BL_Store_fnc_showStore;
 	
 	Returns:
-	Nothing
+	Store dialog
 */
 
 #include "macro.sqf"
@@ -129,3 +129,5 @@ else {
 
 // Trigger cart update. Should set cart info with any initial info.
 [[], _dialog displayCtrl cartInfoIDC, _purchaseBtn] call _onCartChange;
+
+_dialog
