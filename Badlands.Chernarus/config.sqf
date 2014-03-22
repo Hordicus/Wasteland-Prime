@@ -20,6 +20,14 @@ _config = [] call CBA_fnc_hashCreate;
 	]]
 ]] call CBA_fnc_hashSet;
 
+[_config, 'generalStore', [
+	["General Store", [
+		["Air Beacon", 8000, "Air beacon description.", {'airBeacon' call BL_fnc_addInventoryItem;}],
+		["Ground Beacon", 4000, "Ground beacon description.", {'groundBeacon' call BL_fnc_addInventoryItem;}]
+	]]
+]] call CBA_fnc_hashSet;
+
+
 _return = '';
 if ( _key == '' ) then {
 	_return = _config;
