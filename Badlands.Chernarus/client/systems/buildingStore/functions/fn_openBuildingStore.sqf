@@ -1,19 +1,5 @@
 buildingStoreLoadingArea = [_this, 0, [0,0,0], [[]], [3]] call BIS_fnc_param;
-
-_buildingStore = [
-	["Concrete", [
-		["", "Land_CncBarrier_F", 100],
-		["", "Land_CncWall1_F", 100],
-		["", "BlockConcrete_F", 100],
-		["", "Land_RampConcrete_F", 100],
-		["", "Land_RampConcreteHigh_F", 100]
-	]],
-	["Sandbags", [
-		["", "Land_BagBunker_Small_F", 100],
-		["", "Land_BagFence_Long_F", 100],
-		["", "Land_BagFence_Round_F", 100]
-	]]
-];
+_buildingStore = 'buildingStore' call BL_fnc_config;
 
 // Set names for building store items
 {
