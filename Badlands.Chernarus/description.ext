@@ -12,6 +12,7 @@ joinUnassigned = 0;
 #include "client\systems\playerRespawn\respawnDialog.hpp"
 #include "client\systems\playerMenu\playerMenu.hpp"
 #include "logistics\objectContents.hpp"
+#include "client\systems\stores\storeDialog.hpp"
 
 class CfgFunctions
 {
@@ -49,8 +50,11 @@ class CfgFunctions
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
 		#include "client\systems\playerMenu\cfgfunctions.hpp"
+		#include "client\systems\buildingStore\cfgfunctions.hpp"
+		#include "client\systems\generalStore\cfgfunctions.hpp"
 	};
-	
+
+	#include "client\systems\stores\cfgfunctions.hpp"
 	#include "gear\cfgfunctions.hpp"
 	#include "logistics\cfgfunctions.hpp"
 };

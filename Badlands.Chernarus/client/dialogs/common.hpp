@@ -65,4 +65,4 @@
 #define SL_TEXTURES 0x10 // Listbox styles 
 #define LB_TEXTURES 0x10 
 #define LB_MULTI 0x20 
-#define FontM "puristaMedium"
+#define FontM "puristaLight"

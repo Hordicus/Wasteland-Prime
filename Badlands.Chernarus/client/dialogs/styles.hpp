@@ -27,11 +27,12 @@ class RscButton : RscCommon {
 	style = 0;
 	
 	default = false;
-	colorFocused[] = {0,0,0,0.5};
+	colorBackground[] = {0,0,0,0.8};
+	colorFocused[] = {0,0,0,0.8};
 	colorBackgroundActive[] = {1,1,1,1};
 	
-	colorBackgroundDisabled[] = {0,0,0,0.5};
-	colorDisabled[] = {1,1,1,0.5};
+	colorBackgroundDisabled[] = {0,0,0,0.8};
+	colorDisabled[] = {1,1,1,0.25};
 
 	action = "";
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
@@ -506,4 +507,52 @@ class RscXSliderH {
 	tooltipColorText[] = {1, 1, 1, 1};
 	tooltipColorBox[] = {1, 1, 1, 1};
 	tooltipColorShade[] = {0, 0, 0, 0.65};
+};
+
+class RscCombo {
+	access = 0;
+	type = 4;
+	colorSelect[] = {0, 0, 0, 1};
+	colorText[] = {1, 1, 1, 1};
+	colorBackground[] = {0, 0, 0, 1};
+	colorScrollbar[] = {1, 0, 0, 1};
+	soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect", 0.1, 1};
+	soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand", 0.1, 1};
+	soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse", 0.1, 1};
+	maxHistoryDelay = 1;
+	style = "0x10 + 0x200";
+	x = 0;
+	y = 0;
+	w = 0.12;
+	h = 0.035;
+	shadow = 0;
+	colorSelectBackground[] = {1, 1, 1, 0.7};
+	arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
+	arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
+	wholeHeight = 0.45;
+	colorActive[] = {1, 0, 0, 1};
+	colorDisabled[] = {1, 1, 1, 0.25};
+	font = "PuristaMedium";
+	sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.65};
+	
+	class ComboScrollBar {
+	  color[] = {1, 1, 1, 1};
+	  colorActive[] = {1, 1, 1, 1};
+	  colorDisabled[] = {1, 1, 1, 0.3};
+	  thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
+	  arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
+	  arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
+	  border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+	  shadow = 0;
+	  scrollSpeed = 0.06;
+	  width = 0;
+	  height = 0;
+	  autoScrollEnabled = 0;
+	  autoScrollSpeed = -1;
+	  autoScrollDelay = 5;
+	  autoScrollRewind = 0;
+	};
 };
