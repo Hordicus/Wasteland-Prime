@@ -75,7 +75,7 @@ class playerMenuDialog {
 			colorBackground[] = {0,0,0,1};
 			
 			w = safezoneW * viewDistW;
-			h = safezoneH * 0.03;
+			h = safezoneH * 0.0225;
 			
 			x = safezoneX + safezoneW * ( 0.5 + DIALOG_W/2 - 0.01 - viewDistW );
 			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 );
@@ -85,39 +85,53 @@ class playerMenuDialog {
 			colorBackground[] = {0,0,0,0};
 			text = "On Foot:";
 			w = safezoneW * (viewDistW * 0.15);
-			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.03 + 0.005 ) * 1);
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 1);
 		};
 		
 		class viewDistCar : viewDistFoot {
 			text = "In Car:";
-			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.03 + 0.005 ) * 2);
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 2);
 		};
 		
 		class viewDistAir : viewDistFoot {
 			text = "In Air:";
-			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.03 + 0.005 ) * 3);
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 3);
+		};
+		
+		class grassLabel : viewDistFoot {
+			text = "Grass:";
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 4);
 		};
 		
 		// Sliders
 		class viewDistFootSlider : RscXSliderH {
 			w = safezoneW * (viewDistW * 0.65);
-			h = safezoneH * 0.03;
-			
+			h = safezoneH * 0.0225;
 			x = safezoneX + safezoneW * ( 0.5 + DIALOG_W/2 - 0.01 - viewDistW + (viewDistW * 0.15) + 0.005 );
-			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.03 + 0.005 ) * 1);
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 1);
+			
 			colorBackground[] = {0,0,1,0.2};
 			idc = footViewDistanceIDC;
 			onSliderPosChanged = "_this call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_viewDistChange.sqf'";
 		};
 		
 		class viewDistCarSlider : viewDistFootSlider {
-			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.03 + 0.005 ) * 2);
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 2);
 			idc = carViewDistanceIDC;
 		};
 		
 		class viewDistAirSlider : viewDistFootSlider {
-			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.03 + 0.005 ) * 3);
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 3);
 			idc = airViewDistanceIDC;
+		};
+		
+		class grassSetting : RscCombo {
+			w = safezoneW * (viewDistW * 0.65);
+			h = safezoneH * 0.0225;
+			x = safezoneX + safezoneW * ( 0.5 + DIALOG_W/2 - 0.01 - viewDistW + (viewDistW * 0.15) + 0.005 );
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 4);
+			idc = grassSettingIDC;
+			onLBSelChanged = "_this call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_grassChange.sqf'";
 		};
 		
 		// Slider values
@@ -130,12 +144,12 @@ class playerMenuDialog {
 		};
 		
 		class viewDistCarValue : viewDistFootValue {
-			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.03 + 0.005 ) * 2);
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 2);
 			idc = carViewDistanceValueIDC;
 		};
 		
 		class viewDistAirValue : viewDistFootValue {
-			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.03 + 0.005 ) * 3);
+			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 3);
 			idc = airViewDistanceValueIDC;
 		};
 		

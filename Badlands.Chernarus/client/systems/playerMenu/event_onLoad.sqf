@@ -15,6 +15,7 @@ BL_groupLastClicked = -1;
 ((_this select 0) displayCtrl footViewDistanceIDC) sliderSetRange [500, 5000];
 ((_this select 0) displayCtrl carViewDistanceIDC) sliderSetRange [500, 5000];
 ((_this select 0) displayCtrl airViewDistanceIDC) sliderSetRange [500, 5000];
+((_this select 0) displayCtrl grassIDC) sliderSetRange [0, 50];
 
 ((_this select 0) displayCtrl footViewDistanceIDC) sliderSetPosition BL_footViewDistance;
 ((_this select 0) displayCtrl carViewDistanceIDC) sliderSetPosition BL_carViewDistance;
@@ -34,3 +35,11 @@ BL_groupLastClicked = -1;
 
 [_this select 0] call BL_fnc_updateGroupInfo;
 [_this select 0] call BL_fnc_updatePlayerInv;
+
+_grass = ((_this select 0) displayCtrl grassSettingIDC);
+_grass lbAdd "None";
+_grass lbAdd "Default";
+_grass lbAdd "Medium";
+_grass lbAdd "High";
+_grass lbAdd "Ultra";
+_grass lbSetCurSel BL_grass;
