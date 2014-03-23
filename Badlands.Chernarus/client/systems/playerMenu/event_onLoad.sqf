@@ -43,3 +43,8 @@ _grass lbAdd "Medium";
 _grass lbAdd "High";
 _grass lbAdd "Ultra";
 _grass lbSetCurSel BL_grass;
+
+_env = ((_this select 0) displayCtrl enableEnvironmentIDC);
+_env lbAdd "Life Disabled";
+_env lbAdd "Life Enabled";
+_env lbSetCurSel BL_enableEnv;

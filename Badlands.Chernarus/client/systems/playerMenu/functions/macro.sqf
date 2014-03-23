@@ -7,7 +7,6 @@
 #define footViewDistanceValueIDC 4006
 #define carViewDistanceValueIDC 4007
 #define airViewDistanceValueIDC 4008
-#define grassSettingIDC 4017
 
 #define playerInventoryIDC 4009
 
@@ -20,3 +19,6 @@
 #define groupBtn4IDC 4015
 
 #define groupLeaveIDC 4016
+
+#define grassSettingIDC 4017
+#define enableEnvironmentIDC 4018

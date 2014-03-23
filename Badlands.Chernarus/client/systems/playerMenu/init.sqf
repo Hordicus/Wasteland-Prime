@@ -3,6 +3,7 @@ BL_groupSentInvites = [];
 BL_avgServerFps = 0;
 BL_serverUpTime = 0;
 BL_grass = 1; // Default
+BL_enableEnv = 1;
 
 BL_playerInventoryHandlers = [];
 BL_playerInventoryCodes = [];

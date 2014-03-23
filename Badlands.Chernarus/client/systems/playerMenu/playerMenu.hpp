@@ -99,7 +99,7 @@ class playerMenuDialog {
 		};
 		
 		class grassLabel : viewDistFoot {
-			text = "Grass:";
+			text = "Env:";
 			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 4);
 		};
 		
@@ -126,12 +126,20 @@ class playerMenuDialog {
 		};
 		
 		class grassSetting : RscCombo {
-			w = safezoneW * (viewDistW * 0.65);
+			w = safezoneW * (viewDistW * 0.32);
 			h = safezoneH * 0.0225;
 			x = safezoneX + safezoneW * ( 0.5 + DIALOG_W/2 - 0.01 - viewDistW + (viewDistW * 0.15) + 0.005 );
 			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + ( 0.0225 + 0.005 ) * 4);
 			idc = grassSettingIDC;
 			onLBSelChanged = "_this call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_grassChange.sqf'";
+			tooltip = "Amount of grass visible";
+		};
+		
+		class enableEnvironment : grassSetting {
+			x = safezoneX + safezoneW * ( 0.5 + DIALOG_W/2 - 0.01 - viewDistW + (viewDistW * 0.15) + 0.005 + (viewDistW * 0.32) + 0.005 );
+			idc = enableEnvironmentIDC;
+			onLBSelChanged = "_this call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_environmentChange.sqf'";
+			tooltip = "Enable or disable all background sounds and ambient life";
 		};
 		
 		// Slider values
