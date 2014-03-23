@@ -1,0 +1,1 @@
+playerBounty = [[], 1] call CBA_fnc_hashCreate;

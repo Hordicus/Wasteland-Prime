@@ -27,6 +27,8 @@ _config = [] call CBA_fnc_hashCreate;
 	]]
 ]] call CBA_fnc_hashSet;
 
+[_config, 'minMoney', 250] call CBA_fnc_hashSet;
+[_config, 'killBounty', 250] call CBA_fnc_hashSet;
 
 _return = '';
 if ( _key == '' ) then {
