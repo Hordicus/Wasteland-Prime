@@ -1,1 +1,0 @@
-call compile preprocessFileLineNumbers "\server\init.sqf";

@@ -37,7 +37,7 @@ class CfgFunctions
 			class animDoWork{};
 			class systemChat{};
 			class config {
-				file = "config.sqf";
+				file = "config\config.sqf";
 			};
 		};
 		class Common
@@ -59,6 +59,7 @@ class CfgFunctions
 	#include "gear\cfgfunctions.hpp"
 	#include "logistics\cfgfunctions.hpp"
 };
+
 
 class CfgSounds 
 {
