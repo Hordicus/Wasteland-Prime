@@ -1,1 +1,1 @@
-tools\MakePbo.exe -JN Badlands.Chernarus
+tools\MakePbo.exe -BD -Z=default Badlands.Chernarus

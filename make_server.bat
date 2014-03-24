@@ -1,1 +1,1 @@
-tools\MakePbo.exe server bl_server
+tools\MakePbo.exe -BD -Z=default server bl_server

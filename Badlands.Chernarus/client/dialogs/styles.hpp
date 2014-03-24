@@ -105,7 +105,7 @@ class RscMap {
 	moveOnEdges = 0;
 	x = SafeZoneXAbs;
 	y = SafeZoneY + 1.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25);
-	w = SafeZoneWAbs";
+	w = SafeZoneWAbs;
 	h = SafeZoneH - 1.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25);
 	shadow = 0;
 	ptsPerSquareSea = 5;

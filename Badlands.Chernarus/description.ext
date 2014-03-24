@@ -14,20 +14,17 @@ joinUnassigned = 0;
 #include "logistics\objectContents.hpp"
 #include "client\systems\stores\storeDialog.hpp"
 
-class CfgFunctions
-{
-	class COB
-	{
-		class functions
-		{
-			class HALO {file = "client\functions\fn_halo.sqf"};
+class CfgFunctions {
+	class COB {
+		class functions {
+			class HALO {
+				file = "client\functions\fn_halo.sqf";
+			};
 		};
 	};
 	
-	class BL
-	{
-		class Client
-		{
+	class BL {
+		class Client {
 			file = "client\functions";
 			class friendlyState{};
 			class filterFriendly{};
@@ -40,8 +37,7 @@ class CfgFunctions
 				file = "config\config.sqf";
 			};
 		};
-		class Common
-		{
+		class Common {
 			file = "common\functions";
 			class findCities{};
 			class cityInfo{};

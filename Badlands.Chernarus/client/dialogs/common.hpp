@@ -64,5 +64,4 @@
 #define SL_HORZ 0x400 
 #define SL_TEXTURES 0x10 // Listbox styles 
 #define LB_TEXTURES 0x10 
-#define LB_MULTI 0x20 
-#define FontM "puristaLight"
+#define LB_MULTI 0x20
