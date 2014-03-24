@@ -22,7 +22,7 @@ class cfgFunctions {
 			
 			class townRadarInit {
 				file = "\x\bl_server\addons\systems\townRadar\init.sqf";
-				postInit = 1;
+				preInit = 1;
 			};
 		};
 	};
