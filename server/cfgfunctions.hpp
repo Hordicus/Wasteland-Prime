@@ -4,11 +4,13 @@ class cfgFunctions {
 		#include "systems\radar\cfgfunctions.hpp"
 		#include "systems\vehicleTownSpawns\cfgfunctions.hpp"
 		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
+		#include "systems\weaponsCrates\cfgfunctions.hpp"
 
 		class Server {
 			file = "\x\bl_server\addons\functions";
 			class nearUnits{};
 			class safeVehicleSpawn{};
+			class selectRandom{};
 			
 			class playerMenuServerInit {
 				file = "\x\bl_server\addons\systems\playerMenu\init.sqf";
