@@ -1,5 +1,5 @@
 [] spawn {
-	private ["_cities","_config","_vehicles","_classes","_lowestChance","_maxPerCity","_vehiclesPerMeter","_cityCenter","_cityRadius","_sqMeters","_currentCount","_maxCount","_searchDistance","_chance","_possible","_class","_distance","_direction","_nearCars","_veh","_v"];
+	private ["_cities","_config","_vehicles","_classes","_lowestChance","_maxPerCity","_vehiclesPerMeter","_cargoGroups","_cityCenter","_cityRadius","_sqMeters","_playersInTown","_vehiclesInTown","_currentCount","_maxCount","_searchDistance","_chance","_possible","_class","_distance","_direction","_nearCars","_veh","_cargoAdded","_cargo","_originalCargo"];
 	_cities = call BL_fnc_findCities;
 	_config = [] call BL_fnc_vehicleTownSpawns_config;
 	_vehicles = [_config, "vehicles"] call CBA_fnc_hashGet;
@@ -7,6 +7,7 @@
 	_lowestChance = 1;
 	_maxPerCity = [_config, "maxPerCity"] call CBA_fnc_hashGet;
 	_vehiclesPerMeter = [_config, "vehiclesPerMeter"] call CBA_fnc_hashGet;
+	_cargoGroups = [_config, "vehicleCargo"] call CBA_fnc_hashGet;
 
 	{
 		_classes set [count _classes, _x select 0];
@@ -20,84 +21,69 @@
 			_cityCenter = _x select 1;
 			_cityRadius = _x select 2;
 			_sqMeters   = (PI * _cityRadius^2);
-		
-			_currentCount = count (_cityCenter nearEntities [_classes, _cityRadius*2]);
-			_maxCount = round (_sqMeters / _vehiclesPerMeter);
-			_searchDistance = 5;
+			_playersInTown = [_cityCenter, _cityRadius*2] call BL_fnc_nearUnits;
 			
-			if ( _maxCount > _maxPerCity ) then {
-				_maxCount = _maxPerCity;
-			};
-			
-			// Bring vehicle count up to max count
-			for "_i" from 1 to ( _maxCount - _currentCount ) do {
-				_pos = [];
+			if ( count _playersInTown == 0 ) then {
+				_vehiclesInTown = _cityCenter nearEntities [_classes, _cityRadius*2];
+				_currentCount = count _vehiclesInTown;
+				_maxCount = round (_sqMeters / _vehiclesPerMeter);
+				_searchDistance = 5;
 				
-				// Random chance
-				_chance = random 1 + _lowestChance;
-				_possible = [];
-				
-				{
-					if ( 1-(_x select 1) <= _chance ) then {
-						_possible set [count _possible, _x];
-					};
-				} count _vehicles;
-				
-				// Now get a random vehicle that has a chance to spawn.
-				_class = _possible select (floor random count _possible) select 0;
-				
-				// Keep trying until we find a good spot.
-				// Good spot = emptyPosition and no car within 20m
-				while { count _pos == 0 } do {
-					_distance = random _cityRadius - _searchDistance;
-					_direction = random 360;
-					
-					_pos = [_cityCenter, _distance, _direction] call BIS_fnc_relPos;
-					_nearCars = _pos nearEntities ["Car", 20];
-					
-					if ( count _nearCars == 0 ) then {
-						_pos = _pos findEmptyPosition [0, _searchDistance, _class];
-					}
-					else {
-						_pos = [];
-					};
+				if ( _maxCount > _maxPerCity ) then {
+					_maxCount = _maxPerCity;
 				};
 				
-				_veh = createVehicle [_class, _pos, [], 0, "CAN_COLLIDE"];
-				_veh allowDamage false;
-				_veh setDir (random 360);
-				_veh setVelocity [0, 0, 1];
-
-				// Car might be flying...
-				// Once it's done turn dmg back on.
-				_veh spawn {
-					while { true } do {
-						sleep 1;
-						_v = velocity _this;
+				// Bring vehicle count up to max count
+				for "_i" from 1 to ( _maxCount - _currentCount ) do {
+					_pos = [];
+					
+					// Random chance
+					_chance = random 1 + _lowestChance;
+					_possible = [];
+					
+					{
+						if ( 1-(_x select 1) <= _chance ) then {
+							_possible set [count _possible, _x];
+						};
+					} count _vehicles;
+					
+					// Now get a random vehicle that has a chance to spawn.
+					_class = _possible select (floor random count _possible) select 0;
+					
+					// Keep trying until we find a good spot.
+					// Good spot = emptyPosition and no car within 20m
+					while { count _pos == 0 } do {
+						_distance = random _cityRadius - _searchDistance;
+						_direction = random 360;
 						
-						if ( _v select 0 == 0 && _v select 1 == 0 && _v select 2 == 0 ) exitwith {};
+						_pos = [_cityCenter, _distance, _direction] call BIS_fnc_relPos;
+						_nearCars = _pos nearEntities ["Car", 20];
+						
+						if ( count _nearCars == 0 ) then {
+							_pos = _pos findEmptyPosition [0, _searchDistance, _class];
+						}
+						else {
+							_pos = [];
+						};
 					};
-					_this setDamage 0;
-					_this allowDamage true;
+					
+					_veh = [_class, _pos] call BL_fnc_safeVehicleSpawn;
+					_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
+					_veh setVariable ['originalCargo', _cargoAdded];
 				};
-			};
-		
+				
+				// Check cargo of existing vehicles
+				{
+					_cargo = ([getWeaponCargo _x]) + ([getMagazineCargo _x]) + ([getItemCargo _x]);
+					_originalCargo = _x getVariable ['originalCargo', []];
+					if ( str _cargo != str _originalCargo ) then { // 29.89 times faster than BIS_fnc_arrayCompare
+						_cargoAdded = [_x, _cargoGroups] call BL_fnc_addVehicleCargo;
+						_x setVariable ['originalCargo', _cargoAdded];
+					};
+				} forEach _vehiclesInTown;
+			};	
 		} forEach _cities;
 
-		sleep 5;
+		sleep 60;
 	};
 };
-/*
-// Run in console to put X over every vehicle in a town.
-// Helpful for testing.
-addMissionEventHandler ["Draw3D", {
-	_city   = nearestLocations [(position player), ["NameCityCapital", "nameCity", "NameVillage"], 100] select 0;
-	_center = locationPosition _city;
-	_radius = (size _city) select 0;
-	_cars   = _center nearEntities ["Car", _radius*2];
-	
-	{
-		drawIcon3D ["\A3\ui_f\data\map\vehicleicons\iconCar_ca.paa", [1,0,0,1], getPosATL _x, 1, 1, 0, "", 0, 0.03, "PuristaMedium"];		
-	} forEach _cars;
-}];
-*/

@@ -19,4 +19,32 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, "maxPerCity", 20] call CBA_fnc_hashSet;
 [_config, "vehiclesPerMeter", 15000] call CBA_fnc_hashSet;
 
+[_config, "vehicleCargo", [
+	[
+		[
+			["arifle_TRG20_Holo_F", 1, 1]
+		],
+		[
+			["30Rnd_556x45_Stanag", 1, 5],
+			["HandGrenade", 0, 2]
+		],
+		
+		[
+		]
+	],
+	[
+		[
+			["arifle_Mk20C_F", 1, 1],
+			["Binocular", 1, 1]
+		],
+		[
+			["30Rnd_556x45_Stanag", 1, 5]
+		],
+		
+		[
+			["Optic_Aco", 1, 1]
+		]
+	]
+]] call CBA_fnc_hashSet;
+
 _config
