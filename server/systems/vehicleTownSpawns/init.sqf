@@ -1,7 +1,7 @@
 [] spawn {
 	private ["_cities","_config","_vehicles","_classes","_lowestChance","_maxPerCity","_vehiclesPerMeter","_cargoGroups","_cityCenter","_cityRadius","_sqMeters","_playersInTown","_vehiclesInTown","_currentCount","_maxCount","_searchDistance","_chance","_possible","_class","_distance","_direction","_nearCars","_veh","_cargoAdded","_cargo","_originalCargo"];
 	_cities = call BL_fnc_findCities;
-	_config = [] call BL_fnc_vehicleTownSpawns_config;
+	_config = [] call BL_fnc_vehicleTownSpawnsConfig;
 	_vehicles = [_config, "vehicles"] call CBA_fnc_hashGet;
 	_classes = [];
 	_lowestChance = 1;
@@ -36,19 +36,7 @@
 				// Bring vehicle count up to max count
 				for "_i" from 1 to ( _maxCount - _currentCount ) do {
 					_pos = [];
-					
-					// Random chance
-					_chance = random 1 + _lowestChance;
-					_possible = [];
-					
-					{
-						if ( 1-(_x select 1) <= _chance ) then {
-							_possible set [count _possible, _x];
-						};
-					} count _vehicles;
-					
-					// Now get a random vehicle that has a chance to spawn.
-					_class = _possible select (floor random count _possible) select 0;
+					_class = ([_vehicles, 1, _lowestChance] call BL_fnc_selectRandom) select 0;
 					
 					// Keep trying until we find a good spot.
 					// Good spot = emptyPosition and no car within 20m
