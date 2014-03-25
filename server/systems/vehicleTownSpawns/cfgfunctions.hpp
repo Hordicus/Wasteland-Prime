@@ -4,7 +4,7 @@ class vehicleTownSpawns {
 		postInit = 1;
 	};
 
-	class vehicleTownSpawns_config{
+	class vehicleTownSpawnsConfig{
 		file = "\x\bl_server\addons\config\vehicleTownSpawns.sqf";
 	};
 	

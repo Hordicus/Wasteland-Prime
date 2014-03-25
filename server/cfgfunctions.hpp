@@ -26,6 +26,11 @@ class cfgFunctions {
 				file = "\x\bl_server\addons\systems\townRadar\init.sqf";
 				preInit = 1;
 			};
+			
+			class garbageCollectionInit {
+				file = "\x\bl_server\addons\systems\garbageCollection\init.sqf";
+				preInit = 1;
+			};
 		};
 	};
 };

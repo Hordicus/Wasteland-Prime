@@ -19,6 +19,7 @@ _veh spawn {
 	};
 	_this setDamage 0;
 	_this allowDamage true;
+	_this setVariable ['originalSpawnPoint', getPosATL _this];
 };
 
 _veh
