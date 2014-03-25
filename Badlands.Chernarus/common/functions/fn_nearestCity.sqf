@@ -1,14 +1,13 @@
-private ['_loc', '_nearestDistance', '_nearestCity', '_dist'];
-_loc = [_this, 0, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
-_nearestDistance = -1;
+private ['_loc', '_nearestDistance', '_nearestCity'];
+_loc = _this select 0;
+_nearestDistance = 100000;
 _nearestCity = [];
 
 {
-	_dist = _loc distance (_x select 1);
-	if ( _dist < _nearestDistance || _nearestDistance == -1 ) then {
-		_nearestDistance = _dist;
+	if ( _loc distance _x < _nearestDistance ) then {
 		_nearestCity = _x;
+		_nearestDistance = _loc distance _x;
 	};
-} forEach ([] call BL_fnc_findCities);
+} count entities "LocationCityCapital_F";
 
-_nearestCity
+(_nearestCity call BL_fnc_cityInfo)
