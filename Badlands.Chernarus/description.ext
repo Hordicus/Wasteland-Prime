@@ -28,7 +28,6 @@ class CfgFunctions {
 			file = "client\functions";
 			class friendlyState{};
 			class filterFriendly{};
-			class nearestCity{};
 			class azimuthToBearing{};
 			class directionToString{};
 			class animDoWork{};
@@ -39,6 +38,7 @@ class CfgFunctions {
 		};
 		class Common {
 			file = "common\functions";
+			class nearestCity{};
 			class findCities{};
 			class cityInfo{};
 			class getDirectory{};
