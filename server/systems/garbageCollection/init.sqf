@@ -37,8 +37,7 @@
 		
 		// Remove rare cars.
 		// Conditions:
-		// 	(They are immobile (missing tires, out of fuel)
-		//  OR haven't been used in 30min)
+		//  Haven't been used in 30min
 		//	AND no one within _detectionRange
 		{
 			_vehPos = getPosATL _x;
@@ -59,6 +58,45 @@
 				};
 			};			
 		} forEach ((getPosATL mapCenter) nearEntities [_rareCarClasses, 100000]);
+		
+		// Remove dead vehicles
+		{
+			if ( !alive _x ) then {
+				if ( count ([getPosATL _x, _detectionRange] call BL_fnc_nearUnits) == 0 ) then {
+					deleteVehicle _x;
+				};
+			};
+		} forEach ((entities "LandVehicle") + (entities "Air"));
+		
+		// Remove dead men
+		{
+			if ( !alive _x ) then {
+				if ( primaryWeapon _x == "" && secondaryWeapon _x == "" && {count ([getPosATL _x, _detectionRange] call BL_fnc_nearUnits) == 0} ) then {
+					// No one in the area and nothing to come back for, delete
+					deleteVehicle _x;
+				}
+				else {
+					if ( primaryWeapon _x == "" && secondaryWeapon _x == "" ) then {
+						// Nothing to loot, but players in the area. Hide body in one minute.
+						_x spawn {
+							sleep 60;
+							hideBody _this;
+							sleep 1;
+							deleteVehicle _this;
+						};
+					}
+					else {
+						// Still guns on the body, hide in 5 min.
+						_x spawn {
+							sleep 60 * 5;
+							hideBody _this;
+							sleep 1;
+							deleteVehicle _this;
+						};
+					};
+				};
+			};
+		} forEach (entities "Man");
 		
 		sleep 5;
 	};
