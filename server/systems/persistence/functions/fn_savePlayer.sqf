@@ -1,0 +1,14 @@
+private ['_player', '_playerUID', '_position'];
+_player = [_this, 0, player, [player]] call BIS_fnc_param;
+_playerUID = getPlayerUID _player;
+
+_position = getPosATL _player;
+["UPDATE `players` SET `name` = '%1', `damage` = %2, `pos_x` = %3, `pos_y` = %4, `pos_z` = %5, `gear` = '%6' WHERE `uid` = '%7'", [
+	name _player,
+	damage _player,
+	_position select 0,
+	_position select 1,
+	_position select 2,
+	[_player] call BL_fnc_getLoadout,
+	_playerUID
+]] call BL_fnc_MySQLCommand;

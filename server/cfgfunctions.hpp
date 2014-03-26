@@ -5,6 +5,7 @@ class cfgFunctions {
 		#include "systems\vehicleTownSpawns\cfgfunctions.hpp"
 		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
+		#include "systems\persistence\cfgfunctions.hpp"
 
 		class Server {
 			file = "\x\bl_server\addons\functions";
