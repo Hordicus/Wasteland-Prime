@@ -9,8 +9,8 @@ joinUnassigned = 0;
 #include "gear\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
-#include "client\systems\playerRespawn\respawnDialog.hpp"
 #include "client\systems\playerMenu\playerMenu.hpp"
+#include "client\systems\playerRespawn\respawnDialog.hpp"
 #include "logistics\objectContents.hpp"
 #include "client\systems\stores\storeDialog.hpp"
 
