@@ -9,6 +9,7 @@ class persistence {
 	class loadPlayer{};
 	class getLoadout{};
 	class savePlayer{};
+	class createPlayer{};
 	
 	class noEmptyArrayValues{};
 	class emptyArrayValues{};

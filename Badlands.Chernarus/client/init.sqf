@@ -1,19 +1,32 @@
 execVM 'client\systems\townRadar\init.sqf';
-execVM 'client\systems\playerRespawn\init.sqf';
 execVM 'addons\fpsFix\vehicleManager.sqf';
 
 waitUntil {!isNull player && player == player};
 waitUntil{!isNil "BIS_fnc_init"};
 waitUntil {!(isNull (findDisplay 46))};
-// createDialog 'respawnDialog';
+execVM 'client\systems\playerRespawn\init.sqf';
 
 [] spawn {
-	// startLoadingScreen ["Waiting for player data..."];
+	titleText ["Waiting for player data...", "BLACK", 0.01];
+	PVAR_loadPlayer = player;
+	publicVariableServer "PVAR_loadPlayer";
+	
 	waitUntil { !isNil "PVAR_playerLoaded" };
-	// startLoadingScreen ["Setting up player..."];
-	_gear = PVAR_playerLoaded select 0;
-	[player, _gear, ["ammo"]] call GEAR_fnc_setLoadout;
-	// endLoadingScreen;
+	
+	if ( count PVAR_playerLoaded > 0 ) then {
+		// By this point player has been restored. Give them control ASAP.
+		[player, PVAR_playerLoaded select 0] call GEAR_fnc_setLoadout;
+		player playMove (PVAR_playerLoaded select 1);
+		player setDir (PVAR_playerLoaded select 2);
+		titleFadeOut 0.01;
+	}
+	else {
+		titleText ["No player data found...", "BLACK", 0.01];
+		sleep 1;
+		titleFadeOut 0.5;
+		createDialog 'respawnDialog';
+	};
+	
 };
 
 player setVariable ['money', ('minMoney' call BL_fnc_config), true];
