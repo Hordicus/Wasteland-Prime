@@ -12,17 +12,17 @@ diag_log format['Loading player with UID %1', _playerUID];
 	if ( count _result == 1 ) then {
 		_result = _result select 0;
 		
-		_player setDamage parseNumber (_result select 0);
+		_player setDamage (_result select 0);
 		_player setPosATL [
-			parseNumber (_result select 1),
-			parseNumber (_result select 2),
-			parseNumber (_result select 3)
+			_result select 1,
+			_result select 2,
+			_result select 3
 		];
 		
 		PVAR_playerLoaded = [
-			[(call compile (_result select 4))] call BL_fnc_emptyArrayValues,
+			_result select 4,
 			_result select 5,
-			parseNumber (_result select 6)
+			_result select 6
 		];
 		(owner _player) publicVariableClient "PVAR_playerLoaded";
 		

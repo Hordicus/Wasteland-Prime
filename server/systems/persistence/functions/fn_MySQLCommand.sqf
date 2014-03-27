@@ -18,7 +18,8 @@ _arguments = [_arguments] call BL_fnc_noEmptyArrayValues;
 		sleep 0.5;
 	};
 	
-	_query = ([call compile _query] call BL_fnc_emptyArrayValues);
+	_query = [_query] call BL_fnc_processQueryResult;
+	_query = [_query] call BL_fnc_emptyArrayValues;
 	
 	[_query, (_this select 1)] call (_this select 2);
 };

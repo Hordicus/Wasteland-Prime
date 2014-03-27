@@ -5,12 +5,13 @@ class persistence {
 	};
 
 	file = "\x\bl_server\addons\systems\persistence\functions";
-	class MySQLCommand{};
 	class loadPlayer{};
 	class getLoadout{};
 	class savePlayer{};
 	class createPlayer{};
 	
+	class processQueryResult{};
+	class MySQLCommand{};
 	class noEmptyArrayValues{};
 	class emptyArrayValues{};
 };
