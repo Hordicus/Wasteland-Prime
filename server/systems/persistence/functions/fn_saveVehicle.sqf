@@ -9,6 +9,7 @@ _dbID = PERS_trackedObjectsIDs select _index;
 _isNew = isNil "_dbID";
 
 _veh setVariable ['lastSave', time];
+_veh setVariable ['lastSavePos', getPosATL _veh];
 
 if ( _isNew ) then { _dbID = -1; };
 

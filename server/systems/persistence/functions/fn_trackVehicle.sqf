@@ -26,5 +26,6 @@ if ( _veh isKindOf 'LandVehicle' || _veh isKindOf 'Air' ) then {
 };
 
 _veh setVariable ['lastSave', time];
+_veh setVariable ['lastSavePos', getPosATL _veh];
 
 _veh

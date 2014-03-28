@@ -43,36 +43,45 @@ PERS_trackedObjectsIDs = [];
 	};
 };
 
-// Player saving
+// Periodic saving loops
 [] spawn {
 	private ['_savePlayer'];
 	_savePlayer = {
-		private ['_player', '_lastSave'];
-		_player = _this select 0;
-		_lastSave = _player getVariable ['lastSave', time];
-		
+		_player =  _this select 0;
+		_lastSave = _player getVariable 'lastSave';
 		if ( time - _lastSave >= 60 ) then {
 			[_player] call BL_fnc_savePlayer;
-			_player setVariable ['lastSave', time];
 		};
 	};
-
 	while { true } do {
 		{
-			_lastSave = _x getVariable ['lastSave', time];
 			_processed = _x getVariable ['persistenceEHAdded', false];
 
 			if ( !_processed ) then {
 				_x addEventHandler ['Put', _savePlayer];
 				_x addEventHandler ['Take', _savePlayer];
 				_x addEventHandler ['Killed', _savePlayer];
+				_x addEventHandler ['Fired', _savePlayer];
 				_x setVariable ['lastSave', time];
 				_x setVariable ['persistenceEHAdded', true];
 			};
 			
 			[_x] call _savePlayer;
+			true
 		} count playableUnits;
 		
-		sleep 60 * 3;
+		{
+			_lastSave = _x getVariable 'lastSave';
+			_lastSavePos = _x getVariable 'lastSavePos';
+
+			_index = PERS_trackedObjectsNetIDs find (netId _x);
+			_dbID = PERS_trackedObjectsIDs select _index;
+
+			if ( !isNil "_dbID" && ((getPosATL _x) distance _lastSavePos) >= 10) then {
+				[_x] call BL_fnc_saveVehicle;
+			};
+		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
+		
+		sleep (60 * 5);
 	};
 };
