@@ -1,4 +1,5 @@
-private ['_queryResult', '_compiledVal'];
+private ["_numbers","_queryResult","_aThis","_compiledVal"];
+_numbers = [48,49,50,51,52,53,54,55,56,57,48,49,46]; // toArray '012345678901.'
 _queryResult = _this select 0;
 
 if ( typeName _queryResult == "STRING" ) then {
@@ -7,17 +8,15 @@ if ( typeName _queryResult == "STRING" ) then {
 else {
 	{
 		if ( typeName _x == "STRING" ) then {
-			_num = parseNumber _x;
-			if ( str _num == _x ) then {
-				_queryResult set [_forEachIndex, _num];
+			_aThis = toArray _x;
+			if ( count (_aThis - _numbers) == 0 ) then {
+				_queryResult set [_forEachIndex, parseNumber _x];
 			}
-			else { if ( _num == 0 && {!isNil {call compile _x}} ) then {
+			else { if ( (_aThis find 91) != -1 ) then {
 				_compiledVal = call compile _x;
-				if ( typeName _compiledVal == "ARRAY" ) then {
-					_compiledVal = [_compiledVal] call BL_fnc_processQueryResult;
+				if ( !isNil "_compiledVal" ) then {
+					_queryResult set [_forEachIndex, [_compiledVal] call BL_fnc_processQueryResult];
 				};
-				
-				_queryResult set [_forEachIndex, _compiledVal];
 			}};
 		}
 		else {
