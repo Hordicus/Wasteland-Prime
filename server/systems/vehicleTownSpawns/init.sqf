@@ -17,6 +17,7 @@
 	} forEach _vehicles;
 
 	while { true } do {
+		waitUntil { !isNil "PERS_init_done" };
 		{
 			_cityCenter = _x select 1;
 			_cityRadius = _x select 2;
@@ -58,6 +59,7 @@
 					_veh = [_class, _pos] call BL_fnc_safeVehicleSpawn;
 					_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
 					_veh setVariable ['originalCargo', _cargoAdded];
+					[[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;					
 				};
 				
 				// Check cargo of existing vehicles

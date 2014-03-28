@@ -27,9 +27,9 @@
 private ["_items","_chanceIndex","_lowestChance","_chance","_possible"];
 _items = [_this, 0, [], [[]]] call BIS_fnc_param;
 _chanceIndex = [_this, 1, -1, [0]] call BIS_fnc_param;
-_lowestChance = [_this, 2, false, [0]] call BIS_fnc_param;
+_lowestChance = [_this, 2, -1, [0]] call BIS_fnc_param;
 
-if ( typeName _lowestChance == "BOOL" && _chanceIndex >= 0 ) then {
+if ( _lowestChance == -1 && _chanceIndex >= 0 ) then {
 	_lowestChance = 1;
 	{
 		if ( _x select _chanceIndex < _lowestChance ) then {
