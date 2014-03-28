@@ -52,5 +52,7 @@
 		{
 			_box addItemCargoGlobal _x;
 		} count (_crate select 2);
+		
+		[_box] call BL_fnc_trackVehicle;
 	};
 };

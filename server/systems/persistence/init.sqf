@@ -37,7 +37,7 @@ PERS_trackedObjectsIDs = [];
 			if ( _index == -1 ) then {
 				deleteVehicle _x;
 			};
-		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air"], 100000]);
+		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
 	
 		sleep 60;
 	};
