@@ -5,6 +5,8 @@ _cbArgs     = [_this, 2, [], [[]]] call BIS_fnc_param;
 _callback   = [_this, 3, {}, [{}]] call BIS_fnc_param;
 
 _arguments = [_arguments] call BL_fnc_noEmptyArrayValues;
+_arguments = [_arguments] call BL_fnc_allFloatsToStrings;
+
 MySQLQueue = missionNamespace getVariable ['MySQLQueue', []];
 MySQLQueue set [count MySQLQueue, [_command, _arguments, _cbArgs, _callback]];
 

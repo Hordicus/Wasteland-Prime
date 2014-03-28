@@ -8,6 +8,8 @@ _index = PERS_trackedObjectsNetIDs find _netId;
 _dbID = PERS_trackedObjectsIDs select _index;
 _isNew = isNil "_dbID";
 
+_veh setVariable ['lastSave', time];
+
 if ( _isNew ) then { _dbID = -1; };
 
 _type = _veh getVariable 'PERS_type';
@@ -21,12 +23,12 @@ _ammoCargo = getFuelCargo _veh;
 if !( finite _fuelCargo ) then { _fuelCargo = 0; };
 if !( finite _ammoCargo ) then { _ammoCargo = 0; };
 
-// _weapons = ([typeOf _veh] call BL_fnc_vehicleWeapons);
+_weapons = ([typeOf _veh] call BL_fnc_vehicleWeapons);
 
 _magazines = [];
-// {
-	// _magazines set [_forEachIndex, [_x, _veh magazinesTurret _x]];
-// } forEach _weapons;
+{
+	_magazines set [_forEachIndex, [_x select 1, _veh magazinesTurret (_x select 1)]];
+} forEach _weapons;
 
 _data = [
 	typeOf _veh,
@@ -39,7 +41,7 @@ _data = [
 	getWeaponCargo _veh,
 	getMagazineCargo _veh,
 	getItemCargo _veh,
-	vectorDir _veh,
+	getDir _veh,
 	vectorUp _veh,
 	_fuelCargo,
 	_ammoCargo,
@@ -68,7 +70,7 @@ _query = _query + "
 `weaponCargo` = '%7',
 `magazineCargo` = '%8',
 `itemCargo` = '%9',
-`vectorDir` = '%10',
+`dir` = '%10',
 `vectorUp` = '%11',
 `fuelCargo` = %12,
 `ammoCargo` = %13,
@@ -84,8 +86,10 @@ else {
 };
 
 [_query, _data] call BL_fnc_MySQLCommand;
-["SELECT LAST_INSERT_ID() as `id`", [], [_index], {
-	PERS_trackedObjectsIDs set [_this select 1 select 0, (_this select 0 select 0 select 0 select 0)];
-}] call BL_fnc_MySQLCommand;
 
+if ( _isNew ) then {
+	["SELECT LAST_INSERT_ID() as `id`", [], [_index], {
+		PERS_trackedObjectsIDs set [_this select 1 select 0, (_this select 0 select 0 select 0 select 0)];
+	}] call BL_fnc_MySQLCommand;
+};
 _veh

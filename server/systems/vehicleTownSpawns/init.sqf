@@ -72,6 +72,7 @@
 					};
 				} forEach _vehiclesInTown;
 			};	
+		// } forEach [(_cities select 0)];
 		} forEach _cities;
 
 		sleep 60;

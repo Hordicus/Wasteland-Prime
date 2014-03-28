@@ -14,10 +14,14 @@ class persistence {
 	class loadVehicle{};
 	class vehicleWeapons{};
 	class trackVehicle{};
+	class deleteVehicle{};
 	
 	class processQueryResult{};
 	class MySQLCommand{};
 	class MySQLProcessQueue{};
 	class noEmptyArrayValues{};
 	class emptyArrayValues{};
+	class floatToString{};
+	class allFloatsToStrings{};
+	class persistanceEventHandler{};
 };

@@ -1,9 +1,7 @@
 private ["_data","_position","_veh","_weapons","_path"];
 _data = [_this, 0, [], [[]]] call BIS_fnc_param;
 
-// [40,"B_Heli_Transport_01_F","rareVeh",2343.85,6476.56,0.0323181,0,1,[[],[]],[[],[]],[["FirstAidKit","Medikit"],[20,1]],[-0.968496,-0.249028,0],[0,0,1],0,0,[],[]]
-
-diag_log format["Loading Vehicle with data: %1", _data];
+// diag_log format["Loading Vehicle with data: %1", _data];
 
 _position = [
 	_data select 3,
@@ -12,7 +10,8 @@ _position = [
 ];
 
 // _veh = createVehicle [_data select 1, _position, [], 0, "CAN_COLLIDE"];
-_veh = [_data select 1, _position] call BL_fnc_safeVehicleSpawn;
+_veh = [_data select 1, _position, _data select 11] call BL_fnc_safeVehicleSpawn;
+[_veh, _data select 2, _data select 0] call BL_fnc_trackVehicle;
 
 _veh setDamage (_data select 6);
 _veh setFuel (_data select 7);
@@ -33,7 +32,6 @@ clearItemCargoGlobal _veh;
 	_veh addItemCargoGlobal [_x, _data select 10 select 1 select _forEachIndex];
 } forEach (_data select 10 select 0);
 
-_veh setVectorDir (_data select 11);
 _veh setVectorUp (_data select 12);
 
 _veh setFuelCargo (_data select 13);
@@ -54,5 +52,3 @@ _weapons = [typeOf _veh] call BL_fnc_vehicleWeapons;
 		_veh addMagazineTurret [_x, _path];
 	} forEach (_x select 1);
 } forEach (_data select 15);
-
-[_veh, _data select 2, _data select 0] call BL_fnc_trackVehicle;

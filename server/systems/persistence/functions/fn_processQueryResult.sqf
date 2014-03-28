@@ -1,5 +1,5 @@
 private ["_numbers","_queryResult","_aThis","_compiledVal"];
-_numbers = [48,49,50,51,52,53,54,55,56,57,48,49,46]; // toArray '012345678901.'
+_numbers = toArray '012345678901.-'; //[48,49,50,51,52,53,54,55,56,57,48,49,46]; // toArray '012345678901.-'
 _queryResult = _this select 0;
 
 if ( typeName _queryResult == "STRING" ) then {
