@@ -17,3 +17,26 @@ CREATE TABLE `players` (
   UNIQUE KEY `uid_UNIQUE` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vehicles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class` varchar(100) NOT NULL,
+  `object_type` varchar(45) NOT NULL DEFAULT 'veh',
+  `pos_x` float NOT NULL DEFAULT '0',
+  `pos_y` float NOT NULL DEFAULT '0',
+  `pos_z` float NOT NULL DEFAULT '0',
+  `damage` float NOT NULL DEFAULT '0',
+  `fuel` float DEFAULT '1',
+  `weaponCargo` text,
+  `magazineCargo` text,
+  `itemCargo` text,
+  `dir` smallint(6) DEFAULT NULL,
+  `vectorUp` varchar(45) DEFAULT NULL,
+  `fuelCargo` varchar(45) DEFAULT NULL,
+  `ammoCargo` varchar(45) DEFAULT NULL,
+  `magazines` text,
+  `variables` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
