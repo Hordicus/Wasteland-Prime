@@ -5,7 +5,6 @@ _index = PERS_trackedObjectsNetIDs find (netId _veh);
 if ( _index != -1 ) then {
 	_id  = PERS_trackedObjectsIDs select _index;
 
-	PERS_trackedObjectsNetIDs set [_index, nil];
 	PERS_trackedObjectsIDs set [_index, nil];
 	
 	if ( !isNil "_id" ) then {
