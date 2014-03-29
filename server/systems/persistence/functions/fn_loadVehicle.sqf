@@ -12,6 +12,7 @@ _position = [
 // _veh = createVehicle [_data select 1, _position, [], 0, "CAN_COLLIDE"];
 _veh = [_data select 1, _position, _data select 11] call BL_fnc_safeVehicleSpawn;
 [_veh, _data select 2, _data select 0] call BL_fnc_trackVehicle;
+[_data select 2, 'load', [_veh, _data select 16]] call BL_fnc_persRunTypeHandler;
 
 _veh setDamage (_data select 6);
 _veh setFuel (_data select 7);

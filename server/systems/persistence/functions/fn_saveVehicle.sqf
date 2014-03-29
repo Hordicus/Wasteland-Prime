@@ -16,7 +16,10 @@ if ( _isNew ) then { _dbID = -1; };
 _type = _veh getVariable 'PERS_type';
 
 _position = getPosATL _veh;
-_variables = [];
+_variables = [_type, 'save', [_veh]] call BL_fnc_persRunTypeHandler;
+if ( isNil "_variables" ) then {
+	_variables = "";
+};
 
 _fuelCargo = getFuelCargo _veh;
 _ammoCargo = getFuelCargo _veh;

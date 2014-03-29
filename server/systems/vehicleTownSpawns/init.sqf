@@ -1,3 +1,20 @@
+['townVeh', [
+	// Save
+	{},
+	
+	// Load
+	{
+		private ['_veh'];
+		_veh = _this select 0;
+		
+		_veh setVariable ['originalCargo', [
+			getWeaponCargo _veh,
+			getMagazineCargo _veh,
+			getItemCargo _veh
+		]];
+	}
+]] call BL_fnc_persRegisterTypeHandler;
+
 [] spawn {
 	private ["_cities","_config","_vehicles","_classes","_lowestChance","_maxPerCity","_vehiclesPerMeter","_cargoGroups","_cityCenter","_cityRadius","_sqMeters","_playersInTown","_vehiclesInTown","_currentCount","_maxCount","_searchDistance","_chance","_possible","_class","_distance","_direction","_nearCars","_veh","_cargoAdded","_cargo","_originalCargo"];
 	_cities = call BL_fnc_findCities;

@@ -4,6 +4,7 @@
 
 PERS_trackedObjectsNetIDs = [];
 PERS_trackedObjectsIDs = [];
+PERS_typeHandlers = [] call CBA_fnc_hashCreate;
 
 [] spawn {
 	private ["_count","_lastStep","_i","_vehicles"];
