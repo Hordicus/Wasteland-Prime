@@ -1,4 +1,4 @@
-private ["_veh","_position","_variables","_fuelCargo","_ammoCargo","_weapons","_magazines"];
+private ["_veh","_netId","_index","_dbID","_isNew","_type","_position","_variables","_fuelCargo","_ammoCargo","_weapons","_magazines","_data","_query"];
 _veh = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 
 if ( isNull _veh ) exitwith {};

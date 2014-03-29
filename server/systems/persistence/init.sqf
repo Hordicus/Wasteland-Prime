@@ -6,10 +6,10 @@ PERS_trackedObjectsNetIDs = [];
 PERS_trackedObjectsIDs = [];
 
 [] spawn {
+	private ["_count","_lastStep","_i","_vehicles"];
 	["SELECT COUNT(*) FROM `vehicles`", [], [], {
 		_count = _this select 0 select 0 select 0 select 0;
 		_lastStep = ceil (_count/5)*5;
-		diag_log format['Last step is: %1', _lastStep];
 		
 		// Load all vehicles, 5 at a time.
 		for "_i" from 0 to _lastStep step 5 do {
@@ -30,6 +30,7 @@ PERS_trackedObjectsIDs = [];
 
 // Delete anything that isn't in our system.
 [] spawn {
+	private ["_netId","_index"];
 	while { true } do {
 		{
 			_netId = netId _x;
@@ -45,7 +46,7 @@ PERS_trackedObjectsIDs = [];
 
 // Periodic saving loops
 [] spawn {
-	private ['_savePlayer'];
+	private ["_savePlayer","_player","_lastSave","_processed","_lastSavePos","_index","_dbID"];
 	_savePlayer = {
 		_player =  _this select 0;
 		_lastSave = _player getVariable 'lastSave';
@@ -80,6 +81,7 @@ PERS_trackedObjectsIDs = [];
 			if ( !isNil "_dbID" && ((getPosATL _x) distance _lastSavePos) >= 10) then {
 				[_x] call BL_fnc_saveVehicle;
 			};
+			true
 		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
 		
 		sleep (60 * 5);

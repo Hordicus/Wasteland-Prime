@@ -1,3 +1,4 @@
+private ['_veh', '_index'];
 _veh = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 
 _index = PERS_trackedObjectsNetIDs find (netId _veh);

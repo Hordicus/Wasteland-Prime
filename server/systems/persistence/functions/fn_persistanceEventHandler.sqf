@@ -1,3 +1,4 @@
+private ["_veh","_lastSave","_lastSavePos","_index","_dbID"];
 _veh =  _this select 0;
 _lastSave = _veh getVariable 'lastSave';
 _lastSavePos = _veh getVariable 'lastSavePos';
