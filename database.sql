@@ -11,7 +11,7 @@ CREATE TABLE `players` (
   `pos_z` double NOT NULL DEFAULT '0',
   `gear` text,
   `last_login` datetime DEFAULT NULL,
-  `animation` varchar(45) DEFAULT NULL,
+  `animation` varchar(200) DEFAULT NULL,
   `direction` smallint(6) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
