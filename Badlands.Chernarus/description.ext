@@ -26,7 +26,6 @@ class CfgFunctions {
 	class BL {
 		class Client {
 			file = "client\functions";
-			class friendlyState{};
 			class filterFriendly{};
 			class azimuthToBearing{};
 			class directionToString{};
@@ -43,12 +42,15 @@ class CfgFunctions {
 			class cityInfo{};
 			class getDirectory{};
 			class playerByUID{};
+			class friendlyState{};
+			class friendlyStateCheck{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
 		#include "client\systems\playerMenu\cfgfunctions.hpp"
 		#include "client\systems\buildingStore\cfgfunctions.hpp"
 		#include "client\systems\generalStore\cfgfunctions.hpp"
+		#include "client\systems\logisticsAddons\cfgfunctions.hpp"
 	};
 
 	#include "client\systems\stores\cfgfunctions.hpp"

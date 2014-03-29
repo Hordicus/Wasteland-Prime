@@ -10,6 +10,19 @@ radarLocations = [
 	*/
 ];
 
+"PVAR_radarFriendlyCheck" addPublicVariableEventHandler {
+	_returnTo   = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
+	_position   = [_this select 1, 1, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
+	_radius     = [_this select 1, 2, 5, [5]] call BIS_fnc_param;
+	_friendlyTo = [_this select 1, 3, objNull, [objNull]] call BIS_fnc_param;
+	
+	_nearUnits = [_position, _radius] call BL_fnc_nearUnits;
+	
+	PVAR_radarFriendlyCheck_result = [_nearUnits, _friendlyTo] call BL_fnc_friendlyState;
+	
+	(owner _returnTo) publicVariableClient "PVAR_radarFriendlyCheck_result";
+};
+
 [] spawn {
 	private ['_state'];
 	_state = [];

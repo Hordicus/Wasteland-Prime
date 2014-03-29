@@ -1,15 +1,16 @@
 #include "\x\cba\addons\main\script_macros_common.hpp"
 
-private ["_players", "_enemy", "_friendly", "_state"];
-_players = _this;
+private ["_players","_friendlyTo","_enemy","_friendly","_state"];
+_players = [_this, 0, [], [[]]] call BIS_fnc_param;
+_friendlyTo = [_this, 1, player, [objNull]] call BIS_fnc_param;
 _enemy = 0;
 _friendly = 0;
 _state = "";
 
 {
-	if ( player != _x ) then {
-		if ( playerSide in [east, west] ) then {
-			if ( playerSide == side _x ) then {
+	if ( _friendlyTo != _x ) then {
+		if ( side _friendlyTo in [east, west] ) then {
+			if ( side _friendlyTo == side _x ) then {
 				INC(_friendly);
 			}
 			else {
@@ -17,7 +18,7 @@ _state = "";
 			};
 		}
 		else {
-			if ( group player == group _x ) then {
+			if ( group _friendlyTo == group _x ) then {
 				INC(_friendly);
 			}
 			else {
