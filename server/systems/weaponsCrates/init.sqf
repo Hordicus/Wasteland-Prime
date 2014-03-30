@@ -1,3 +1,16 @@
+['crate', [
+	// Save
+	{(_this select 0) getVariable ['objectOwner']},
+	
+	// Load
+	{
+		private ['_crate'];
+		_crate = _this select 0;
+		_crate setVariable ['objectLocked', true, true];
+		_crate setVariable ['objectOwner', _this select 1, true];
+	}
+]] call BL_fnc_persRegisterTypeHandler;
+
 [] spawn {
 	private ['_config', '_amount', '_crates', '_cities', '_searchDistance', '_classes'];
 	_config = [] call BL_fnc_weaponsCrates_config;
@@ -53,6 +66,6 @@
 			_box addItemCargoGlobal _x;
 		} count (_crate select 2);
 		
-		[_box] call BL_fnc_trackVehicle;
+		[_box, 'crate'] call BL_fnc_trackVehicle;
 	};
 };

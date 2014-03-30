@@ -15,6 +15,9 @@
 				[5, [cursorTarget], {
 					(_this select 0) setVariable ['objectLocked', true, true];
 					(_this select 0) setVariable ['objectOwner', getPlayerUID player, true];
+					
+					PVAR_requestSave = [player, _this select 0, false];
+					publicVariableServer "PVAR_requestSave";
 				}] call BL_fnc_animDoWork;
 			},
 			[],
@@ -32,6 +35,9 @@
 					[45, [(_this select 0)], {
 						(_this select 0) setVariable ['objectLocked', false, true];
 						BL_objectLockDoingCheck = false;
+					
+						PVAR_requestSave = [player, _this select 0, false];
+						publicVariableServer "PVAR_requestSave";
 					}] call BL_fnc_animDoWork;				
 				};
 				
