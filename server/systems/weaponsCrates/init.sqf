@@ -1,6 +1,6 @@
 ['crate', [
 	// Save
-	{(_this select 0) getVariable ['objectOwner']},
+	{(_this select 0) getVariable 'objectOwner'},
 	
 	// Load
 	{
