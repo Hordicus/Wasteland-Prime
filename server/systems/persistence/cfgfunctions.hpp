@@ -3,6 +3,10 @@ class persistence {
 		file = "\x\bl_server\addons\systems\persistence\init.sqf";
 		preInit = 1;
 	};
+	
+	class persistenceConfig {
+		file = "\x\bl_server\addons\config\persistence.sqf";
+	};
 
 	file = "\x\bl_server\addons\systems\persistence\functions";
 	class loadPlayer{};
