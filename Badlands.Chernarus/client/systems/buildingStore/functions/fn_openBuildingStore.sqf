@@ -140,8 +140,7 @@ _dialog = [
 			[_cartClasses, _container] call LOG_fnc_loadInObject;
 		}
 		else {
-			// TODO: Create obj on server
-			createVehicle [(_cartClasses select 0), buildingStoreLoadingArea, [], 0, "CAN_COLLIDE"];
+			[_cartClasses select 0, buildingStoreLoadingArea, "basePart"] call BL_fnc_createVehicle;
 		};
 	}
 ] call BL_Store_fnc_showStore;
