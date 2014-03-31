@@ -5,6 +5,8 @@ PERS_trackedObjectsIDs = [];
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\loadPlayer.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\requestSave.sqf";
 
+// Handlers that don't have their own system
+[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\typeHandlers\baseParts.sqf";
 [] spawn {
 	private ["_count","_lastStep","_i","_vehicles"];
 	["SELECT COUNT(*) FROM `vehicles`", [], [], {
