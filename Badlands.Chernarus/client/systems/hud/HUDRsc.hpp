@@ -33,6 +33,14 @@ class HUDRsc {
 			w = safezoneW * 0.5;
 			h = safezoneW * 0.12;
 		};
+		
+		class actionText : RscStructuredText {
+			idc = HUDactionTextIDC;
+			x = safezoneX;
+			y = safezoneY + safezoneH/2;
+			w = safezoneW;
+			h = safezoneW * 0.1;
+		};
 	};
 	
 	class controls{};
