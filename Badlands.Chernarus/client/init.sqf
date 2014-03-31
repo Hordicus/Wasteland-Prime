@@ -29,6 +29,22 @@ execVM 'client\systems\playerRespawn\init.sqf';
 	
 };
 
+// Get radar JIP update
+[] spawn {
+	PVAR_radarRequestJIPUpdate = player;
+	publicVariableServer "PVAR_radarRequestJIPUpdate";
+	
+	waitUntil { !isNil "PVAR_radarRequestJIPUpdateResponse" };
+	
+	{
+		_eventType = _x;
+		{
+			[_eventType, _x] call CBA_fnc_localEvent;
+			true
+		} count (PVAR_radarRequestJIPUpdateResponse select 1 select _forEachIndex);
+	} forEach (PVAR_radarRequestJIPUpdateResponse select 0);
+};
+
 player setVariable ['money', ('minMoney' call BL_fnc_config), true];
 player addEventHandler ["killed", {
 	private ['_money', '_minMoney'];
