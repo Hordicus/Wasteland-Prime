@@ -3,7 +3,7 @@
 // Keep track of towns and beacons
 // Towns
 playerRespawn_towns = [[], "EMPTY"] call CBA_fnc_hashCreate;
-playerRespawn_beacons = [[], "EMPTY"] call CBA_fnc_hashCreate;
+playerRespawn_beacons = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 playerRespawn_lastDeath = getPosATL mapCenter;
 
 playerRespawnPage = 0;
@@ -14,6 +14,11 @@ playerRespawnOptions = [[], []] call CBA_fnc_hashCreate;
 
 // Set default for BL_spawnBeacons (publicVariable)
 BL_spawnBeacons = missionNamespace getVariable ['BL_spawnBeacons', []];
+
+"BL_spawnBeacons" addPublicVariableEventHandler {
+	[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
+	['respawnDialogUpdate'] call CBA_fnc_localEvent;
+};
 
 player addEventHandler ["killed", {
 	playerRespawn_lastDeath = getPosATL (_this select 0);
