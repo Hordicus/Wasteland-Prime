@@ -29,7 +29,7 @@ player addEventHandler ["respawn", {
 	_players = _this select 0;
 	_town = _this select 1 select 0;
 	_pos = _this select 1 select 1;
-	_state = _players call BL_fnc_friendlyState;
+	_state = [_players] call BL_fnc_friendlyState;
 	
 	[playerRespawn_towns, _town, [_players, _state, _pos]] call CBA_fnc_hashSet;
 	[playerRespawnOptions, 'towns', [playerRespawn_towns] call BL_fnc_townRespawnOptions] call CBA_fnc_hashSet;
@@ -41,7 +41,7 @@ player addEventHandler ["respawn", {
 	private ['_players', '_ownerUID', '_state'];
 	_players  = _this select 0;
 	_ownerUID = _this select 1 select 0;
-	_state = _players call BL_fnc_friendlyState;
+	_state = [_players] call BL_fnc_friendlyState;
 	
 	[playerRespawn_beacons, _ownerUID, [_players, _state]] call CBA_fnc_hashSet;
 	[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
