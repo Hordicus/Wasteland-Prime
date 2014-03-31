@@ -9,7 +9,7 @@ else {
 	{
 		if ( typeName _x == "STRING" ) then {
 			_aThis = toArray _x;
-			if ( count (_aThis - _numbers) == 0 ) then {
+			if ( count (_aThis - _numbers) == 0 && {!(101 in (toArray str parseNumber _x))}) then {
 				_queryResult set [_forEachIndex, parseNumber _x];
 			}
 			else { if ( (_aThis find 91) != -1 ) then {
