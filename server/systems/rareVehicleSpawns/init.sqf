@@ -20,7 +20,22 @@ _groupClasses = [] call CBA_fnc_hashCreate;
 	[_groupClasses, _key, _classes] call CBA_fnc_hashSet;
 }] call CBA_fnc_hashEachPair;
 
+['rareVeh', [
+	// Save
+	{(_this select 0) getVariable ['originalSpawnPoint', getPosATL (_this select 0)]},
+	
+	// Load
+	{
+		private ['_veh'];
+		_veh = _this select 0;
+		diag_log format['Setting originalSpawnPoint to %1', _this select 1];
+		_veh setVariable ['originalSpawnPoint', _this select 1];
+	}
+]] call BL_fnc_persRegisterTypeHandler;
+
 while { true } do {
+	waitUntil { !isNil "PERS_init_done" };
+
 	[_config, {
 		private ['_maxCount', '_classes', '_lowestChance', '_count'];
 		_maxCount = _value select 0;
@@ -30,7 +45,7 @@ while { true } do {
 		
 		for "_i" from 0 to (_maxCount - _count)-1 do {
 			while { true } do {
-				private ['_city', '_cityCenter', '_radius', '_distanceFromTown', '_randomDir', '_position', '_match', '_matchPos', '_matchAccuracy'];
+				private ['_city', '_cityCenter', '_radius', '_distanceFromTown', '_randomDir', '_position', '_match', '_matchPos', '_matchAccuracy','_veh'];
 				_city = _cities select floor random count _cities;
 				_cityCenter = _city select 1;
 				
@@ -55,7 +70,8 @@ while { true } do {
 					} count (_value select 1);
 
 					_class = (_possible select floor random count _possible) select 0;
-					[_class, _matchPos] call BL_fnc_safeVehicleSpawn;
+					_veh = [_class, _matchPos] call BL_fnc_safeVehicleSpawn;
+					[[_veh, 'rareVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
 				};
 			};
 		};

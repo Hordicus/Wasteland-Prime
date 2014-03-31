@@ -5,6 +5,8 @@ class cfgFunctions {
 		#include "systems\vehicleTownSpawns\cfgfunctions.hpp"
 		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
+		#include "systems\persistence\cfgfunctions.hpp"
+		#include "systems\playerRespawn\cfgfunctions.hpp"
 
 		class Server {
 			file = "\x\bl_server\addons\functions";
@@ -16,12 +18,7 @@ class cfgFunctions {
 				file = "\x\bl_server\addons\systems\playerMenu\init.sqf";
 				preInit = 1;
 			};
-			
-			class playerRespawnInit {
-				file = "\x\bl_server\addons\systems\playerRespawn\init.sqf";
-				preInit = 1;
-			};
-			
+
 			class townRadarInit {
 				file = "\x\bl_server\addons\systems\townRadar\init.sqf";
 				preInit = 1;

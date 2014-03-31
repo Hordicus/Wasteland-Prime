@@ -1,3 +1,20 @@
+['townVeh', [
+	// Save
+	{},
+	
+	// Load
+	{
+		private ['_veh'];
+		_veh = _this select 0;
+		
+		_veh setVariable ['originalCargo', [
+			getWeaponCargo _veh,
+			getMagazineCargo _veh,
+			getItemCargo _veh
+		]];
+	}
+]] call BL_fnc_persRegisterTypeHandler;
+
 [] spawn {
 	private ["_cities","_config","_vehicles","_classes","_lowestChance","_maxPerCity","_vehiclesPerMeter","_cargoGroups","_cityCenter","_cityRadius","_sqMeters","_playersInTown","_vehiclesInTown","_currentCount","_maxCount","_searchDistance","_chance","_possible","_class","_distance","_direction","_nearCars","_veh","_cargoAdded","_cargo","_originalCargo"];
 	_cities = call BL_fnc_findCities;
@@ -17,6 +34,7 @@
 	} forEach _vehicles;
 
 	while { true } do {
+		waitUntil { !isNil "PERS_init_done" };
 		{
 			_cityCenter = _x select 1;
 			_cityRadius = _x select 2;
@@ -58,6 +76,7 @@
 					_veh = [_class, _pos] call BL_fnc_safeVehicleSpawn;
 					_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
 					_veh setVariable ['originalCargo', _cargoAdded];
+					[[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;					
 				};
 				
 				// Check cargo of existing vehicles
@@ -70,6 +89,7 @@
 					};
 				} forEach _vehiclesInTown;
 			};	
+		// } forEach [(_cities select 0)];
 		} forEach _cities;
 
 		sleep 60;

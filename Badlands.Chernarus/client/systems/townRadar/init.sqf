@@ -15,7 +15,7 @@ stateHistory = [[], "EMPTY"] call CBA_fnc_hashCreate;
 	
 	_players = _this select 0;
 	_town = _this select 1 select 0;
-	_state = _players call BL_fnc_friendlyState;
+	_state = [_players] call BL_fnc_friendlyState;
 	_color = "ColorBlack";
 	
 	switch(_state) do {
