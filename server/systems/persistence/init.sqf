@@ -7,6 +7,8 @@ PERS_trackedObjectsIDs = [];
 
 // Handlers that don't have their own system
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\typeHandlers\baseParts.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\typeHandlers\spawnBeacons.sqf";
+
 [] spawn {
 	private ["_count","_lastStep","_i","_vehicles"];
 	["SELECT COUNT(*) FROM `vehicles`", [], [], {

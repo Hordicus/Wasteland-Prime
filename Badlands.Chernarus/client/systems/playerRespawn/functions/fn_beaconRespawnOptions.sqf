@@ -7,8 +7,8 @@ _result = [];
 _spawnOnBeacon = {
 	private ['_type', '_loc', '_dir'];
 	_type = _this select 0;
-	_loc = _this select 2;
-	_dir = _this select 3;
+	_loc = getPosATL (_this select 2);
+	_dir = getDir (_this select 2);
 	
 	if ( _type == 'air' ) then {
 		_loc set [2, 1000];
@@ -23,20 +23,20 @@ _spawnOnBeacon = {
 };
 
 {
-	private ['_state'];
 	_ownerUID = _x select 1;
 	_owner = _ownerUID call BL_fnc_playerByUID;
 	_state = ([_beacons, _ownerUID] call CBA_fnc_hashGet) select 1;
-	_friendlyBeacon = [_owner, player] call BL_fnc_friendlyState;
-	
+	_friendlyBeacon = [[_owner, player]] call BL_fnc_friendlyState;
+	_dir = getDir (_x select 2);
+
 	if ( _friendlyBeacon == "FRIENDLY" ) then {
-		_nearestCity = (_x select 1) call BL_fnc_nearestCity;
+		_nearestCity = [(getPosATL (_x select 2))] call BL_fnc_nearestCity;
 		
 		_info = format['%1 beacon %2 of %3 facing %4',
 			_x select 0,
-			[(_nearestCity select 1), _x select 2] call BL_fnc_directionToString,
+			[(_nearestCity select 1), (getPosATL (_x select 2))] call BL_fnc_directionToString,
 			_nearestCity select 0,
-			[(_x select 3), true] call BL_fnc_azimuthToBearing
+			[_dir, true] call BL_fnc_azimuthToBearing
 		];
 	
 		_result set [count _result, [

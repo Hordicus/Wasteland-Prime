@@ -64,7 +64,7 @@ player addEventHandler ["respawn", {
 [] spawn {
 	while { true } do {
 		{
-			(_x select 4) say3D "beacon";
+			(_x select 2) say3D "beacon";
 		} count BL_spawnBeacons;
 		
 		sleep 3;
