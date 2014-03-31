@@ -57,6 +57,7 @@ class CfgFunctions {
 		#include "client\systems\buildingStore\cfgfunctions.hpp"
 		#include "client\systems\generalStore\cfgfunctions.hpp"
 		#include "client\systems\logisticsAddons\cfgfunctions.hpp"
+		#include "client\systems\HUD\cfgfunctions.hpp"
 	};
 
 	#include "client\systems\stores\cfgfunctions.hpp"
@@ -88,4 +89,8 @@ class CfgSounds
 	  sound[] = {"sounds\scoreAdded.wss", 1, 1, 200}; 
 	  titles[] = {}; 
 	};
+};
+
+class RscTitles {
+	#include "client\systems\HUD\HUDRsc.hpp"
 };

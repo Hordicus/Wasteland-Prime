@@ -5,6 +5,20 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, 'airBeaconModel', 'Land_SatellitePhone_F'] call CBA_fnc_hashSet;
 [_config, 'groundBeaconModel', 'Land_SurvivalRadio_F'] call CBA_fnc_hashSet;
 
+[_config, 'HUDServerInfo', format['
+	<t font="EtelkaNarrowMediumPro" color="#80FFFFFF">
+	<t size="2">%1</t><br />
+	%2<br />
+	%3<br />
+	%4<br />
+	</t>
+	',
+	'Gaming Community',
+	'Server Info',
+	'Community Info #1',
+	'Community Info #2'
+]] call CBA_fnc_hashSet;
+
 [_config, 'buildingStore', [
 	["Concrete", [
 		["", "Land_CncBarrier_F", 100],
