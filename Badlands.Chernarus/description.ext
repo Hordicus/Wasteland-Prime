@@ -58,6 +58,7 @@ class CfgFunctions {
 		#include "client\systems\generalStore\cfgfunctions.hpp"
 		#include "client\systems\logisticsAddons\cfgfunctions.hpp"
 		#include "client\systems\HUD\cfgfunctions.hpp"
+		#include "client\systems\playerActions\cfgfunctions.hpp"
 	};
 
 	#include "client\systems\stores\cfgfunctions.hpp"
