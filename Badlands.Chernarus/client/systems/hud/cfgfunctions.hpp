@@ -6,4 +6,6 @@ class HUD {
 	
 	file = "client\systems\hud\functions";
 	class actionText{};
+	class drawMapIcons{};
+	class trackMapMouse{};
 };

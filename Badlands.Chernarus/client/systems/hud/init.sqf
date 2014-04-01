@@ -159,6 +159,10 @@
 			true
 		} count _vehicles;
 	}];
+	
+	mapCursorTarget = objNull;
+	(findDisplay 12 displayCtrl 51) ctrlAddEventHandler ["MouseMoving", BL_fnc_trackMapMouse];
+	(findDisplay 12 displayCtrl 51) ctrlAddEventHandler ["Draw", BL_fnc_DrawMapIcons];
 		
 	private ["_role","_img","_damageColor","_damagePercent","_height"];
 	while { true } do {
