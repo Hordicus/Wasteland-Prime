@@ -107,3 +107,27 @@ player addEventHandler ["respawn", {
 		['groundBeacon'] call BL_fnc_removeInventoryItem;
 	}] call BL_fnc_animDoWork;
 }] call BL_fnc_addInventoryType;
+
+['Pick up Ground Beacon',
+{(_this select 0) isKindOf ('groundBeaconModel' call BL_fnc_config) && (count crew (_this select 0)) == 0 && !BL_animDoWorkInProgress},
+{
+	[5, _this, {
+		if ( !isNull (_this select 0) ) then {
+			(_this select 0) call BL_fnc_deleteVehicle;
+			['groundBeacon'] call BL_fnc_addInventoryItem;
+		};
+	}] call BL_fnc_animDoWork;
+}
+] call BL_fnc_addAction;
+
+['Pick up Air Beacon',
+{(_this select 0) isKindOf ('airBeaconModel' call BL_fnc_config) && (count crew (_this select 0)) == 0 && !BL_animDoWorkInProgress},
+{
+	[5, _this, {
+		if ( !isNull (_this select 0) ) then {
+			(_this select 0) call BL_fnc_deleteVehicle;
+			['airBeacon'] call BL_fnc_addInventoryItem;
+		};
+	}] call BL_fnc_animDoWork;
+}
+] call BL_fnc_addAction;
