@@ -13,6 +13,8 @@ CREATE TABLE `players` (
   `last_login` datetime DEFAULT NULL,
   `animation` varchar(200) DEFAULT NULL,
   `direction` smallint(6) DEFAULT '0',
+  `money` int(11) DEFAULT '0',
+  `playerInv` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uid_UNIQUE` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

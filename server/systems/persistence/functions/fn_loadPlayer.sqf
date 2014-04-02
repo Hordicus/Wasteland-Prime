@@ -4,7 +4,7 @@ _playerUID = getPlayerUID _player;
 
 diag_log format['Loading player with UID %1', _playerUID];
 
-["SELECT `damage`, `pos_x`, `pos_y`, `pos_z`, `gear`, `animation`, `direction` FROM `players` WHERE `uid` = '%1'", [_playerUID], [_player, _playerUID], {
+["SELECT `damage`, `pos_x`, `pos_y`, `pos_z`, `gear`, `animation`, `direction`, `money`, `playerInv` FROM `players` WHERE `uid` = '%1'", [_playerUID], [_player, _playerUID], {
 	private ['_result', '_player'];
 	_result = _this select 0 select 0;
 	_player = _this select 1 select 0;
@@ -18,6 +18,9 @@ diag_log format['Loading player with UID %1', _playerUID];
 			_result select 2,
 			_result select 3
 		];
+		
+		_player setVariable ['money', _result select 7, true];
+		_player setVariable ['BL_playerInv', _result select 8, true];
 		
 		PVAR_playerLoaded = [
 			_result select 4,
