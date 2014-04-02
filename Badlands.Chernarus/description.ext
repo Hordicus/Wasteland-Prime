@@ -32,6 +32,7 @@ class CfgFunctions {
 			class animDoWork{};
 			class systemChat{};
 			class createVehicle{};
+			class deleteVehicle{};
 			class config {
 				file = "config\config.sqf";
 			};

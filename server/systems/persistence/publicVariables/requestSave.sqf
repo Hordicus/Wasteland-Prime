@@ -19,7 +19,7 @@
 				[_obj] call BL_fnc_saveVehicle;
 			}
 			else {
-				[_obj] call BL_fnc_deleteVehicle;
+				[_obj] call BL_fnc_deleteVehicleDB;
 			};
 		};
 	};

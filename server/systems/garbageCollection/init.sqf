@@ -26,13 +26,13 @@
 					// Vehicle is in town
 					if ( !canMove _x || fuel _x < 0.1 ) then {
 						deleteVehicle _x;
-						[_x] call BL_fnc_deleteVehicle;
+						[_x] call BL_fnc_deleteVehicleDB;
 					};
 				}
 				else {
 					// Not in town... probably (hopefully) abandoned
 					deleteVehicle _x;
-					[_x] call BL_fnc_deleteVehicle;
+					[_x] call BL_fnc_deleteVehicleDB;
 				};
 			};			
 		} forEach ((getPosATL mapCenter) nearEntities [_townCarClasses, 100000]);
@@ -57,7 +57,7 @@
 			if ( (_vehPos distance (_x getVariable 'originalSpawnPoint')) > 10 ) then {
 				if (count crew _x == 0 && {time - _lastUsed >= (30 * 60)} && { count ([_vehPos, _detectionRange] call BL_fnc_nearUnits) == 0 }) then {
 					deleteVehicle _x;
-					[_x] call BL_fnc_deleteVehicle;
+					[_x] call BL_fnc_deleteVehicleDB;
 				};
 			};			
 		} forEach ((getPosATL mapCenter) nearEntities [_rareCarClasses, 100000]);
@@ -67,7 +67,7 @@
 			if ( !alive _x ) then {
 				if ( count ([getPosATL _x, _detectionRange] call BL_fnc_nearUnits) == 0 ) then {
 					deleteVehicle _x;
-					[_x] call BL_fnc_deleteVehicle;
+					[_x] call BL_fnc_deleteVehicleDB;
 				};
 			};
 		} forEach ((entities "LandVehicle") + (entities "Air"));
