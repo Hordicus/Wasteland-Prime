@@ -1,5 +1,6 @@
 #include "functions\macro.sqf"
 _dialog = _this select 0;
+BL_playerSpawning = true;
 
 // Prevent closing of dialog using ESC
 _dialog displayAddEventHandler ["KeyDown", {

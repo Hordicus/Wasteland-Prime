@@ -15,6 +15,9 @@ playerRespawnOptions = [[], []] call CBA_fnc_hashCreate;
 // Set default for BL_spawnBeacons (publicVariable)
 BL_spawnBeacons = missionNamespace getVariable ['BL_spawnBeacons', []];
 
+// True when respawnDialog is open, false after player has been spawned.
+BL_playerSpawning = false;
+
 "BL_spawnBeacons" addPublicVariableEventHandler {
 	[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
 	['respawnDialogUpdate'] call CBA_fnc_localEvent;
