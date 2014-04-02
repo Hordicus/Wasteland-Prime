@@ -8,9 +8,13 @@
 	
 	_allowedClasses = [[] call BL_fnc_persistenceConfig, 'allowedClasses'] call CBA_fnc_hashGet;
 	
-	if ( _class in _allowedClasses && _type in ['basePart','beacon']) then {
+	if ( _class in _allowedClasses && _type in ['basePart','beacon','veh']) then {
 		_veh = createVehicle [_class, _position, [], 0, "CAN_COLLIDE"];
 		[_veh, _type] call BL_fnc_trackVehicle;
+		
+		if ( _veh isKindOf "UAV_01_base_F" ) then {
+			createVehicleCrew _veh;
+		};
 		
 		PVAR_createVehicleResponse = _veh;
 		(owner _requestedBy) publicVariableClient "PVAR_createVehicleResponse";

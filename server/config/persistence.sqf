@@ -9,14 +9,19 @@ _blConfig = [] call BL_fnc_config;
 {
 	{
 		_allowedClasses set [count _allowedClasses, _x select 1];
+		true
 	} count (_x select 1);
 } count ([_blConfig, 'buildingStore'] call CBA_fnc_hashGet);
 
 
 // Players need to be able to create spawn beacons
-
 _allowedClasses set [count _allowedClasses, [_blConfig, 'airBeaconModel'] call CBA_fnc_hashGet];
 _allowedClasses set [count _allowedClasses, [_blConfig, 'groundBeaconModel'] call CBA_fnc_hashGet];
+
+// Quadcopter classes. You can buy them from the general store.
+_allowedClasses set [count _allowedClasses, "I_UAV_01_F"];
+_allowedClasses set [count _allowedClasses, "O_UAV_01_F"];
+_allowedClasses set [count _allowedClasses, "B_UAV_01_F"];
 
 [_config, 'allowedClasses', _allowedClasses] call CBA_fnc_hashSet;
 
