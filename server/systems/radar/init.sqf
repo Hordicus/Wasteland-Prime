@@ -34,7 +34,7 @@ radarState = [];
 		_loc = _x select 0;
 		_radius = _x select 1;
 
-		if ( !isNil {radarState select _forEachIndex} ) then {
+		if ( count radarState >= _forEachIndex && {!isNil {radarState select _forEachIndex}} ) then {
 			_nearUnits = radarState select _forEachIndex;
 			if ( count _nearUnits > 0 ) then {
 				_eventType = _x select 2;
@@ -66,7 +66,7 @@ radarState = [];
 			
 			_nearUnits = [_loc, _radius] call BL_fnc_nearUnits;
 			
-			if ( isNil {radarState select _forEachIndex} ) then {
+			if ( count radarState < _forEachIndex || {isNil {radarState select _forEachIndex}} ) then {
 				radarState set [_forEachIndex, []];
 			};
 			
