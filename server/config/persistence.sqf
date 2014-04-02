@@ -11,6 +11,7 @@ _blConfig = [] call BL_fnc_config;
 		_allowedClasses set [count _allowedClasses, _x select 1];
 		true
 	} count (_x select 1);
+	true
 } count ([_blConfig, 'buildingStore'] call CBA_fnc_hashGet);
 
 
@@ -22,6 +23,10 @@ _allowedClasses set [count _allowedClasses, [_blConfig, 'groundBeaconModel'] cal
 _allowedClasses set [count _allowedClasses, "I_UAV_01_F"];
 _allowedClasses set [count _allowedClasses, "O_UAV_01_F"];
 _allowedClasses set [count _allowedClasses, "B_UAV_01_F"];
+
+_allowedClasses set [count _allowedClasses, "I_UAV_02_CAS_F"];
+_allowedClasses set [count _allowedClasses, "O_UAV_02_CAS_F"];
+_allowedClasses set [count _allowedClasses, "B_UAV_02_CAS_F"];
 
 [_config, 'allowedClasses', _allowedClasses] call CBA_fnc_hashSet;
 

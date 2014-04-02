@@ -38,7 +38,8 @@ _config = [] call CBA_fnc_hashCreate;
 	["General Store", [
 		["Air Beacon", 8000, "Air beacon description.", {'airBeacon' call BL_fnc_addInventoryItem;}],
 		["Ground Beacon", 4000, "Ground beacon description.", {'groundBeacon' call BL_fnc_addInventoryItem;}],
-		["Quadcopter UAV", 4000, "Quadcopter description.", {'quadcopter' call BL_fnc_addInventoryItem;}]
+		["Quadcopter UAV", 4000, "Quadcopter description.", {'quadcopter' call BL_fnc_addInventoryItem;}],
+		["K40 Ababil-3 UAV", 4000, "K40 Ababil-3 description.", {'ababil' call BL_fnc_addInventoryItem;}]
 	]]
 ]] call CBA_fnc_hashSet;
 
