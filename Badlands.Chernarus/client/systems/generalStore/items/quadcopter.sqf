@@ -15,7 +15,7 @@
 			player connectTerminalToUav objNull;
 			player connectTerminalToUav _uav;
 			activeUAV = _uav;
-		}] call BL_fnc_createVehicle;
+		}, "CAN_COLLIDE", true] call BL_fnc_createVehicle;
 		
 		['quadcopter'] call BL_fnc_removeInventoryItem;
 	}] call BL_fnc_animDoWork;
@@ -28,6 +28,18 @@
 	}] call BL_fnc_animDoWork;
 }
 ] call BL_fnc_addInventoryType;
+
+['Pick up Quadcopter UAV',
+{(_this select 0) isKindOf "UAV_01_base_F" && (count crew (_this select 0)) == 0 && !BL_animDoWorkInProgress},
+{
+	[5, _this, {
+		if ( !isNull (_this select 0) ) then {
+			(_this select 0) call BL_fnc_deleteVehicle;
+			['quadcopter'] call BL_fnc_addInventoryItem;
+		};
+	}] call BL_fnc_animDoWork;
+},
+5] call BL_fnc_addAction;
 
 [] spawn {
 	waitUntil {!isNull player && player == player};

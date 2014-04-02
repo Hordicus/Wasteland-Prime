@@ -4,6 +4,7 @@
 	_position    = [_this select 1, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 	_type        = [_this select 1, 3, "veh", [""]] call BIS_fnc_param;
 	_special     = [_this select 1, 4, "CAN_COLLIDE", [""]] call BIS_fnc_param;
+	_withCrew    = [_this select 1, 5, false, [false]] call BIS_fnc_param;
 	
 	if ( !isPlayer _requestedBy ) exitwith{};
 	
@@ -13,7 +14,7 @@
 		_veh = createVehicle [_class, _position, [], 0, _special];
 		[_veh, _type] call BL_fnc_trackVehicle;
 		
-		if ( _veh isKindOf "UAV_01_base_F" || _veh isKindOf  "UAV_02_base_F" ) then {
+		if ( (_veh isKindOf "UAV_01_base_F" || _veh isKindOf  "UAV_02_base_F") && _withCrew ) then {
 			createVehicleCrew _veh;
 		};
 		
