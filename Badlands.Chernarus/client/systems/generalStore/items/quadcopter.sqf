@@ -1,6 +1,4 @@
-['quadcopter', 'Quadcopter UAV', [],
-// Use
-{
+['quadcopter', 'Quadcopter UAV', "I_UAV_01_F", [], {
 	[15, [], {
 		_items = (side player) call {
 			if ( _this == resistance ) exitwith {["I_UavTerminal", "I_UAV_01_F"]};
@@ -19,27 +17,7 @@
 		
 		['quadcopter'] call BL_fnc_removeInventoryItem;
 	}] call BL_fnc_animDoWork;
-},
-// Drop
-{
-	[5, [], {
-		["I_UAV_01_F", getPosATL player, "veh"] call BL_fnc_createVehicle;
-		['quadcopter'] call BL_fnc_removeInventoryItem;
-	}] call BL_fnc_animDoWork;
-}
-] call BL_fnc_addInventoryType;
-
-['Pick up Quadcopter UAV',
-{(_this select 0) isKindOf "UAV_01_base_F" && (count crew (_this select 0)) == 0 && !BL_animDoWorkInProgress},
-{
-	[5, _this, {
-		if ( !isNull (_this select 0) ) then {
-			(_this select 0) call BL_fnc_deleteVehicle;
-			['quadcopter'] call BL_fnc_addInventoryItem;
-		};
-	}] call BL_fnc_animDoWork;
-},
-5] call BL_fnc_addAction;
+}] call BL_fnc_addInventoryType;
 
 [] spawn {
 	waitUntil {!isNull player && player == player};

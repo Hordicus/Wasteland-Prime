@@ -8,7 +8,7 @@
 	
 	_allowedClasses = [[] call BL_fnc_persistenceConfig, 'allowedClasses'] call CBA_fnc_hashGet;
 	
-	if ( _class in _allowedClasses && _type in ['basePart','beacon','veh']) then {
+	if ( _class in _allowedClasses && _type in ['basePart','beacon','invItem']) then {
 		deleteVehicle _veh;
 		_veh call BL_fnc_deleteVehicleDB;
 	

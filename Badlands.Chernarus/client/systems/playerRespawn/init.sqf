@@ -80,54 +80,16 @@ player addEventHandler ["respawn", {
 };
 
 // Register beacon types with playerMenu
-['airBeacon', 'Air Beacon', [], {
+['airBeacon', 'Air Beacon', 'airBeaconModel' call BL_fnc_config, [], {
 	[15, [], {
 		['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
 		['airBeacon'] call BL_fnc_removeInventoryItem;
 	}] call BL_fnc_animDoWork;
-},
-{
-	[5, [], {
-		_model = 'airBeaconModel' call BL_fnc_config;
-		createVehicle [_model, getPosATL player, [], 0, "CAN_COLLIDE"];
-		['airBeacon'] call BL_fnc_removeInventoryItem;
-	}] call BL_fnc_animDoWork;
 }] call BL_fnc_addInventoryType;
 
-['groundBeacon', 'Ground Beacon', [], {
+['groundBeacon', 'Ground Beacon', 'groundBeaconModel' call BL_fnc_config, [], {
 	[15, [], {
 		['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
 		['groundBeacon'] call BL_fnc_removeInventoryItem;
 	}] call BL_fnc_animDoWork;
-},
-{
-	[5, [], {
-		_model = 'groundBeaconModel' call BL_fnc_config;
-		createVehicle [_model, getPosATL player, [], 0, "CAN_COLLIDE"];
-		['groundBeacon'] call BL_fnc_removeInventoryItem;
-	}] call BL_fnc_animDoWork;
 }] call BL_fnc_addInventoryType;
-
-['Pick up Ground Beacon',
-{(_this select 0) isKindOf ('groundBeaconModel' call BL_fnc_config) && (count crew (_this select 0)) == 0 && !BL_animDoWorkInProgress},
-{
-	[5, _this, {
-		if ( !isNull (_this select 0) ) then {
-			(_this select 0) call BL_fnc_deleteVehicle;
-			['groundBeacon'] call BL_fnc_addInventoryItem;
-		};
-	}] call BL_fnc_animDoWork;
-}
-] call BL_fnc_addAction;
-
-['Pick up Air Beacon',
-{(_this select 0) isKindOf ('airBeaconModel' call BL_fnc_config) && (count crew (_this select 0)) == 0 && !BL_animDoWorkInProgress},
-{
-	[5, _this, {
-		if ( !isNull (_this select 0) ) then {
-			(_this select 0) call BL_fnc_deleteVehicle;
-			['airBeacon'] call BL_fnc_addInventoryItem;
-		};
-	}] call BL_fnc_animDoWork;
-}
-] call BL_fnc_addAction;

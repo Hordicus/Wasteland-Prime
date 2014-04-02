@@ -13,5 +13,5 @@ if ( _btn == 'use' ) then {
 	_params call (_info select 3);
 }
 else {
-	_params call (_info select 4);
+	_info call BL_fnc_dropInventoryItem;
 };

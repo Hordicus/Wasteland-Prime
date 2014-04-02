@@ -31,5 +31,6 @@ class playerMenu {
 	class removeInventoryType{};
 	class addInventoryItem{};
 	class removeInventoryItem{};
+	class dropInventoryItem{};
 	class updatePlayerInv{};
 };

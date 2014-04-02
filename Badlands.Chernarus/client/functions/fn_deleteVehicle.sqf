@@ -1,7 +1,7 @@
 private ["_obj","_cbArgs","_cb"];
 _obj    = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
-_cbArgs   = [_this, 3, [], [[]]] call BIS_fnc_param;
-_cb       = [_this, 4, {}, [{}]] call BIS_fnc_param;
+_cbArgs   = [_this, 1, [], [[]]] call BIS_fnc_param;
+_cb       = [_this, 2, {}, [{}]] call BIS_fnc_param;
 
 PVAR_deleteVehicle = [player, _obj];
 publicVariableServer "PVAR_deleteVehicle";
