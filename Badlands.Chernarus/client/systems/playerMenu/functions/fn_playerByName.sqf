@@ -13,7 +13,7 @@
 
 private ['_player_name', '_players', '_unit'];
 _player_name = [_this, 0, "", [""]] call BIS_fnc_param;
-_players   = [_this, 1, allUnits, [[]]] call BIS_fnc_param;
+_players   = [_this, 1, playableUnits, [[]]] call BIS_fnc_param;
 
 _unit = objNull;
 

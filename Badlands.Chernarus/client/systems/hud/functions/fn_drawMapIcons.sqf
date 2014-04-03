@@ -26,7 +26,7 @@ _vehicles = [];
 		};
 	};
 	true
-} count allUnits;
+} count (playableUnits + allUnitsUAV);
 
 {
 	_this select 0 drawIcon [

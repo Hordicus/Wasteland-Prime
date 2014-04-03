@@ -20,7 +20,7 @@ _spawnInVehicle = {
 	closeDialog respawnDialogIDD;
 };
 
-_friendlies = allUnits call BL_fnc_filterFriendly;
+_friendlies = playableUnits call BL_fnc_filterFriendly;
 _airVehicles = [];
 _result = [];
 {

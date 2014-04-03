@@ -12,4 +12,5 @@ _men      = _men - _animals; // Why are Animals of type Man?
 	_men = _men + _crew;
 } count _vehicles;
 
-_men
+// All units found minus AI
+(_men - (allUnits - playableUnits))

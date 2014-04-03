@@ -89,6 +89,7 @@
 						if ( _this == "STAND" ) exitwith{1.2};
 						if ( _this == "CROUCH" ) exitwith{0.8};
 						if ( _this == "PRONE" ) exitwith{0.2};
+						0
 					};
 				
 					_loc = visiblePosition _x;
@@ -123,7 +124,7 @@
 				};
 			};
 			true
-		} count allUnits;
+		} count (playableUnits + allUnitsUAV);
 		
 		{
 			drawIcon3D [

@@ -22,7 +22,7 @@ _leaveGrp ctrlShow false;
 			_allPlayers lbSetPicture [_index, "client\systems\playerMenu\icons\inviteReceived.paa"];
 		};
 	};
-} forEach allUnits;
+} forEach playableUnits;
 
 if ( count units group player > 1 ) then {
 	_leaveGrp ctrlShow true;
