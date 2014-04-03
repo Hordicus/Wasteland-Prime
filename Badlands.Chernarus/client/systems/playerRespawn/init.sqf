@@ -20,7 +20,6 @@ if ( !hasInterface ) exitwith {};
 // Towns
 playerRespawn_towns = [[], "EMPTY"] call CBA_fnc_hashCreate;
 playerRespawn_beacons = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
-playerRespawn_lastDeath = getPosATL mapCenter;
 
 playerRespawnPage = 0;
 playerRespawnOptionEventHandlers = [];
@@ -33,49 +32,50 @@ BL_spawnBeacons = missionNamespace getVariable ['BL_spawnBeacons', []];
 
 // True when respawnDialog is open, false after player has been spawned.
 BL_playerSpawning = false;
-
-["radarUpdate", {
-	private ["_town", "_players", "_state", "_pos"];
-	
-	_players = _this select 0;
-	_town = _this select 1 select 0;
-	_pos = _this select 1 select 1;
-	_state = [_players] call BL_fnc_friendlyState;
-	
-	[playerRespawn_towns, _town, [_players, _state, _pos]] call CBA_fnc_hashSet;
-	[playerRespawnOptions, 'towns', [playerRespawn_towns] call BL_fnc_townRespawnOptions] call CBA_fnc_hashSet;
-	
-	['respawnDialogUpdate'] call CBA_fnc_localEvent;
-}] call CBA_fnc_addEventHandler;
-
-["beaconUpdate", {
-	private ['_players', '_ownerUID', '_state'];
-	_players  = _this select 0;
-	_ownerUID = _this select 1 select 0;
-	_state = [_players] call BL_fnc_friendlyState;
-	
-	[playerRespawn_beacons, _ownerUID, [_players, _state]] call CBA_fnc_hashSet;
-	[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
-	
-	['respawnDialogUpdate'] call CBA_fnc_localEvent;
-}] call CBA_fnc_addEventHandler;
-
-['respawnDialogUpdate', {
-	if !( isNull (findDisplay respawnDialogIDD)) then {
-		_options = [];
-		{
-			_options = _options + _x;
-		} count (playerRespawnOptions select 2);
-
-		[_options] call BL_fnc_showRespawnOptions;
-	};
-}] call CBA_fnc_addEventHandler;
-
-// Make beacons emit sound
 [] spawn {
 	waitUntil {!isNull player && player == player};
 	waitUntil{!isNil "BIS_fnc_init"};
 	waitUntil {!(isNull (findDisplay 46))};
+	
+	playerRespawn_lastDeath = getPosATL mapCenter;
+
+	["radarUpdate", {
+		private ["_town", "_players", "_state", "_pos"];
+		
+		_players = _this select 0;
+		_town = _this select 1 select 0;
+		_pos = _this select 1 select 1;
+		_state = [_players] call BL_fnc_friendlyState;
+		
+		[playerRespawn_towns, _town, [_players, _state, _pos]] call CBA_fnc_hashSet;
+		[playerRespawnOptions, 'towns', [playerRespawn_towns] call BL_fnc_townRespawnOptions] call CBA_fnc_hashSet;
+		
+		['respawnDialogUpdate'] call CBA_fnc_localEvent;
+	}] call CBA_fnc_addEventHandler;
+
+	["beaconUpdate", {
+		private ['_players', '_ownerUID', '_state'];
+		_players  = _this select 0;
+		_ownerUID = _this select 1 select 0;
+		_state = [_players] call BL_fnc_friendlyState;
+		
+		[playerRespawn_beacons, _ownerUID, [_players, _state]] call CBA_fnc_hashSet;
+		[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
+		
+		['respawnDialogUpdate'] call CBA_fnc_localEvent;
+	}] call CBA_fnc_addEventHandler;
+
+	['respawnDialogUpdate', {
+		if !( isNull (findDisplay respawnDialogIDD)) then {
+			_options = [];
+			{
+				_options = _options + _x;
+			} count (playerRespawnOptions select 2);
+
+			[_options] call BL_fnc_showRespawnOptions;
+		};
+	}] call CBA_fnc_addEventHandler;
+
 	"BL_spawnBeacons" addPublicVariableEventHandler {
 		[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
 		['respawnDialogUpdate'] call CBA_fnc_localEvent;
@@ -89,6 +89,7 @@ BL_playerSpawning = false;
 		createDialog "respawnDialog";
 	}];
 	
+	// Make beacons emit sound
 	while { true } do {
 		{
 			(_x select 2) say3D "beacon";
