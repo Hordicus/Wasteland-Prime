@@ -51,6 +51,7 @@
 					(_this select 0) setVariable ['GC_lastUsed', time];
 				}];
 				
+				_x setVariable ['GC_lastUsed', time];
 				_x setVariable ['GC_tracked', true];
 			};
 			
@@ -92,7 +93,7 @@
 					else {
 						// Still guns on the body, hide in 5 min.
 						_x spawn {
-							sleep 60 * 5;
+							sleep (60 * 5);
 							hideBody _this;
 							sleep 1;
 							deleteVehicle _this;
