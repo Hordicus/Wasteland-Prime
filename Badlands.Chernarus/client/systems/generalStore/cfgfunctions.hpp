@@ -1,7 +1,7 @@
 class generalStore {
 	class generalStoreInit {
 		file = "client\systems\generalStore\init.sqf";
-		postInit = 1;
+		preInit = 1;
 	};
 	
 	file = "client\systems\generalStore\functions";

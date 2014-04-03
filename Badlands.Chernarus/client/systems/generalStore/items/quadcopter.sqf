@@ -20,6 +20,8 @@
 }] call BL_fnc_addInventoryType;
 
 [] spawn {
+	if ( !hasInterface ) exitwith{};
+	
 	waitUntil {!isNull player && player == player};
 	waitUntil{!isNil "BIS_fnc_init"};
 	waitUntil {!(isNull (findDisplay 46))};

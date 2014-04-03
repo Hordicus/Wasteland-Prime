@@ -1,4 +1,20 @@
 #include "functions\macro.sqf"
+// Register beacon types with playerMenu
+['airBeacon', 'Air Beacon', 'airBeaconModel' call BL_fnc_config, [], {
+	[15, [], {
+		['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
+		['airBeacon'] call BL_fnc_removeInventoryItem;
+	}] call BL_fnc_animDoWork;
+}] call BL_fnc_addInventoryType;
+
+['groundBeacon', 'Ground Beacon', 'groundBeaconModel' call BL_fnc_config, [], {
+	[15, [], {
+		['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
+		['groundBeacon'] call BL_fnc_removeInventoryItem;
+	}] call BL_fnc_animDoWork;
+}] call BL_fnc_addInventoryType;
+
+if ( !hasInterface ) exitwith {};
 
 // Keep track of towns and beacons
 // Towns
@@ -22,14 +38,6 @@ BL_playerSpawning = false;
 	[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
 	['respawnDialogUpdate'] call CBA_fnc_localEvent;
 };
-
-player addEventHandler ["killed", {
-	playerRespawn_lastDeath = getPosATL (_this select 0);
-}];
-
-player addEventHandler ["respawn", {
-	createDialog "respawnDialog";
-}];
 
 ["radarUpdate", {
 	private ["_town", "_players", "_state", "_pos"];
@@ -70,6 +78,18 @@ player addEventHandler ["respawn", {
 
 // Make beacons emit sound
 [] spawn {
+	waitUntil {!isNull player && player == player};
+	waitUntil{!isNil "BIS_fnc_init"};
+	waitUntil {!(isNull (findDisplay 46))};
+	
+	player addEventHandler ["killed", {
+		playerRespawn_lastDeath = getPosATL (_this select 0);
+	}];
+
+	player addEventHandler ["respawn", {
+		createDialog "respawnDialog";
+	}];
+	
 	while { true } do {
 		{
 			(_x select 2) say3D "beacon";
@@ -78,18 +98,3 @@ player addEventHandler ["respawn", {
 		sleep 3;
 	};
 };
-
-// Register beacon types with playerMenu
-['airBeacon', 'Air Beacon', 'airBeaconModel' call BL_fnc_config, [], {
-	[15, [], {
-		['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
-		['airBeacon'] call BL_fnc_removeInventoryItem;
-	}] call BL_fnc_animDoWork;
-}] call BL_fnc_addInventoryType;
-
-['groundBeacon', 'Ground Beacon', 'groundBeaconModel' call BL_fnc_config, [], {
-	[15, [], {
-		['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
-		['groundBeacon'] call BL_fnc_removeInventoryItem;
-	}] call BL_fnc_animDoWork;
-}] call BL_fnc_addInventoryType;

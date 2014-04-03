@@ -1,5 +1,5 @@
 class playerRespawnServer {
-	class playerRespawnInit {
+	class playerRespawnServerInit {
 		file = "\x\bl_server\addons\systems\playerRespawn\init.sqf";
 		preInit = 1;
 	};

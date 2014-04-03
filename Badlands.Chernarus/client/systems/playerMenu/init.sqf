@@ -5,8 +5,10 @@ BL_serverUpTime = 0;
 BL_grass = 1; // Default
 BL_enableEnv = 1;
 
-BL_playerInventoryHandlers = [];
-BL_playerInventoryCodes = [];
+BL_playerInventoryHandlers = missionNamespace getVariable ['BL_playerInventoryHandlers', []];
+BL_playerInventoryCodes = missionNamespace getVariable ['BL_playerInventoryCodes', []];
+
+if ( !hasInterface ) exitwith{};
 
 ['groupInvite', {
 	BL_groupInvites set [count BL_groupInvites, _this select 1];	

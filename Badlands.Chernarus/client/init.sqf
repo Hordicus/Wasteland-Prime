@@ -4,7 +4,6 @@ execVM 'addons\fpsFix\vehicleManager.sqf';
 waitUntil {!isNull player && player == player};
 waitUntil{!isNil "BIS_fnc_init"};
 waitUntil {!(isNull (findDisplay 46))};
-execVM 'client\systems\playerRespawn\init.sqf';
 
 [] spawn {
 	titleText ["Waiting for player data...", "BLACK", 0.01];
@@ -47,10 +46,18 @@ execVM 'client\systems\playerRespawn\init.sqf';
 
 player setVariable ['money', ('minMoney' call BL_fnc_config), true];
 player addEventHandler ["killed", {
+	// Seems to be my only option if I want a killed event without
+	// sending code...
+	['killed', _this] call CBA_fnc_globalEvent;
+
 	private ['_money', '_minMoney'];
 	_money = player getVariable ['money', 0];
 	_minMoney = ('minMoney' call BL_fnc_config);
 	if ( _money < _minMoney ) then {
 		player setVariable ['money', _minMoney, true];
 	};
+}];
+
+player addEventHandler ["respawn", {
+	['respawn', _this] call CBA_fnc_globalEvent;
 }];

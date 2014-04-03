@@ -41,6 +41,9 @@ if ( _addAct && hasInterface ) then {
 	] call BL_fnc_addAction;
 };
 
+BL_playerInventoryHandlers = missionNamespace getVariable ['BL_playerInventoryHandlers', []];
+BL_playerInventoryCodes = missionNamespace getVariable ['BL_playerInventoryCodes', []];
+
 _index = count BL_playerInventoryHandlers;
 BL_playerInventoryHandlers set [_index, [
 	_itemType,
