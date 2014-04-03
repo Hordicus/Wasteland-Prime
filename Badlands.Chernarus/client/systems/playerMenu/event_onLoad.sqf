@@ -48,3 +48,5 @@ _env = ((_this select 0) displayCtrl enableEnvironmentIDC);
 _env lbAdd "Life Disabled";
 _env lbAdd "Life Enabled";
 _env lbSetCurSel BL_enableEnv;
+
+((_this select 0) displayCtrl dropMoneyAmountIDC) ctrlSetText str (player getVariable ['money', 0]);

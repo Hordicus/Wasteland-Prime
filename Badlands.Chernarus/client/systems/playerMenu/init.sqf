@@ -36,6 +36,16 @@ if ( !hasInterface ) exitwith{};
 	BL_serverUpTime = (_this select 1);
 }] call CBA_fnc_addEventHandler;
 
+['Pick up money',
+{(_this select 0) isKindOf ('moneyModel' call BL_fnc_config) && !BL_animDoWorkInProgress },
+{
+	[5, _this, {
+		_amount = (_this select 0) getVariable ['moneyAmount', 0];
+		player setVariable ['money', _amount + (player getVariable ['money', 0]), true];
+		(_this select 0) call BL_fnc_deleteVehicle;
+	}] call BL_fnc_animDoWork;
+}] call BL_fnc_addAction;
+
 [] spawn {
 	waitUntil {!isNull player && player == player};
 	waitUntil{!isNil "BIS_fnc_init"};

@@ -28,6 +28,8 @@ _allowedClasses set [count _allowedClasses, "I_UAV_02_CAS_F"];
 _allowedClasses set [count _allowedClasses, "O_UAV_02_CAS_F"];
 _allowedClasses set [count _allowedClasses, "B_UAV_02_CAS_F"];
 
+_allowedClasses set [count _allowedClasses, [_blConfig, 'moneyModel'] call CBA_fnc_hashGet];
+
 [_config, 'allowedClasses', _allowedClasses] call CBA_fnc_hashSet;
 
 _config

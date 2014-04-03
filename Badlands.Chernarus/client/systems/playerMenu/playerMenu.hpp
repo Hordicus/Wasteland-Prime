@@ -47,6 +47,7 @@ class playerMenuDialog {
 			text = "Drop Money";
 			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 2);
 			w = safezoneW * 0.1;
+			action = "call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_clickDropMoney.sqf'";
 		};
 		
 		class dropMoneyAmount : RscEdit {
