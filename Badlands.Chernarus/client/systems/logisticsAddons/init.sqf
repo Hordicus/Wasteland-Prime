@@ -12,7 +12,7 @@
 	
 	_addActions = {
 		player addAction ['Lock Object', {
-				[5, [cursorTarget], {
+				[5, "Locking Object %1", [cursorTarget], {
 					(_this select 0) setVariable ['objectLocked', true, true];
 					(_this select 0) setVariable ['objectOwner', getPlayerUID player, true];
 					
@@ -32,7 +32,7 @@
 				BL_objectLockDoingCheck = true; // Will hide unlock option in case this takes a sec
 				private ["_doUnlock","_owner","_state","_obj"];
 				_doUnlock = {
-					[45, [(_this select 0)], {
+					[45, "Unlocking Object %1", [(_this select 0)], {
 						(_this select 0) setVariable ['objectLocked', false, true];
 						BL_objectLockDoingCheck = false;
 					

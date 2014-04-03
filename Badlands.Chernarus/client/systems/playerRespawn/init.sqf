@@ -1,14 +1,14 @@
 #include "functions\macro.sqf"
 // Register beacon types with playerMenu
 ['airBeacon', 'Air Beacon', 'airBeaconModel' call BL_fnc_config, [], {
-	[15, [], {
+	[15, "Deploying Air Beacon %1", [], {
 		['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
 		['airBeacon'] call BL_fnc_removeInventoryItem;
 	}] call BL_fnc_animDoWork;
 }] call BL_fnc_addInventoryType;
 
 ['groundBeacon', 'Ground Beacon', 'groundBeaconModel' call BL_fnc_config, [], {
-	[15, [], {
+	[15, "Deploying Ground Beacon %1", [], {
 		['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
 		['groundBeacon'] call BL_fnc_removeInventoryItem;
 	}] call BL_fnc_animDoWork;
@@ -106,7 +106,7 @@ _condition = compile format['((_this select 0) isKindOf "%1" || (_this select 0)
 ];
 ['Repack beacon', _condition,
 {
-	[60, _this, {
+	[60, "Repacking Beacon %1", _this, {
 		(format['%1Beacon', (_this select 0) getVariable 'beaconType']) call BL_fnc_addInventoryItem;
 		[_this select 0] call BL_fnc_destroySpawnBeacon;
 	}] call BL_fnc_animDoWork;
@@ -114,7 +114,7 @@ _condition = compile format['((_this select 0) isKindOf "%1" || (_this select 0)
 
 ['Destroy beacon', _condition,
 {
-	[30, _this, {
+	[30, "Destroying Beacon %1", _this, {
 		[_this select 0] call BL_fnc_destroySpawnBeacon;
 	}] call BL_fnc_animDoWork;
 }, 1] call BL_fnc_addAction;

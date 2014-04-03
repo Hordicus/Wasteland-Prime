@@ -30,11 +30,11 @@ if ( _addAct && hasInterface ) then {
 		format['Pick up %1', _itemName],
 		compile format['(_this select 0) isKindOf "%1" && (_this select 0) getVariable["BL_invDroppedItem", false]', _itemModel],
 		{
-			[5, _this, {
-				if ( !isNull (_this select 0) ) then {
-					_type = (_this select 0) getVariable 'BL_invDroppedType';
-					(_this select 0) call BL_fnc_deleteVehicle;
-					_type call BL_fnc_addInventoryItem;
+			_item = BL_playerInventoryHandlers select (BL_playerInventoryCodes find ((_this select 0) getVariable 'BL_invDroppedType'));
+			[5, (format['Picking up %1 ', _item select 1]) + '%1', [_this, _item], {
+				if ( !isNull (_this select 0 select 0) ) then {
+					(_this select 0 select 0) call BL_fnc_deleteVehicle;
+					(_this select 1 select 0) call BL_fnc_addInventoryItem;
 				};
 			}] call BL_fnc_animDoWork;
 		},

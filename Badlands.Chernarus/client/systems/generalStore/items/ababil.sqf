@@ -1,5 +1,5 @@
 ['ababil', 'K40 Ababil-3', "I_UAV_02_CAS_F", [], {
-	[15, [], {
+	[15, "Deploying K40 Ababil-3 %1", [], {
 		_items = (side player) call {
 			if ( _this == resistance ) exitwith {["I_UavTerminal", "I_UAV_02_CAS_F"]};
 			if ( _this == west ) exitwith {["B_UavTerminal", "B_UAV_02_CAS_F"]};

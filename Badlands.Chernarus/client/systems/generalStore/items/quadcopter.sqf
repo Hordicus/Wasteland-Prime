@@ -1,5 +1,5 @@
 ['quadcopter', 'Quadcopter UAV', "I_UAV_01_F", [], {
-	[15, [], {
+	[15, "Deploying Quadcopter UAV %1", [], {
 		_items = (side player) call {
 			if ( _this == resistance ) exitwith {["I_UavTerminal", "I_UAV_01_F"]};
 			if ( _this == west ) exitwith {["B_UavTerminal", "B_UAV_01_F"]};

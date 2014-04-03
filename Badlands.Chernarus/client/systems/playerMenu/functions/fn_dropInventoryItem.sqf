@@ -2,7 +2,7 @@ if ( typeName (_this select 5) == "CODE" ) then {
 	(_this select 2) call (_info select 4);
 }
 else {
-	[5, _this, {
+	[5, format["Dropping %1 ", _this select 1] + "%1", _this, {
 		private ['_1mInfront'];
 		_1mInfront = [getPosATL player, 1, getDir player] call BIS_fnc_relPos;
 		[(_this select 2), _1mInfront, 'invItem', [_this select 0], {

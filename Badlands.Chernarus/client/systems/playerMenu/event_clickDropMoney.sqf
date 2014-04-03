@@ -10,7 +10,7 @@ if ( _amountToDrop <= 0 ) exitwith {
 	hint "You have to drop more than that.";
 };
 
-[5, [_amountToDrop], {
+[5, "Dropping Money %1", [_amountToDrop], {
 	player setVariable ['money', (player getVariable ['money', 0]) - (_this select 0), true];
 	['moneyModel' call BL_fnc_config, getPosATL player, 'veh', _this, {
 		(_this select 0) setVariable ['moneyAmount', _this select 1 select 0];
