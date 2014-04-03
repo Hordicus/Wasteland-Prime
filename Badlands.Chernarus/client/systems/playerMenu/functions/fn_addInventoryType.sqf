@@ -37,7 +37,8 @@ if ( _addAct && hasInterface ) then {
 					_type call BL_fnc_addInventoryItem;
 				};
 			}] call BL_fnc_animDoWork;
-		}
+		},
+		1
 	] call BL_fnc_addAction;
 };
 

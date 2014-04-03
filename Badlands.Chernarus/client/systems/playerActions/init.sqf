@@ -5,6 +5,8 @@ call compile preprocessFileLineNumbers "client\systems\playerActions\actions\rep
 
 [] spawn {
 	BL_playerActionsIDs = [];
+	BL_playerActionTargets = [];
+	BL_playerActionsShowProximity = [];
 	_distance = 5;
 
 	waitUntil {!isNull player && player == player};
@@ -18,6 +20,42 @@ call compile preprocessFileLineNumbers "client\systems\playerActions\actions\rep
 		} count BL_playerActionsIDs;
 		BL_playerActionsIDs = [];
 	}];
+	
+	_addAction = {
+		private ['_actionTarget', '_actionIndex', '_actionProximity'];
+		_actionTarget = _this select 0;
+		_actionIndex = _this select 1;
+		_actionProximity = _this select 2;
+		
+		BL_playerActionsShowProximity set [_actionIndex, _actionProximity];
+		BL_playerActionTargets set [_actionIndex, _actionTarget];
+
+		private ['_action', '_actionName'];
+		_action = _this select 3;
+		_actionName = _action select 0;
+		
+		if ( typeName _actionName == "CODE" ) then {
+			_actionName = [_actionTarget] call _actionName;
+		};
+		
+		if ( count BL_playerActionsIDs > _actionIndex && {!isNil { BL_playerActionsIDs select _actionIndex }} ) then {
+			player setUserActionText [
+				BL_playerActionsIDs select _forEachIndex,
+				_actionName
+			];
+		}
+		else {
+			BL_playerActionsIDs set [_actionIndex, player addAction [
+				_actionName,
+				BL_fnc_doPlayerAction,
+				_actionIndex,
+				(_x select 4),
+				false,
+				true,
+				"cursorTarget == BL_cursorTarget || BL_playerActionsShowProximity select _actionIndex"
+			]];
+		};
+	};
 
 	while { true } do {
 		_cameraPosition = eyePos player;
@@ -30,48 +68,40 @@ call compile preprocessFileLineNumbers "client\systems\playerActions\actions\rep
 			BL_cursorTarget = _targets select 0;
 		}
 		else {
-			if ( cursorTarget isKindOf "Man" && player distance cursorTarget < 5 ) then {
-				BL_cursorTarget = cursorTarget;
-			}
-			else {
-				BL_cursorTarget = objNull;
-			};
+			BL_cursorTarget = cursorTarget;
 		};
 		
 		{
-				_doShow = [BL_cursorTarget] call (_x select 1);
-				if ( _doShow ) then {
-					_actionName = _x select 0;
-					if ( typeName _actionName == "CODE" ) then {
-						_actionName = [BL_cursorTarget] call _actionName;
-					};
+			_action = _x;
+			_actionIndex = _forEachIndex;
+			
+			// Check cursorTarget
+			if ( [BL_cursorTarget] call (_x select 1) ) then {
+				[BL_cursorTarget, _forEachIndex, false, _action] call _addAction;
+			}
+			else {
+				// Try proximity
+				_proximityTarget = objNull;
+				if ( (_x select 3) >= 0 ) then {
+					{
+						if ( [_x] call (_action select 1) && _x distance player <= (_action select 3) ) exitwith {
+							_proximityTarget = _x;
+						};
+						true
+					} count (nearestObjects [getPosATL player, ["All"], _distance]);
 					
-					if ( count BL_playerActionsIDs > _forEachIndex && {!isNil { BL_playerActionsIDs select _forEachIndex }} ) then {
-						player setUserActionText [
-							BL_playerActionsIDs select _forEachIndex,
-							_actionName
-						];
-					}
-					else {
-						BL_playerActionsIDs set [_forEachIndex, player addAction [
-							_actionName,
-							BL_fnc_doPlayerAction,
-							_forEachIndex,
-							(_x select 3),
-							false,
-							true,
-							"cursorTarget == BL_cursorTarget"
-						]];
-					};
-				}
-				else {
-					if ( count BL_playerActionsIDs > _forEachIndex && {!isNil { BL_playerActionsIDs select _forEachIndex }} ) then {
-						player removeAction (BL_playerActionsIDs select _forEachIndex);
-						BL_playerActionsIDs set [_forEachIndex, nil];
+					if ( !isNull _proximityTarget ) then {
+						[_proximityTarget, _forEachIndex, true, _action] call _addAction;
 					};
 				};
-				
-				true
+			
+				if ( isNull _proximityTarget && count BL_playerActionsIDs > _forEachIndex && {!isNil { BL_playerActionsIDs select _forEachIndex }} ) then {
+					player removeAction (BL_playerActionsIDs select _forEachIndex);
+					BL_playerActionsIDs set [_forEachIndex, nil];
+				};
+			};
+			
+			true
 		} forEach BL_playerActions;
 		
 		sleep 0.3;

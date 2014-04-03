@@ -44,7 +44,7 @@ if ( !hasInterface ) exitwith{};
 		player setVariable ['money', _amount + (player getVariable ['money', 0]), true];
 		(_this select 0) call BL_fnc_deleteVehicle;
 	}] call BL_fnc_animDoWork;
-}] call BL_fnc_addAction;
+}, 1] call BL_fnc_addAction;
 
 [] spawn {
 	waitUntil {!isNull player && player == player};
