@@ -27,6 +27,11 @@
 	waitUntil {!(isNull (findDisplay 46))};
 
 	// Keep the UAV connected to the player
+	player addEventHandler ['Killed', {
+		// Seems to be more reliable then connectTerminalToUav objNull
+		getConnectedUAV (_this select 0) action ["UAVTerminalReleaseConnection", (_this select 0)];
+	}];
+	
 	player addEventHandler ['Respawn', {
 		if ( !isNil "activeUAV" && {!isNull activeUAV} ) then {
 			_this spawn {
@@ -38,8 +43,6 @@
 					if ( _this == east ) exitwith {"O_UavTerminal"};
 				};
 				
-				(_this select 1) connectTerminalToUav objNull;
-
 				(_this select 0) linkItem _term;
 				(_this select 0) connectTerminalToUav activeUAV;
 			};
