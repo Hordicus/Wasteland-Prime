@@ -5,4 +5,5 @@
 
 	
 	execVM 'client\systems\miscellaneous\saveBeforeAbort.sqf';
+	execVM 'client\systems\miscellaneous\noThermals.sqf';
 };
