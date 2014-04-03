@@ -15,7 +15,7 @@
 			_this select 0
 		] call BL_fnc_createBeaconServer;
 		
-		(_this select 0) setVariable ['beaconType', _this select 1 select 0];
-		(_this select 0) setVariable ['objectOwner', _this select 1 select 1];
+		(_this select 0) setVariable ['beaconType', _this select 1 select 0, true];
+		(_this select 0) setVariable ['objectOwner', _this select 1 select 1, true];
 	}
 ]] call BL_fnc_persRegisterTypeHandler;

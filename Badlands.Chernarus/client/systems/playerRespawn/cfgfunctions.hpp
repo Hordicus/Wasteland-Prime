@@ -14,4 +14,5 @@ class playerRespawn {
 	class showPresets{};
 	class showActiveLoadout{};
 	class playerSetup{};
+	class destroySpawnBeacon{};
 };

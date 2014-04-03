@@ -9,8 +9,8 @@ if ( isNull _beacon ) then {
 	_model = (format['%1BeaconModel', _type]) call BL_fnc_config;
 	_beacon = createVehicle [_model, _loc, [], 0, "CAN_COLLIDE"];
 	_beacon setDir _dir;
-	_beacon setVariable ['objectOwner', _ownerUID];
-	_beacon setVariable ['beaconType', _type];
+	_beacon setVariable ['objectOwner', _ownerUID, true];
+	_beacon setVariable ['beaconType', _type, true];
 
 	[_beacon, 'spawnBeacon'] call BL_fnc_trackVehicle;
 	[_beacon] call BL_fnc_saveVehicle;

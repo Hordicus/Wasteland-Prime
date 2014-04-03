@@ -34,11 +34,6 @@ BL_spawnBeacons = missionNamespace getVariable ['BL_spawnBeacons', []];
 // True when respawnDialog is open, false after player has been spawned.
 BL_playerSpawning = false;
 
-"BL_spawnBeacons" addPublicVariableEventHandler {
-	[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
-	['respawnDialogUpdate'] call CBA_fnc_localEvent;
-};
-
 ["radarUpdate", {
 	private ["_town", "_players", "_state", "_pos"];
 	
@@ -81,7 +76,11 @@ BL_playerSpawning = false;
 	waitUntil {!isNull player && player == player};
 	waitUntil{!isNil "BIS_fnc_init"};
 	waitUntil {!(isNull (findDisplay 46))};
-	
+	"BL_spawnBeacons" addPublicVariableEventHandler {
+		[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
+		['respawnDialogUpdate'] call CBA_fnc_localEvent;
+	};
+
 	player addEventHandler ["killed", {
 		playerRespawn_lastDeath = getPosATL (_this select 0);
 	}];
@@ -98,3 +97,23 @@ BL_playerSpawning = false;
 		sleep 3;
 	};
 };
+
+// Repack/destroy beacon
+_condition = compile format['((_this select 0) isKindOf "%1" || (_this select 0) isKindOf "%2") && !isNil {(_this select 0) getVariable "beaconType"}',
+	'airBeaconModel' call BL_fnc_config,
+	'groundBeaconModel' call BL_fnc_config
+];
+['Repack beacon', _condition,
+{
+	[60, _this, {
+		(format['%1Beacon', (_this select 0) getVariable 'beaconType']) call BL_fnc_addInventoryItem;
+		[_this select 0] call BL_fnc_destroySpawnBeacon;
+	}] call BL_fnc_animDoWork;
+}, 1] call BL_fnc_addAction;
+
+['Destroy beacon', _condition,
+{
+	[30, _this, {
+		[_this select 0] call BL_fnc_destroySpawnBeacon;
+	}] call BL_fnc_animDoWork;
+}, 1] call BL_fnc_addAction;
