@@ -10,7 +10,7 @@
 	
 	_allowedClasses = [[] call BL_fnc_persistenceConfig, 'allowedClasses'] call CBA_fnc_hashGet;
 	
-	if ( _class in _allowedClasses && _type in ['basePart','beacon','invItem']) then {
+	if ( _class in _allowedClasses && _type in ['basePart','beacon','invItem','veh']) then {
 		_veh = createVehicle [_class, _position, [], 0, _special];
 		[_veh, _type] call BL_fnc_trackVehicle;
 		

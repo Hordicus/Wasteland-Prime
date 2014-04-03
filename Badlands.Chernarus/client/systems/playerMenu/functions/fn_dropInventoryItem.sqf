@@ -4,6 +4,7 @@ if ( typeName (_this select 5) == "CODE" ) then {
 else {
 	[5, _this, {
 		private ['_1mInfront'];
+		_1mInfront = [getPosATL player, 1, getDir player] call BIS_fnc_relPos;
 		[(_this select 2), _1mInfront, 'invItem', [_this select 0], {
 			(_this select 0) setVariable ['BL_invDroppedItem', true, true];
 			(_this select 0) setVariable ['BL_invDroppedType', (_this select 1 select 0), true];

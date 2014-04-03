@@ -10,7 +10,7 @@ _info = BL_playerInventoryHandlers select (
 _params = _info select 2;
 
 if ( _btn == 'use' ) then {
-	_params call (_info select 3);
+	_params call (_info select 4);
 }
 else {
 	_info call BL_fnc_dropInventoryItem;
