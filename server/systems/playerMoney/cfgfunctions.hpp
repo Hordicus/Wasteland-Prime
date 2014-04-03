@@ -5,5 +5,4 @@ class playerMoney_server {
 	};
 
 	file = "\x\bl_server\addons\systems\playerMoney\functions";
-	class trackPlayer{};
 };
