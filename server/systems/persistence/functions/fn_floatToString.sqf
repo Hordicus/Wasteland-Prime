@@ -1,6 +1,6 @@
 // Modified from: http://killzonekid.com/arma-scripting-tutorials-float-to-string-position-to-string/
 private ['_arr'];
-_arr = toArray str (_this % 1);
+_arr = toArray str abs (_this % 1);
 _e = _arr find 101;
 
 if ( _e >= 0 ) then {
