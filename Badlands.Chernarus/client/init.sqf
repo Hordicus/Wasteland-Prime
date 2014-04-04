@@ -14,10 +14,22 @@ waitUntil {!(isNull (findDisplay 46))};
 	
 	if ( count PVAR_playerLoaded > 0 ) then {
 		// By this point player has been restored. Give them control ASAP.
-		[player, PVAR_playerLoaded select 0] call GEAR_fnc_setLoadout;
-		player playMove (PVAR_playerLoaded select 1);
-		player setDir (PVAR_playerLoaded select 2);
-		titleFadeOut 0.01;
+		// Check if they are in spawn. If their last save was at a respawn
+		// marker they logged out dead.
+		if (
+			(getMarkerPos 'respawn_west') distance player > 100 &&
+			(getMarkerPos 'respawn_east') distance player > 100 &&
+			(getMarkerPos 'respawn_guerrila') distance player > 100
+		) then {
+			[player, PVAR_playerLoaded select 0] call GEAR_fnc_setLoadout;
+			player playMove (PVAR_playerLoaded select 1);
+			player setDir (PVAR_playerLoaded select 2);
+			titleFadeOut 0.01;
+		}
+		else {
+			titleFadeOut 0.5;
+			createDialog 'respawnDialog';
+		};
 	}
 	else {
 		titleText ["No player data found...", "BLACK", 0.01];
