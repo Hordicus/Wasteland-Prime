@@ -1,3 +1,6 @@
 [submodule "Badlands.Chernarus/logistics"]
 	path = Badlands.Chernarus/logistics
 	url = git@gitlab.djranger.com:wasteland/logistics.git
+[submodule "Badlands.Chernarus/gear"]
+	path = Badlands.Chernarus/gear
+	url = git@gitlab.djranger.com:wasteland/gear.git
