@@ -8,12 +8,14 @@ class cfgFunctions {
 		#include "systems\persistence\cfgfunctions.hpp"
 		#include "systems\playerRespawn\cfgfunctions.hpp"
 		#include "systems\weather\cfgfunctions.hpp"
+		#include "systems\missions\cfgfunctions.hpp"
 
 		class Server {
 			file = "\x\bl_server\addons\functions";
 			class nearUnits{};
 			class safeVehicleSpawn{};
 			class selectRandom{};
+			class hasLOS{};
 			
 			class playerMenuServerInit {
 				file = "\x\bl_server\addons\systems\playerMenu\init.sqf";
