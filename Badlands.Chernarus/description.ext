@@ -6,6 +6,12 @@ respawnDelay = 0;
 disabledAI = 1;
 joinUnassigned = 0;
 
+class Header {
+	gameType = Sandbox; // Game type, see 'class' columns in the table below
+	minPlayers = 1; //min # of players the mission supports
+	maxPlayers = 70; //max # of players the mission supports
+};
+
 #include "gear\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
