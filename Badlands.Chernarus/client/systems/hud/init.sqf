@@ -77,7 +77,7 @@
 	addMissionEventHandler ["Draw3D", {
 		_vehicles = [];
 		{
-			if ( _x != player && (_x in (units group player) || (playerSide in [east,west] && playerSide == side _x)) && player distance _x < 1000 ) then {
+			if ( _x != player && (_x in (units group player) || ((playerSide in [east,west] && playerSide == side _x) && player distance _x < 2000 ))  ) then {
 				if ( vehicle _x != _x ) then {
 					if !((vehicle _x) in _vehicles) then {
 						_vehicles set [count _vehicles, vehicle _x];
@@ -161,7 +161,7 @@
 		
 		{
 			_control = (uavControl _x) select 0;
-			if ( (_control in (units group player) || ((side _x) in [east,west] && playerSide == side _x)) && player distance _x < 1000 ) then {
+			if ( _control in (units group player) || (side _x in [east,west] && playerSide == side _x && player distance _x < 2000) ) then {
 				drawIcon3D [
 					friendlyIcon,
 					sideColor,
