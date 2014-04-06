@@ -114,7 +114,7 @@
 							0,
 							0,
 							0,
-							name _x,
+							format ['%1 (%2m)', name _x, round (player distance _x)],
 							2,
 							0.03,
 							"PuristaMedium"
@@ -155,6 +155,20 @@
 					];
 					true
 				} count (crew _x);
+				
+				drawIcon3D [
+					"",
+					[1,1,1,1],
+					_x modelToWorld getCenterOfMass _x,
+					0,
+					0,
+					0,
+					format['%1m', round(_x distance player)],
+					2,
+					0.03,
+					"PuristaMedium"
+				];
+
 			};
 			true
 		} count _vehicles;
@@ -188,7 +202,7 @@
 						0,
 						0,
 						0,
-						_uavName,
+						format ['%1 (%2m)', _uavName, round (player distance _x)],
 						2,
 						0.03,
 						"PuristaMedium"
