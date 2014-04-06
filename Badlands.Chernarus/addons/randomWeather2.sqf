@@ -106,38 +106,5 @@ mb_fnc_UpdateWeather = {
 	if (rw2Debug == 1) then {hint format ["Debug Updating Weather - %1\nOvercast: %2\nRain/Snow: %3\nFog: %4\nWind EW/NS: %5|%6",weatherNextName,_weatherNextOvercast,_weatherNextRainSnow,_weatherNextFog,_weatherNextWindEW,_weatherNextWindNS];};
 };
 
-if (isServer) then {
-private ["_weatherUpdateArray","_weatherUpdateForecasts"];
-// Check if there is no ParamsArray, and pick random if so, otherwise pick from paramsArray.
-      if(count paramsArray == 0) then {
-        rw2_Current_Weather = floor(random(count(weatherTemplates)));
-		} else {
-        initialWeatherParam = (paramsArray select rw2Param);
-		switch (initialWeatherParam) do{
-			case 0: {rw2_Current_Weather = 0;};    										// Clear
-            case 1: {rw2_Current_Weather = 1;};    										// Overcast
-            case 2: {rw2_Current_Weather = 2 + (floor (random 3));};  					// Rain
-            case 3: {rw2_Current_Weather = 5 + (floor (random 3));};  				 	// Fog
-            case 4: {rw2_Current_Weather = floor(random(count(weatherTemplates)));};	// Random
-        };
-	};
-	// Send out Initial Weather Variable
-	publicVariable "rw2_Current_Weather";
-	[] spawn mb_fnc_InitialWeather;
-   // Start recurring weather loop.
-    while {true} do {
-		// Pick weather template from possible forecasts for next weather update
-		sleep 10;
-		_weatherUpdateArray = weatherTemplates select rw2_Current_Weather;
-		_weatherUpdateForecasts = _weatherUpdateArray select 1;
-		rw2_Next_Weather = _weatherUpdateForecasts select floor(random(count(_weatherUpdateForecasts)));
-		publicVariable "rw2_Next_Weather";
-		sleep (('weatherCycleTime' call BL_fnc_config) - 10);
-        [[],"mb_fnc_UpdateWeather",true] spawn Bis_fnc_MP;
-		rw2_Current_Weather = rw2_Next_Weather;
-		publicVariable "rw2_Current_Weather";
-	};
-};
-
 // Run Initial Weather Function for all.
 [] spawn mb_fnc_InitialWeather;

@@ -7,6 +7,7 @@ class cfgFunctions {
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
 		#include "systems\persistence\cfgfunctions.hpp"
 		#include "systems\playerRespawn\cfgfunctions.hpp"
+		#include "systems\weather\cfgfunctions.hpp"
 
 		class Server {
 			file = "\x\bl_server\addons\functions";
