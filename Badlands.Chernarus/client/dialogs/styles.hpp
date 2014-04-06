@@ -11,7 +11,7 @@ class RscCommon {
 	colorSelect[] = {1,1,1,1};
 	border = "#(argb,8,8,3)color(1,1,1,0)";
 	font = FontM;
-	sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
+	sizeEx = 0.03;
 	type = CT_STATIC;
 	style = 0;
 
@@ -35,7 +35,6 @@ class RscButton : RscCommon {
 	colorDisabled[] = {1,1,1,0.25};
 
 	action = "";
-	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	
 	offsetX = 0;
 	offsetY = 0;
@@ -63,7 +62,7 @@ class RscText : RscCommon {
 
 class RscStructuredText : RscText {
 	type =  CT_STRUCTURED_TEXT;
-	size = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1);
+	size = 0.03;
 };
 
 class RscPicture : RscCommon {
@@ -479,7 +478,7 @@ class RscEdit : RscCommon {
 	colorSelection[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.5])", 1};
 	autocomplete = "";
 	text = "";
-	size = 0.2;
+	size = 0.3;
 	style = "0x00 + 0x40";
 	shadow = 2;
 	
@@ -533,10 +532,10 @@ class RscCombo {
 	colorActive[] = {1, 0, 0, 1};
 	colorDisabled[] = {1, 1, 1, 0.25};
 	font = "PuristaMedium";
-	sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 	tooltipColorText[] = {1, 1, 1, 1};
 	tooltipColorBox[] = {1, 1, 1, 1};
 	tooltipColorShade[] = {0, 0, 0, 0.65};
+	sizeEx = 0.03;
 	
 	class ComboScrollBar {
 	  color[] = {1, 1, 1, 1};

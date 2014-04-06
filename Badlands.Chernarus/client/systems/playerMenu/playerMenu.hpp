@@ -176,7 +176,7 @@ class playerMenuDialog {
 		class playerInvUse : RscButton {
 			w = safezoneW * 0.05;
 			h = safezoneH * 0.02;
-			sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8);
+			sizeEx = 0.025;
 
 			x = safezoneX + safezoneW * ( 0.5 + DIALOG_W/2 - 0.01 - 0.2 );
 			y = safezoneY + safezoneH * ( 0.5 - DIALOG_H/2 + 0.01 + 0.135 + 0.005 + 0.15);
