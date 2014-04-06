@@ -77,7 +77,6 @@
 	addMissionEventHandler ["Draw3D", {
 		_vehicles = [];
 		{
-			// Isn't player, is friendly, is within 1k
 			if ( _x != player && (_x in (units group player) || (playerSide in [east,west] && playerSide == side _x)) && player distance _x < 1000 ) then {
 				if ( vehicle _x != _x ) then {
 					if !((vehicle _x) in _vehicles) then {
@@ -124,7 +123,7 @@
 				};
 			};
 			true
-		} count (playableUnits + allUnitsUAV);
+		} count playableUnits;
 		
 		{
 			drawIcon3D [
@@ -159,6 +158,44 @@
 			};
 			true
 		} count _vehicles;
+		
+		{
+			_control = (uavControl _x) select 0;
+			if ( (_control in (units group player) || ((side _x) in [east,west] && playerSide == side _x)) && player distance _x < 1000 ) then {
+				drawIcon3D [
+					friendlyIcon,
+					sideColor,
+					_x modelToWorld getCenterOfMass _x,
+					0.3,
+					0.3,
+					0,
+					"",
+					0,
+					0.03,
+					"PuristaMedium"
+				];
+				
+				if ( showNames ) then {
+					_uavName = "";
+					if ( !isNull ((uavControl _x) select 0) ) then {
+						_uavName = name ((uavControl _x) select 0);
+					};
+				
+					drawIcon3D [
+						"",
+						[1,1,1,1],
+						visiblePosition _x,
+						0,
+						0,
+						0,
+						_uavName,
+						2,
+						0.03,
+						"PuristaMedium"
+					];
+				};
+			};
+		} count allUnitsUAV;
 	}];
 	
 	mapCursorTarget = objNull;
