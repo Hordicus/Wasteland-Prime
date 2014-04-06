@@ -14,11 +14,7 @@ if ( !hasInterface ) exitwith{};
 	BL_groupInvites set [count BL_groupInvites, _this select 1];	
 	[] call BL_fnc_updateGroupInfo;
 	
-	(_this select 1) spawn {
-		titleText [format['%1 has invited you to join a group.', _this], "PLAIN", 0];
-		sleep 5;
-		titleFadeOut 2;
-	};
+	[format['%1 has invited you to join a group.', _this select 1], 5] call BL_fnc_actionText;
 }] call CBA_fnc_addLocalEventHandler;
 
 ['groupCancelInvite', {
