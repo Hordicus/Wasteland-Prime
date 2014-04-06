@@ -52,11 +52,16 @@ _env lbSetCurSel BL_enableEnv;
 ((_this select 0) displayCtrl dropMoneyAmountIDC) ctrlSetText str (player getVariable ['money', 0]);
 
 // Keep group display up to date. If someone leaves/joins group size will change.
-(_this select 0) spawn {
-	disableSerialization;
-	while { !isNull _this } do {
-		_grpSize = count units group player;
-		waitUntil { sleep 0.1; _grpSize != count units group player || isNull _this };
-		[_this] call BL_fnc_updateGroupInfo;
+[] spawn {
+	private ['_grpSize'];
+	_grpSize = count units group player;
+
+	while { !isNull findDisplay playerMenuDialogIDD } do {
+		if ( _grpSize != count units group player ) then {
+			[_this] call BL_fnc_updateGroupInfo;
+			_grpSize = count units group player;
+		};
+		
+		sleep 0.1;
 	};
 };
