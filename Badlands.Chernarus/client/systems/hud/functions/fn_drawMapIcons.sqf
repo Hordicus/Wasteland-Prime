@@ -2,7 +2,6 @@ private ['_vehicles'];
 _vehicles = [];
 
 {
-	// Isn't player, is friendly, is within 1k
 	if ( _x in (units group player) || (playerSide in [east,west] && playerSide == side _x) ) then {
 		if ( vehicle _x != _x ) then {
 			if !((vehicle _x) in _vehicles) then {
@@ -10,6 +9,22 @@ _vehicles = [];
 			};
 		}
 		else {
+			if ( _x == player ) then {
+				_this select 0 drawIcon [
+					getText (configFile >> "CfgInGameUI" >> "IslandMap" >> "IconPlayer"),
+					getArray (configFile >> "CfgInGameUI" >> "IslandMap" >> "meCircle" >> "color"),
+					getPosATL _x,
+					24,
+					24,
+					0,
+					"",
+					0,
+					0.03,
+					"PuristaMedium",
+					"left"
+				];
+			};
+
 			_this select 0 drawIcon [
 				getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "icon"),
 				sideColor,
