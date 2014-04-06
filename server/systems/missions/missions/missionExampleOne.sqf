@@ -35,8 +35,6 @@ BL_fnc_missionRandomField,
 	_grp allowFleeing 0;
 	_grp setBehaviour "COMBAT";
 	_grp setCombatMode "RED";
-
-	(_grp addWaypoint [_location, 0]) setWaypointType "GUARD";	
 		
 	waitUntil {
 		sleep 1;
