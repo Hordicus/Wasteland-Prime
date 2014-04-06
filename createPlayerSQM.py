@@ -26,7 +26,6 @@ slotTemplate = """
 				side="{side}";
 				vehicle="{vehicle}";
 				player="PLAY";
-				leader=1;
 				skill=0.60000002;
 			}};
 """
