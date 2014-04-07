@@ -5,6 +5,8 @@ waitUntil {!isNull player && player == player};
 waitUntil{!isNil "BIS_fnc_init"};
 waitUntil {!(isNull (findDisplay 46))};
 
+[player] join grpNull;
+
 [] spawn {
 	titleText ["Waiting for player data...", "BLACK", 0.01];
 	PVAR_loadPlayer = player;
