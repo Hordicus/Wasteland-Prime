@@ -17,6 +17,6 @@ playerBounty = [[], 1] call CBA_fnc_hashCreate;
 		_moneyToGive = ('killBounty' call BL_fnc_config) * _bounty;
 		_killer setVariable ['money', (_killer getVariable ['money', 0]) + _moneyToGive, true];
 		
-		[format['$%1 bounty awarded for killing %2', _moneyToGive, name _player], "BL_fnc_systemChat"] spawn BIS_fnc_MP;
+		[format['$%1 bounty awarded for killing %2', _moneyToGive, name _player], "BL_fnc_systemChat", owner _killer] spawn BIS_fnc_MP;
 	};
 }] call CBA_fnc_addEventHandler;
