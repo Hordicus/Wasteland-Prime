@@ -16,9 +16,13 @@ _buildingStore = 'buildingStore' call BL_fnc_config;
 // Set names for building store items
 {
 	{
-		_x set [0, getText (configFile >> "CfgVehicles" >> (_x select 1) >> "displayName")];
-	} forEach (_x select 1);
-} forEach _buildingStore;
+		if ( _x select 0 == "" ) then {
+			_x set [0, getText (configFile >> "CfgVehicles" >> (_x select 1) >> "displayName")];
+		};
+		true
+	} count (_x select 1);
+	true
+} count _buildingStore;
 
 _dialog = [
 	"Building Store", // Title
