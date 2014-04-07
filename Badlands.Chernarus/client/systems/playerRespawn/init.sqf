@@ -20,6 +20,7 @@ if ( !hasInterface ) exitwith {};
 // Towns
 playerRespawn_towns = [[], "EMPTY"] call CBA_fnc_hashCreate;
 playerRespawn_beacons = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
+playerRespawn_air = [[], [objNull, 0,0]] call CBA_fnc_hashCreate;
 
 playerRespawnPage = 0;
 playerRespawnOptionEventHandlers = [];
@@ -61,6 +62,19 @@ BL_playerSpawning = false;
 		
 		[playerRespawn_beacons, _ownerUID, [_players, _state]] call CBA_fnc_hashSet;
 		[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
+		
+		['respawnDialogUpdate'] call CBA_fnc_localEvent;
+	}] call CBA_fnc_addEventHandler;
+	
+	["airUpdate", {
+		diag_log format['Got airUpdate: %1', _this];
+		_netId     = _this select 0;
+		_pilot     = _this select 1;
+		_altitude  = _this select 2;
+		_cargoRoom = _this select 3;
+
+		[playerRespawn_air, _netId, [_pilot, _altitude, _cargoRoom]] call CBA_fnc_hashSet;
+		[playerRespawnOptions, 'airVehicles', [playerRespawn_air] call BL_fnc_flyingRespawnOptions] call CBA_fnc_hashSet;
 		
 		['respawnDialogUpdate'] call CBA_fnc_localEvent;
 	}] call CBA_fnc_addEventHandler;
