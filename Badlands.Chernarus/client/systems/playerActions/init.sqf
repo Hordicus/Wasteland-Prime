@@ -109,6 +109,15 @@ call compile preprocessFileLineNumbers "client\systems\playerActions\actions\rep
 				
 				true
 			} forEach BL_playerActions;
+		}
+		else {
+			// In vehicle. Remove all actions.
+			{
+				if ( count BL_playerActionsIDs > _forEachIndex && {!isNil { BL_playerActionsIDs select _forEachIndex }} ) then {
+					player removeAction (BL_playerActionsIDs select _forEachIndex);
+					BL_playerActionsIDs set [_forEachIndex, nil];
+				};
+			} forEach BL_playerActions;
 		};
 		
 		sleep 0.3;
