@@ -60,22 +60,19 @@
 					deleteVehicle _x;
 					[_x] call BL_fnc_deleteVehicleDB;
 				};
-			};			
-		} forEach ((getPosATL mapCenter) nearEntities [_rareCarClasses, 100000]);
-		
-		// Remove dead vehicles
-		{
-			if ( !alive _x ) then {
-				if ( count ([getPosATL _x, _detectionRange] call BL_fnc_nearUnits) == 0 ) then {
-					deleteVehicle _x;
-					[_x] call BL_fnc_deleteVehicleDB;
-				};
 			};
-		} forEach ((entities "LandVehicle") + (entities "Air"));
+			
+			true
+		} count ((getPosATL mapCenter) nearEntities [_rareCarClasses, 100000]);
 		
-		// Remove dead men
+		// Remove dead things
 		{
-			if ( !alive _x ) then {
+			if ( _x isKindOf "LandVehicle" || _x isKindOf "Air" ) then {
+				deleteVehicle _x;
+				[_x] call BL_fnc_deleteVehicleDB;
+			};
+
+			if ( _x isKindOf "Man" ) then {
 				if ( primaryWeapon _x == "" && secondaryWeapon _x == "" && {count ([getPosATL _x, _detectionRange] call BL_fnc_nearUnits) == 0} ) then {
 					// No one in the area and nothing to come back for, delete
 					deleteVehicle _x;
@@ -101,7 +98,8 @@
 					};
 				};
 			};
-		} forEach (entities "Man");
+			true
+		} count allDead;
 		
 		sleep 60;
 	};
