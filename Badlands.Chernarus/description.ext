@@ -15,6 +15,7 @@ class Header {
 #include "gear\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
+#include "client\dialogs\loadingScreen.hpp"
 #include "client\systems\playerMenu\playerMenu.hpp"
 #include "client\systems\playerRespawn\respawnDialog.hpp"
 #include "logistics\objectContents.hpp"

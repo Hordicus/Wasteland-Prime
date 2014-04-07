@@ -555,3 +555,16 @@ class RscCombo {
 	  autoScrollRewind = 0;
 	};
 };
+
+class RscProgress {
+	type = CT_PROGRESS;
+	style = 0;
+	colorFrame[] = {0, 0, 0, 0};
+	colorBar[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.69])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.75])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.5])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+	x = 0.344;
+	y = 0.619;
+	w = 0.313726;
+	h = 0.0261438;
+	shadow = 2;
+	texture = "\A3\ui_f\data\GUI\RscCommon\RscProgress\progressbar_ca.paa";
+};

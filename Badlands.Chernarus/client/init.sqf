@@ -9,11 +9,13 @@ waitUntil {!(isNull (findDisplay 46))};
 enableRadio false;
 
 [] spawn {
-	titleText ["Waiting for player data...", "BLACK", 0.01];
+	startLoadingScreen ["Waiting for player data...", "BLLoadingScreen"];
+	progressLoadingScreen 0.1;
 	PVAR_loadPlayer = player;
 	publicVariableServer "PVAR_loadPlayer";
 	
 	waitUntil { !isNil "PVAR_playerLoaded" };
+	progressLoadingScreen 0.5;
 	
 	if ( count PVAR_playerLoaded > 0 ) then {
 		// By this point player has been restored. Give them control ASAP.
@@ -27,20 +29,19 @@ enableRadio false;
 			[player, PVAR_playerLoaded select 0] call GEAR_fnc_setLoadout;
 			player playMove (PVAR_playerLoaded select 1);
 			player setDir (PVAR_playerLoaded select 2);
-			titleFadeOut 0.01;
 		}
 		else {
-			titleFadeOut 0.5;
 			createDialog 'respawnDialog';
 		};
 	}
 	else {
-		titleText ["No player data found...", "BLACK", 0.01];
+		startLoadingScreen ["No player data found...", "BLLoadingScreen"];
+		progressLoadingScreen 0.9;
 		sleep 1;
-		titleFadeOut 0.5;
 		createDialog 'respawnDialog';
 	};
 	
+	endLoadingScreen;
 };
 
 // Get radar JIP update
