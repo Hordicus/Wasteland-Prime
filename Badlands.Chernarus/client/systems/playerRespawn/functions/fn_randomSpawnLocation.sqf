@@ -36,6 +36,11 @@ while { count _vehPos == 0 } do {
 	if ( count _vehicles > 0 ) then {
 		_vehicle = _vehicles select floor random count _vehicles;
 		_vehPos = getPosATL _vehicle;
+	}
+	else {
+		if ( count _restrictCity > 0 ) then {
+			_vehPos = [_city select 1, random (_city select 2), random 359] call BIS_fnc_relPos;
+		};
 	};
 };
 
