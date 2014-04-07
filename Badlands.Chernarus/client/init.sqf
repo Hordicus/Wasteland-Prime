@@ -6,6 +6,7 @@ waitUntil{!isNil "BIS_fnc_init"};
 waitUntil {!(isNull (findDisplay 46))};
 
 [player] join grpNull;
+enableRadio false;
 
 [] spawn {
 	titleText ["Waiting for player data...", "BLACK", 0.01];
