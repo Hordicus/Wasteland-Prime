@@ -35,30 +35,6 @@ if (_altitude < 500) exitWith {"Altitude is too low for HALO. Accepted: 500 and 
 //create a log entry
 ["HALO function has started"] call BIS_fnc_log;
 
-//add immersion effects and sound
-if (isPlayer _unit) then {
-	cutText ["", "BLACK FADED",999];
-	[_unit] spawn {
-		private "_unit";
-		_unit = _this select 0;
-		
-		sleep 2;
-		
-		"dynamicBlur" ppEffectEnable true;   
-		"dynamicBlur" ppEffectAdjust [6];   
-		"dynamicBlur" ppEffectCommit 0;     
-		"dynamicBlur" ppEffectAdjust [0.0];  
-		"dynamicBlur" ppEffectCommit 5;  
-		
-		cutText ["", "BLACK IN", 5];
-		
-		while {animationState _unit != "para_pilot" && alive _unit} do {
-			playSound "flapping"; //play flapping sound
-			sleep 4.2;
-		};
-	};
-};
-
 //add a chemlight to helmet
 if (_chemLight) then {
 	[_chemLight,_unit] spawn {
@@ -168,27 +144,6 @@ if (isPlayer _unit) then {
 		};
 		
 		waitUntil {animationState _unit == "para_pilot"};
-		
-		// Parachute opening effect for more immersion
-		playSound "open_chute"; //play chute opening sound
-		setAperture 0.05; 
-		setAperture -1;
-		"DynamicBlur" ppEffectEnable true;  
-		"DynamicBlur" ppEffectAdjust [8.0];  
-		"DynamicBlur" ppEffectCommit 0.01;
-		sleep 1;
-		"DynamicBlur" ppEffectAdjust [0.0]; 
-		"DynamicBlur" ppEffectCommit 3;
-		sleep 3;
-		"DynamicBlur" ppEffectEnable false;
-		"RadialBlur" ppEffectAdjust [0.0, 0.0, 0.0, 0.0]; 
-		"RadialBlur" ppEffectCommit 1.0; 
-		"RadialBlur" ppEffectEnable false;
-		
-		while {(getPos _unit select 2) > 2} do {
-			playSound "para_pilot";
-			sleep 4.2;
-		};
 	};
 };
 
@@ -196,9 +151,6 @@ if (isPlayer _unit) then {
 	private "_unit";
 	_unit = _this select 0;
 			
-	waitUntil {isTouchingGround _unit || (getPosATL _unit select 2) < 2};
-	_unit action ["Eject", vehicle _unit];
-
 	if (!isPlayer _unit) then {
 		_unit enableAI "ANIM";  //enable the animations
 		_unit setPos [(getPos _unit select 0), (getPos _unit select 1), 0]; //this removes the unit from the parachute
