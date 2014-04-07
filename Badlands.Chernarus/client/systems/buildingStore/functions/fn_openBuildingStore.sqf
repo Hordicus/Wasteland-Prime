@@ -145,11 +145,9 @@ _dialog = [
 	}
 ] call BL_Store_fnc_showStore;
 
-_dialog spawn {
-	disableSerialization;
-
+(ctrlIDD _dialog) spawn {
 	// Destroy object cam when dialog is closed
-	waitUntil { isNull _this };
+	waitUntil { isNull findDisplay _this };
 	
 	if ( !isNil "buildingStoreCam" ) then {
 		(buildingStoreCam select 0) cameraEffect ["TERMINATE", "BACK"];
