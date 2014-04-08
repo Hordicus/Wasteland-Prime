@@ -14,23 +14,23 @@ BL_fnc_missionRandomField,
 	[_missionReward, 'reward'] call BL_fnc_trackVehicle;
 	_missionReward lock true; // Don't let anyone in until they complete the mission
 	
-	_grp = createGroup resistance;
+	_grp = createGroup east;
 	_grp createUnit ["I_Soldier_SL_F", _location, [], 0, "FORM"];
 	
-	_grp createUnit ["I_Soldier_F", _location, [], 0, "FORM"];
-	_grp createUnit ["I_Soldier_F", _location, [], 0, "FORM"];
-	_grp createUnit ["I_Soldier_F", _location, [], 0, "FORM"];
-	_grp createUnit ["I_Soldier_F", _location, [], 0, "FORM"];
-	_grp createUnit ["I_Soldier_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
 	
-	_grp createUnit ["I_Soldier_GL_F", _location, [], 0, "FORM"];
-	_grp createUnit ["I_Soldier_GL_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_GL_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_GL_F", _location, [], 0, "FORM"];
 	
-	_grp createUnit ["I_Soldier_LAT_F", _location, [], 0, "FORM"];
-	_grp createUnit ["I_Soldier_LAT_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_LAT_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_LAT_F", _location, [], 0, "FORM"];
 	
-	_grp createUnit ["I_Soldier_M_F", _location, [], 0, "FORM"];
-	_grp createUnit ["I_Soldier_M_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_M_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_M_F", _location, [], 0, "FORM"];
 	
 	_grp allowFleeing 0;
 	_grp setBehaviour "COMBAT";
