@@ -1,21 +1,41 @@
 [
-'Mission Name',
-'An example mission. A simple reference to base other missions off of.',
+// Init. Result of this will be passed to all
+// following functions as _this select 0.
+{
+	_possible = [
+		["I_APC_Wheeled_03_cannon_F", 1],
+		["B_APC_Wheeled_01_cannon_F", 1],
+		["O_MBT_02_cannon_F", 0.5],
+		["I_APC_tracked_03_cannon_F", 1],
+		["B_APC_Tracked_01_AA_F", 1]
+	];
+	
+	([_possible] call BL_fnc_selectRandom) select 0
+},
+
+{format['Secure %1', getText (configFile >> "CfgVehicles" >> (_this select 0) >> "displayName")]},
+{
+	format['A %1 has been spotted near %2. Secure it for you team.',
+		getText (configFile >> "CfgVehicles" >> (_this select 0) >> "displayName"),
+		([(_this select 1)] call BL_fnc_nearestCity) select 0
+	]
+},
 
 // Mission location. Array or code
 BL_fnc_missionRandomField,
 
 // Function to call to start the mission
 {
-	_missionCode = [_this, 0, "", [""]] call BIS_fnc_param;
-	_location    = [_this, 1, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
+	_initResult  = [_this, 0, "", [""]] call BIS_fnc_param;
+	_missionCode = [_this, 1, "", [""]] call BIS_fnc_param;
+	_location    = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 	
-	_missionReward = createVehicle ["O_APC_Tracked_02_AA_F", _location, [], 0, "CAN_COLLIDE"];
+	_missionReward = createVehicle [_initResult, _location, [], 0, "CAN_COLLIDE"];
 	[_missionReward, 'reward'] call BL_fnc_trackVehicle;
 	_missionReward lock true; // Don't let anyone in until they complete the mission
 	
 	_grp = createGroup east;
-	_grp createUnit ["I_Soldier_SL_F", _location, [], 0, "FORM"];
+	_grp createUnit ["O_Soldier_SL_F", _location, [], 0, "FORM"];
 	
 	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
 	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];

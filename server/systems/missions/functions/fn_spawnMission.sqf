@@ -8,20 +8,35 @@ _missionCode = format['mission%1', missionCount];
 _mission = [_missions, 1] call BL_fnc_selectRandom;
 _mission = call compile preprocessFileLineNumbers format['\x\bl_server\addons\systems\missions\missions\%1.sqf', _mission select 0];
 
-_location = _mission select 2;
+private ['_missionInit', '_missionName', '_missionDesc', '_missionLoc', '_missionRun', '_initResult'];
+_missionInit = [_mission, 0, {}, [{}]] call BIS_fnc_param;
+_missionName = [_mission, 1, '', [{}, '']] call BIS_fnc_param;
+_missionDesc = [_mission, 2, '', [{}, '']] call BIS_fnc_param;
+_missionLoc  = [_mission, 3, [], [[], {}, objNull]] call BIS_fnc_param;
+_missionRun  = [_mission, 4, {}, [{}]] call BIS_fnc_param;
 
-if ( typeName _location == "CODE" ) then {
-	_location = call _location;
+_initResult = [] call _missionInit;
+
+if ( typeName _missionLoc == "CODE" ) then {
+	_missionLoc = [_initResult] call _missionLoc;
 };
 
-[runningMissionLocations, _missionCode, _location] call CBA_fnc_hashSet;
+if ( typeName _missionName == "CODE" ) then {
+	_missionName = [_initResult, _missionLoc] call _missionName;
+};
+
+if ( typeName _missionDesc == "CODE" ) then {
+	_missionDesc = [_initResult, _missionLoc]  call _missionDesc;
+};
+
+[runningMissionLocations, _missionCode, _missionLoc] call CBA_fnc_hashSet;
 
 // Creates task/waypoint/notice on all clients
 [true, _missionCode, [
-	_mission select 1,
-	_mission select 0,
-	format['Mission: %1', _mission select 0]
-], _location, 'CREATED', 0] call BIS_fnc_taskCreate;
+	_missionDesc,
+	_missionName,
+	_missionName
+], _missionLoc, 'CREATED', 0] call BIS_fnc_taskCreate;
 
 // Spawn mission's init
-[_missionCode, _location] spawn (_mission select 3);
+[_initResult, _missionCode, _missionLoc] spawn _missionRun;
