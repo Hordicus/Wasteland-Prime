@@ -2,8 +2,8 @@ BL_groupInvites = [];
 BL_groupSentInvites = [];
 BL_avgServerFps = 0;
 BL_serverUpTime = 0;
-BL_grass = 1; // Default
-BL_enableEnv = 1;
+BL_grass = profileNamespace getVariable ['BL_grass', 1]; // Default
+BL_enableEnv = profileNamespace getVariable ['BL_enableEnv', 1];
 
 BL_playerInventoryHandlers = missionNamespace getVariable ['BL_playerInventoryHandlers', []];
 BL_playerInventoryCodes = missionNamespace getVariable ['BL_playerInventoryCodes', []];
@@ -46,6 +46,9 @@ if ( !hasInterface ) exitwith{};
 	waitUntil {!isNull player && player == player};
 	waitUntil{!isNil "BIS_fnc_init"};
 	waitUntil {!(isNull (findDisplay 46))};
+
+	[BL_grass] call BL_fnc_setGrass;
+	[BL_enableEnv] call BL_fnc_setEnvEnabled;
 
 	player addEventHandler ['respawn', {
 		player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];

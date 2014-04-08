@@ -7,6 +7,7 @@ class playerMenuDialog {
 	movingEnable = false;
 	enableSimulation = true;
 	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_onLoad.sqf';";
+	onUnload = "_this call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_onUnload.sqf';";
 	
 	class controlsBackground {
 		class background : RscCommon {

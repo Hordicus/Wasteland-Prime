@@ -33,4 +33,7 @@ class playerMenu {
 	class removeInventoryItem{};
 	class dropInventoryItem{};
 	class updatePlayerInv{};
+	
+	class setEnvEnabled{};
+	class setGrass{};
 };
