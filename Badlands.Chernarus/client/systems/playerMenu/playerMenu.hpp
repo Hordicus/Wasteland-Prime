@@ -43,10 +43,19 @@ class playerMenuDialog {
 			action = "[] call BL_fnc_flipVehicle;";
 			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 1);
 		};
+
+		class playerMenuKeyBind : manageLoadouts {
+			idc = playerMenuKeyBindIDC;
+			text = "";
+			tooltip = "Click to change player menu keybind.";
+			action = "";
+			onMouseButtonClick = "call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_playerMenuKeyBind.sqf'";
+			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 2);
+		};
 		
 		class dropMoney : manageLoadouts {
 			text = "Drop Money";
-			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 2);
+			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 3);
 			w = safezoneW * 0.1;
 			action = "call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_clickDropMoney.sqf'";
 		};
@@ -55,16 +64,11 @@ class playerMenuDialog {
 			w = safezoneW * (0.1 - 0.005);
 			h = safezoneH * 0.03;
 			x = safezoneX + safezoneW * ( (0.5 - DIALOG_W/2) + 0.01 + 0.1 + 0.005 );
-			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135	 + 0.005 + (0.03 + 0.005) * 2);
+			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 3);
 			idc = dropMoneyAmountIDC;
 		};
 		
 		// class somethingOne : manageLoadouts {
-		// 	text = "Flip Vehicle";
-		// 	y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 3);
-		// };
-		// 
-		// class somethingTwo : manageLoadouts {
 		// 	text = "Flip Vehicle";
 		// 	y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 4);
 		// };

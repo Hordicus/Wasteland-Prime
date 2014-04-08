@@ -1,9 +1,11 @@
+#include "functions\macro.sqf"
 BL_groupInvites = [];
 BL_groupSentInvites = [];
 BL_avgServerFps = 0;
 BL_serverUpTime = 0;
 BL_grass = profileNamespace getVariable ['BL_grass', 1]; // Default
 BL_enableEnv = profileNamespace getVariable ['BL_enableEnv', 1];
+BL_playerMenuKey = profileNamespace getVariable ['BL_playerMenuKey', 41 /* ~ */ ];
 
 BL_playerInventoryHandlers = missionNamespace getVariable ['BL_playerInventoryHandlers', []];
 BL_playerInventoryCodes = missionNamespace getVariable ['BL_playerInventoryCodes', []];
@@ -49,6 +51,13 @@ if ( !hasInterface ) exitwith{};
 
 	[BL_grass] call BL_fnc_setGrass;
 	[BL_enableEnv] call BL_fnc_setEnvEnabled;
+	
+	(findDisplay 46) displayAddEventHandler ['KeyDown', {
+		if ( _this select 1 == BL_playerMenuKey && isNull findDisplay playerMenuDialogIDD) then {
+			createDialog 'playerMenuDialog';
+			true
+		};
+	}];
 
 	player addEventHandler ['respawn', {
 		player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];

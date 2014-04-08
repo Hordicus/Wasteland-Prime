@@ -22,3 +22,5 @@
 
 #define grassSettingIDC 4017
 #define enableEnvironmentIDC 4018
+
+#define playerMenuKeyBindIDC 4019

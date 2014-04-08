@@ -51,6 +51,8 @@ _env lbSetCurSel BL_enableEnv;
 
 ((_this select 0) displayCtrl dropMoneyAmountIDC) ctrlSetText str (player getVariable ['money', 0]);
 
+((_this select 0) displayCtrl playerMenuKeyBindIDC) ctrlSetText format['Player Menu Key: %1', [BL_playerMenuKey] call BIS_fnc_keyCode];
+
 // Keep group display up to date. If someone leaves/joins group size will change.
 [] spawn {
 	private ['_grpSize'];

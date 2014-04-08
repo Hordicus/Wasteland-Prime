@@ -4,5 +4,6 @@ profileNamespace setVariable ['BL_carViewDistance', BL_carViewDistance];
 profileNamespace setVariable ['BL_airViewDistance', BL_airViewDistance];
 profileNamespace setVariable ['BL_grass', BL_grass];
 profileNamespace setVariable ['BL_enableEnv', BL_enableEnv];
+profileNamespace setVariable ['BL_playerMenuKey', BL_playerMenuKey];
 
 saveProfileNamespace;
