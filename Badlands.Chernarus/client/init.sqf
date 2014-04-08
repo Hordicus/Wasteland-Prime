@@ -5,6 +5,8 @@ waitUntil {!isNull player && player == player};
 waitUntil{!isNil "BIS_fnc_init"};
 waitUntil {!(isNull (findDisplay 46))};
 
+player allowDamage false;
+player enableSimulation false;
 [player] join grpNull;
 enableRadio false;
 
@@ -27,6 +29,8 @@ enableRadio false;
 			(getMarkerPos 'respawn_guerrila') distance player > 100
 		) then {
 			[player, PVAR_playerLoaded select 0] call GEAR_fnc_setLoadout;
+			player allowDamage true;
+			player enableSimulation true;
 			player playMove (PVAR_playerLoaded select 1);
 			player setDir (PVAR_playerLoaded select 2);
 		}
