@@ -40,6 +40,7 @@ class CfgFunctions {
 			class systemChat{};
 			class createVehicle{};
 			class deleteVehicle{};
+			class setRating{};
 			class config {
 				file = "config\config.sqf";
 			};

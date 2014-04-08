@@ -81,3 +81,18 @@ player addEventHandler ["killed", {
 player addEventHandler ["respawn", {
 	['respawn', _this] call CBA_fnc_globalEvent;
 }];
+
+if ( side player == resistance ) then {
+	// Keep player's rating at -100,000. Below -2000 switches side to enemy.
+
+	player addRating (-100000 + -(rating player));
+	['killed', {
+		if ( rating player > -50000 ) then {
+			player addRating (-100000 + -(rating player));
+		};
+	}] call CBA_fnc_addEventHandler;
+
+	player addEventHandler ['Respawn', {
+		player addRating (-100000 + -(rating player));
+	}];
+};

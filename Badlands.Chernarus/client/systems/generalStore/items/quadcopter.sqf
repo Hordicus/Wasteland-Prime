@@ -1,7 +1,7 @@
 ['quadcopter', 'Quadcopter UAV', "I_UAV_01_F", [], {
 	[15, "Deploying Quadcopter UAV %1", [], {
 		_items = (side player) call {
-			if ( _this == resistance ) exitwith {["I_UavTerminal", "I_UAV_01_F"]};
+			if ( _this == resistance || _this == sideEnemy ) exitwith {["I_UavTerminal", "I_UAV_01_F"]};
 			if ( _this == west ) exitwith {["B_UavTerminal", "B_UAV_01_F"]};
 			if ( _this == east ) exitwith {["O_UavTerminal", "O_UAV_01_F"]};
 		};
@@ -11,8 +11,10 @@
 			private ['_uav'];
 			_uav = _this select 0;
 			player connectTerminalToUav objNull;
+			0 call BL_fnc_setRating;
 			player connectTerminalToUav _uav;
 			activeUAV = _uav;
+			[] call BL_fnc_setRating;
 		}, "CAN_COLLIDE", true] call BL_fnc_createVehicle;
 		
 		['quadcopter'] call BL_fnc_removeInventoryItem;
@@ -38,13 +40,15 @@
 				waitUntil {BL_playerSpawning};
 				waitUntil {!BL_playerSpawning};
 				_term = (side player) call {
-					if ( _this == resistance ) exitwith {"I_UavTerminal"};
+					if ( _this == resistance || _this == sideEnemy ) exitwith {"I_UavTerminal"};
 					if ( _this == west ) exitwith {"B_UavTerminal"};
 					if ( _this == east ) exitwith {"O_UavTerminal"};
 				};
 				
 				(_this select 0) linkItem _term;
+				0 call BL_fnc_setRating;
 				(_this select 0) connectTerminalToUav activeUAV;
+				[] call BL_fnc_setRating;
 			};
 		};
 	}];
