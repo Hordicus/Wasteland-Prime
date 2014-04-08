@@ -39,7 +39,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=52;
+		items=51;
 		class Item0
 		{
 			side="LOGIC";
@@ -1042,125 +1042,6 @@ class Mission
 		};
 
 		class Item50
-		{
-			side="EAST";
-			class Vehicles
-			{
-				items=10;
-							
-				class Item0
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=0;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item1
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=1;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item2
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=2;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item3
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=3;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item4
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=4;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item5
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=5;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item6
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=6;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item7
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=7;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item8
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=8;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-				
-				class Item9
-				{
-					position[]={-9599.6572,621.89001,22422.857};
-					id=9;
-					side="EAST";
-					vehicle="O_Soldier_F";
-					player="PLAY";
-					skill=0.60000002;
-				};
-
-			};
-		};
-
-		class Item51
 		{
 			side="GUER";
 			class Vehicles
