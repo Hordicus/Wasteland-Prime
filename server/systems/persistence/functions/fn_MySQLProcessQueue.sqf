@@ -1,5 +1,5 @@
 if ( !isNil "MySQLQueueProcessing" ) exitwith{};
-_database   = "badlands"; // TODO: Get from config
+_database   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
 
 MySQLQueueProcessing = true;
 while { count MySQLQueue > 0 } do {

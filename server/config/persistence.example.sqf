@@ -32,4 +32,6 @@ _allowedClasses set [count _allowedClasses, [_blConfig, 'moneyModel'] call CBA_f
 
 [_config, 'allowedClasses', _allowedClasses] call CBA_fnc_hashSet;
 
+[_config, 'database', 'badlands'] call CBA_fnc_hashSet;
+
 _config
