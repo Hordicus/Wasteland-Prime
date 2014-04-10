@@ -17,7 +17,10 @@ private ['_airVehicles', '_result'];
 _spawnInVehicle = {
 	_veh = _this select 0;
 	player moveInCargo _veh;
-	closeDialog respawnDialogIDD;
+	[] spawn {
+		waitUntil { vehicle player != player };
+		closeDialog respawnDialogIDD;
+	};
 };
 
 _airVehicles = [_this, 0, playerRespawn_air, [[]], [4]] call BIS_fnc_param;
