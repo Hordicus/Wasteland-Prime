@@ -12,25 +12,18 @@ PERS_trackedObjectsIDs = [];
 
 [] spawn {
 	private ["_count","_lastStep","_i","_vehicles"];
-	["SELECT COUNT(*) FROM `vehicles`", [], [], {
-		_count = _this select 0 select 0 select 0 select 0;
-		_lastStep = ceil (_count/5)*5;
-		
-		// Load all vehicles, 5 at a time.
-		for "_i" from 0 to _lastStep step 5 do {
-			["SELECT * FROM `vehicles` LIMIT %1, 5", [_i], [_i == _lastStep], {
-				_vehicles = _this select 0 select 0;
-				{
-					[_x] call BL_fnc_loadVehicle;
-					true
-				} count _vehicles;
-				
-				if ( _this select 1 select 0 ) then {
-					PERS_init_done = true;
-				};
-			}] call BL_fnc_MySQLCommand;
-		};
-	}] call BL_fnc_MySQLCommand;
+	_count = (["SELECT COUNT(*) FROM `vehicles`"] call BL_fnc_MySQLCommandSync) select 0 select 0 select 0;
+	_lastStep = ceil (_count/5)*5;
+	
+	for "_i" from 0 to _lastStep step 5 do {
+		_vehicles = (["SELECT * FROM `vehicles` LIMIT %1, 5", [_i]] call BL_fnc_MySQLCommandSync) select 0;
+		{
+			[_x] call BL_fnc_loadVehicle;
+			true
+		} count _vehicles;
+	};
+	
+	PERS_init_done = true;
 };
 
 // Delete anything that isn't in our system.
