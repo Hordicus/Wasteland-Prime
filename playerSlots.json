@@ -12,18 +12,7 @@
 		"B_Soldier_F",
 		"B_Soldier_F"
 	],
-	"EAST": [
-		"O_Soldier_F",
-		"O_Soldier_F",
-		"O_Soldier_F",
-		"O_Soldier_F",
-		"O_Soldier_F",
-		"O_Soldier_F",
-		"O_Soldier_F",
-		"O_Soldier_F",
-		"O_Soldier_F",
-		"O_Soldier_F"
-	],
+	"EAST": [],
 	"GUER": [
 		"I_Soldier_F",
 		"I_Soldier_F",
