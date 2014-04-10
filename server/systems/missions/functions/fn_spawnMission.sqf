@@ -29,8 +29,6 @@ if ( typeName _missionDesc == "CODE" ) then {
 	_missionDesc = [_initResult, _missionLoc]  call _missionDesc;
 };
 
-[runningMissionLocations, _missionCode, _missionLoc] call CBA_fnc_hashSet;
-
 // Creates task/waypoint/notice on all clients
 [true, _missionCode, [
 	_missionDesc,
@@ -40,3 +38,9 @@ if ( typeName _missionDesc == "CODE" ) then {
 
 // Spawn mission's init
 [_initResult, _missionCode, _missionLoc] spawn _missionRun;
+
+if ( count _missionLoc == 2 && typeName (_missionLoc select 0) == "OBJECT" ) then {
+	_missionLoc = _missionLoc select 0
+};
+
+[runningMissionLocations, _missionCode, _missionLoc] call CBA_fnc_hashSet;
