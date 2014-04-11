@@ -22,7 +22,7 @@ _state = "";
 				INC(_friendly);
 			}
 			else {
-				INC(_friendly);
+				INC(_enemy);
 			};
 		};
 	}
