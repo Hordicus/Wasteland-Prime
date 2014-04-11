@@ -55,12 +55,12 @@ BL_playerSpawning = false;
 	}] call CBA_fnc_addEventHandler;
 
 	["beaconUpdate", {
-		private ['_players', '_ownerUID', '_state'];
+		private ['_players', '_code', '_state'];
 		_players  = _this select 0;
-		_ownerUID = _this select 1 select 0;
+		_code = _this select 1 select 0;
 		_state = [_players] call BL_fnc_friendlyState;
 		
-		[playerRespawn_beacons, _ownerUID, [_players, _state]] call CBA_fnc_hashSet;
+		[playerRespawn_beacons, _code, [_players, _state]] call CBA_fnc_hashSet;
 		[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
 		
 		['respawnDialogUpdate'] call CBA_fnc_localEvent;

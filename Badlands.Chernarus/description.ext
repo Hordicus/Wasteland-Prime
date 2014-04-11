@@ -59,6 +59,7 @@ class CfgFunctions {
 			class playerByUID{};
 			class friendlyState{};
 			class friendlyStateCheck{};
+			class randStr{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"

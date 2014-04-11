@@ -1,4 +1,4 @@
-private ["_type","_ownerUID","_loc","_dir","_model","_beacon"];
+private ["_type","_ownerUID","_loc","_dir","_model","_beacon","_info"];
 _type     = [_this, 0, "ground", [""]] call BIS_fnc_param;
 _ownerUID = [_this, 1, "", [""]] call BIS_fnc_param;
 _loc      = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
@@ -16,12 +16,15 @@ if ( isNull _beacon ) then {
 	[_beacon] call BL_fnc_saveVehicle;
 };
 
-BL_spawnBeacons = missionNamespace getVariable ['BL_spawnBeacons', []];
-BL_spawnBeacons set [count BL_spawnBeacons, [
+_info = [
 	_type,
 	_ownerUID,
-	_beacon
-]];
+	_beacon,
+	10 call BL_fnc_randStr
+];
+
+BL_spawnBeacons = missionNamespace getVariable ['BL_spawnBeacons', []];
+BL_spawnBeacons set [count BL_spawnBeacons, _info];
 
 publicVariable "BL_spawnBeacons";
 
@@ -29,5 +32,5 @@ publicVariable "BL_spawnBeacons";
 	_loc,
 	100,
 	'beaconUpdate',
-	[_ownerUID]
+	[_info select 3]
 ] call BL_fnc_registerLocWithRadar;
