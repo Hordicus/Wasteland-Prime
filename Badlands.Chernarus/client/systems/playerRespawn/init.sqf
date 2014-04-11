@@ -105,6 +105,10 @@ BL_playerSpawning = false;
 		createDialog "respawnDialog";
 	}];
 	
+	// Do an update of all beacons
+	[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
+	['respawnDialogUpdate'] call CBA_fnc_localEvent;
+	
 	// Make beacons emit sound
 	while { true } do {
 		{
