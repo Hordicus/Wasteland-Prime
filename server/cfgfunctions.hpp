@@ -9,6 +9,7 @@ class cfgFunctions {
 		#include "systems\playerRespawn\cfgfunctions.hpp"
 		#include "systems\weather\cfgfunctions.hpp"
 		#include "systems\missions\cfgfunctions.hpp"
+		#include "systems\baseFlag\cfgfunctions.hpp"
 
 		class Server {
 			file = "\x\bl_server\addons\functions";

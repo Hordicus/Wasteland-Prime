@@ -70,6 +70,7 @@ class CfgFunctions {
 		#include "client\systems\logisticsAddons\cfgfunctions.hpp"
 		#include "client\systems\HUD\cfgfunctions.hpp"
 		#include "client\systems\playerActions\cfgfunctions.hpp"
+		#include "client\systems\baseFlag\cfgfunctions.hpp"
 	};
 
 	#include "client\systems\stores\cfgfunctions.hpp"
