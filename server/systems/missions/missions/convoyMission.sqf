@@ -85,11 +85,10 @@ Salvage what you can.
 	
 	_checkCompletion = {
 		private ['_task', '_vehicles', '_children', '_missionCode'];
-		_missionCode = '';
+		_missionCode = (_this select 0) getVariable 'missionCode';
 		_vehicles = (_this select 0) getVariable 'vehicles';
 		{
 			_task = _x getVariable 'subTaskCode';
-			_missionCode = _task select 1;
 			
 			if !( [_task select 0] call BIS_fnc_taskCompleted ) then {
 				if ( !alive _x || ({ alive _x } count (crew _x)) == 0  ) then {
@@ -102,11 +101,9 @@ Salvage what you can.
 			};
 		} forEach _vehicles;
 		
-		if !( [_missionCode] call BIS_fnc_taskCompleted ) then {
-			_children = [_missionCode] call BIS_fnc_taskChildren;
-			if ( ({ [_x] call BIS_fnc_taskCompleted } count _children) == count _children ) then {
-				[_missionCode, true] call BL_fnc_missionDone;
-			};
+		_children = [_missionCode] call BIS_fnc_taskChildren;
+		if ( ({ [_x] call BIS_fnc_taskCompleted || !([_x] call BIS_fnc_taskExists)} count _children) == count _children ) then {
+			[_missionCode, true] call BL_fnc_missionDone;
 		};
 	};
 	
@@ -125,6 +122,7 @@ Salvage what you can.
 		] call BIS_fnc_taskCreate;
 		
 		_x setVariable ['subTaskCode', _subTaskCode];
+		_x setVariable ['missionCode', _missionCode];
 		_x addEventHandler ['Killed', _checkCompletion];
 		_x addEventHandler ['GetOut', _checkCompletion];
 		_x setVariable ['vehicles', _vehicles];
@@ -144,6 +142,7 @@ Salvage what you can.
 	
 	// Killed event for units in case they are shot out of vehicles.
 	{
+		_x setVariable ['missionCode', _missionCode];
 		_x addEventHandler ['Killed', _checkCompletion];
 		_x setVariable ['vehicles', _vehicles];
 	} count ( units _vehGroup );
@@ -166,7 +165,7 @@ Salvage what you can.
 	_startCity = ([getPosATL _leadVehicle] call BL_fnc_nearestCity);
 	_nextWaypoint = _startCity;
 
-	while { !([_missionCode] call BIS_fnc_taskCompleted) } do {
+	while { !([_missionCode] call BIS_fnc_taskCompleted) && [_missionCode] call BIS_fnc_taskExists } do {
 		if ( currentWaypoint _vehGroup >= count waypoints _vehGroup ) then {
 			_visitedCities set [count _visitedCities, _nextWaypoint select 0];
 			_nextWaypoint = (call _nextCity);
@@ -188,7 +187,7 @@ Salvage what you can.
 		
 			{
 				// No one within 200m and no one within 1000m with LOS.
-				if !( count ([getPosATL _x, 200] call BL_fnc_nearUnits) == 0 && [[getPosATL _x, 1000] call BL_fnc_nearUnits, _x] call BL_fnc_hasLOS ) then {
+				if !( count ([getPosATL _x, 200] call BL_fnc_nearUnits) == 0 && !([[getPosATL _x, 1000] call BL_fnc_nearUnits, _x] call BL_fnc_hasLOS) ) then {
 					deleteVehicle _x;
 				};
 				true
