@@ -14,6 +14,7 @@ _map = (_dialog displayCtrl respawnBackdropIDC);
 _map ctrlMapAnimAdd [0, 1, mapCenter];
 _map ctrlEnable false;
 ctrlMapAnimCommit _map;
+_map ctrlAddEventHandler ["Draw", BL_fnc_DrawMapIcons];
 
 // Things that are selectively shown. Hide by default to avoid 'flash'
 {
