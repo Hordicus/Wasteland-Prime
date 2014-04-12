@@ -11,13 +11,12 @@ player enableSimulation false;
 enableRadio false;
 
 [] spawn {
-	startLoadingScreen ["Waiting for player data...", "BLLoadingScreen"];
-	progressLoadingScreen 0.1;
+	["Waiting for player data", 0.1] call BL_fnc_loadingScreen;
 	PVAR_loadPlayer = player;
 	publicVariableServer "PVAR_loadPlayer";
 	
 	waitUntil { !isNil "PVAR_playerLoaded" };
-	progressLoadingScreen 0.5;
+	[0.5] call BL_fnc_loadingScreen;
 	
 	if ( count PVAR_playerLoaded > 0 ) then {
 		// By this point player has been restored. Give them control ASAP.
@@ -39,13 +38,12 @@ enableRadio false;
 		};
 	}
 	else {
-		startLoadingScreen ["No player data found...", "BLLoadingScreen"];
-		progressLoadingScreen 0.9;
+		["No player data found", 0.9] call BL_fnc_loadingScreen;
 		sleep 1;
 		createDialog 'respawnDialog';
 	};
 	
-	endLoadingScreen;
+	[] call BL_fnc_loadingScreen;
 };
 
 // Get radar JIP update

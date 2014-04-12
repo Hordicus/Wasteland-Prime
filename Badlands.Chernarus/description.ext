@@ -41,6 +41,7 @@ class CfgFunctions {
 			class createVehicle{};
 			class deleteVehicle{};
 			class setRating{};
+			class loadingScreen{};
 			class config {
 				file = "config\config.sqf";
 			};
