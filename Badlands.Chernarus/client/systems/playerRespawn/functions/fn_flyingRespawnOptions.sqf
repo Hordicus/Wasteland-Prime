@@ -21,6 +21,7 @@ _spawnInVehicle = {
 		waitUntil { vehicle player != player };
 		closeDialog respawnDialogIDD;
 	};
+	true
 };
 
 _airVehicles = [_this, 0, playerRespawn_air, [[]], [4]] call BIS_fnc_param;
