@@ -47,7 +47,16 @@
 			
 			if (
 			// Pilot change
-			(_lastCheck select 0 != driver _x) ||
+			(
+				(
+					(isNull (_lastCheck select 0) && !isNull(driver _x)) ||
+					(!isNull (_lastCheck select 0) && isNull(driver _x))
+				) ||
+				(
+					(!isNull (_lastCheck select 0) && !isNull(driver _x)) &&
+					((_lastCheck select 0) != driver _x)
+				)
+			) ||
 			
 			// Altitude change
 			(_altitude >= _minAlt && _lastCheck select 1 < _minAlt ) ||
