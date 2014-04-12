@@ -16,6 +16,10 @@ class BLLoadingScreen {
 			
 			colorBackground[] = {0,0,0,1};
 		};
+		class noise : background {
+			text = "\A3\Ui_f\data\GUI\Cfg\LoadingScreens\LoadingNoise_ca.paa";
+			style = 48;
+		};
 	};
 	
 	class controls {
