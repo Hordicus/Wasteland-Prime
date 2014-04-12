@@ -6,4 +6,5 @@ class baseFlag {
 
 	file = "client\systems\baseFlag\functions";
 	class createFlagMarkers{};
+	class drawBaseFlags{};
 };

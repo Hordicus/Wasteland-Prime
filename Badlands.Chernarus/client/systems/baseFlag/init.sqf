@@ -45,6 +45,7 @@ BL_baseFlagState = [[], "EMPTY"] call CBA_fnc_hashCreate;
 	waitUntil{!isNil "BIS_fnc_init"};
 	waitUntil {!(isNull (findDisplay 46))};
 	[] call BL_fnc_createFlagMarkers;
+	(findDisplay 12 displayCtrl 51) ctrlAddEventHandler ["Draw", BL_fnc_drawBaseFlags];
 	
 	"BL_PVAR_baseFlags" addPublicVariableEventHandler {
 		[] call BL_fnc_createFlagMarkers;

@@ -1,3 +1,5 @@
+BL_PVAR_baseFlags = missionNamespace getVariable ['BL_PVAR_baseFlags', []];
+
 "PVAR_createBaseFlag" addPublicVariableEventHandler {
 	_player   = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_location = [_this select 1, 1, [0,0,0], [[]], [2,3]] call BIS_fnc_param;

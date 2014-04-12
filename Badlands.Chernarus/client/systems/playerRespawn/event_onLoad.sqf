@@ -15,7 +15,7 @@ _map ctrlMapAnimAdd [0, 1, mapCenter];
 _map ctrlEnable false;
 ctrlMapAnimCommit _map;
 _map ctrlAddEventHandler ["Draw", BL_fnc_DrawMapIcons];
-
+_map ctrlAddEventHandler ["Draw", BL_fnc_drawBaseFlags];
 // Things that are selectively shown. Hide by default to avoid 'flash'
 {
 	(_dialog displayCtrl _x) ctrlShow false;
