@@ -95,7 +95,7 @@ Salvage what you can.
 					[_task select 0, 'SUCCEEDED'] call BIS_fnc_taskSetState;
 					(_task select 0) spawn {
 						sleep 15;
-						[_this] call BIS_fnc_deleteTask;
+						[_this] call BL_fnc_deleteTask;
 					};
 				};
 			};

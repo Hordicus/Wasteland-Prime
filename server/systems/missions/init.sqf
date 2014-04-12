@@ -28,7 +28,7 @@ runningMissionLocations = [] call CBA_fnc_hashCreate;
 		_this spawn {
 			_config = call BL_fnc_missionsConfig;
 			sleep ([_config, 'taskCleanupDelay'] call CBA_fnc_hashGet);
-			[_this] call BIS_fnc_deleteTask;
+			[_this] call BL_fnc_deleteTask;
 
 			[runningMissionLocations, _this] call CBA_fnc_hashRem;
 		};

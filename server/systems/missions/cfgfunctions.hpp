@@ -13,4 +13,5 @@ class missions {
 	class missionDone{};
 	class nearMissions{};
 	class missionRandomField{};
+	class deleteTask{};
 };
