@@ -24,6 +24,8 @@
 		};
 	} forEach BL_PVAR_baseFlags;
 	
+	[getPosATL _flag, 'baseFlag'] call BL_fnc_removeRadarLoc;
+	
 	BL_PVAR_baseFlags = BL_PVAR_baseFlags - ["REMOVE"];
 	publicVariable "BL_PVAR_baseFlags";
 };
