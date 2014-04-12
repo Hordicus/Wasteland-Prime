@@ -1,4 +1,4 @@
-private ['_config', '_mission', '_location'];
+private ["_config","_missions","_missionCode","_mission","_missionInit","_missionName","_missionDesc","_missionLoc","_missionRun","_initResult"];
 _config = call BL_fnc_missionsConfig;
 _missions = [_config, 'missions'] call CBA_fnc_hashGet;
 
