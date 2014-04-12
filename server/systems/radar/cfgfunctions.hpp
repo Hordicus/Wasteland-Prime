@@ -6,4 +6,5 @@ class radar_server {
 
 	file = "\x\bl_server\addons\systems\radar\functions";
 	class registerLocWithRadar{};
+	class removeRadarLoc{};
 };

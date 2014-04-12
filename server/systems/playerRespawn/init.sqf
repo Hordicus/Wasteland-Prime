@@ -18,6 +18,8 @@
 	
 	publicVariable "BL_spawnBeacons";
 	
+	[getPosATL _beacon, 'beaconUpdate'] call BL_fnc_removeRadarLoc;
+	
 	[_beacon] call BL_fnc_deleteVehicleDB;
 	deleteVehicle _beacon;
 };
