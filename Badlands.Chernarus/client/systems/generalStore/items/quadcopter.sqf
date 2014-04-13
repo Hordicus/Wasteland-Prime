@@ -14,7 +14,10 @@
 			0 call BL_fnc_setRating;
 			player connectTerminalToUav _uav;
 			activeUAV = _uav;
-			[] call BL_fnc_setRating;
+			
+			if ( playerSide == resistance ) then {
+				[] call BL_fnc_setRating;
+			};
 		}, "CAN_COLLIDE", true] call BL_fnc_createVehicle;
 		
 		['quadcopter'] call BL_fnc_removeInventoryItem;
