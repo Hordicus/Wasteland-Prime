@@ -7,7 +7,7 @@ _friendlies = [];
 {
 	if ( player != _x ) then {
 		if ( playerSide in [east, west] ) then {
-			if ( playerSide == side _x ) then {
+			if ( side player == side _x ) then {
 				_friendlies set [count _friendlies, _x];
 			};
 		}

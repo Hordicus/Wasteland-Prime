@@ -2,7 +2,7 @@ private ['_vehicles'];
 _vehicles = [];
 
 {
-	if ( _x in (units group player) || (playerSide in [east,west] && playerSide == side _x) ) then {
+	if ( _x in (units group player) || (playerSide in [east,west] && side player == side _x) ) then {
 		if ( vehicle _x != _x ) then {
 			if !((vehicle _x) in _vehicles) then {
 				_vehicles set [count _vehicles, vehicle _x];
