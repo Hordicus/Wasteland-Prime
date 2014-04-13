@@ -1,5 +1,5 @@
 class BLLoadingScreen {
-	idd = -1;
+	idd = 6000;
 	onLoad = "uiNamespace setVariable ['loadingScreen', _this select 0]";
 	onKeyDown = "true";
 	duration = 10e10;

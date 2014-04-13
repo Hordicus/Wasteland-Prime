@@ -32,18 +32,19 @@ enableRadio false;
 			player enableSimulation true;
 			player playMove (PVAR_playerLoaded select 1);
 			player setDir (PVAR_playerLoaded select 2);
+			[] call BL_fnc_loadingScreen;
 		}
 		else {
+			[] call BL_fnc_loadingScreen;
 			createDialog 'respawnDialog';
 		};
 	}
 	else {
 		["No player data found", 0.9] call BL_fnc_loadingScreen;
 		sleep 1;
+		[] call BL_fnc_loadingScreen;
 		createDialog 'respawnDialog';
 	};
-	
-	[] call BL_fnc_loadingScreen;
 };
 
 // Get radar JIP update

@@ -11,7 +11,7 @@ if ( typeName _msg == "SCALAR" ) then {
 };
 
 if ( _msg == "" ) then {
-	closeDialog 0;
+	closeDialog 6000;
 }
 else {
 	if ( isNull _loadingScreen ) then {
