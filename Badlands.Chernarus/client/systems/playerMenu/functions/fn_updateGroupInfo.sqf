@@ -11,7 +11,7 @@ _leaveGrp = _display displayCtrl groupLeaveIDC;
 _leaveGrp ctrlShow false;
 
 {
-	if ( !(_x in units group player) && side _x == side player ) then {
+	if ( !(_x in units group player) && (side _x == side player || side _x == playerSide)) then {
 		_index = _allPlayers lbAdd (name _x);
 		
 		if ( (name _x) in BL_groupSentInvites ) then {
