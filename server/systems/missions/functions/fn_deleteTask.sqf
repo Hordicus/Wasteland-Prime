@@ -41,16 +41,19 @@ if (_init) then {
 		_taskVar = _x call BL_fnc_taskVar;
 		_data = +(missionnamespace getvariable [_taskVar,[["",""],[],["","",""],objnull,"CREATED",-1]]);
 
-		//--- Init
+		missionnamespace setvariable [_taskVar,nil];
+		BL_PVAR_currentTasks = missionNamespace getVariable ['BL_PVAR_currentTasks', [] call CBA_fnc_hashCreate];
+		[BL_PVAR_currentTasks, _taskVar] call CBA_fnc_hashRem;
+		
 		_targetsLocal = if (count _targets == 0) then {_data select 1} else {_targets};
-		[[_x,_targetsLocal,false],"bis_fnc_deleteTask"] call bis_fnc_mp;
-
-		//--- Delete owners
-		_targetsAll = _data select 1;
-		_targetsAll = _targetsAll - _targetsLocal;
-		_data set [1,_targetsAll];
-		missionnamespace setvariable [_taskVar,if (count _targetsAll > 0) then {_data} else {nil}];
-		publicvariable _taskVar;
+		[[_x,_targetsLocal,false],"BIS_fnc_deleteTask"] call bis_fnc_mp;
+		
+		_index = (BL_PVAR_currentTasks select 1) find _taskVar;
+		BL_PVAR_currentTasks set [1, (BL_PVAR_currentTasks select 1) - [_taskVar]];
+		
+		(BL_PVAR_currentTasks select 2) set [_index, "REMOVE"];
+		BL_PVAR_currentTasks set [2, (BL_PVAR_currentTasks select 2) - ["REMOVE"]];
+		publicVariable "BL_PVAR_currentTasks";
 	} foreach ([_taskID] + _taskChildren);
 } else {
 	//--- Local

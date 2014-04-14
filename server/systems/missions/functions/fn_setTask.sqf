@@ -34,7 +34,7 @@
 	STRING - Task ID
 */
 private ["_params","_taskID","_taskParentID","_taskVar","_data","_taskCreate","_fnc_addTarget","_target","_targets","_desc","_dest","_destTarget","_state","_params","_children","_showNotification","_isGlobal","_args"];
-
+diag_log format['Calling my BL_fnc_setTask: %1', _this];
 //--- Register
 _params = [_this,0,"",["",[]]] call BIS_fnc_param;
 
@@ -46,7 +46,7 @@ _taskParentID = [_params,1,"",[""]] call BIS_fnc_paramIn;
 
 
 //--- Register task data
-_taskVar = _taskID call bis_fnc_taskVar;
+_taskVar = _taskID call BL_fnc_taskVar;
 _data = missionnamespace getvariable _taskVar;
 _taskCreate = isnil {_data};
 if (_taskCreate) then {
@@ -139,11 +139,11 @@ _params = _data select 0;
 _children = _params select 2;
 {
 	private ["_xData","_xState"];
-	_xData = missionnamespace getvariable (_x call bis_fnc_taskVar);
+	_xData = missionnamespace getvariable (_x call BL_fnc_taskVar);
 	if !(isnil {_xData}) then {
 		_xState = _xData select 4;
 		if (_xState == "CREATED" || _xState == "ASSIGNED") then {
-			[_x,nil,nil,nil,_state,nil,false] call bis_fnc_setTask;
+			[_x,nil,nil,nil,_state,nil,false] call BL_fnc_setTask;
 		};
 	};
 } foreach _children;
@@ -152,9 +152,9 @@ _children = _params select 2;
 //--- Register to parent task
 if (_taskParentID != "") then {
 	private ["_taskParentVar","_dataParent","_childrenParent"];
-	_taskParentVar = _taskParentID call bis_fnc_taskVar;
+	_taskParentVar = _taskParentID call BL_fnc_taskVar;
 	if (isnil {missionnamespace getvariable _taskParentVar}) then {
-		[_taskParentID,_target] call bis_fnc_setTask;
+		[_taskParentID,_target] call BL_fnc_setTask;
 	};
 	_dataParent = missionnamespace getvariable _taskParentVar;
 	_paramsParent = _dataParent select 0;
@@ -181,14 +181,16 @@ missionnamespace setvariable [_taskVar,_data];
 _isGlobal = [_this,7,_data select 7,[true]] call BIS_fnc_param;
 _args = [_taskID,_showNotification,servertime];
 if (_isGlobal && ismultiplayer) then {
-	publicvariable _taskVar;
+	BL_PVAR_currentTasks = missionNamespace getVariable ['BL_PVAR_currentTasks', [] call CBA_fnc_hashCreate];
+	[BL_PVAR_currentTasks, _taskVar, _data] call CBA_fnc_hashSet;
+	publicVariable "BL_PVAR_currentTasks";
+
 	[
 		_args,
 		"BIS_fnc_setTaskLocal",
-		true,
-		_taskCreate
+		true
 	] call BIS_fnc_MP;
 } else {
-	_args call BIS_fnc_setTaskLocal;
+	_args call BL_fnc_setTaskLocal;
 };
 _taskID
