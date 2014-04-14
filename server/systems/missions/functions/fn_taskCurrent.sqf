@@ -16,6 +16,6 @@ _unit = [_this,0,objnull,[objnull]] call BIS_fnc_param;
 _taskReal = currenttask _unit;
 _taskID = "";
 {
-	if (([_x,_unit] call bis_fnc_taskReal) == _taskReal) exitwith {_taskID = _x;};
-} foreach (_unit getvariable ["BIS_fnc_setTaskLocal_tasks",[]]);
+	if (([_x,_unit] call BL_fnc_taskReal) == _taskReal) exitwith {_taskID = _x;};
+} foreach (_unit getvariable ["BL_fnc_setTaskLocal_tasks",[]]);
 _taskID

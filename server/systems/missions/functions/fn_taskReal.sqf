@@ -16,6 +16,6 @@ private ["_taskID","_unit","_taskVar"];
 
 _taskID = [_this,0,"",[""]] call BIS_fnc_param;
 _unit = [_this,1,objnull,[objnull]] call BIS_fnc_param;
-_taskVar = _taskID call bis_fnc_taskVar;
+_taskVar = _taskID call BL_fnc_taskVar;
 
 _unit getvariable [_taskVar,tasknull];

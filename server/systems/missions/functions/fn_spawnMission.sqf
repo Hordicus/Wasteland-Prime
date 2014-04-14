@@ -34,7 +34,7 @@ if ( typeName _missionDesc == "CODE" ) then {
 	_missionDesc,
 	_missionName,
 	_missionName
-], _missionLoc, 'CREATED', 0] call BIS_fnc_taskCreate;
+], _missionLoc, 'CREATED', 0] call BL_fnc_taskCreate;
 
 // Spawn mission's init
 [_initResult, _missionCode, _missionLoc] spawn _missionRun;

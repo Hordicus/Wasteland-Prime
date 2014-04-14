@@ -17,4 +17,4 @@ private ["_taskName","_info"];
 _taskName = [_this,0, "",[""]] call BIS_fnc_param;
 _info = [_this,1,["","",""],[[]], 3] call BIS_fnc_param;
 
-[_taskName,nil,_info] call bis_fnc_setTask;
+[_taskName,nil,_info] call BL_fnc_setTask;

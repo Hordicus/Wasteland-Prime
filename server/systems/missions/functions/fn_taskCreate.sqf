@@ -29,4 +29,4 @@ _showNotification = [_this,6,true,[true]] call BIS_fnc_param;
 if (typename _dest == typename "") then {_dest = markerpos _dest;};
 if (typename _state == typename 0) then {_state = _state > 0;};
 
-[_params,_target,_desc,_dest,_state,_priority,_showNotification] call bis_fnc_setTask;
+[_params,_target,_desc,_dest,_state,_priority,_showNotification] call BL_fnc_setTask;
