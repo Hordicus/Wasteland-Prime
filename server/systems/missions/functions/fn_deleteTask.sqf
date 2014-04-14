@@ -49,24 +49,8 @@ if (_init) then {
 		_targetsAll = _data select 1;
 		_targetsAll = _targetsAll - _targetsLocal;
 		_data set [1,_targetsAll];
-		diag_log format['_taskVar = %1', _taskVar];
-		missionnamespace setvariable [_taskVar,nil];
+		missionnamespace setvariable [_taskVar,if (count _targetsAll > 0) then {_data} else {nil}];
 		publicvariable _taskVar;
-		
-		// Remove from MP logic queue
-		_logic = missionnamespace getvariable ["bis_functions_mainscope",objnull];
-		_queue = _logic getvariable ["BIS_fnc_MP_queue",[]];
-		
-		private ['_currentTaskID'];
-		_currentTaskID = _x;
-		{
-			if ( typeName (_x select 1) == "ARRAY" && {(_x select 1 select 0) == _currentTaskID} ) then {
-				_queue set [_forEachIndex, "REMOVE"];
-				_queue = _queue - ["REMOVE"];
-			};
-		} forEach _queue;
-		
-		_logic setvariable ["BIS_fnc_MP_queue",_queue,true];
 	} foreach ([_taskID] + _taskChildren);
 } else {
 	//--- Local
