@@ -142,8 +142,14 @@ if (isPlayer _unit) then {
 			waitUntil {(getPos _unit select 2) < 150 || animationState _unit == "para_pilot" && alive _unit};
 			_unit action ["OpenParachute", _unit]; //open parachute if 150m above ground
 		};
-		
-		waitUntil {animationState _unit == "para_pilot"};
+	};
+};
+
+if ( isPlayer player && side player == sideEnemy ) then {
+	_actionId = player addAction ['Open parachute', {player action ["OpenParachute", player]}, [], 20];
+	_actionId spawn {
+		waitUntil { isTouchingGround player || !alive player };
+		player removeAction _this;
 	};
 };
 
