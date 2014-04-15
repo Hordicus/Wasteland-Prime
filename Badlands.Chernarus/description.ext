@@ -73,9 +73,9 @@ class CfgFunctions {
 		#include "client\systems\playerActions\cfgfunctions.hpp"
 		#include "client\systems\baseFlag\cfgfunctions.hpp"
 		#include "client\systems\missions\cfgfunctions.hpp"
+		#include "client\systems\stores\cfgfunctions.hpp"
 	};
 
-	#include "client\systems\stores\cfgfunctions.hpp"
 	#include "gear\cfgfunctions.hpp"
 	#include "logistics\cfgfunctions.hpp"
 };

@@ -64,7 +64,7 @@
 		{
 			// Give player item
 		}
-	] call BL_Store_fnc_showStore;
+	] call BL_fnc_showStore;
 	
 	Returns:
 	Store dialog
@@ -125,7 +125,7 @@ else {
 	} forEach _items;
 };
 
-[_items] call BL_Store_fnc_showItems;
+[_items] call BL_fnc_showItems;
 
 // Trigger cart update. Should set cart info with any initial info.
 [[], _dialog displayCtrl cartInfoIDC, _purchaseBtn] call _onCartChange;

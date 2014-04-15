@@ -70,4 +70,4 @@ _generalStore = 'generalStore' call BL_fnc_config;
 		
 		// Take money
 	}
-] call BL_Store_fnc_showStore;
+] call BL_fnc_showStore;

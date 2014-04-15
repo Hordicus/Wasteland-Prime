@@ -147,7 +147,7 @@ _dialog = [
 			[_cartClasses select 0, buildingStoreLoadingArea, "basePart"] call BL_fnc_createVehicle;
 		};
 	}
-] call BL_Store_fnc_showStore;
+] call BL_fnc_showStore;
 
 (ctrlIDD _dialog) spawn {
 	// Destroy object cam when dialog is closed

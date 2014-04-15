@@ -29,5 +29,5 @@ _storeCfg = uiNamespace getVariable 'storeCfg';
 _cart = _dialog displayCtrl cartIDC;
 
 // Get items in cart
-_items = [] call BL_Store_fnc_cartItems;
+_items = [] call BL_fnc_cartItems;
 [_items, _dialog displayCtrl cartInfoIDC, _dialog displayCtrl purchaseIDC] call (_storeCfg select 3);

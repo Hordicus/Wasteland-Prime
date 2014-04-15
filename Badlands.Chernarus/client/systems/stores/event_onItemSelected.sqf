@@ -25,5 +25,5 @@ else {
 };
 
 uiNamespace setVariable ['storeLastPane', _pane];
-_item = ((_this select 0) lbData lbCurSel (_this select 0)) call BL_Store_fnc_itemFromIndex;
+_item = ((_this select 0) lbData lbCurSel (_this select 0)) call BL_fnc_itemFromIndex;
 [_pane, _item, (_dialog displayCtrl selectedItemInfoIDC)] call (_storeCfg select 2);
