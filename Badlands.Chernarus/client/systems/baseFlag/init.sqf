@@ -60,14 +60,7 @@ BL_baseFlagState = [[], "EMPTY"] call CBA_fnc_hashCreate;
 		_code = _this select 1 select 0;
 		_state = [_players] call BL_fnc_friendlyState;
 		
-		_color = _state call {
-			if ( _this == "FRIENDLY" ) exitwith {"ColorGreen"};
-			if ( _this == "ENEMY" ) exitwith {"ColorRed"};
-			if ( _this == "MIXED" ) exitwith {"ColorOrange"};
-			if ( _this == "EMPTY" ) exitwith {"ColorBlack"};
-		};
-		
-		(format["baseFlag%1", _code]) setMarkerColorLocal _color;
+		(format["baseFlag%1", _code]) setMarkerColorLocal (_state call BL_fnc_stateColor);
 		
 		if ( player in _players ) then {
 			_last = [BL_baseFlagState, _code] call CBA_fnc_hashGet;
