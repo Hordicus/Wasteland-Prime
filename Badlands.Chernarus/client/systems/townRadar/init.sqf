@@ -16,25 +16,9 @@ stateHistory = [[], "EMPTY"] call CBA_fnc_hashCreate;
 	_players = _this select 0;
 	_town = _this select 1 select 0;
 	_state = [_players] call BL_fnc_friendlyState;
-	_color = "ColorBlack";
-	
-	switch(_state) do {
-		case "FRIENDLY": {
-			_color = "ColorGreen";
-		};
-		case "ENEMY": {
-			_color = "ColorRed";
-		};
-		case "MIXED": {
-			_color = "ColorOrange";
-		};
-		case "EMPTY": {
-			_color = "ColorBlack";
-		};
-	};
-	
+
 	// Set the town marker to the appropriate color
-	(format["marker_%1", _town]) setMarkerColorLocal _color;
+	(format["marker_%1", _town]) setMarkerColorLocal (_state call BL_fnc_stateColor);
 	
 	// Alerts for when player is in area
 	if ( player in _players ) then {
