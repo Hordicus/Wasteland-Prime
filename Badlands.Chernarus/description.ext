@@ -43,6 +43,7 @@ class CfgFunctions {
 			class setRating{};
 			class loadingScreen{};
 			class stateColor{};
+			class requestSave{};
 			class config {
 				file = "config\config.sqf";
 			};

@@ -78,7 +78,10 @@
 	player addEventHandler ['respawn', _addActions];
 	[] call _addActions;
 	['beforeMove', { !((_this select 0) getVariable ['objectLocked', false]) }] call LOG_fnc_addEventHandler;
-	
+	['releasedVehicle', { (_this select 1) call BL_fnc_requestSave; }] call LOG_fnc_addEventHandler;
+	['unloadedItem', {(_this select 0) call BL_fnc_requestSave;}] call LOG_fnc_addEventHandler;
+	['objectLoadedIn', {(_this select 0) call BL_fnc_requestSave;}] call LOG_fnc_addEventHandler;
+
 	while { true } do {
 		if ( cursorTarget distance player < 20 ) then {
 			if ( cursorTarget in (5 call LOG_fnc_getPointerObject) && cursorTarget getVariable ['objectLocked', false] ) then {

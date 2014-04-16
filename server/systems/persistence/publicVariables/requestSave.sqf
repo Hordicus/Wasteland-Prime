@@ -10,13 +10,11 @@
 			[_obj] call BL_fnc_savePlayer;
 		};
 		
-		if ( [_obj] call LOG_fnc_objectSize != -1 ) exitwith {
-			if ( _obj getVariable ['PERS_type', 'veh'] == 'basePart' && !(_obj getVariable ['objectLocked', false])) then {
-				[_obj] call BL_fnc_deleteVehicleDB;
-			}
-			else {
-				[_obj] call BL_fnc_queueSaveVehicle;
-			};
+		if ( _obj getVariable ['PERS_type', 'veh'] == 'basePart' && !(_obj getVariable ['objectLocked', false])) then {
+			[_obj] call BL_fnc_deleteVehicleDB;
+		}
+		else {
+			[_obj] call BL_fnc_queueSaveVehicle;
 		};
 	};
 	
