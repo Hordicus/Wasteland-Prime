@@ -2,7 +2,7 @@
 
 class RscCommon {
 	text = "";
-	idc  = -1;
+	idc  = -2;
 	colorBackground[] = {0,0,0,0.5};
 	colorText[] = {1,1,1,1};
 	color[] = {1,1,1,1};
@@ -466,8 +466,8 @@ class RscListNBox : RscListBox {
 	columns[] = {0.3, 0.6, 0.7};
 	drawSideArrows = 0;
 	
-	idcLeft = -2;
-	idcRight = -2;
+	idcLeft = -1;
+	idcRight = -1;
 };
 
 class RscEdit : RscCommon {

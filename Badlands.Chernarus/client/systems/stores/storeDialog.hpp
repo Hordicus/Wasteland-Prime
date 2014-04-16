@@ -17,6 +17,13 @@ class storeDialog {
 			sizeEx = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.2);
 			colorBackground[] = {0,0,0,1};
 		};
+		
+		class cartBG : RscCommon {
+			w = safezoneW * (0.26);
+			h = safezoneH * (0.44);
+			x = safezoneX + safezoneW * (0.1 + 0.27 + 0.27);
+			y = safezoneY + safezoneH * (0.16);		
+		};
 	};
 	
 	class controls {
@@ -60,11 +67,15 @@ class storeDialog {
 			action = "_this call compile preprocessFileLineNumbers 'client\systems\stores\event_addRemoveItem.sqf'";
 		};
 		
-		class cart : storeItems {
+		class cart : RscListNBox {
 			idc = cartIDC;
+			w = safezoneW * (0.26);
 			h = safezoneH * (0.44);
 			x = safezoneX + safezoneW * (0.1 + 0.27 + 0.27);
 			y = safezoneY + safezoneH * (0.16);
+			columns[] = {0, 0.8};
+
+			onLbSelChanged = "_this call compile preprocessFileLineNumbers 'client\systems\stores\event_onItemSelected.sqf'";
 		};
 		
 		class cartInfo : RscStructuredText {
