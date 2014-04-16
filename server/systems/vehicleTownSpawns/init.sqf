@@ -23,6 +23,7 @@
 	_classes = [];
 	_lowestChance = 1;
 	_maxPerCity = [_config, "maxPerCity"] call CBA_fnc_hashGet;
+	_minPerCity = [_config, "minPerCity"] call CBA_fnc_hashGet;
 	_vehiclesPerMeter = [_config, "vehiclesPerMeter"] call CBA_fnc_hashGet;
 	_cargoGroups = [_config, "vehicleCargo"] call CBA_fnc_hashGet;
 
@@ -47,9 +48,8 @@
 				_maxCount = round (_sqMeters / _vehiclesPerMeter);
 				_searchDistance = 5;
 				
-				if ( _maxCount > _maxPerCity ) then {
-					_maxCount = _maxPerCity;
-				};
+				
+				_maxCount = _maxCount min _maxPerCity max _minPerCity;
 				
 				// Bring vehicle count up to max count
 				for "_i" from 1 to ( _maxCount - _currentCount ) do {
