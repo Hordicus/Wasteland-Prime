@@ -77,7 +77,7 @@ while { true } do {
 		};
 	}] call CBA_fnc_hashEachPair;
 
-	sleep 5;
+	sleep (60 * 5);
 };
 
 /*
