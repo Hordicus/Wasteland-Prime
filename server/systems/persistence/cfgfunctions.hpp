@@ -19,6 +19,7 @@ class persistence {
 	class vehicleWeapons{};
 	class trackVehicle{};
 	class deleteVehicleDB{};
+	class queueSaveVehicle{};
 	
 	class processQueryResult{};
 	class MySQLCommand{};
