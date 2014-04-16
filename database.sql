@@ -47,6 +47,7 @@ CREATE TABLE `vehicles` (
   `ammoCargo` varchar(45) DEFAULT NULL,
   `magazines` text,
   `variables` text,
+  `log_contents` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

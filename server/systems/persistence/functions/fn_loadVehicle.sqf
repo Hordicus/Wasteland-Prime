@@ -53,3 +53,8 @@ _weapons = [typeOf _veh] call BL_fnc_vehicleWeapons;
 		_veh addMagazineTurret [_x, _path];
 	} forEach (_x select 1);
 } forEach (_data select 15);
+
+// LOG_contents
+if ( count (_data select 17) > 0 ) then {
+	_veh setVariable ['LOG_contents', _data select 17, true];
+};

@@ -51,6 +51,7 @@ _data = [
 	_ammoCargo,
 	_magazines,
 	_variables,
+	_veh getVariable ['LOG_contents', []],
 	_dbID,
 	_type
 ];
@@ -79,14 +80,15 @@ _query = _query + "
 `fuelCargo` = %12,
 `ammoCargo` = %13,
 `magazines` = '%14',
-`variables` = '%15'
+`variables` = '%15',
+`log_contents` = '%16'
 ";
 
 if ( _isNew ) then {
-	_query = _query + ", `object_type` = '%17'";
+	_query = _query + ", `object_type` = '%18'";
 }
 else {
-	_query = _query + "WHERE `id` = '%16'";
+	_query = _query + "WHERE `id` = '%17'";
 };
 
 [_query, _data] call BL_fnc_MySQLCommand;
