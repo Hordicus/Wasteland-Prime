@@ -26,7 +26,7 @@ PERS_trackedObjectsIDs = [];
 	PERS_init_done = true;
 };
 
-// Delete anything that isn't in our system.
+// Delete entities that aren't in our system.
 [] spawn {
 	private ["_netId","_index"];
 	while { true } do {
@@ -39,6 +39,36 @@ PERS_trackedObjectsIDs = [];
 		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
 	
 		sleep 60;
+	};
+};
+
+// Check all objects, delete anything that isn't tracked
+[] spawn {
+	private ["_netId","_index"];
+	while { true } do {
+		{
+			_ignore = _x call {
+				// Entities, tracked above.
+				if ( _x isKindOf 'LandVehicle' ) exitwith {true};
+				if ( _x isKindOf 'Air' ) exitwith {true};
+				if ( _x isKindOf 'ReammoBox_F' ) exitwith {true};
+
+				if ( _x isKindOf 'Man' ) exitwith {true};
+				if ( _x isKindOf 'Logic' ) exitwith {true};
+				false
+			};
+			
+			if ( !_ignore ) then {
+				_netId = netId _x;
+				_index = PERS_trackedObjectsNetIDs find _netId;
+				if ( _index == -1 ) then {
+					diag_log format['Deleting untracked object: %1 (%2)', typeOf _x, _x];
+					deleteVehicle _x;
+				};
+			};
+		} count allMissionObjects "All";
+	
+		sleep (60 * 5);
 	};
 };
 
