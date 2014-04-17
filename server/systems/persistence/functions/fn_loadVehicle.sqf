@@ -48,10 +48,7 @@ _weapons = [typeOf _veh] call BL_fnc_vehicleWeapons;
 } forEach _weapons;
 
 {
-	_path = _x select 0;
-	{
-		_veh addMagazineTurret [_x, _path];
-	} forEach (_x select 1);
+	_veh addMagazine _x;
 } forEach (_data select 15);
 
 // LOG_contents

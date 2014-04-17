@@ -1,4 +1,4 @@
-private ["_veh","_netId","_index","_dbID","_isNew","_type","_position","_variables","_fuelCargo","_ammoCargo","_weapons","_magazines","_data","_query"];
+private ["_veh","_netId","_index","_dbID","_isNew","_type","_position","_variables","_fuelCargo","_ammoCargo","_data","_query"];
 _veh = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 
 if ( isNull _veh ) exitwith {};
@@ -27,13 +27,6 @@ _ammoCargo = getFuelCargo _veh;
 if !( finite _fuelCargo ) then { _fuelCargo = 0; };
 if !( finite _ammoCargo ) then { _ammoCargo = 0; };
 
-_weapons = ([typeOf _veh] call BL_fnc_vehicleWeapons);
-
-_magazines = [];
-{
-	_magazines set [_forEachIndex, [_x select 1, _veh magazinesTurret (_x select 1)]];
-} forEach _weapons;
-
 _data = [
 	typeOf _veh,
 	_position select 0,
@@ -49,7 +42,7 @@ _data = [
 	vectorUp _veh,
 	_fuelCargo,
 	_ammoCargo,
-	_magazines,
+	magazines _veh,
 	_variables,
 	_veh getVariable ['LOG_contents', []],
 	_dbID,
