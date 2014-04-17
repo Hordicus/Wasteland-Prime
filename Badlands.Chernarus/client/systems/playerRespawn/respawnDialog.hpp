@@ -54,12 +54,13 @@ class respawnDialog {
 		};
 		
 		class serverInfo : RscStructuredText {
-			text = "<t align='right'>Server Name<br />ts.gamingserver.com<br/>http://gamingserver.com</t>";
+			text = "";
 
 			x = safezoneX + safezoneW * ( 0.1 + 0.02 + 0.15 + 0.01);
 			y = safezoneY + safezoneH * ( 0.1 + 0.005 + 0.05 + 0.02 );
 			w = safezoneW * 0.61;
 			h = safezoneH * 0.09;
+			idc = respawnServerInfoIDC;
 		};		
 		
 		class spawnOptionHeader : RscText {

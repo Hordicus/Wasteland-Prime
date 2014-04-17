@@ -9,6 +9,8 @@ _dialog displayAddEventHandler ["KeyDown", {
 	}
 }];
 
+(_dialog displayCtrl respawnServerInfoIDC) ctrlSetStructuredText parseText ('RespawnServerInfo' call BL_fnc_config);
+
 // Set up map background
 _map = (_dialog displayCtrl respawnBackdropIDC);
 _map ctrlMapAnimAdd [0, 1, mapCenter];

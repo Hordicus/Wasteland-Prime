@@ -28,6 +28,7 @@
 #define respawnListPresetsIDC 3020
 #define respawnSpawnPagesIDC 3021
 #define respawnTransactionDetailsIDC 3022
+#define respawnServerInfoIDC 3023
 
 
 #define GEAR_idc_base 2000

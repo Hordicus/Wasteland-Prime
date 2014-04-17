@@ -20,6 +20,20 @@ _config = [] call CBA_fnc_hashCreate;
 	'Community Info #2'
 ]] call CBA_fnc_hashSet;
 
+[_config, 'RespawnServerInfo', format['
+	<t color="#FFFFFF" align="right" size="0.8">
+	%1<br />
+	%2<br />
+	%3<br />
+	%4<br />
+	</t>
+	',
+	'Gaming Community',
+	'Server Info',
+	'Community Info #1',
+	'Community Info #2'
+]] call CBA_fnc_hashSet;
+
 [_config, 'buildingStore', [
 	["Concrete", [
 		["", "Land_CncBarrier_F", 100],
