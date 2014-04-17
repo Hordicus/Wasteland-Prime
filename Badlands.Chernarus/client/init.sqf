@@ -82,16 +82,25 @@ player addEventHandler ["respawn", {
 }];
 
 if ( side player == resistance ) then {
-	// Keep player's rating at -100,000. Below -2000 switches side to enemy.
-
-	player addRating (-100000 + -(rating player));
-	['killed', {
-		if ( rating player > -50000 ) then {
-			player addRating (-100000 + -(rating player));
+	// When player is damaged set rating to -4000 in case they die.
+	// If the player dies with a negative rating it won't show as 
+	// friendly fire.
+	player addEventhandler ['HandleDamage', {
+		_player = _this select 0;
+		-4000 call BL_fnc_setRating;
+		
+		_h = _player getVariable 'HandleDamageSH';
+		if ( !isNil "_h" ) then {
+			if ( !scriptDone _h ) then {
+				terminate _h;
+			};
 		};
-	}] call CBA_fnc_addEventHandler;
-
-	player addEventHandler ['Respawn', {
-		player addRating (-100000 + -(rating player));
+		
+		_h = [_player] spawn {
+			sleep 0.1;
+			0 call BL_fnc_setRating;
+		};
+		
+		_h = _player setVariable ['HandleDamageSH', _h];
 	}];
 };

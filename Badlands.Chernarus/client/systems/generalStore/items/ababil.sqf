@@ -15,10 +15,6 @@
 			0 call BL_fnc_setRating;
 			player connectTerminalToUav _uav;
 			activeUAV = _uav;
-			
-			if ( playerSide == resistance ) then {
-				[] call BL_fnc_setRating;
-			};
 		}, "FLY", true] call BL_fnc_createVehicle;
 		
 		['ababil'] call BL_fnc_removeInventoryItem;
