@@ -55,6 +55,10 @@ BL_baseFlagState = [[], "EMPTY"] call CBA_fnc_hashCreate;
 		[] call BL_fnc_createFlagMarkers;
 	}] call CBA_fnc_addEventHandler;
 
+	['groupChange', {
+		[] call BL_fnc_createFlagMarkers;
+	}] call CBA_fnc_addEventHandler;
+
 	['baseFlag', {
 		_players = _this select 0;
 		_code = _this select 1 select 0;
