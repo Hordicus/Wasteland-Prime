@@ -1,5 +1,19 @@
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `playerkills` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `timestamp` int(11) NOT NULL,
+  `player_uid` varchar(100) NOT NULL,
+  `killer_uid` varchar(100) DEFAULT NULL,
+  `weapon` varchar(45) DEFAULT NULL,
+  `friendly` tinyint(1) DEFAULT NULL,
+  `playerpos` varchar(45) DEFAULT NULL,
+  `killerpos` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created` datetime NOT NULL,
