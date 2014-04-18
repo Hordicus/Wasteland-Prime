@@ -12,7 +12,6 @@ if ( !isNil "_saveH" ) then {
 
 _h = [_veh, _timeout] spawn {
 	sleep (_this select 1);
-	diag_log format['Saving %1', _this select 0];
 	[_this select 0] call BL_fnc_saveVehicle;
 };
 

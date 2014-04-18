@@ -26,10 +26,7 @@ _groupClasses = [] call CBA_fnc_hashCreate;
 	
 	// Load
 	{
-		private ['_veh'];
-		_veh = _this select 0;
-		diag_log format['Setting originalSpawnPoint to %1', _this select 1];
-		_veh setVariable ['originalSpawnPoint', _this select 1];
+		(_this select 0) setVariable ['originalSpawnPoint', _this select 1];
 	}
 ]] call BL_fnc_persRegisterTypeHandler;
 

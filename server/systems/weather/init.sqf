@@ -1,8 +1,6 @@
 weatherTemplates = 'weatherTemplates' call BL_fnc_config;
 
 ["SELECT `value` FROM `settings` WHERE `key` = 'rw2_Current_Weather'", [], [], {
-	diag_log format['Weather info: %1', _this select 0 select 0 select 0];
-
 	if ( count (_this select 0 select 0) == 0 ) then {
 		rw2_Current_Weather = floor(random(count(weatherTemplates)));
 		["INSERT INTO `settings` SET `key` = 'rw2_Current_Weather', `value` = '%1'", [rw2_Current_Weather]] call BL_fnc_MySQLCommand;

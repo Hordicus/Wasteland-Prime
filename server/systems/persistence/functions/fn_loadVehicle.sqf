@@ -1,15 +1,12 @@
 private ["_data","_position","_veh","_weapons","_path"];
 _data = [_this, 0, [], [[]]] call BIS_fnc_param;
 
-// diag_log format["Loading Vehicle with data: %1", _data];
-
 _position = [
 	_data select 3,
 	_data select 4,
 	_data select 5
 ];
 
-// _veh = createVehicle [_data select 1, _position, [], 0, "CAN_COLLIDE"];
 _veh = [_data select 1, _position, _data select 11] call BL_fnc_safeVehicleSpawn;
 [_veh, _data select 2, _data select 0] call BL_fnc_trackVehicle;
 

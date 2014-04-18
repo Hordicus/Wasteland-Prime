@@ -2,8 +2,6 @@ private ['_player', '_playerUID', '_result'];
 _player = [_this, 0, player, [player]] call BIS_fnc_param;
 _playerUID = getPlayerUID _player;
 
-diag_log format['Loading player with UID %1', _playerUID];
-
 _result = (["SELECT `damage`, `pos_x`, `pos_y`, `pos_z`, `gear`, `animation`, `direction`, `money`, `playerInv` FROM `players` WHERE `uid` = '%1'", [_playerUID]] call BL_fnc_MySQLCommandSync) select 0;
 
 if ( count _result == 1 ) then {

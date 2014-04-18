@@ -34,7 +34,6 @@
 	STRING - Task ID
 */
 private ["_params","_taskID","_taskParentID","_taskVar","_data","_taskCreate","_fnc_addTarget","_target","_targets","_desc","_dest","_destTarget","_state","_params","_children","_showNotification","_isGlobal","_args"];
-diag_log format['Calling my BL_fnc_setTask: %1', _this];
 //--- Register
 _params = [_this,0,"",["",[]]] call BIS_fnc_param;
 
