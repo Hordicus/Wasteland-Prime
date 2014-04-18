@@ -22,6 +22,10 @@ _veh spawn {
 	if ( isNil {_this getVariable 'originalSpawnPoint'} ) then {
 		_this setVariable ['originalSpawnPoint', getPosATL _this];
 	};
+	
+	if ( isNil {_this getVariable 'lastSaveState'} ) then {
+		_this setVariable ['lastSaveState', _this call BL_fnc_vehicleState];
+	};
 };
 
 _veh

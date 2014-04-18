@@ -55,6 +55,4 @@ if ( count (_data select 17) > 0 ) then {
 	_veh setVariable ['LOG_contents', _data select 17, true];
 };
 
-_veh setVariable ['lastSaveState', _veh call BL_fnc_vehicleState];
-
 [_data select 2, 'load', [_veh, _data select 16]] call BL_fnc_persRunTypeHandler;
