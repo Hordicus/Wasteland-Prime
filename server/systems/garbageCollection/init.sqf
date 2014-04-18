@@ -53,7 +53,17 @@
 				
 				_x setVariable ['GC_lastUsed', time];
 				_x setVariable ['GC_tracked', true];
+
+				// Make sure it didn't get converted to string
+				_originalSpawn = _x getVariable 'originalSpawnPoint';
+				{
+					if ( typeName _x == "STRING" ) then {
+						_originalSpawn set [_forEachIndex, parseNumber _x];
+					};
+				} forEach _originalSpawn;
+				_x setVariable ['originalSpawnPoint', _originalSpawn];
 			};
+			
 			
 			if ( (_vehPos distance (_x getVariable 'originalSpawnPoint')) > 10 ) then {
 				if (count crew _x == 0 && {time - _lastUsed >= (30 * 60)} && { count ([_vehPos, _detectionRange] call BL_fnc_nearUnits) == 0 } && {count (_x getVariable ['LOG_contents', []]) == 0}) then {
