@@ -8,8 +8,7 @@ _index = PERS_trackedObjectsNetIDs find _netId;
 _dbID = PERS_trackedObjectsIDs select _index;
 _isNew = isNil "_dbID";
 
-_veh setVariable ['lastSave', time];
-_veh setVariable ['lastSavePos', getPosATL _veh];
+_veh setVariable ['lastSaveState', _veh call BL_fnc_vehicleState];
 
 if ( _isNew ) then { _dbID = -1; };
 

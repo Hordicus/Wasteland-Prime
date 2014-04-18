@@ -20,6 +20,7 @@ class persistence {
 	class trackVehicle{};
 	class deleteVehicleDB{};
 	class queueSaveVehicle{};
+	class vehicleState{};
 	
 	class processQueryResult{};
 	class MySQLCommand{};

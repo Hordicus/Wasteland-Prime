@@ -55,3 +55,5 @@ _weapons = [typeOf _veh] call BL_fnc_vehicleWeapons;
 if ( count (_data select 17) > 0 ) then {
 	_veh setVariable ['LOG_contents', _data select 17, true];
 };
+
+_veh setVariable ['lastSaveState', _veh call BL_fnc_vehicleState];

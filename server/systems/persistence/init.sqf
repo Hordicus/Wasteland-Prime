@@ -74,7 +74,8 @@ PERS_trackedObjectsIDs = [];
 
 // Periodic saving loops
 [] spawn {
-	private ["_savePlayer","_player","_lastSave","_processed","_lastSavePos","_index","_dbID"];
+	sleep 60;
+	private ["_savePlayer","_player","_lastSave","_processed","_index","_dbID"];
 	_savePlayer = {
 		_player =  _this select 0;
 		_lastSave = _player getVariable 'lastSave';
@@ -100,13 +101,10 @@ PERS_trackedObjectsIDs = [];
 		} count playableUnits;
 		
 		{
-			_lastSave = _x getVariable 'lastSave';
-			_lastSavePos = _x getVariable 'lastSavePos';
-
 			_index = PERS_trackedObjectsNetIDs find (netId _x);
 			_dbID = PERS_trackedObjectsIDs select _index;
 
-			if ( !isNil "_dbID" && ((getPosATL _x) distance _lastSavePos) >= 10) then {
+			if ( !isNil "_dbID" && (_x getVariable ['lastSaveState', '']) != (_x call BL_fnc_vehicleState)) then {
 				[_x] call BL_fnc_saveVehicle;
 			};
 			true
