@@ -29,8 +29,8 @@ CREATE TABLE `players` (
   `direction` smallint(6) DEFAULT '0',
   `money` int(11) DEFAULT '0',
   `playerInv` text,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uid_UNIQUE` (`uid`)
+  `side` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

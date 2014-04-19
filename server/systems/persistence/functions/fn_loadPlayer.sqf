@@ -2,7 +2,7 @@ private ['_player', '_playerUID', '_result'];
 _player = [_this, 0, player, [player]] call BIS_fnc_param;
 _playerUID = getPlayerUID _player;
 
-_result = (["SELECT `damage`, `pos_x`, `pos_y`, `pos_z`, `gear`, `animation`, `direction`, `money`, `playerInv` FROM `players` WHERE `uid` = '%1'", [_playerUID]] call BL_fnc_MySQLCommandSync) select 0;
+_result = (["SELECT `damage`, `pos_x`, `pos_y`, `pos_z`, `gear`, `animation`, `direction`, `money`, `playerInv` FROM `players` WHERE `uid` = '%1' AND `side` = '%2'", [_playerUID, str side _player]] call BL_fnc_MySQLCommandSync) select 0;
 
 if ( count _result == 1 ) then {
 	_result = _result select 0;
@@ -25,7 +25,7 @@ if ( count _result == 1 ) then {
 	(owner _player) publicVariableClient "PVAR_playerLoaded";
 	
 	// Update last login
-	["UPDATE `players` SET `last_login` = NOW() WHERE `uid` = '%1'", [_this select 1 select 1]] call BL_fnc_MySQLCommand;
+	["UPDATE `players` SET `last_login` = NOW() WHERE `uid` = '%1' AND `side` = '%2'", [_playerUID, str side _player]] call BL_fnc_MySQLCommand;
 }
 else {
 	// No record for player. Add to db.

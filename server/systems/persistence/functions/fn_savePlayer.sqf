@@ -14,7 +14,7 @@ _position = getPosATL _player;
 `direction` = %8,
 `money` = %9,
 `playerInv` = '%10'
-WHERE `uid` = '%11'", [
+WHERE `uid` = '%11' AND `side` = '%12'", [
 	name _player,
 	damage _player,
 	_position select 0,
@@ -25,5 +25,6 @@ WHERE `uid` = '%11'", [
 	getDir _player,
 	_player getVariable ['money', 0],
 	_player getVariable ['BL_playerInv', []],
-	_playerUID
+	_playerUID,
+	str side _player
 ]] call BL_fnc_MySQLCommand;
