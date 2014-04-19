@@ -21,7 +21,7 @@ _this spawn {
 	};
 	
 	BL_animDoWorkKeyDown = (findDisplay 46) displayAddEventHandler ['KeyDown', {
-		if ( (_this select 1) in ((actionKeys 'MoveForward') + (actionKeys 'MoveLeft') + (actionKeys 'MoveRight') + (actionKeys 'MoveBack')) ) then {
+		if ( (_this select 1) in ((actionKeys 'MoveForward') + (actionKeys 'TurnLeft') + (actionKeys 'TurnRight') + (actionKeys 'MoveBack')) ) then {
 			terminate BL_animDoWorkAnimLoop;
 		};
 	}];
