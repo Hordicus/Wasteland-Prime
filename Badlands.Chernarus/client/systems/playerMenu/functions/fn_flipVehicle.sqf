@@ -8,8 +8,15 @@ if ( _veh == player ) then {
 };
 
 if ( _veh != player ) then {
-	_veh setVectorUp [0,0,1];
-	if ( local _veh ) then {
-		_veh setVelocity [0,0,5];
+	if ( (_veh call BIS_fnc_absSpeed) < 5 ) then {
+		_veh setVectorUp [0,0,1];
+		if ( local _veh ) then {
+			_veh setVelocity [0,0,5];
+		};
+	}
+	else {
+		hint "You can't flip a moving vehicle";
 	};
+	
+	closeDialog 0;
 };
