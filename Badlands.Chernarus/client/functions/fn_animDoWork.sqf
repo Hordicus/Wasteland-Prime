@@ -4,14 +4,15 @@ if ( !isNil "BL_animDoWorkInProgress" && { BL_animDoWorkInProgress } ) exitwith 
 
 BL_animDoWorkInProgress = true;
 _this spawn {
-	private ['_duration', '_doAfter', '_player'];
+	private ["_duration","_message","_params","_doAfter","_onCancel","_player","_step","_i","_position","_veh"];
 	_validAnimations = ["ainvpknlmstpsnonwrfldnon_ainvpknlmstpsnonwrfldnon_medic","ainvpknlmstpsnonwrfldnon_medic","ainvpknlmstpsnonwrfldnon_medic0s", "amovpercmstpslowwrfldnon_amovpknlmstpslowwrfldnon", "amovpercmstpsraswrfldnon_amovpknlmstpsraswrfldnon", "amovppnemstpsraswrfldnon_amovpknlmstpsraswrfldnon"];
 	
 	_duration = [_this, 0, 5, [1]] call BIS_fnc_param;
 	_message  = [_this, 1, "", [""]] call BIS_fnc_param;
 	_params   = [_this, 2, [], [[]]] call BIS_fnc_param;
 	_doAfter  = [_this, 3, {}, [{}]] call BIS_fnc_param;
-	_player   = [_this, 4, player, [player]] call BIS_fnc_param;
+	_onCancel = [_this, 4, {}, [{}]] call BIS_fnc_param;
+	_player   = [_this, 5, player, [player]] call BIS_fnc_param;
 
 	BL_animDoWorkAnimLoop = [] spawn {
 		while { BL_animDoWorkInProgress } do {
@@ -49,6 +50,7 @@ _this spawn {
 			
 			if ( vehicle player != player ) exitwith {
 				['Action interrupted', 3] call BL_fnc_actionText;
+				_params call _onCancel;
 				
 				// Animation will be glitch out. Get out/back in
 				_position = assignedVehicleRole player;
@@ -72,6 +74,7 @@ _this spawn {
 			};
 			
 			['Action interrupted', 3] call BL_fnc_actionText;
+			_params call _onCancel;
 			player switchMove "amovpknlmstpsraswrfldnon"; // Crouch
 		};
 	};
