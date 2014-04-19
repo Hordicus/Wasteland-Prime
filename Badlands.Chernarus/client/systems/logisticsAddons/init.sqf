@@ -38,13 +38,13 @@
 					
 						PVAR_requestSave = [player, _this select 0, false];
 						publicVariableServer "PVAR_requestSave";
-					}] call BL_fnc_animDoWork;				
+					}, {BL_objectLockDoingCheck = false}] call BL_fnc_animDoWork;				
 				};
 				
 				_owner = [cursorTarget getVariable 'objectOwner'] call BL_fnc_playerByUID;
 				
 				// No need to do remote check if owner is the player, or in the player's group.
-				if ( !isNull _owner || _owner == player || _owner in units group player ) then {
+				if ( isNull _owner || _owner == player || _owner in units group player ) then {
 					[cursorTarget] call _doUnlock;
 				}
 				else {
