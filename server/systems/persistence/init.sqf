@@ -1,5 +1,6 @@
 PERS_trackedObjectsNetIDs = [];
 PERS_trackedObjectsIDs = [];
+PERS_typeData = [];
 
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\createVehicle.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\deleteVehicle.sqf";

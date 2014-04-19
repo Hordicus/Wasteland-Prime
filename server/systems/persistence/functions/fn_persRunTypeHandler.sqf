@@ -12,4 +12,13 @@ _typeHandlers = [PERS_typeHandlers, _objType] call CBA_fnc_hashGet;
 
 if ( !isNil {_typeHandlers select _index} ) then {
 	_params call (_typeHandlers select _index)
+}
+else {
+	if ( _event == 'load' ) then {
+		// Save data in case the type handler is registered later
+		PERS_typeData set [count PERS_typeData, [
+			_objType,
+			_params
+		]];
+	};
 };
