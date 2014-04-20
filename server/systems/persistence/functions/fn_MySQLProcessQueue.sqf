@@ -10,10 +10,12 @@ while { count MySQLQueue > 0 } do {
 	_command = _item select 0;
 	_arguments = _item select 1;
 	_query = format['Arma2NETMySQLCommandAsync ["%1", "%2"]', _database, format ([_command] + _arguments )];
+	
+	"Arma2Net.Unmanaged" callExtension _query;
 	_result = "";
 	
 	while { _result == "" } do {
-		_result = "Arma2Net.Unmanaged" callExtension _query;
+		_result = "Arma2Net.Unmanaged" callExtension "Arma2NETMySQLCommandAsync []";
 		sleep 0.1;
 	};
 
