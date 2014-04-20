@@ -23,7 +23,7 @@
 disableSerialization;
 
 private ['_spawn_options', '_perPage', '_buttons'];
-_spawn_options = [_this, 0, [], [[]]] call BIS_fnc_param;
+_spawn_options = +([_this, 0, [], [[]]] call BIS_fnc_param);
 
 _buttons = [
 	[respawnOptionOneIDC, respawnOptionOneInfoIDC, respawnOptionOneDistIDC],
