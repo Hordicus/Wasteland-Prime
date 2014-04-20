@@ -237,31 +237,33 @@
 				_role = (assignedVehicleRole _x);
 				_img = "";
 				
-				if ( count _role > 0 ) then {
-					_img = (_role select 0) call {
-						if ( _this == "Cargo" ) exitwith{"\a3\ui_f\data\IGUI\Cfg\Actions\getincargo_ca.paa"};
-						if ( _this == "Driver" ) exitwith{"\a3\ui_f\data\IGUI\Cfg\Actions\getindriver_ca.paa"};
-						if ( _this == "Turret" ) exitwith{"\a3\ui_f\data\IGUI\Cfg\Actions\getingunner_ca.paa"};
-						""
-					};
+				if ( count _role == 0 ) then {
+					_role = ['Cargo'];
+				};
 				
-					_damageColor = "";
-					if ( alive _x ) then {
-						_damagePercent = round (255 * (1-damage _x));
-						_damageColor = format['#FF%1%1', _damagePercent call _decToHex];
-					}
-					else {
-						_damageColor = "#000000";
-					};
-					
-					_vehicleUnits = _vehicleUnits + format['
+				_img = (_role select 0) call {
+					if ( _this == "Cargo" ) exitwith{"\a3\ui_f\data\IGUI\Cfg\Actions\getincargo_ca.paa"};
+					if ( _this == "Driver" ) exitwith{"\a3\ui_f\data\IGUI\Cfg\Actions\getindriver_ca.paa"};
+					if ( _this == "Turret" ) exitwith{"\a3\ui_f\data\IGUI\Cfg\Actions\getingunner_ca.paa"};
+					"\a3\ui_f\data\IGUI\Cfg\Actions\getincargo_ca.paa"
+				};
+			
+				_damageColor = "";
+				if ( alive _x ) then {
+					_damagePercent = round (255 * (1-damage _x));
+					_damageColor = format['#FF%1%1', _damagePercent call _decToHex];
+				}
+				else {
+					_damageColor = "#000000";
+				};
+				
+				_vehicleUnits = _vehicleUnits + format['
 					<t shadow="2" color="%3">%1</t> <img image="%2" size="0.8" /><br />
 					',
 					name _x,
 					_img,
 					_damageColor
-					];
-				};
+				];
 			} count (crew vehicle player);
 			
 			_vehicleInfo ctrlSetStructuredText parseText format['<t align="right">%1</t>', _vehicleUnits];
