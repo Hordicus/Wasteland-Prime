@@ -84,15 +84,9 @@
 					};
 				}
 				else {
-					_adjust = (stance _x) call {
-						if ( _this == "STAND" ) exitwith{1.2};
-						if ( _this == "CROUCH" ) exitwith{0.8};
-						if ( _this == "PRONE" ) exitwith{0.2};
-						0
-					};
-				
-					_loc = visiblePosition _x;
-					_loc set [2, (_loc select 2) + _adjust];
+					_loc = visiblePositionASL _x;
+					_loc set [2, ((_x modelToWorld (_x selectionPosition 'pelvis')) select 2)];
+
 					drawIcon3D [
 						friendlyIcon,
 						sideColor,
@@ -126,10 +120,13 @@
 		} count playableUnits;
 		
 		{
+			_loc = visiblePositionASL _x;
+			_loc set [2, ((_x modelToWorld getCenterOfMass _x) select 2)];
+			
 			drawIcon3D [
 				friendlyIcon,
 				sideColor,
-				_x modelToWorld getCenterOfMass _x,
+				_loc,
 				0.3,
 				0.3,
 				0,
@@ -159,7 +156,7 @@
 				drawIcon3D [
 					"",
 					[1,1,1,1],
-					_x modelToWorld getCenterOfMass _x,
+					_loc,
 					0,
 					0,
 					0,
