@@ -2,3 +2,4 @@ log_config.sqf
 gear_config.sqf
 config/config.sqf
 config/stores.sqf
+mission.sqm
