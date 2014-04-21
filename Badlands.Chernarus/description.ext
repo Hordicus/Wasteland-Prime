@@ -1,16 +1,10 @@
-enableDebugConsole = 2;
-allowFunctionsRecompile = 1;
-allowFunctionsLog = 1;
+#include "config\description.hpp"
+
 respawn = 3; // BASE
-respawnDelay = 0;
 disabledAI = 1;
 joinUnassigned = 0;
-
-class Header {
-	gameType = Sandbox; // Game type, see 'class' columns in the table below
-	minPlayers = 1; //min # of players the mission supports
-	maxPlayers = 70; //max # of players the mission supports
-};
+author = "S&S Gaming";
+onLoadName = "Wasteland";
 
 #include "gear\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
