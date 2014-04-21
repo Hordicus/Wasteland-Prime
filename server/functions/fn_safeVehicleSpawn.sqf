@@ -6,6 +6,7 @@ _dir = [_this, 2, random 359, [0]] call BIS_fnc_param;
 _veh = createVehicle [_class, _position, [], 0, "CAN_COLLIDE"];
 _veh allowDamage false;
 _veh setDir _dir;
+_veh setPosATL _position;
 _veh setVelocity [0, 0, 1];
 
 // Car might be flying...

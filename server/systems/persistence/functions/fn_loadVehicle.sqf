@@ -7,7 +7,16 @@ _position = [
 	_data select 5
 ];
 
-_veh = [_data select 1, _position, _data select 11] call BL_fnc_safeVehicleSpawn;
+_veh = objNull;
+if ( getText (configFile >> "CfgVehicles" >> (_data select 1) >> "simulation") != "house" ) then {
+	_veh = [_data select 1, _position, _data select 11] call BL_fnc_safeVehicleSpawn;
+}
+else {
+	_veh = createVehicle [_data select 1, _position, [], 0, "CAN_COLLIDE"];
+	_veh setDir (_data select 11);
+	_veh setPosATL _position;
+};
+
 [_veh, _data select 2, _data select 0] call BL_fnc_trackVehicle;
 
 _veh setDamage (_data select 6);
