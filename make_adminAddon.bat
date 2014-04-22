@@ -1,0 +1,1 @@
+tools\MakePbo.exe -BD -Z=default bl_admin bl_admin
