@@ -12,7 +12,5 @@ class CfgPatches
 #include "adminPanel.hpp"
 
 class cfgFunctions {
-	class BLAdmin {
-		#include "cfgfunctions.hpp"
-	};
+	#include "cfgfunctions.hpp"
 };

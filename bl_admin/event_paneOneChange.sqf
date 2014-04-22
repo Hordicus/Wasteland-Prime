@@ -13,11 +13,4 @@ BL_adminPlayer = [(_this select 0) lbData (_this select 1)] call BL_fnc_playerBy
 	_paneTwo lbSetData [_index, _x select 1];
 	
 	true
-} count [
-	['Spectate player', 'spec'],
-	['Freelook at player', 'freelook'],
-	['Modify money', 'money'],
-	['Clear inventory', 'clearInv'],
-	['Slay', 'slay'],
-	['Show group members', 'group']
-];
+} count BLAdmin_actions;
