@@ -68,10 +68,12 @@ class playerMenuDialog {
 			idc = dropMoneyAmountIDC;
 		};
 		
-		// class somethingOne : manageLoadouts {
-		// 	text = "Flip Vehicle";
-		// 	y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 4);
-		// };
+		class adminPanel : manageLoadouts {
+			idc = adminPanelIDC;
+			text = "Admin Panel";
+			action = "closeDialog 0; createDialog 'adminPanel'";
+			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 4);
+		};
 		
 		// View distance
 		// Labels

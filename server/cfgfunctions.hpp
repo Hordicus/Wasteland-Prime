@@ -12,6 +12,7 @@ class cfgFunctions {
 		#include "systems\baseFlag\cfgfunctions.hpp"
 		#include "systems\stores\cfgfunctions.hpp"
 		#include "systems\statTracking\cfgfunctions.hpp"
+		#include "systems\adminPanel\cfgfunctions.hpp"
 
 		class Server {
 			file = "\x\bl_server\addons\functions";

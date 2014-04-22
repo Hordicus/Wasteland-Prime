@@ -67,3 +67,5 @@ _env lbSetCurSel BL_enableEnv;
 		sleep 0.1;
 	};
 };
+
+((_this select 0) displayCtrl adminPanelIDC) ctrlShow (isClass (configFile >> "adminPanel"));

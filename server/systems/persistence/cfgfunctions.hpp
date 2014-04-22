@@ -31,6 +31,8 @@ class persistence {
 	class floatToString{};
 	class allFloatsToStrings{};
 	class persistanceEventHandler{};
+	class log{};
+	class MySQLEscape{};
 	
 	class persRegisterTypeHandler{};
 	class persRunTypeHandler{};
