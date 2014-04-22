@@ -10,7 +10,7 @@ class BLRscCommon {
 	colorDisabled[] = {1,1,1,0.8};
 	colorSelect[] = {1,1,1,1};
 	border = "#(argb,8,8,3)color(1,1,1,0)";
-	font = FontM;
+	font = "puristaMedium";
 	sizeEx = 0.03;
 	type = CT_STATIC;
 	style = 0;
