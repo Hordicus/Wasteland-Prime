@@ -12,7 +12,7 @@ class CfgPatches
 #include "adminPanel.hpp"
 
 class cfgFunctions {
-	class BL {
+	class BLAdmin {
 		#include "cfgfunctions.hpp"
 	};
 };

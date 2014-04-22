@@ -1,22 +1,87 @@
 #include "functions\macro.sqf"
 disableSerialization;
 _dialog = uiNamespace getVariable 'adminPanel';
+_dialog call BLAdmin_fnc_hideCtrls;
 
 _action = (_this select 0) lbData (_this select 1);
 
 _action call {
 	if ( _this == "spec" ) exitwith {
-		closeDialog 0;
-		cutrsc ['RscSpectator','plain'];
-		RscSpectator_player = BL_adminPlayer;
+		["Spectate player", {
+			[BL_adminPlayer] call BLAdmin_fnc_specPlayer;
+		}] call BLAdmin_fnc_setButton;
+	};
+	
+	if ( _this == "freelook" ) exitwith {
+		["Freelook at player", {
+			closeDialog 0;
+			['Paste', [worldname,getPosATL BL_adminPlayer,0,0.7,[0,0],0,0,daytime * 60,overcast,0]] call BIS_fnc_camera;
+		}] call BLAdmin_fnc_setButton;
+	};
+	
+	if ( _this == "money" ) exitwith {
+		_text = [format["%1 has $%2. Set the player's money below", name BL_adminPlayer, BL_adminPlayer getVariable ['money', 0]]] call BLAdmin_fnc_setText;
+	
+		_money = _dialog displayCtrl moneyIDC;
+		_money ctrlShow true;
+		_money ctrlSetText str (BL_adminPlayer getVariable ['money', 0]);
 		
-		uiNamespace setVariable ['adminKeyDown', (findDisplay 46) displayAddEventHandler ['KeyDown', {
-			// User hit esc
-			if ( _this select 1 == 1 ) then {
-				(findDisplay 46) displayRemoveEventHandler ['KeyDown', uiNamespace getVariable 'adminKeyDown'];
-				cuttext ['','plain'];
-				true
+		_moneyPos = ctrlPosition _money;
+		_textPos = ctrlPosition _text;
+		
+		_moneyPos set [1, (_textPos select 1) + (_textPos select 3) + safezoneH * 0.01];
+		_money ctrlSetPosition _moneyPos;
+		_money ctrlCommit 0;
+		
+		_moneyCfg = (missionConfigFile >> "adminPanel" >> "controls" >> "money");
+		["Set Money", {
+			player setVariable ['money', parseNumber ctrlText ((uiNamespace getVariable 'adminPanel') displayCtrl moneyIDC)];
+			closeDialog 0;
+		}, [
+			0,
+			(_moneyPos select 1) + (_moneyPos select 3) + safezoneH * 0.01,
+			0,
+			0
+		]] call BLAdmin_fnc_setButton;		
+	};
+	
+	if ( _this == "clearInv" ) exitwith {
+		[format["Clear all of %1's items.", name BL_adminPlayer]] call BLAdmin_fnc_setText;
+		
+		["Clear inventory", {
+			removeAllWeapons BL_adminPlayer;
+			removeAllItems BL_adminPlayer;
+			removeBackpack BL_adminPlayer;
+			removeVest BL_adminPlayer;
+			removeUniform BL_adminPlayer;
+			removeHeadgear BL_adminPlayer;
+			removeGoggles BL_adminPlayer;
+			removeAllAssignedItems BL_adminPlayer;
+		}] call BLAdmin_fnc_setButton;
+	};
+	
+	if ( _this == "slay" ) exitwith {
+		[format["Kill %1 and hide the body.", name BL_adminPlayer]] call BLAdmin_fnc_setText;
+		["Slay player", {
+			BL_adminPlayer setDamage 1;
+			BL_adminPlayer spawn {
+				while { !isNull _this } do {
+					deleteVehicle _this;
+					sleep 0.5;
+				};
 			};
-		}]];
+			closeDialog 0;
+		}] call BLAdmin_fnc_setButton;
+	};
+	
+	if ( _this == "group" ) exitwith {
+		_text = format["Units in %1's group as your client knows about them.<br /><br />", name BL_adminPlayer];
+		
+		{
+			_text = _text + (name _x) + "<br />";
+			true
+		} count (units group BL_adminPlayer);
+		
+		[_text] call BLAdmin_fnc_setText;
 	};
 };
