@@ -215,10 +215,16 @@
 		
 	private ["_role","_img","_damageColor","_damagePercent","_height"];
 	while { true } do {
-		if ( isNull _hud ) then {
+		if ( isNull _hud && isNull (uiNamespace getVariable ['RscSpectator_display', displayNull]) && isNil "BIS_fnc_camera_cam" ) then {
 			[] call _createHud;
+		}
+		else {
+			if !( isNull (uiNamespace getVariable ['RscSpectator_display', displayNull]) && isNil "BIS_fnc_camera_cam" ) then {
+				// If hud wasn't already removed, remove it.
+				('Badlands' call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
+			};
 		};
-	
+			
 		_playerInfo ctrlSetStructuredText parseText format['
 		<img image="client\systems\hud\icons\health.paa" size="0.8" /> <t shadow="2">%2%1</t><br />
 		<img image="client\systems\hud\icons\stamina.paa" size="0.8" /> <t shadow="2">%3%1</t><br />
