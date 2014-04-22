@@ -24,3 +24,4 @@
 #define enableEnvironmentIDC 4018
 
 #define playerMenuKeyBindIDC 4019
+#define adminPanelIDC 4020
