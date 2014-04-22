@@ -31,6 +31,7 @@ class persistence {
 	class floatToString{};
 	class allFloatsToStrings{};
 	class persistanceEventHandler{};
+	class log{};
 	
 	class persRegisterTypeHandler{};
 	class persRunTypeHandler{};
