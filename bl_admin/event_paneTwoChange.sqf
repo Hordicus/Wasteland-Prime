@@ -7,21 +7,16 @@ _action = (_this select 0) lbData (_this select 1);
 
 _action call {
 	if ( _this == "spec" ) exitwith {
-		["Spectate player", {
-			PVAR_adminLog = [player, format['%1 (%2) began spectating %3 (%4)', name player, getPlayerUID player, name BL_adminPlayer, getPlayerUID BL_adminPlayer]];
-			publicVariableServer "PVAR_adminLog";
-			
+		["Spectate player", {		
+			closeDialog 0;
 			[BL_adminPlayer] call BLAdmin_fnc_specPlayer;
 		}] call BLAdmin_fnc_setButton;
 	};
 	
 	if ( _this == "freelook" ) exitwith {
 		["Freelook at player", {
-			PVAR_adminLog = [player, format['%1 (%2) started freelook camera at %3 (%4)', name player, getPlayerUID player, name BL_adminPlayer, getPlayerUID BL_adminPlayer]];
-			publicVariableServer "PVAR_adminLog";
-
+			[BL_adminPlayer] call BLAdmin_fnc_freelook;
 			closeDialog 0;
-			['Paste', [worldname,getPosATL BL_adminPlayer,0,0.7,[0,0],0,0,daytime * 60,overcast,0]] call BIS_fnc_camera;
 		}] call BLAdmin_fnc_setButton;
 	};
 	
@@ -39,14 +34,10 @@ _action call {
 		_money ctrlSetPosition _moneyPos;
 		_money ctrlCommit 0;
 		
-		_moneyCfg = (missionConfigFile >> "adminPanel" >> "controls" >> "money");
+		_moneyCfg = (configFile >> "adminPanel" >> "controls" >> "money");
 		["Set Money", {
 			_amount = parseNumber ctrlText ((uiNamespace getVariable 'adminPanel') displayCtrl moneyIDC);
-		
-			PVAR_adminLog = [player, format["%1 (%2) set %3's (%4) money to $%5", name player, getPlayerUID player, name BL_adminPlayer, getPlayerUID BL_adminPlayer, _amount]];
-			publicVariableServer "PVAR_adminLog";
-			
-			BL_adminPlayer setVariable ['money', _amount];
+			[BL_adminPlayer, _amount] call BLAdmin_fnc_setMoney;
 			closeDialog 0;
 		}, [
 			0,
@@ -60,33 +51,15 @@ _action call {
 		[format["Clear all of %1's items.", name BL_adminPlayer]] call BLAdmin_fnc_setText;
 		
 		["Clear inventory", {
-			PVAR_adminLog = [player, format["%1 (%2) cleared %3's (%4) inventory", name player, getPlayerUID player, name BL_adminPlayer, getPlayerUID BL_adminPlayer, _amount]];
-			publicVariableServer "PVAR_adminLog";
-
-			removeAllWeapons BL_adminPlayer;
-			removeAllItems BL_adminPlayer;
-			removeBackpack BL_adminPlayer;
-			removeVest BL_adminPlayer;
-			removeUniform BL_adminPlayer;
-			removeHeadgear BL_adminPlayer;
-			removeGoggles BL_adminPlayer;
-			removeAllAssignedItems BL_adminPlayer;
+			[BL_adminPlayer] call BLAdmin_fnc_clearInventory;
+			closeDialog 0;
 		}] call BLAdmin_fnc_setButton;
 	};
 	
 	if ( _this == "slay" ) exitwith {
 		[format["Kill %1 and hide the body.", name BL_adminPlayer]] call BLAdmin_fnc_setText;
 		["Slay player", {
-			PVAR_adminLog = [player, format["%1 (%2) slayed %3 (%4)", name player, getPlayerUID player, name BL_adminPlayer, getPlayerUID BL_adminPlayer, _amount]];
-			publicVariableServer "PVAR_adminLog";
-			
-			BL_adminPlayer setDamage 1;
-			BL_adminPlayer spawn {
-				while { !isNull _this } do {
-					deleteVehicle _this;
-					sleep 0.5;
-				};
-			};
+			[BL_adminPlayer] call BLAdmin_fnc_slay;
 			closeDialog 0;
 		}] call BLAdmin_fnc_setButton;
 	};

@@ -12,7 +12,7 @@ _btn ctrlSetText _text;
 _btn ctrlRemoveAllEventHandlers 'MouseButtonClick';
 _btn ctrlAddEventHandler ['MouseButtonClick', _action];
 
-_paneThreeCfg = (missionConfigFile >> "adminPanel" >> "controls" >> "paneThree");
+_paneThreeCfg = (configFile >> "adminPanel" >> "controls" >> "paneThree");
 
 if ( _position select 0 == 0 ) then {
 	_position set [0, getNumber (_paneThreeCfg >> "x") + safezoneW * 0.01];

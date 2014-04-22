@@ -8,7 +8,7 @@ _ctrl ctrlShow true;
 
 _ctrl ctrlSetStructuredText parseText _text;
 
-_ctrlCfg = (missionConfigFile >> "adminPanel" >> "controls" >> "infoText");
+_ctrlCfg = (configFile >> "adminPanel" >> "controls" >> "infoText");
 
 _ctrl ctrlSetPosition [
 	getNumber (_ctrlCfg >> "x"),

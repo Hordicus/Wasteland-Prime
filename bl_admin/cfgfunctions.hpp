@@ -7,6 +7,11 @@ class BLAdmin {
 		
 		file = "bl_admin\functions";
 		class specPlayer{};
+		class clearInventory{};
+		class freelook{};
+		class setMoney{};
+		class slay{};
+		
 		class hideCtrls{};
 		class setButton{};
 		class setText{};

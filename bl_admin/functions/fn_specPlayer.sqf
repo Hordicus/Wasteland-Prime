@@ -1,6 +1,9 @@
 private ['_player'];
 _player = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
-closeDialog 0;
+
+PVAR_adminLog = [player, format['%1 (%2) began spectating %3 (%4)', name player, getPlayerUID player, name _player, getPlayerUID _player]];
+publicVariableServer "PVAR_adminLog";
+
 cutrsc ['RscSpectator','plain'];
 RscSpectator_player = _player;
 
