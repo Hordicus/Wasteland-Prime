@@ -22,7 +22,7 @@ class HUDRsc {
 			y = safezoneY + safezoneH * ( 0.01 );
 			
 			w = safezoneW * 0.2;
-			h = safezoneW * 0.96;
+			h = safezoneH * 0.90;
 		};
 		
 		class serverInfo : RscStructuredText {

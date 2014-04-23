@@ -12,7 +12,7 @@ class adminPanel {
 		class paneOne : BLRscListBox {
 			idc = paneOneIDC;
 			w = safezoneW * (0.6/3);
-			h = safezoneW * 0.8;
+			h = safezoneH * 0.8;
 			x = safezoneX + safezoneW * ( 0.2 );
 			y = safezoneY + safezoneH * ( 0.5 - 0.8/2 );
 			
@@ -29,7 +29,7 @@ class adminPanel {
 		class paneThree : BLRscCommon {
 			idc = paneThreeIDC;
 			w = safezoneW * (0.6/3);
-			h = safezoneW * 0.8;
+			h = safezoneH * 0.8;
 			x = safezoneX + safezoneW * ( 0.2 + (0.6/3)*2 );
 			y = safezoneY + safezoneH * ( 0.5 - 0.8/2 );
 		};
@@ -37,7 +37,7 @@ class adminPanel {
 		class infoText : BLRscStructuredText {
 			idc = infoTextIDC;
 			w = safezoneW * (0.6/3 - 0.02);
-			h = safezoneW * 0.2;
+			h = safezoneH * 0.2;
 			x = safezoneX + safezoneW * ( 0.2 + (0.6/3)*2 + 0.01);
 			y = safezoneY + safezoneH * ( 0.5 - 0.8/2 + 0.01 );
 		};
