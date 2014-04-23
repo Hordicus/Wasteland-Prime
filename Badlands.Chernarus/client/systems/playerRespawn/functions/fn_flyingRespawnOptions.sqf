@@ -16,7 +16,7 @@ Returns:
 private ['_airVehicles', '_result'];
 _spawnInVehicle = {
 	_veh = _this select 0;
-	player moveInCargo _veh;
+	player moveInCargo (objectFromNetId _veh);
 	[] spawn {
 		waitUntil { vehicle player != player };
 		closeDialog respawnDialogIDD;
@@ -30,7 +30,7 @@ _result = [];
 [_airVehicles, {
 	private ['_veh'];
 	_veh = objectFromNetId _key;
-	if ( ([[_value select 0]] call BL_fnc_friendlyState) == "FRIENDLY" ) then {
+	if ( !isNull _veh && ([[_value select 0]] call BL_fnc_friendlyState) == "FRIENDLY" ) then {
 		private ['_info', '_errors', '_nearestCity', '_heliType'];
 		_info = '';
 		_errors = [];
@@ -59,7 +59,7 @@ _result = [];
 			_info,
 			round(_veh distance playerRespawn_lastDeath),
 			count _errors > 0,
-			[_veh],
+			[_key],
 			_spawnInVehicle
 		]];
 	};
