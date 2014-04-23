@@ -5,7 +5,7 @@
 		_attacker = _this select 3;
 		_dmg = _this select 2;
 		
-		if ( _attacker in (units group player) || ( playerSide in [east,west] && side player == side _attacker ) ) then {
+		if ( _player != _attacker && (_attacker in (units group player) || ( playerSide in [east,west] && side player == side _attacker )) ) then {
 			_attacker setDamage ((damage _attacker) + ((_this select 2) * 0.2)); // Reflect 20% damage
 			damage _player
 		}
