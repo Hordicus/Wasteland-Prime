@@ -6,22 +6,29 @@ _result = (["SELECT `damage`, `pos_x`, `pos_y`, `pos_z`, `gear`, `animation`, `d
 
 if ( count _result == 1 ) then {
 	_result = _result select 0;
-	
-	_player setDamage (_result select 0);
-	_player setPosATL [
-		_result select 1,
-		_result select 2,
-		_result select 3
-	];
-	
 	_player setVariable ['money', _result select 7, true];
-	_player setVariable ['BL_playerInv', _result select 8, true];
 	
-	PVAR_playerLoaded = [
-		_result select 4,
-		_result select 5,
-		_result select 6
-	];
+	if ( _result select 0 < 1 ) then {
+		_player setDamage (_result select 0);
+		_player setPosATL [
+			_result select 1,
+			_result select 2,
+			_result select 3
+		];
+		
+		_player setVariable ['BL_playerInv', _result select 8, true];
+		
+		PVAR_playerLoaded = [
+			_result select 4,
+			_result select 5,
+			_result select 6
+		];
+	}
+	else {
+		// Indicates player logged out dead.
+		PVAR_playerLoaded = [true];
+	};
+	
 	(owner _player) publicVariableClient "PVAR_playerLoaded";
 	
 	// Update last login

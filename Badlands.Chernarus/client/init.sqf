@@ -26,7 +26,8 @@ enableRadio false;
 		if (
 			(getMarkerPos 'respawn_west') distance player > 100 &&
 			(getMarkerPos 'respawn_east') distance player > 100 &&
-			(getMarkerPos 'respawn_guerrila') distance player > 100
+			(getMarkerPos 'respawn_guerrila') distance player > 100 &&
+			count PVAR_playerLoaded != 1 // Length will be one when player logged out dead
 		) then {
 			[player, PVAR_playerLoaded select 0] call GEAR_fnc_setLoadout;
 			player allowDamage true;
