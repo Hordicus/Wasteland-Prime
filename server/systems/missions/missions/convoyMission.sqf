@@ -2,7 +2,7 @@
 // Init. Result of this will be passed to all
 // following functions as _this select 0.
 {
-	private ['_cities', '_city', '_spawnSpot', '_leadVehicle'];
+	private ['_cities', '_city', '_spawnSpot', '_leadVehicle', '_vehicles', '_variations'];
 	// Select a random city
 	_cities = [] call BL_fnc_findCities;
 	_city = [];
@@ -16,57 +16,121 @@
 	};
 	
 	_spawnSpot = (selectBestPlaces [_city select 1, 500, "meadow - houses", 1, 1]) select 0 select 0;
+	_group = createGroup east;
+	_vehicles = [];
 	
-	_leadVehicle = createVehicle ["O_MRAP_02_hmg_F", _spawnSpot, [], 0, "CAN_COLLIDE"];
-	createVehicleCrew _leadVehicle;
-	[_leadVehicle, 'reward'] call BL_fnc_trackVehicle;
+	_variations = [
+		'repair',
+		'ammo',
+		'pmc'
+	];
 	
-	_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
-	
-	_vehTwo = createVehicle ["O_MRAP_02_hmg_F", _spawnSpot, [], 0, "CAN_COLLIDE"];
-	[_vehTwo, 'reward'] call BL_fnc_trackVehicle;
-	createVehicleCrew _vehTwo;
-	(crew _vehTwo) join (group _leadVehicle);
+	(_variations select floor random count _variations) call {
+		if ( _this == "repair" || _this == "ammo" ) exitwith {
+			/*
+			==================================
+			Ammo and Repair truck convoys
+			==================================
+			*/
+			private ['_vehClass', '_rewardClass'];
+			_vehClass = {
+				private ['_types'];
+				_types = ["O_MRAP_02_hmg_F", "O_MRAP_02_gmg_F"];
+				(_types select floor random count _types)
+			};
+			
+			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+					
+			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+			
+			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_vehicles set [count _vehicles, [_group, "O_Truck_02_transport_F", _spawnSpot, [
+				"O_Soldier_F",
+				"O_Soldier_F",
+				"O_Soldier_F",
+				"O_Soldier_F",
+				"O_Soldier_F",
+				"O_Soldier_F",
+				"O_Soldier_F",
+				"O_Soldier_F",
+				"O_Soldier_F"
+			]] call BL_fnc_spawnMissionVehWithCrew];
 
-	_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_rewardClass = if ( _this == "repair" ) then {"O_Truck_03_repair_F"} else {"O_Truck_03_ammo_F"};
+			_vehicles set [count _vehicles, [_group, _rewardClass, _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+			
+			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+		};
 	
-	_transport = createVehicle ["O_Truck_02_transport_F", _spawnSpot, [], 0, "CAN_COLLIDE"];
-	[_transport, 'reward'] call BL_fnc_trackVehicle;
-	createVehicleCrew _transport;
-	(crew _transport) join (group _leadVehicle);
+		if ( _this == "pmc" ) exitwith {
+			_vehicles set [count _vehicles, [_group, "B_G_Offroad_01_armed_F", _spawnSpot, [
+				"O_G_officer_F",
+				"O_G_Soldier_AR_F",
+				"O_G_Soldier_exp_F"
+			]] call BL_fnc_spawnMissionVehWithCrew];
+
+			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_vehicles set [count _vehicles, [_group, "C_SUV_01_F", _spawnSpot, [
+				"O_G_medic_F",
+				"O_G_Soldier_GL_F",
+				"O_G_Soldier_exp_F",
+				"O_G_engineer_F"
+			]] call BL_fnc_spawnMissionVehWithCrew];
+			
+			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_vehicles set [count _vehicles, [_group, "C_SUV_01_F", _spawnSpot, [
+				"O_G_medic_F",
+				"O_G_Soldier_GL_F",
+				"O_G_Soldier_exp_F",
+				"O_G_engineer_F"
+			]] call BL_fnc_spawnMissionVehWithCrew];
+			
+			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_vehicles set [count _vehicles, [_group, "B_G_Offroad_01_armed_F", _spawnSpot, [
+				"O_G_officer_F",
+				"O_G_Soldier_AR_F",
+				"O_G_Soldier_exp_F"
+			]] call BL_fnc_spawnMissionVehWithCrew];
+			
+			// Have AI drop money when killed
+			{
+				_x addEventHandler ["Killed", {
+					private ['_loc'];
+					_loc = getPosATL (_this select 0);
+					_killer = _this select 1;
+					
+					if ( isPlayer _killer ) then {
+						_killer setVariable ['money', (_killer getVariable ['money', 0]) + 1000, true];
+						[format['$%1 bounty awarded', 1000], "BL_fnc_systemChat", owner _killer] spawn BIS_fnc_MP;
+					}
+					else {
+						// Unknown killer, drop on ground
+						_money = createVehicle [('moneyModel' call BL_fnc_config), _loc, [], 0, "CAN_COLLIDE"];
+						[_money] call BL_fnc_trackVehicle;
+						_money setVariable ['moneyAmount', 1000, true];
+					};
+				}];
+				true
+			} count (units _group);
+			
+		};
+	};
 	
-	((group _leadVehicle) createUnit ["O_Soldier_F", _spawnSpot, [], 0, "FORM"]) moveInCargo _transport;
-	((group _leadVehicle) createUnit ["O_Soldier_F", _spawnSpot, [], 0, "FORM"]) moveInCargo _transport;
-	((group _leadVehicle) createUnit ["O_Soldier_F", _spawnSpot, [], 0, "FORM"]) moveInCargo _transport;
-	((group _leadVehicle) createUnit ["O_Soldier_F", _spawnSpot, [], 0, "FORM"]) moveInCargo _transport;
-	((group _leadVehicle) createUnit ["O_Soldier_F", _spawnSpot, [], 0, "FORM"]) moveInCargo _transport;
-	((group _leadVehicle) createUnit ["O_Soldier_F", _spawnSpot, [], 0, "FORM"]) moveInCargo _transport;
-	((group _leadVehicle) createUnit ["O_Soldier_F", _spawnSpot, [], 0, "FORM"]) moveInCargo _transport;
-	
-	_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
-	_repair = createVehicle ["O_Truck_03_repair_F", _spawnSpot, [], 0, "CAN_COLLIDE"];
-	[_repair, 'reward'] call BL_fnc_trackVehicle;
-	createVehicleCrew _repair;
-	(crew _repair) join (group _leadVehicle);
-	
-	_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
-	_vehThree = createVehicle ["O_MRAP_02_hmg_F", _spawnSpot, [], 0, "CAN_COLLIDE"];
-	[_vehThree, 'reward'] call BL_fnc_trackVehicle;
-	createVehicleCrew _vehThree;
-	(crew _vehThree) join (group _leadVehicle);
-	
-	[_leadVehicle, _vehTwo, _transport, _repair, _vehThree]
+	_vehicles
 },
 
-'Troop Convoy',
-'
-A convoy was seen moving from this location.
+'Convoy',
+{format['
+A convoy was seen moving from %1.
 Destroy or capture all marked vehicles to complete this mission.
-Salvage what you can.
-',
+Salvage what you can.', ([getPosATL (_this select 0 select 0)] call BL_fnc_nearestCity) select 0]
+},
 
 // Mission location.
-{getPosATL (_this select 0 select 0)},
+{[objNull, true]},
 
 // Function to call to run the mission
 {

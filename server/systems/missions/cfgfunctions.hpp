@@ -13,6 +13,7 @@ class missionsServer {
 	class missionDone{};
 	class nearMissions{};
 	class missionRandomField{};
+	class spawnMissionVehWithCrew{};
 	
 	// BIS task functions
 	class deleteTask{};
