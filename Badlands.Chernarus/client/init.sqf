@@ -9,6 +9,7 @@ player allowDamage false;
 player enableSimulation false;
 [player] join grpNull;
 enableRadio false;
+0 fadeRadio 0;
 
 [] spawn {
 	["Waiting for player data", 0.1] call BL_fnc_loadingScreen;
