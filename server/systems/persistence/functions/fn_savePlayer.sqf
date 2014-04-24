@@ -15,7 +15,7 @@ _position = getPosATL _player;
 `money` = %9,
 `playerInv` = '%10'
 WHERE `uid` = '%11' AND `side` = '%12'", [
-	name _player,
+	(name _player) call BL_fnc_MySQLEscape,
 	damage _player,
 	_position select 0,
 	_position select 1,
