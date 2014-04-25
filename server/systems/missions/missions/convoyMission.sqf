@@ -22,7 +22,8 @@
 	_variations = [
 		'repair',
 		'ammo',
-		'pmc'
+		'pmc',
+		'bobcat'
 	];
 	
 	(_variations select floor random count _variations) call {
@@ -116,6 +117,15 @@
 				true
 			} count (units _group);
 			
+		};
+		
+		if ( _this == 'bobcat' ) exitwith {
+			_vehicles set [count _vehicles, [_group, "O_APC_Tracked_02_cannon_F", _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+
+			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
+			_vehicles set [count _vehicles, [_group, "B_APC_Tracked_01_CRV_F", _spawnSpot, [
+				"O_Soldier_F"
+			]] call BL_fnc_spawnMissionVehWithCrew];
 		};
 	};
 	
