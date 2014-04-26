@@ -12,12 +12,19 @@ else {
 			if ( count (_aThis - _numbers) == 0 && {!(101 in (toArray str parseNumber _x))}) then {
 				_queryResult set [_forEachIndex, parseNumber _x];
 			}
-			else { if ( (_aThis find 91) != -1 ) then {
-				_compiledVal = call compile _x;
-				if ( !isNil "_compiledVal" ) then {
-					_queryResult set [_forEachIndex, [_compiledVal] call BL_fnc_processQueryResult];
+			else {
+				if ( (_aThis find 91) != -1 ) then {
+					_compiledVal = call compile _x;
+					if ( !isNil "_compiledVal" ) then {
+						_queryResult set [_forEachIndex, [_compiledVal] call BL_fnc_processQueryResult];
+					};
+				}
+				else {
+					if ( _x == "NEMPTY" ) then {
+						_queryResult set [_forEachIndex, ""];
+					};
 				};
-			}};
+			};
 		}
 		else {
 			if ( typeName _x == "ARRAY" ) then {
