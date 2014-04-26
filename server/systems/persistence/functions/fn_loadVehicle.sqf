@@ -49,12 +49,13 @@ _weapons = [typeOf _veh] call BL_fnc_vehicleWeapons;
 	_path = _x select 1;
 	{
 		_veh removeMagazinesTurret [_x, _path];
-	} forEach (_x select 2);
-} forEach _weapons;
+	} count (_x select 2);
+	true
+} count _weapons;
 
 {
 	_veh addMagazine _x;
-} forEach (_data select 15);
+} count (_data select 15);
 
 // LOG_contents
 if ( count (_data select 17) > 0 ) then {
