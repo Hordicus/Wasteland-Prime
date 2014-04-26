@@ -11,21 +11,21 @@ PERS_typeData = [];
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\typeHandlers\baseParts.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\typeHandlers\spawnBeacons.sqf";
 
-[] spawn {
-	private ["_count","_lastStep","_i","_vehicles"];
-	_count = (["SELECT COUNT(*) FROM `vehicles`"] call BL_fnc_MySQLCommandSync) select 0 select 0 select 0;
-	_lastStep = ceil (_count/5)*5;
-	
-	for "_i" from 0 to _lastStep step 5 do {
-		_vehicles = (["SELECT * FROM `vehicles` LIMIT %1, 5", [_i]] call BL_fnc_MySQLCommandSync) select 0;
-		{
-			[_x] call BL_fnc_loadVehicle;
-			true
-		} count _vehicles;
-	};
-	
-	PERS_init_done = true;
-};
+private ["_count","_lastStep","_i","_vehicles","_result"];
+
+_database   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
+
+_result = "Arma2Net.Unmanaged" callExtension format['Arma2NETMySQLBigCommand ["%1", "%2"]', _database, "SELECT * FROM `vehicles`"];
+_result = [] call compile preprocessFileLineNumbers _result;
+
+_result = [_result] call BL_fnc_processQueryResult;
+
+{
+	[_x] call BL_fnc_loadVehicle;
+	true
+} count (_result select 0);
+
+PERS_init_done = true;
 
 // Delete entities that aren't in our system.
 [] spawn {
