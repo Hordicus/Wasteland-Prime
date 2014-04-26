@@ -21,7 +21,10 @@ if ( isNil "_variables" ) then {
 };
 
 _fuelCargo = getFuelCargo _veh;
-_ammoCargo = getFuelCargo _veh;
+_ammoCargo = getAmmoCargo _veh;
+
+if ( isNil "_fuelCargo" ) then { _fuelCargo = 0; };
+if ( isNil "_ammoCargo" ) then { _ammoCargo = 0; };
 
 if !( finite _fuelCargo ) then { _fuelCargo = 0; };
 if !( finite _ammoCargo ) then { _ammoCargo = 0; };
