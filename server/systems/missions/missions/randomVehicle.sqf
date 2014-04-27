@@ -2,13 +2,18 @@
 // Init. Result of this will be passed to all
 // following functions as _this select 0.
 {
-	_possible = [
-		["I_APC_Wheeled_03_cannon_F", 1],
-		["B_APC_Wheeled_01_cannon_F", 1],
-		["O_MBT_02_cannon_F", 0.5],
-		["I_APC_tracked_03_cannon_F", 1],
-		["B_APC_Tracked_01_AA_F", 1]
-	];
+	private ['_possible'];
+	_possible = [call BL_fnc_missionsConfig, 'randomVehicleRewards'] call CBA_fnc_hashGet;
+	
+	if ( isNil "_possible" ) then {
+		_possible = [
+			["I_APC_Wheeled_03_cannon_F", 1],
+			["B_APC_Wheeled_01_cannon_F", 1],
+			["O_MBT_02_cannon_F", 0.5],
+			["I_APC_tracked_03_cannon_F", 1],
+			["B_APC_Tracked_01_AA_F", 1]
+		];
+	};
 	
 	([_possible] call BL_fnc_selectRandom) select 0
 },
