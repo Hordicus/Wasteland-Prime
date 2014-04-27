@@ -1,7 +1,5 @@
-if ( !isNil "MySQLQueueProcessing" ) exitwith{};
 _database   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
 
-MySQLQueueProcessing = true;
 while { count MySQLQueue > 0 } do {
 	_item = MySQLQueue select 0;
 	MySQLQueue set [0, "REMOVE"];
@@ -22,5 +20,3 @@ while { count MySQLQueue > 0 } do {
 	_result = [[_result] call BL_fnc_processQueryResult] call BL_fnc_emptyArrayValues;
 	[_result, (_item select 2)] call (_item select 3);
 };
-
-MySQLQueueProcessing = nil;

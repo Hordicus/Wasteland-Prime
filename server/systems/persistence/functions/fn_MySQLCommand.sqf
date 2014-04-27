@@ -10,4 +10,6 @@ _arguments = [_arguments] call BL_fnc_allFloatsToStrings;
 MySQLQueue = missionNamespace getVariable ['MySQLQueue', []];
 MySQLQueue set [count MySQLQueue, [_command, _arguments, _cbArgs, _callback]];
 
-[] spawn BL_fnc_MySQLProcessQueue;
+if ( isNil "MySQLQueueProcessing" || { scriptDone MySQLQueueProcessing } ) then {
+	MySQLQueueProcessing = [] spawn BL_fnc_MySQLProcessQueue;
+};

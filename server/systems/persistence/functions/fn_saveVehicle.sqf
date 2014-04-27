@@ -80,17 +80,15 @@ _query = _query + "
 ";
 
 if ( _isNew ) then {
-	_query = _query + ", `object_type` = '%18'";
+	_query = _query + ", `object_type` = '%18'; SELECT LAST_INSERT_ID() as `id`";
+
+	[_query, _data, [_index], {
+		PERS_trackedObjectsIDs set [_this select 1 select 0, (_this select 0 select 0 select 0 select 0)];
+	}] call BL_fnc_MySQLCommand;
 }
 else {
 	_query = _query + "WHERE `id` = '%17'";
+	[_query, _data] call BL_fnc_MySQLCommand;
 };
 
-[_query, _data] call BL_fnc_MySQLCommand;
-
-if ( _isNew ) then {
-	["SELECT LAST_INSERT_ID() as `id`", [], [_index], {
-		PERS_trackedObjectsIDs set [_this select 1 select 0, (_this select 0 select 0 select 0 select 0)];
-	}] call BL_fnc_MySQLCommand;
-};
 _veh
