@@ -79,6 +79,10 @@
 		// Remove dead things
 		{
 			if ( _x isKindOf "LandVehicle" || _x isKindOf "Air" ) then {
+				if ( _x getVariable ['PERS_type', 'veh'] == 'static' ) then {
+					[_x] call BL_fnc_staticVehKilled;
+				};					
+
 				deleteVehicle _x;
 				[_x] call BL_fnc_deleteVehicleDB;
 			};
