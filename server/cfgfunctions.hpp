@@ -1,6 +1,5 @@
 class cfgFunctions {
 	class BL {
-		#include "systems\playerMoney\cfgfunctions.hpp"
 		#include "systems\radar\cfgfunctions.hpp"
 		#include "systems\vehicleTownSpawns\cfgfunctions.hpp"
 		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
