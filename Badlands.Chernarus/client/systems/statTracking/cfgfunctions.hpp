@@ -10,4 +10,5 @@ class statTracking {
 	class setRow{};
 	class showPlayers{};
 	class rankImage{};
+	class showKillMsg{};
 };

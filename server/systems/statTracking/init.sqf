@@ -6,23 +6,26 @@ BL_scoreboardLookup = [];
 
 // Player bounty
 ['killed', {
-	private ["_player","_killer","_bounty","_moneyToGive"];
+	private ["_player","_killer","_bounty","_moneyToGive","_playerName","_killerName"];
 	_player = _this select 0;
 	_killer = _this select 1;
-	_bounty = [playerBounty, name _player] call CBA_fnc_hashGet;
+	_playerName = _player getVariable 'name';
+	_killerName = _killer getVariable 'name';
+	
+	_bounty = [playerBounty, _playerName] call CBA_fnc_hashGet;
 	
 	// Reset players bounty
-	[playerBounty, name _player, 1] call CBA_fnc_hashSet;
+	[playerBounty, _playerName, 1] call CBA_fnc_hashSet;
 	
 	if ( _player != _killer && isPlayer _killer) then {
 		// Add to killer's bounty
-		[playerBounty, name _killer, ([playerBounty, name _killer] call CBA_fnc_hashGet)+1] call CBA_fnc_hashSet;
+		[playerBounty, _killerName, ([playerBounty, _killerName] call CBA_fnc_hashGet)+1] call CBA_fnc_hashSet;
 	
 		// Give killer their money
 		_moneyToGive = ('killBounty' call BL_fnc_config) * _bounty;
 		_killer setVariable ['money', (_killer getVariable ['money', 0]) + _moneyToGive, true];
 		
-		[format['$%1 bounty awarded for killing %2', _moneyToGive, name _player], "BL_fnc_systemChat", owner _killer] spawn BIS_fnc_MP;
+		[format['$%1 bounty awarded for killing %2', _moneyToGive, _playerName], "BL_fnc_systemChat", owner _killer] call BIS_fnc_MP;
 	};
 }] call CBA_fnc_addEventHandler;
 
@@ -34,41 +37,52 @@ BL_scoreboardLookup = [];
 	
 	_friendlyFire = ([[_killer], _player] call BL_fnc_friendlyState) == "FRIENDLY";
 
-	if ( _player != _killer && isPlayer _killer ) then {
-		statTrackingQueue set [count statTrackingQueue, [
-			getPlayerUID _player,
-			getPlayerUID _killer,
-			currentWeapon _player,
-			currentWeapon _killer,
-			getPosATL _player,
-			getPosATL _killer,
-			_friendlyFire
-		]];
-	
-		if ( count statTrackingQueue >= 10 ) then {
-			private ["_queue","_command","_values"];
-			_queue = +statTrackingQueue;
-			statTrackingQueue = [];
-			
-			_command = "INSERT INTO `playerkills` (`timestamp`, `player_uid`, `killer_uid`, `player_weapon`, `killer_weapon`, `player_pos`, `killer_pos`, `friendly`) VALUES ";
-			_values = [];
+	statTrackingQueue set [count statTrackingQueue, [
+		_player getVariable 'uid',
+		_killer getVariable 'uid',
+		currentWeapon _player,
+		currentWeapon _killer,
+		getPosATL _player,
+		getPosATL _killer,
+		(if(_friendlyFire) then {1} else {0})
+	]];
+
+	if ( count statTrackingQueue >= 10 ) then {
+		private ["_queue","_command","_values"];
+		_queue = +statTrackingQueue;
+		statTrackingQueue = [];
 		
-			{
-				_values set [_forEachIndex, format(["(UNIX_TIMESTAMP(), '%1', '%2', '%3', %4, '%5', '%6', '%7')"] + ([_x] call BL_fnc_noEmptyArrayValues))];
-			} forEach _queue;
-			
-			_command = _command + ([_values, ','] call CBA_fnc_join);
-			[_command] call BL_fnc_MySQLCommand;
-		};
+		_command = "INSERT INTO `playerkills` (`timestamp`, `player_uid`, `killer_uid`, `player_weapon`, `killer_weapon`, `player_pos`, `killer_pos`, `friendly`) VALUES ";
+		_values = [];
+	
+		{
+			_values set [_forEachIndex, format(["(UNIX_TIMESTAMP(), '%1', '%2', '%3', '%4', '%5', '%6', '%7')"] + ([_x] call BL_fnc_noEmptyArrayValues))];
+		} forEach _queue;
+		
+		_command = _command + ([_values, ','] call CBA_fnc_join);
+		[_command] call BL_fnc_MySQLCommand;
 	};
 }] call CBA_fnc_addEventHandler;
 
 // Scoreboard
 // [_rank, _side, _playerName, _bounty, _kills, _deaths, _score ],
 ['killed', {
-	private ['_player', '_killer', '_killerIndex'];
+	private ['_player', '_playerIndex', '_killer', '_killerIndex'];
 	_player = _this select 0;
 	_killer = _this select 1;
+	_playerIndex = BL_scoreboardLookup find (format['%1%2', _player getVariable 'side', _player getVariable 'name']);
+
+	[_player, _killer] call BL_fnc_sendKillMsg;
+	
+	if ( _playerIndex > -1 ) then {
+		// Update player bounty
+		(BL_scoreboard select _playerIndex) set [3, BL_bountyAmount];
+			
+		// Add one to player's deaths
+		(BL_scoreboard select _playerIndex) set [5,
+			((BL_scoreboard select _playerIndex) select 5) + 1
+		];
+	};
 
 	if ( _killer != _player && isPlayer _killer ) then {
 		_killerIndex = BL_scoreboardLookup find (format['%1%2', side _killer, name _killer]);
@@ -85,32 +99,29 @@ BL_scoreboardLookup = [];
 			((BL_scoreboard select _killerIndex) select 5) + 1
 		];
 	};
-	
-	// Respawn will be triggered next, broadcast then.
+
+	publicVariable "BL_scoreboard";
 }] call CBA_fnc_addEventHandler;
 
 ['respawn', {
 	private ['_player', '_playerIndex'];
 	_player = _this select 0;	
-	_playerIndex = BL_scoreboardLookup find (format['%1%2', side _player, name _player]);
-
-	if ( _playerIndex == -1 ) exitwith{};
-
-	// Update player bounty
-	(BL_scoreboard select _playerIndex) set [3, BL_bountyAmount];
-		
-	// Add one to player's deaths
-	(BL_scoreboard select _playerIndex) set [5,
-		((BL_scoreboard select _playerIndex) select 5) + 1
-	];
-
-	publicVariable "BL_scoreboard";
+	_player setVariable ['name', name _player];
+	_player setVariable ['side', side _player];
+	_player setVariable ['uid', getPlayerUID _player];
 }] call CBA_fnc_addEventHandler;
 
 // Add player to scoreboard on connect
 ['initPlayerServer', {
-	private ['_player'];
+	private ['_player', '_playerIndex'];
 	_player = _this select 0;
+	_player setVariable ['name', name _player];
+	_player setVariable ['side', side _player];
+	_player setVariable ['uid', getPlayerUID _player];
+	
+	// Player could be reconnecting. Don't add player if they are already on the scoreboard
+	_playerIndex = BL_scoreboardLookup find (format['%1%2', side _player, name _player]);
+	if ( _playerIndex > -1 ) exitwith{};
 	
 	_index = count BL_scoreboard;
 	BL_scoreboard set [_index, [
