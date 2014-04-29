@@ -38,6 +38,7 @@ BL_scoreboardLookup = [];
 	_friendlyFire = ([[_killer], _player] call BL_fnc_friendlyState) == "FRIENDLY";
 
 	statTrackingQueue set [count statTrackingQueue, [
+		BL_sessionStart,
 		_player getVariable 'uid',
 		_killer getVariable 'uid',
 		currentWeapon _player,
@@ -52,11 +53,11 @@ BL_scoreboardLookup = [];
 		_queue = +statTrackingQueue;
 		statTrackingQueue = [];
 		
-		_command = "INSERT INTO `playerkills` (`timestamp`, `player_uid`, `killer_uid`, `player_weapon`, `killer_weapon`, `player_pos`, `killer_pos`, `friendly`) VALUES ";
+		_command = "INSERT INTO `playerkills` (`session`, `player_uid`, `killer_uid`, `player_weapon`, `killer_weapon`, `player_pos`, `killer_pos`, `friendly`) VALUES ";
 		_values = [];
 	
 		{
-			_values set [_forEachIndex, format(["(UNIX_TIMESTAMP(), '%1', '%2', '%3', '%4', '%5', '%6', '%7')"] + ([_x] call BL_fnc_noEmptyArrayValues))];
+			_values set [_forEachIndex, format(["('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8')"] + ([_x] call BL_fnc_noEmptyArrayValues))];
 		} forEach _queue;
 		
 		_command = _command + ([_values, ','] call CBA_fnc_join);

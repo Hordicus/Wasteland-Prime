@@ -15,6 +15,10 @@ class cfgFunctions {
 		#include "systems\staticVehicleSpawns\cfgfunctions.hpp"
 
 		class Server {
+			class serverInit {
+				file = "\x\bl_server\addons\init.sqf";
+				preInit = 1;
+			};
 			file = "\x\bl_server\addons\functions";
 			class nearUnits{};
 			class safeVehicleSpawn{};

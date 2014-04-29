@@ -12,13 +12,15 @@ CREATE TABLE `log` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `playerkills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `timestamp` int(11) NOT NULL,
+  `session` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `player_uid` varchar(100) NOT NULL,
   `killer_uid` varchar(100) DEFAULT NULL,
-  `weapon` varchar(45) DEFAULT NULL,
+  `player_weapon` varchar(45) DEFAULT NULL,
+  `killer_weapon` varchar(45) DEFAULT NULL,
+  `player_pos` varchar(45) DEFAULT NULL,
+  `killer_pos` varchar(45) DEFAULT NULL,
   `friendly` tinyint(1) DEFAULT NULL,
-  `playerpos` varchar(45) DEFAULT NULL,
-  `killerpos` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
