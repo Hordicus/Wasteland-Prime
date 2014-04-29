@@ -5,4 +5,9 @@ class statTracking {
 	};
 	
 	file = "client\systems\statTracking\functions";
+	class hideRow{};
+	class showRow{};
+	class setRow{};
+	class showPlayers{};
+	class rankImage{};
 };
