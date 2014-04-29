@@ -11,7 +11,16 @@ class scoreboardRsc {
 	duration = 99999999999999;
 	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\statTracking\event_onLoad.sqf';";
 	
-	class controlsBackground {};
+	class controlsBackground {
+		class headerImagesBackground : RscCommon {
+			colorBackground[] = {0,0,0,1};
+			w = safezoneW * scoreboardW;
+			h = safezoneH * ((scoreboardH - (0.005 * 9)) / 10);
+			
+			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 );
+			y = playerLine(-1);
+		};
+	};
 	
 	class controls{
 		class P1Position : RscCommon {
@@ -165,5 +174,38 @@ class scoreboardRsc {
 		class P10Kills    : P1Kills    { idc = IDC(9,5); y = playerLine(9); };
 		class P10Deaths   : P1Deaths   { idc = IDC(9,6); y = playerLine(9); };
 		class P10Score    : P1Score    { idc = IDC(9,7); y = playerLine(9); };
+		
+		// Header
+		class HeaderBounty : P1Bounty {
+			y = playerLine(-1);
+			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.5));
+			w = safezoneW * 0.02;
+			text = "client\systems\statTracking\icons\money.paa";
+			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
+		};
+		class HeaderKills : P1Kills {
+			y = playerLine(-1);
+			w = safezoneW * 0.02;
+			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.71));
+			
+			text = "A3\ui_f\data\IGUI\Cfg\MPTable\infantry_ca.paa";
+			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
+		};
+		
+		class HeaderDeaths : P1Deaths {
+			y = playerLine(-1);
+			w = safezoneW * 0.02;
+			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.81));
+			text = "A3\ui_f\data\IGUI\Cfg\MPTable\killed_ca.paa";
+			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
+		};
+		
+		class HeaderScore : P1Score {
+			y = playerLine(-1);
+			w = safezoneW * 0.02;
+			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.96));
+			text = "A3\ui_f\data\IGUI\Cfg\MPTable\total_ca.paa";
+			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
+		};
 	};
 };
