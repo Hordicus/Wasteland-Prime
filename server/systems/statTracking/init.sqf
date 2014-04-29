@@ -1,5 +1,8 @@
 statTrackingQueue = [];
 playerBounty = [[], 1] call CBA_fnc_hashCreate;
+BL_scoreboard = [];
+BL_bountyAmount = ('killBounty' call BL_fnc_config);
+BL_scoreboardLookup = [];
 
 // Player bounty
 ['killed', {
@@ -58,4 +61,69 @@ playerBounty = [[], 1] call CBA_fnc_hashCreate;
 			[_command] call BL_fnc_MySQLCommand;
 		};
 	};
+}] call CBA_fnc_addEventHandler;
+
+// Scoreboard
+// [_rank, _side, _playerName, _bounty, _kills, _deaths, _score ],
+['killed', {
+	private ['_player', '_killer', '_killerIndex'];
+	_player = _this select 0;
+	_killer = _this select 1;
+
+	if ( _killer != _player && isPlayer _killer ) then {
+		_killerIndex = BL_scoreboardLookup find (format['%1%2', side _killer, name _killer]);
+		
+		if ( _killerIndex == -1 ) exitwith{};
+		
+		// Update killer's bounty
+		(BL_scoreboard select _killerIndex) set [3,
+			([playerBounty, name _killer] call CBA_fnc_hashGet)*BL_bountyAmount
+		];
+		
+		// Add one to killers' kills
+		(BL_scoreboard select _killerIndex) set [5,
+			((BL_scoreboard select _killerIndex) select 5) + 1
+		];
+	};
+	
+	// Respawn will be triggered next, broadcast then.
+}] call CBA_fnc_addEventHandler;
+
+['respawn', {
+	private ['_player', '_playerIndex'];
+	_player = _this select 0;	
+	_playerIndex = BL_scoreboardLookup find (format['%1%2', side _player, name _player]);
+
+	if ( _playerIndex == -1 ) exitwith{};
+
+	// Update player bounty
+	(BL_scoreboard select _playerIndex) set [3, BL_bountyAmount];
+		
+	// Add one to player's deaths
+	(BL_scoreboard select _playerIndex) set [5,
+		((BL_scoreboard select _playerIndex) select 5) + 1
+	];
+
+	publicVariable "BL_scoreboard";
+}] call CBA_fnc_addEventHandler;
+
+// Add player to scoreboard on connect
+['initPlayerServer', {
+	private ['_player'];
+	_player = _this select 0;
+	
+	_index = count BL_scoreboard;
+	BL_scoreboard set [_index, [
+		1,
+		side _player,
+		name _player,
+		BL_bountyAmount,
+		0,
+		0,
+		0
+	]];
+	
+	BL_scoreboardLookup set [_index, format['%1%2', side _player, name _player]];
+	
+	publicVariable "BL_scoreboard";
 }] call CBA_fnc_addEventHandler;
