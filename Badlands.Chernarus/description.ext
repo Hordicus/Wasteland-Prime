@@ -80,6 +80,7 @@ class CfgFunctions {
 
 	#include "gear\cfgfunctions.hpp"
 	#include "logistics\cfgfunctions.hpp"
+	#include "cba\cfgfunctions.hpp"
 };
 
 
