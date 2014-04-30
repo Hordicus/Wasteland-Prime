@@ -11,7 +11,6 @@
 			private ['_uav'];
 			_uav = _this select 0;
 			player connectTerminalToUav objNull;
-			0 call BL_fnc_setRating;
 			player connectTerminalToUav _uav;
 			activeUAV = _uav;
 		}, "CAN_COLLIDE", true] call BL_fnc_createVehicle;

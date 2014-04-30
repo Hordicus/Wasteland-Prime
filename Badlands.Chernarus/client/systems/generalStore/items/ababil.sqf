@@ -12,7 +12,6 @@
 			_uav = _this select 0;
 			player connectTerminalToUav objNull;
 			
-			0 call BL_fnc_setRating;
 			player connectTerminalToUav _uav;
 			activeUAV = _uav;
 		}, "FLY", true] call BL_fnc_createVehicle;

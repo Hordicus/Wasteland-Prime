@@ -81,28 +81,6 @@ player addEventHandler ["killed", {
 
 player addEventHandler ["respawn", {
 	['respawn', _this] call CBA_fnc_globalEvent;
+	
+	player addRating 100000;
 }];
-
-if ( side player == resistance ) then {
-	// When player is damaged set rating to -4000 in case they die.
-	// If the player dies with a negative rating it won't show as 
-	// friendly fire.
-	player addEventhandler ['HandleDamage', {
-		_player = _this select 0;
-		-4000 call BL_fnc_setRating;
-		
-		_h = _player getVariable 'HandleDamageSH';
-		if ( !isNil "_h" ) then {
-			if ( !scriptDone _h ) then {
-				terminate _h;
-			};
-		};
-		
-		_h = [_player] spawn {
-			sleep 0.1;
-			0 call BL_fnc_setRating;
-		};
-		
-		_h = _player setVariable ['HandleDamageSH', _h];
-	}];
-};
