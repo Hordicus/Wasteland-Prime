@@ -9,7 +9,7 @@ _state = "";
 	if ( _friendlyTo != _x ) then {
 		if ( (_friendlyTo getVariable ['side', civilian]) in [east, west] ) then {
 			if ( (_friendlyTo getVariable ['side', civilian]) == (_x getVariable ['side', civilian]) ) then {
-				INC(_friendly);
+				_friendly = _friendly + 1;
 			}
 			else {
 				_enemy = _enemy + 1;

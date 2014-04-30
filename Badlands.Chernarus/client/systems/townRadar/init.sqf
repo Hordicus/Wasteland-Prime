@@ -3,7 +3,11 @@ _cities = call BL_fnc_findCities;
 {
 	_name = format['marker_%1', _x select 0];
 	_radius = _x select 2;
-	_marker = [_name, _x select 1, "ELLIPSE", [_radius, _radius], "ColorBlack"] call CBA_fnc_createMarker;
+
+	createMarkerLocal [_name, _x select 1];
+	_name setMarkerShapeLocal "ELLIPSE";
+	_name setMarkerColorLocal "ColorBlack";
+	_name setMarkerSizeLocal [_radius, _radius];
 	_name setMarkerAlphaLocal 0.5;
 } forEach _cities;
 
