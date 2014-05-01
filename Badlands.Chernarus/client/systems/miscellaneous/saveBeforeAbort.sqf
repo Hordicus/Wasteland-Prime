@@ -11,7 +11,7 @@ while { true } do {
 	waitUntil { !isNull findDisplay _menuIDD };
 	((findDisplay _menuIDD) displayCtrl _abortIDC) ctrlEnable false;
 	titleText ['Saving player...', 'PLAIN', 0.01];
-	PVAR_requestSave = [player, player, true];
+	PVAR_requestSave = [player, player, true, [player, ['repetitive']] call BL_fnc_getLoadout];
 	publicVariableServer "PVAR_requestSave";
 	PVAR_requestSaveDone = false;
 	waitUntil { PVAR_requestSaveDone };

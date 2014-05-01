@@ -76,31 +76,8 @@ PERS_init_done = true;
 // Periodic saving loops
 [] spawn {
 	sleep 60;
-	private ["_savePlayer","_player","_lastSave","_processed","_index","_dbID"];
-	_savePlayer = {
-		_player =  _this select 0;
-		_lastSave = _player getVariable 'lastSave';
-		if ( time - _lastSave >= 60 ) then {
-			[_player] call BL_fnc_savePlayer;
-		};
-	};
-	while { true } do {
-		{
-			_processed = _x getVariable ['persistenceEHAdded', false];
-
-			if ( !_processed ) then {
-				_x addEventHandler ['Put', _savePlayer];
-				_x addEventHandler ['Take', _savePlayer];
-				_x addEventHandler ['Killed', _savePlayer];
-				_x addEventHandler ['Fired', _savePlayer];
-				_x setVariable ['lastSave', time];
-				_x setVariable ['persistenceEHAdded', true];
-			};
-			
-			[_x] call _savePlayer;
-			true
-		} count playableUnits;
-		
+	private ["_index","_dbID"];
+	while { true } do {		
 		{
 			_index = PERS_trackedObjectsNetIDs find (netId _x);
 			_dbID = PERS_trackedObjectsIDs select _index;

@@ -1,5 +1,6 @@
-private ['_player', '_playerUID', '_position'];
-_player = [_this, 0, player, [player]] call BIS_fnc_param;
+private ['_player', '_playerUID', '_position', '_loadout'];
+_player  = [_this, 0, player, [player]] call BIS_fnc_param;
+_loadout = [_this, 1, [], [[]]] call BIS_fnc_param;
 _playerUID = getPlayerUID _player;
 
 _position = getPosATL _player;
@@ -20,7 +21,7 @@ WHERE `uid` = '%11' AND `side` = '%12'", [
 	_position select 0,
 	_position select 1,
 	_position select 2,
-	[_player, ["repetitive" ]] call BL_fnc_getLoadout,
+	[str ([_loadout] call BL_fnc_noEmptyArrayValues)] call BL_fnc_MySQLEscape,
 	animationState _player,
 	getDir _player,
 	_player getVariable ['money', 0],

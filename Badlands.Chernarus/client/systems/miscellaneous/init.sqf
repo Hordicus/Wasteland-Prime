@@ -7,4 +7,5 @@
 	execVM 'client\systems\miscellaneous\saveBeforeAbort.sqf';
 	execVM 'client\systems\miscellaneous\noThermals.sqf';
 	execVM 'client\systems\miscellaneous\noFriendlyFire.sqf';
+	execVM 'client\systems\miscellaneous\playerSaveLoop.sqf';
 };

@@ -10,7 +10,6 @@ class persistence {
 
 	file = "\x\bl_server\addons\systems\persistence\functions";
 	class loadPlayer{};
-	class getLoadout{};
 	class savePlayer{};
 	class createPlayer{};
 	

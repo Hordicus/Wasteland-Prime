@@ -57,6 +57,7 @@ class CfgFunctions {
 			class friendlyState{};
 			class friendlyStateCheck{};
 			class randStr{};
+			class getLoadout{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
