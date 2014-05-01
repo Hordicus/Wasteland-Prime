@@ -11,7 +11,7 @@
 	Array - [weapons, magazines, items] matches format of weapon/magazine/itemCargo commands
 */
 
-private ["_veh","_cargoGroups","_cargo","_itemsAdded","_weaponsAdded","_count","_index","_magsAdded"];
+private ["_veh","_cargoGroups","_cargo","_itemsAdded","_weaponsAdded","_count","_index","_magsAdded","_item"];
 _veh = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 _cargoGroups = [_this, 1, [], [[]]] call BIS_fnc_param;
 _cargo = _cargoGroups select floor random count _cargoGroups;
@@ -25,9 +25,14 @@ _weaponsAdded = [[], []];
 {
 	_count = (_x select 1) + floor random  (_x select 2);
 	if ( _count > 0 ) then {
-		_veh addWeaponCargoGlobal [_x select 0, _count];
+		_item = _x select 0;
+		if ( typeName _item == "ARRAY" ) then {
+			_item = _item select floor random count _item;
+		};
+		
+		_veh addWeaponCargoGlobal [_item, _count];
 		_index = count (_weaponsAdded select 0);
-		(_weaponsAdded select 0) set [_index, _x select 0];
+		(_weaponsAdded select 0) set [_index, _item];
 		(_weaponsAdded select 1) set [_index, _count];
 	};
 } forEach (_cargo select 0);
@@ -36,9 +41,14 @@ _magsAdded = [[], []];
 {
 	_count = (_x select 1) + floor random  (_x select 2);
 	if ( _count > 0 ) then {
-		_veh addMagazineCargoGlobal [_x select 0, _count];
+		_item = _x select 0;
+		if ( typeName _item == "ARRAY" ) then {
+			_item = _item select floor random count _item;
+		};
+
+		_veh addMagazineCargoGlobal [_item, _count];
 		_index = count (_magsAdded select 0);
-		(_magsAdded select 0) set [_index, _x select 0];
+		(_magsAdded select 0) set [_index, _item];
 		(_magsAdded select 1) set [_index, _count];
 	};
 } forEach (_cargo select 1);
@@ -47,9 +57,14 @@ _itemsAdded = [[], []];
 {
 	_count = (_x select 1) + floor random  (_x select 2);
 	if ( _count > 0 ) then {
-		_veh addItemCargoGlobal [_x select 0, _count];
+		_item = _x select 0;
+		if ( typeName _item == "ARRAY" ) then {
+			_item = _item select floor random count _item;
+		};
+		
+		_veh addItemCargoGlobal [_item, _count];
 		_index = count (_itemsAdded select 0);
-		(_itemsAdded select 0) set [_index, _x select 0];
+		(_itemsAdded select 0) set [_index, _item];
 		(_itemsAdded select 1) set [_index, _count];
 	};
 } forEach (_cargo select 2);
