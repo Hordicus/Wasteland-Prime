@@ -23,7 +23,7 @@ clearItemCargoGlobal _veh;
 
 _weaponsAdded = [[], []];
 {
-	_count = (_x select 1) + floor random  (_x select 2);
+	_count = (_x select 1) + round random  (_x select 2);
 	if ( _count > 0 ) then {
 		_item = _x select 0;
 		if ( typeName _item == "ARRAY" ) then {
@@ -39,7 +39,7 @@ _weaponsAdded = [[], []];
 
 _magsAdded = [[], []];
 {
-	_count = (_x select 1) + floor random  (_x select 2);
+	_count = (_x select 1) + round random  (_x select 2);
 	if ( _count > 0 ) then {
 		_item = _x select 0;
 		if ( typeName _item == "ARRAY" ) then {
@@ -55,7 +55,7 @@ _magsAdded = [[], []];
 
 _itemsAdded = [[], []];
 {
-	_count = (_x select 1) + floor random  (_x select 2);
+	_count = (_x select 1) + round random  (_x select 2);
 	if ( _count > 0 ) then {
 		_item = _x select 0;
 		if ( typeName _item == "ARRAY" ) then {
