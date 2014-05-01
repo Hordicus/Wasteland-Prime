@@ -207,5 +207,16 @@ class scoreboardRsc {
 			text = "A3\ui_f\data\IGUI\Cfg\MPTable\total_ca.paa";
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
 		};
+		
+		// Current player
+		class PCPosition : P1Position { idc = IDC(10,0); y = playerLine(11); };
+		class PCRankBG   : P1RankBG   { idc = IDC(10,1); y = playerLine(11); };
+		class PCRank     : P1Rank     { idc = IDC(10,2); y = playerLine(11); };
+		class PCName     : P1Name     { idc = IDC(10,3); y = playerLine(11); };
+		class PCBounty   : P1Bounty   { idc = IDC(10,4); y = playerLine(11); };
+		class PCKills    : P1Kills    { idc = IDC(10,5); y = playerLine(11); };
+		class PCDeaths   : P1Deaths   { idc = IDC(10,6); y = playerLine(11); };
+		class PCScore    : P1Score    { idc = IDC(10,7); y = playerLine(11); };
+
 	};
 };

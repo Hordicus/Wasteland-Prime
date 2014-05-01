@@ -13,9 +13,9 @@ _offset = 10 * _page;
 
 for "_i" from _offset to _offset+9 do {
 	if ( _i < count _players ) then {
-		[_scoreboard, _i, _players select _i] call BL_fnc_setRow;
+		[_scoreboard, _i, _i+1, _players select _i] call BL_fnc_setRow;
 	}
 	else {
-		[_scoreboard, _i, []] call BL_fnc_setRow;
+		[_scoreboard, _i] call BL_fnc_setRow;
 	};
 };
