@@ -6,6 +6,7 @@ BL_serverUpTime = 0;
 BL_grass = profileNamespace getVariable ['BL_grass', 1]; // Default
 BL_enableEnv = profileNamespace getVariable ['BL_enableEnv', 1];
 BL_playerMenuKey = profileNamespace getVariable ['BL_playerMenuKey', 41 /* ~ */ ];
+BL_playerMenuActionID = -1;
 
 BL_playerInventoryHandlers = missionNamespace getVariable ['BL_playerInventoryHandlers', []];
 BL_playerInventoryCodes = missionNamespace getVariable ['BL_playerInventoryCodes', []];
@@ -60,8 +61,9 @@ if ( !hasInterface ) exitwith{};
 	}];
 
 	player addEventHandler ['respawn', {
-		player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
+		(_this select 1) removeAction BL_playerMenuActionID;
+		BL_playerMenuActionID = player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
 	}];
 
-	player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
+	BL_playerMenuActionID = player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1];
 };
