@@ -92,18 +92,26 @@ BL_fnc_missionRandomField,
 			true
 		} count _unitsInArea;
 		
-		if ( count _nearUnits > 0 && {alive _x} count _units == 0) exitwith {
+		if ( count _nearUnits > 0 && {alive _x && _x distance _crashSite <= 200} count _units == 0) exitwith {
 			[_code] call BL_fnc_missionDone;
 		};
 	};
 	
-	[_crash] spawn {
-		while { !isNull (_this select 0) } do {
+	[_crash, _units] spawn {
+		while { !isNull (_this select 0) || {alive _x} count (_this select 1) > 0} do {
 			sleep 60;
 		
 			if !( [[getPosATL (_this select 0), 1000] call BL_fnc_nearUnits, (_this select 0)] call BL_fnc_hasLOS ) then {
 				deleteVehicle (_this select 0);
 			};
+			
+			{
+				// No one within 200m and no one within 1000m with LOS.
+				if !( count ([getPosATL _x, 200] call BL_fnc_nearUnits) == 0 && !([[getPosATL _x, 1000] call BL_fnc_nearUnits, _x] call BL_fnc_hasLOS) ) then {
+					deleteVehicle _x;
+				};
+			} count (_this select 1);
+			
 			true
 		};
 	};
