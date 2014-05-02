@@ -34,13 +34,20 @@ BL_fnc_missionRandomField,
 	[_crash] call BL_fnc_trackVehicle;
 	
 	_units = [];
-	_groups = [];
+	_groups = [
+		["O_spotter_F", "O_sniper_F"],
+		["O_spotter_F", "O_sniper_F"],
+		["O_spotter_F", "O_sniper_F"],
+		["O_Soldier_GL_F", "O_Soldier_LAT_F"],
+		["O_Soldier_GL_F", "O_Soldier_LAT_F"],
+		["O_Soldier_GL_F", "O_Soldier_LAT_F"]
+	];
 	
 	// Recovery teams
 	for "_i" from 0 to 5 do {
 		_grp = createGroup east;
-		_grp createUnit ["O_spotter_F", _crashSite, [], 0, "FORM"];
-		_grp createUnit ["O_sniper_F", _crashSite, [], 0, "FORM"];
+		_grp createUnit [(_groups select _i select 0), _crashSite, [], 0, "FORM"];
+		_grp createUnit [(_groups select _i select 1), _crashSite, [], 0, "FORM"];
 		
 		_grp allowFleeing 0;
 		_grp setCombatMode "RED";
