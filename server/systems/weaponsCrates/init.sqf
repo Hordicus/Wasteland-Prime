@@ -61,6 +61,7 @@
 		clearWeaponCargoGlobal _box;
 		clearMagazineCargoGlobal _box;
 		clearItemCargoGlobal _box;
+		clearBackpackCargoGlobal _box;
 		
 		{
 			_box addItemCargoGlobal _x;
