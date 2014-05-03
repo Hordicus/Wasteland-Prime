@@ -26,8 +26,6 @@ BL_scoreboardLookup = [];
 		_killer setVariable ['money', (_killer getVariable ['money', 0]) + _moneyToGive, true];
 		
 		[format['$%1 bounty awarded for killing %2', _moneyToGive, _playerName], "BL_fnc_systemChat", owner _killer] call BIS_fnc_MP;
-		
-		[_killer, [call BL_fnc_statTrackingConfig, 'playerKillScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
 	};
 }] call CBA_fnc_addEventHandler;
 
@@ -85,6 +83,9 @@ BL_scoreboardLookup = [];
 		(BL_scoreboard select _playerIndex) set [5,
 			((BL_scoreboard select _playerIndex) select 5) + 1
 		];
+
+		// Add to players score
+		[_player, [call BL_fnc_statTrackingConfig, 'deathScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;		
 	};
 
 	if ( _killer != _player && isPlayer _killer ) then {
@@ -101,6 +102,9 @@ BL_scoreboardLookup = [];
 		(BL_scoreboard select _killerIndex) set [5,
 			((BL_scoreboard select _killerIndex) select 5) + 1
 		];
+		
+		// Add to killer score
+		[_killer, [call BL_fnc_statTrackingConfig, 'playerKillScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
 	};
 
 	publicVariable "BL_scoreboard";
