@@ -129,6 +129,8 @@
 		};
 	};
 	
+	[_group] call BL_fnc_statTrackAIUnits;
+	
 	_vehicles
 },
 

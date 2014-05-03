@@ -61,6 +61,7 @@ BL_fnc_missionRandomField,
 		_units = _units + (units _grp);
 	};
 	
+	[_units] call BL_fnc_statTrackAIUnits;
 	_reward = [call BL_fnc_missionsConfig, 'recoveryMissionReward'] call CBA_fnc_hashGet;
 	
 	if ( isNil "_reward" ) then {

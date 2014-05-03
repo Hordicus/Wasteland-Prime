@@ -13,4 +13,5 @@ class statTracking {
 	class playerIndex{};
 	class playerScoreboard{};
 	class addScore{};
+	class statTrackAIUnits{};
 };
