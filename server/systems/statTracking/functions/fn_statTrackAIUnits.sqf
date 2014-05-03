@@ -11,13 +11,7 @@ if ( typeName _units == "GROUP" ) then {
 
 {
 	if ( local _x ) then {
-		_x addEventHandler ['Killed', {
-			private ['_killer'];
-			_killer = _this select 1;
-			if ( isPlayer _killer ) then {
-				[_killer, [call BL_fnc_statTrackingConfig, 'aiKillScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
-			};
-		}];
+		_x addEventHandler ['Killed', BL_fnc_statTrackingKilledHandler];
 	};
 	true
 } count _units;

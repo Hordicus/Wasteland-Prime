@@ -31,11 +31,22 @@ BL_scoreboardLookup = [];
 
 // Database logging
 ['killed', {
-	private ["_player","_killer","_weapon","_friendlyFire"];
+	private ["_player","_killer","_weapon","_friendlyFire","_playerVehicle","_killerVehicle"];
 	_player = _this select 0;
 	_killer = _this select 1;
 	
 	_friendlyFire = ([[_killer], _player] call BL_fnc_friendlyState) == "FRIENDLY";
+	
+	_playerVehicle = typeOf vehicle _player;
+	_killerVehicle = typeOf vehicle _killer;
+	
+	if ( _playerVehicle isKindOf "Man" ) then {
+		_playerVehicle = "NULL";
+	};
+	
+	if ( _killerVehicle isKindOf "Man" ) then {
+		_killerVehicle = "NULL";
+	};
 
 	statTrackingQueue set [count statTrackingQueue, [
 		BL_sessionStart,
@@ -43,21 +54,23 @@ BL_scoreboardLookup = [];
 		_killer getVariable 'uid',
 		currentWeapon _player,
 		currentWeapon _killer,
+		_playerVehicle,
+		_killerVehicle,
 		getPosATL _player,
 		getPosATL _killer,
 		(if(_friendlyFire) then {1} else {0})
 	]];
 
-	if ( count statTrackingQueue >= 10 ) then {
+	if ( count statTrackingQueue >= 1 ) then {
 		private ["_queue","_command","_values"];
 		_queue = +statTrackingQueue;
 		statTrackingQueue = [];
 		
-		_command = "INSERT INTO `playerkills` (`session`, `player_uid`, `killer_uid`, `player_weapon`, `killer_weapon`, `player_pos`, `killer_pos`, `friendly`) VALUES ";
+		_command = "INSERT INTO `playerkills` (`session`, `player_uid`, `killer_uid`, `player_weapon`, `killer_weapon`, `player_veh`, `killer_veh`, `player_pos`, `killer_pos`, `friendly`) VALUES ";
 		_values = [];
 	
 		{
-			_values set [_forEachIndex, format(["('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8')"] + ([_x] call BL_fnc_noEmptyArrayValues))];
+			_values set [_forEachIndex, format(["('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10')"] + ([_x] call BL_fnc_noEmptyArrayValues))];
 		} forEach _queue;
 		
 		_command = _command + ([_values, ','] call CBA_fnc_join);
@@ -67,48 +80,7 @@ BL_scoreboardLookup = [];
 
 // Scoreboard
 // [_rank, _side, _playerName, _bounty, _kills, _deaths, _score ],
-['killed', {
-	private ['_player', '_playerIndex', '_killer', '_killerIndex'];
-	_player = _this select 0;
-	_killer = _this select 1;
-	_playerIndex = BL_scoreboardLookup find (format['%1%2', _player getVariable 'side', _player getVariable 'name']);
-
-	[_player, _killer] call BL_fnc_sendKillMsg;
-	
-	if ( _playerIndex > -1 ) then {
-		// Update player bounty
-		(BL_scoreboard select _playerIndex) set [3, BL_bountyAmount];
-			
-		// Add one to player's deaths
-		(BL_scoreboard select _playerIndex) set [5,
-			((BL_scoreboard select _playerIndex) select 5) + 1
-		];
-
-		// Add to players score
-		[_player, [call BL_fnc_statTrackingConfig, 'deathScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;		
-	};
-
-	if ( _killer != _player && isPlayer _killer ) then {
-		_killerIndex = BL_scoreboardLookup find (format['%1%2', side _killer, name _killer]);
-		
-		if ( _killerIndex == -1 ) exitwith{};
-		
-		// Update killer's bounty
-		(BL_scoreboard select _killerIndex) set [3,
-			([playerBounty, name _killer] call CBA_fnc_hashGet)*BL_bountyAmount
-		];
-		
-		// Add one to killers' kills
-		(BL_scoreboard select _killerIndex) set [5,
-			((BL_scoreboard select _killerIndex) select 5) + 1
-		];
-		
-		// Add to killer score
-		[_killer, [call BL_fnc_statTrackingConfig, 'playerKillScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
-	};
-
-	publicVariable "BL_scoreboard";
-}] call CBA_fnc_addEventHandler;
+['killed', BL_fnc_statTrackingKilledHandler] call CBA_fnc_addEventHandler;
 
 ['respawn', {
 	private ['_player', '_playerIndex'];

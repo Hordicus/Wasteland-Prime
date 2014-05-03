@@ -14,4 +14,5 @@ class statTracking {
 	class playerScoreboard{};
 	class addScore{};
 	class statTrackAIUnits{};
+	class statTrackingKilledHandler{};
 };
