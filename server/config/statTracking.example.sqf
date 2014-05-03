@@ -1,13 +1,15 @@
 private ['_config', '_vehicles'];
 _config = [] call CBA_fnc_hashCreate;
 
-[_config, 'playerKillScore', 5] call CBA_fnc_hashSet;
-[_config, 'aiKillScore', 3] call CBA_fnc_hashSet;
-[_config, 'deathScore', -1] call CBA_fnc_hashSet;
+[_config, 'addScoreLogMaxSize', 20] call CBA_fnc_hashSet;
+
+[_config, 'playerKill', 5] call CBA_fnc_hashSet;
+[_config, 'aiKill', 3] call CBA_fnc_hashSet;
+[_config, 'death', -1] call CBA_fnc_hashSet;
 
 _vehicles = [] call CBA_fnc_hashCreate;
-[_vehicles, "LandVehicle", 3] call CBA_fnc_hashSet;
+[_vehicles, "LandVehicle", 1] call CBA_fnc_hashSet;
 
-[_config, 'vehicleBonusScore', _vehicles] call CBA_fnc_hashSet;
+[_config, 'vehicleBonus', _vehicles] call CBA_fnc_hashSet;
 
 _config

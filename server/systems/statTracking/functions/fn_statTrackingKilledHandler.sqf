@@ -23,7 +23,7 @@ if ( _playerIndex > -1 ) then {
 	];
 
 	// Add to players score
-	[_player, [call BL_fnc_statTrackingConfig, 'deathScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;		
+	[_player, "death"] call BL_fnc_addScore;		
 };
 
 if ( _killer != _player && isPlayer _killer ) then {
@@ -44,17 +44,17 @@ if ( _killer != _player && isPlayer _killer ) then {
 		];
 	
 		// Add to killer score
-		[_killer, [call BL_fnc_statTrackingConfig, 'playerKillScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
+		[_killer, 'playerKill'] call BL_fnc_addScore;
 	}
 	else {
-		[_killer, [call BL_fnc_statTrackingConfig, 'aiKillScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
+		[_killer, 'aiKill'] call BL_fnc_addScore;
 	};
 	
 	// Bonus points for killing player in vehicle
 
 	if !( _playerVehicle isKindOf "Man" ) then {
 		private ['_vehicles', '_bonus', '_parent'];
-		_vehicles = [call BL_fnc_statTrackingConfig, 'vehicleBonusScore'] call CBA_fnc_hashGet;
+		_vehicles = [call BL_fnc_statTrackingConfig, 'vehicleBonus'] call CBA_fnc_hashGet;
 		_bonus = 0;
 	
 		if ( !isNil { [_vehicles, _playerVehicle] call CBA_fnc_hashGet } ) then {
@@ -71,6 +71,6 @@ if ( _killer != _player && isPlayer _killer ) then {
 			};
 		};
 
-		[_killer, _bonus] call BL_fnc_addScore;
+		[_killer, _bonus, "vehicleBonus"] call BL_fnc_addScore;
 	};
 };
