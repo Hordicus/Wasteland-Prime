@@ -23,7 +23,7 @@ if ( _playerIndex > -1 ) then {
 	];
 
 	// Add to players score
-	[_player, "death"] call BL_fnc_addScore;		
+	[_player, "death"] call BL_fnc_addPoints;		
 };
 
 if ( _killer != _player && isPlayer _killer ) then {
@@ -44,10 +44,10 @@ if ( _killer != _player && isPlayer _killer ) then {
 		];
 	
 		// Add to killer score
-		[_killer, 'playerKill'] call BL_fnc_addScore;
+		[_killer, 'playerKill'] call BL_fnc_addPoints;
 	}
 	else {
-		[_killer, 'aiKill'] call BL_fnc_addScore;
+		[_killer, 'aiKill'] call BL_fnc_addPoints;
 	};
 	
 	// Bonus points for killing player in vehicle
@@ -71,6 +71,6 @@ if ( _killer != _player && isPlayer _killer ) then {
 			};
 		};
 
-		[_killer, _bonus, "vehicleBonus"] call BL_fnc_addScore;
+		[_killer, _bonus, "vehicleBonus"] call BL_fnc_addPoints;
 	};
 };

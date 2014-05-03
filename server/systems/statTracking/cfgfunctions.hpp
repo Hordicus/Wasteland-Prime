@@ -12,7 +12,7 @@ class statTracking {
 	class sendKillMsg{};
 	class playerIndex{};
 	class playerScoreboard{};
-	class addScore{};
+	class addPoints{};
 	class statTrackAIUnits{};
 	class statTrackingKilledHandler{};
 };

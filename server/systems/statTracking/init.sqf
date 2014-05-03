@@ -3,8 +3,8 @@ playerBounty = [[], 1] call CBA_fnc_hashCreate;
 BL_scoreboard = [];
 BL_bountyAmount = ('killBounty' call BL_fnc_config);
 BL_scoreboardLookup = [];
-BL_addScoreLog = [];
-BL_addScoreLogMaxSize = [call BL_fnc_statTrackingConfig, "addScoreLogMaxSize"] call CBA_fnc_hashGet;
+BL_addPointsLog = [];
+BL_addPointsLogMaxSize = [call BL_fnc_statTrackingConfig, "addPointsLogMaxSize"] call CBA_fnc_hashGet;
 
 [] spawn {
 	private ['_lastBroadcast'];
