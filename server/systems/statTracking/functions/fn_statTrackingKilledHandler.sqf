@@ -1,26 +1,22 @@
 #include "macro.sqf"
 private ['_player', '_killer', '_playerIndex', '_playerVehicle'];
 _player = _this select 0;
-_killer = _this select 1;
+_killer = [_this select 1] call BL_fnc_getKiller;
 
-_playerIndex = -1;
+_playerIndex = _player call BL_fnc_playerIndex;
 _playerVehicle = typeOf vehicle _player;
 
 if ( isPlayer _player ) then {
-	_playerIndex = BL_scoreboardLookup find (format['%1%2', _player getVariable 'side', _player getVariable 'name']);
-};
-
-if ( isPlayer _player && isPlayer _killer ) then {
 	[_player, _killer] call BL_fnc_sendKillMsg;
 };
 
 if ( _playerIndex > -1 ) then {
 	// Update player bounty
-	(BL_scoreboard select _playerIndex) set [3, BL_bountyAmount];
+	(BL_scoreboard select _playerIndex) set [INDEX_BOUNTY, BL_bountyAmount];
 		
 	// Add one to player's deaths
-	(BL_scoreboard select _playerIndex) set [5,
-		((BL_scoreboard select _playerIndex) select 5) + 1
+	(BL_scoreboard select _playerIndex) set [INDEX_DEATHS,
+		((BL_scoreboard select _playerIndex) select INDEX_DEATHS) + 1
 	];
 
 	// Add to players score
@@ -34,7 +30,7 @@ if ( _killer != _player && isPlayer _killer ) then {
 	if ( _killerIndex == -1 ) exitwith{};
 	
 	// Update killer's bounty
-	(BL_scoreboard select _killerIndex) set [3,
+	(BL_scoreboard select _killerIndex) set [INDEX_BOUNTY,
 		([playerBounty, _killer getVariable 'name'] call CBA_fnc_hashGet)*BL_bountyAmount
 	];
 	

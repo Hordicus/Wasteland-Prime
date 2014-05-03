@@ -15,4 +15,5 @@ class statTracking {
 	class addPoints{};
 	class statTrackAIUnits{};
 	class statTrackingKilledHandler{};
+	class getKiller{};
 };

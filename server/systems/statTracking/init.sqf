@@ -26,7 +26,7 @@ BL_addPointsLogMaxSize = [call BL_fnc_statTrackingConfig, "addPointsLogMaxSize"]
 ['killed', {
 	private ["_player","_killer","_bounty","_moneyToGive","_playerName","_killerName"];
 	_player = _this select 0;
-	_killer = _this select 1;
+	_killer = [_this select 1] call BL_fnc_getKiller;
 
 	if ( !isPlayer _player ) exitwith{};
 
@@ -54,7 +54,7 @@ BL_addPointsLogMaxSize = [call BL_fnc_statTrackingConfig, "addPointsLogMaxSize"]
 ['killed', {
 	private ["_player","_killer","_weapon","_friendlyFire","_playerVehicle","_killerVehicle"];
 	_player = _this select 0;
-	_killer = _this select 1;
+	_killer = [_this select 1] call BL_fnc_getKiller;
 	
 	_friendlyFire = ([[_killer], _player] call BL_fnc_friendlyState) == "FRIENDLY";
 	
