@@ -11,7 +11,9 @@ if ( typeName _units == "GROUP" ) then {
 
 {
 	if ( local _x ) then {
-		_x addEventHandler ['Killed', BL_fnc_statTrackingKilledHandler];
+		_x addEventHandler ['Killed', {
+			['killed', _this] call CBA_fnc_localEvent;
+		}];
 	};
 	true
 } count _units;

@@ -9,6 +9,9 @@ BL_scoreboardLookup = [];
 	private ["_player","_killer","_bounty","_moneyToGive","_playerName","_killerName"];
 	_player = _this select 0;
 	_killer = _this select 1;
+
+	if ( !isPlayer _player ) exitwith{};
+
 	_playerName = _player getVariable 'name';
 	_killerName = _killer getVariable 'name';
 	
