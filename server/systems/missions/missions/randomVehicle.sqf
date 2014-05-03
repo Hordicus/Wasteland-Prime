@@ -60,6 +60,8 @@ BL_fnc_missionRandomField,
 	_grp allowFleeing 0;
 	_grp setBehaviour "COMBAT";
 	_grp setCombatMode "RED";
+	
+	[_grp] call BL_fnc_statTrackAIUnits;
 		
 	waitUntil {
 		sleep 1;
