@@ -87,7 +87,7 @@ BL_addPointsLogMaxSize = [call BL_fnc_statTrackingConfig, "addPointsLogMaxSize"]
 		_queue = +statTrackingQueue;
 		statTrackingQueue = [];
 		
-		_command = "INSERT INTO `playerkills` (`session`, `player_uid`, `killer_uid`, `player_weapon`, `killer_weapon`, `player_veh`, `killer_veh`, `player_pos`, `killer_pos`, `friendly`) VALUES ";
+		_command = "INSERT INTO `player_kills` (`session`, `player_uid`, `killer_uid`, `player_weapon`, `killer_weapon`, `player_veh`, `killer_veh`, `player_pos`, `killer_pos`, `friendly`) VALUES ";
 		_values = [];
 	
 		{
