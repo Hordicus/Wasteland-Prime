@@ -10,7 +10,7 @@ CREATE TABLE `log` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `playerkills` (
+CREATE TABLE `player_kills` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `session` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -18,9 +18,23 @@ CREATE TABLE `playerkills` (
   `killer_uid` varchar(100) DEFAULT NULL,
   `player_weapon` varchar(45) DEFAULT NULL,
   `killer_weapon` varchar(45) DEFAULT NULL,
+  `player_veh` varchar(45) DEFAULT NULL,
+  `killer_veh` varchar(45) DEFAULT NULL,
   `player_pos` varchar(45) DEFAULT NULL,
   `killer_pos` varchar(45) DEFAULT NULL,
   `friendly` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `player_points` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `session` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `player_uid` varchar(100) NOT NULL,
+  `points` int(11) NOT NULL,
+  `code` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
