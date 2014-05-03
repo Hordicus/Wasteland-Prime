@@ -15,7 +15,7 @@ if ( typeName _units == "GROUP" ) then {
 			private ['_killer'];
 			_killer = _this select 1;
 			if ( isPlayer _killer ) then {
-				[_killer, [call BL_fnc_statTrackingConfig, 'killScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
+				[_killer, [call BL_fnc_statTrackingConfig, 'aiKillScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
 			};
 		}];
 	};

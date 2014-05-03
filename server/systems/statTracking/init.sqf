@@ -27,7 +27,7 @@ BL_scoreboardLookup = [];
 		
 		[format['$%1 bounty awarded for killing %2', _moneyToGive, _playerName], "BL_fnc_systemChat", owner _killer] call BIS_fnc_MP;
 		
-		[_killer, [call BL_fnc_statTrackingConfig, 'killScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
+		[_killer, [call BL_fnc_statTrackingConfig, 'playerKillScore'] call CBA_fnc_hashGet] call BL_fnc_addScore;
 	};
 }] call CBA_fnc_addEventHandler;
 
