@@ -4,6 +4,22 @@ BL_scoreboard = [];
 BL_bountyAmount = ('killBounty' call BL_fnc_config);
 BL_scoreboardLookup = [];
 
+[] spawn {
+	private ['_lastBroadcast'];
+	_lastBroadcast = [];
+	
+	// Broadcast BL_scoreboard up to once a second, but only if
+	// it has changed.
+	while { true } do {
+		sleep 1;
+		
+		if !( _lastBroadcast isEqualTo BL_scoreboard ) then {
+			_lastBroadcast = +BL_scoreboard;
+			publicVariable "BL_scoreboard";
+		};
+	};
+};
+
 // Player bounty
 ['killed', {
 	private ["_player","_killer","_bounty","_moneyToGive","_playerName","_killerName"];
@@ -117,6 +133,4 @@ BL_scoreboardLookup = [];
 	]];
 	
 	BL_scoreboardLookup set [_index, format['%1%2', side _player, name _player]];
-	
-	publicVariable "BL_scoreboard";
 }] call CBA_fnc_addEventHandler;
