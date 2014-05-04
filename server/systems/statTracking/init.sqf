@@ -5,6 +5,7 @@ BL_bountyAmount = ('killBounty' call BL_fnc_config);
 BL_scoreboardLookup = [];
 BL_addPointsLog = [];
 BL_addPointsLogMaxSize = [call BL_fnc_statTrackingConfig, "addPointsLogMaxSize"] call CBA_fnc_hashGet;
+BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueueMaxSize"] call CBA_fnc_hashGet;
 
 [] spawn {
 	private ['_lastBroadcast'];
@@ -82,7 +83,7 @@ BL_addPointsLogMaxSize = [call BL_fnc_statTrackingConfig, "addPointsLogMaxSize"]
 		(if(_friendlyFire) then {1} else {0})
 	]];
 
-	if ( count statTrackingQueue >= 1 ) then {
+	if ( count statTrackingQueue >= BL_statTrackingQueueMaxSize ) then {
 		private ["_queue","_command","_values"];
 		_queue = +statTrackingQueue;
 		statTrackingQueue = [];
