@@ -23,12 +23,12 @@ if ( count _units == 0 ) then {
 
 (_createdUnits select 0) moveInDriver _veh;
 
-for "_i" from 1 to _turrets-1 do {
+for "_i" from 1 to _turrets do {
 	if ( _i > count _createdUnits ) exitwith{};
 	(_createdUnits select _i) moveInTurret [_veh, [_i-1]];
 };
 
-for "_i" from (1 + _turrets-1) to (count _createdUnits) - 1 do {
+for "_i" from (1 + _turrets) to (count _createdUnits) - 1 do {
 	(_createdUnits select _i) moveInCargo _veh;
 };
 
