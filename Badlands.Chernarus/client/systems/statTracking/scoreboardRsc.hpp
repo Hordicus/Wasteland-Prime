@@ -13,7 +13,7 @@ class scoreboardRsc {
 	
 	class controlsBackground {
 		class headerImagesBackground : RscCommon {
-			colorBackground[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0.8};
 			w = safezoneW * scoreboardW;
 			h = safezoneH * ((scoreboardH - (0.005 * 9)) / 10);
 			
@@ -25,7 +25,7 @@ class scoreboardRsc {
 	class controls{
 		class P1Position : RscCommon {
 			idc = IDC(0,0);
-			colorBackground[] = {0,0,0,1};
+			colorBackground[] = {0,0,0,0.8};
 			w = safezoneW * (scoreboardW * 0.05);
 			h = safezoneH * ((scoreboardH - (0.005 * 9)) / 10);
 			
