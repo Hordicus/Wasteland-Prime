@@ -2,7 +2,7 @@ BL_scoreboard = missionNamespace getVariable ["BL_scoreboard", [
 	// [_rank, _side, _playerName, _bounty, _kills, _deaths, _score ],
 ]];
 
-BL_showingScoreboard = true;
+BL_showingScoreboard = false;
 [] spawn {
 	waitUntil {!isNull player && player == player};
 	waitUntil{!isNil "BIS_fnc_init"};
