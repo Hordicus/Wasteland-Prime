@@ -35,4 +35,6 @@ class persistence {
 	
 	class persRegisterTypeHandler{};
 	class persRunTypeHandler{};
+	
+	class logUntrackedVehicle{};
 };
