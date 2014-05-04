@@ -22,6 +22,6 @@ BL_PVAR_baseFlags set [count BL_PVAR_baseFlags, _info];
 
 publicVariable "BL_PVAR_baseFlags";
 
-[_location, 100, 'baseFlag', [_info select 0]] call BL_fnc_registerLocWithRadar;
+[_location, 100, 'baseFlag', [_info select 0, _info select 1]] call BL_fnc_registerLocWithRadar;
 
 _object

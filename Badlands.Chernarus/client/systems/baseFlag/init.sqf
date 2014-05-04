@@ -11,7 +11,7 @@ BL_PVAR_baseFlags = [
 
 BL_PVAR_baseFlags = missionNamespace getVariable ['BL_PVAR_baseFlags', []];
 BL_baseFlagMarkers = [];
-BL_baseFlagState = [[], "EMPTY"] call CBA_fnc_hashCreate;
+BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 
 ['baseFlag', 'Base flag', "Land_Suitcase_F", [], {
 	[15, "Deploying Base Flag %1", [], {
@@ -63,17 +63,20 @@ BL_baseFlagState = [[], "EMPTY"] call CBA_fnc_hashCreate;
 		_players = _this select 0;
 		_code = _this select 1 select 0;
 		_state = [_players] call BL_fnc_friendlyState;
+		_owner = (_this select 1 select 1) call BL_fnc_playerByUID;
 		
-		(format["baseFlag%1", _code]) setMarkerColorLocal (_state call BL_fnc_stateColor);
-		
-		if ( player in _players ) then {
-			_last = [BL_baseFlagState, _code] call CBA_fnc_hashGet;
+		if ( ([[_owner]] call BL_fnc_friendlyState) == "FRIENDLY" ) then {
+			(format["baseFlag%1", _code]) setMarkerColorLocal (_state call BL_fnc_stateColor);
 			
-			if ( _last in ["EMPTY", "FRIENDLY"] && _state in ["ENEMY", "MIXED"] ) then {
-				hint "Warning! An enemy player has entered the area";
+			if ( player in _players ) then {
+				_last = ([BL_baseFlagState, _code] call CBA_fnc_hashGet) select 1;
+				
+				if ( _last in ["EMPTY", "FRIENDLY"] && _state in ["ENEMY", "MIXED"] ) then {
+					hint "Warning! An enemy player has entered the area";
+				};
 			};
 		};
 		
-		[BL_baseFlagState, _code, _state] call CBA_fnc_hashSet;
+		[BL_baseFlagState, _code, [_players, _state]] call CBA_fnc_hashSet;
 	}] call CBA_fnc_addEventHandler;
 };
