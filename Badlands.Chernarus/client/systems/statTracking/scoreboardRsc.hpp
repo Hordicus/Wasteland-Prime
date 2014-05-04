@@ -26,7 +26,6 @@ class scoreboardRsc {
 		class P1Position : RscCommon {
 			idc = IDC(0,0);
 			colorBackground[] = {0,0,0,1};
-			text = "10";
 			w = safezoneW * (scoreboardW * 0.05);
 			h = safezoneH * ((scoreboardH - (0.005 * 9)) / 10);
 			
@@ -36,27 +35,23 @@ class scoreboardRsc {
 
 		class P1RankBG : P1Position {
 			idc = IDC(0,1);
-			text = "";
 			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.05));
 		};
 		
 		class P1Rank : P1Position {
 			idc = IDC(0,2);
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
-			text = "";
 			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.05));
 		};
 		
 		class P1Name : P1Position {
 			idc = IDC(0,3);
-			text = "A really super long player name";
 			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.1));
 			w = safezoneW * (scoreboardW * 0.4);
 		};
 		
 		class P1Bounty : P1Position {
 			idc = IDC(0,4);
-			text = "$100,000";
 			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.5));
 			w = safezoneW * (scoreboardW * 0.15);
 		};
@@ -64,7 +59,6 @@ class scoreboardRsc {
 		class P1Kills : P1Position {
 			idc = IDC(0,5);
 			style = ST_RIGHT;
-			text = "1,000";
 			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.65));
 			w = safezoneW * (scoreboardW * 0.1);
 		};
@@ -72,7 +66,6 @@ class scoreboardRsc {
 		class P1Deaths : P1Position {
 			idc = IDC(0,6);
 			style = ST_RIGHT;
-			text = "1,000";
 			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.75));
 			w = safezoneW * (scoreboardW * 0.1);
 		};
@@ -80,7 +73,6 @@ class scoreboardRsc {
 		class P1Score : P1Position {
 			idc = IDC(0,7);
 			style = ST_RIGHT;
-			text = "100,000";
 			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.85));
 			w = safezoneW * (scoreboardW * 0.15);
 		};
