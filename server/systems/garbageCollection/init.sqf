@@ -119,3 +119,14 @@
 		sleep 60;
 	};
 };
+
+[] spawn {
+	waitUntil { !isNil "PERS_init_done" };
+	while { true } do {
+		sleep (60 * 5);
+		
+		{
+			deleteVehicle _x;
+		} count ((allMissionObjects "CraterLong"));
+	};
+};
