@@ -29,17 +29,10 @@ _dialog = [
 	_buildingStore,
 	
 	// Show item info
-	{
-		if ( !isNil "buildingStoreCam" ) then {
-			(buildingStoreCam select 0) cameraEffect ["TERMINATE", "BACK"];
-			camDestroy (buildingStoreCam select 0);
-			deleteVehicle (buildingStoreCam select 1);
-			deleteVehicle (buildingStoreCam select 2);
-		};
-		
+	{		
 		private ['_item'];
 		_item = _this select 1;
-		buildingStoreCam = [_item select 1, "rendertarget45"] call BL_fnc_createObjectCam;
+		[_item select 1, "rendertarget45"] call LOG_fnc_createObjectCam;
 		
 		(_this select 2) ctrlSetStructuredText parseText format["
 			<br />
@@ -152,11 +145,5 @@ _dialog = [
 (ctrlIDD _dialog) spawn {
 	// Destroy object cam when dialog is closed
 	waitUntil { isNull findDisplay _this };
-	
-	if ( !isNil "buildingStoreCam" ) then {
-		(buildingStoreCam select 0) cameraEffect ["TERMINATE", "BACK"];
-		camDestroy (buildingStoreCam select 0);
-		deleteVehicle (buildingStoreCam select 1);
-		deleteVehicle (buildingStoreCam select 2);
-	};
+	[] call LOG_fnc_destroyObjectCam;
 };
