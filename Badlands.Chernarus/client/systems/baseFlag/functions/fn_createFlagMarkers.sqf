@@ -8,6 +8,7 @@
 
 BL_baseFlagMarkers = [];
 {
+	private ['_owner', '_markerName'];
 	_owner = (_x select 1) call BL_fnc_playerByUID;
 
 	if ( ([[_owner]] call BL_fnc_friendlyState) == "FRIENDLY" ) then {

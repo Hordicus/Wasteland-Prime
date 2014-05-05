@@ -79,4 +79,14 @@ BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 		
 		[BL_baseFlagState, _code, [_players, _state]] call CBA_fnc_hashSet;
 	}] call CBA_fnc_addEventHandler;
+	
+	['baseFlag', {
+		_players = _this select 0;
+		_code = _this select 1 select 0;
+		_state = [_players] call BL_fnc_friendlyState;
+		_owner = (_this select 1 select 1) call BL_fnc_playerByUID;
+		
+		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
+		['respawnDialogUpdate'] call CBA_fnc_localEvent;
+	}] call CBA_fnc_addEventHandler;
 };
