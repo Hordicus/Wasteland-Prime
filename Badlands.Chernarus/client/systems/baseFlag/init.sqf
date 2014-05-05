@@ -49,14 +49,17 @@ BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 	
 	"BL_PVAR_baseFlags" addPublicVariableEventHandler {
 		[] call BL_fnc_createFlagMarkers;
+		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 	};
 	
 	['updateBaseFlags', {
 		[] call BL_fnc_createFlagMarkers;
+		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 	}] call CBA_fnc_addEventHandler;
 
 	['groupChange', {
 		[] call BL_fnc_createFlagMarkers;
+		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 	}] call CBA_fnc_addEventHandler;
 
 	['baseFlag', {
@@ -89,4 +92,12 @@ BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 		['respawnDialogUpdate'] call CBA_fnc_localEvent;
 	}] call CBA_fnc_addEventHandler;
+	
+	[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 };
+
+[format['Redeploy ($%1)', 'redeployCost' call BL_fnc_config], { (_this select 0) isKindOf "Land_Communication_F" && {(player getVariable ['money', 0]) >= ('redeployCost' call BL_fnc_config)}}, {
+	createDialog 'respawnDialog';
+	player setPosATL (markerPos 'respawn_west');
+	player setVariable ['money', player getVariable 'money' - 100 ];
+}, 5] call BL_fnc_addAction;

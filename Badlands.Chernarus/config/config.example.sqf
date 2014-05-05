@@ -5,6 +5,7 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, 'airBeaconModel', 'Land_SatellitePhone_F'] call CBA_fnc_hashSet;
 [_config, 'groundBeaconModel', 'Land_SurvivalRadio_F'] call CBA_fnc_hashSet;
 [_config, 'moneyModel', 'EvMoney'] call CBA_fnc_hashSet;
+[_config, 'redeployCost', 100] call CBA_fnc_hashSet;
 
 [_config, 'HUDServerInfo', format['
 	<t font="EtelkaNarrowMediumPro" color="#80FFFFFF">
