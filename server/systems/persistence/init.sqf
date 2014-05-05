@@ -3,6 +3,7 @@ PERS_trackedObjectsIDs = [];
 PERS_typeData = [];
 
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\createVehicle.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\trackVehicle.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\deleteVehicle.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\loadPlayer.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\requestSave.sqf";
