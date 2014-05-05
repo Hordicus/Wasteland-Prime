@@ -47,4 +47,13 @@
 			};
 		};
 	}];
+	
+	// Disable selecting what to control
+	_idd = getNumber (configFile >> "RscDisplayAVTerminal" >> "idd");
+	_idc = getNumber (configFile >> "RscDisplayAVTerminal" >> "controls" >> "AVT_Combo_SelectAV" >> "idc");
+	while { true } do {
+		waitUntil { !isNull (findDisplay _idd) };
+		((findDisplay _idd) displayCtrl _idc) ctrlEnable false;
+		waitUntil { isNull (findDisplay _idd) };
+	};	
 };
