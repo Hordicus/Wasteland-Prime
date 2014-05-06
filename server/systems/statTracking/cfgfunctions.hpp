@@ -12,4 +12,5 @@ class statTracking {
 	class statTrackAIUnits{};
 	class statTrackingKilledHandler{};
 	class getKiller{};
+	class pointsToRank{};
 };

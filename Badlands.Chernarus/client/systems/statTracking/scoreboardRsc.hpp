@@ -41,6 +41,7 @@ class scoreboardRsc {
 		class P1Rank : P1Position {
 			idc = IDC(0,2);
 			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
+			w = safezoneW * (scoreboardW * 0.03);
 			x = safezoneX + safezoneW * ( 0.5 - scoreboardW/2 + (scoreboardW * 0.05));
 		};
 		

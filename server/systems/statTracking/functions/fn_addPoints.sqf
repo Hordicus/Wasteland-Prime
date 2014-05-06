@@ -14,6 +14,12 @@ _total = _points + (_scoreboard select INDEX_SCORE);
 
 _scoreboard set [INDEX_SCORE, _total];
 
+// Overall points (for rank)
+_allTimePoints = [BL_totalPoints, _player getVariable 'uid'] call CBA_fnc_hashGet;
+[BL_totalPoints, _player getVariable 'uid', _allTimePoints + _points] call CBA_fnc_hashSet;
+
+_scoreboard set [INDEX_RANK, [_allTimePoints + _points] call BL_fnc_pointsToRank];
+
 BL_addPointsLog set [count BL_addPointsLog, [
 	BL_sessionStart,
 	_player getVariable 'uid',
