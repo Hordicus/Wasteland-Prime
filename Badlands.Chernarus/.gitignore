@@ -3,4 +3,5 @@ gear_config.sqf
 config/config.sqf
 config/stores.sqf
 config/description.hpp
+config/statTracking.sqf
 mission.sqm

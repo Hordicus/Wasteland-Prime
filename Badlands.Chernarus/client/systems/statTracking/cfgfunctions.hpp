@@ -4,6 +4,10 @@ class statTracking {
 		postInit = 1;
 	};
 	
+	class statTrackingConfig {
+		file = "config\statTracking.sqf";
+	};
+	
 	file = "client\systems\statTracking\functions";
 	class hideRow{};
 	class showRow{};
