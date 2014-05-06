@@ -15,7 +15,7 @@
 _fromPos = [_this, 0, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 _toPos = [_this, 1, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 
-_directionTo = [([_toPos, _fromPos] call BIS_fnc_dirTo), true] call BL_fnc_azimuthToBearing;
+_directionTo = [([_fromPos, _toPos] call BIS_fnc_dirTo), true] call BL_fnc_azimuthToBearing;
 _distance = round(_fromPos distance _toPos);
 
 format['%1m %2', _distance, _directionTo]
