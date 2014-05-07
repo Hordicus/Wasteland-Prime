@@ -17,7 +17,7 @@ removeHeadgear player;
 removeGoggles player;
 removeAllAssignedItems player;
 
-[player, (GEAR_activeLoadout call GEAR_fnc_toLoadoutArray)] call GEAR_fnc_setLoadout;
+[player, ((GEAR_activeLoadout call GEAR_fnc_filterLoadout) call GEAR_fnc_toLoadoutArray)] call GEAR_fnc_setLoadout;
 player allowDamage true;
 player enableSimulation true;
 BL_playerSpawning = false;
