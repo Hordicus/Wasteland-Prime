@@ -40,7 +40,7 @@ if ( !hasInterface ) exitwith{};
 {
 	[5, "Picking up money %1", _this, {
 		_amount = (_this select 0) getVariable ['moneyAmount', 0];
-		player setVariable ['money', _amount + (player getVariable ['money', 0]), true];
+		_amount call BL_fnc_addMoney;
 		(_this select 0) call BL_fnc_deleteVehicle;
 	}] call BL_fnc_animDoWork;
 }, 1] call BL_fnc_addAction;

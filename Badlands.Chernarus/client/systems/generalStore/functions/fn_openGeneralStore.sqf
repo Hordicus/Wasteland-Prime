@@ -37,7 +37,7 @@ _generalStore = 'generalStore' call BL_fnc_config;
 		_purchaseBtn = _this select 2;
 		
 		_cartTotal = 0;
-		_money = 0;
+		_money = [] call BL_fnc_money;
 		
 		{
 			_cartTotal = _cartTotal + (_x select 1);
@@ -49,7 +49,7 @@ _generalStore = 'generalStore' call BL_fnc_config;
 			<t font='PuristaMedium'>Total:</t> $%2<br />
 		", _money, _cartTotal];
 		
-		if ( /*_money >= _cartTotal &&*/ count _cartItems > 0) then {
+		if ( _money >= _cartTotal && count _cartItems > 0) then {
 			_purchaseBtn ctrlEnable true;
 		}
 		else {
@@ -68,6 +68,6 @@ _generalStore = 'generalStore' call BL_fnc_config;
 			[] call (_x select 3);
 		} forEach _cartItems;
 		
-		// Take money
+		_cartTotal call BL_fnc_subMoney;
 	}
 ] call BL_fnc_showStore;

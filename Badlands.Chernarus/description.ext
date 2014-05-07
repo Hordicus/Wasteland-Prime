@@ -59,6 +59,9 @@ class CfgFunctions {
 			class friendlyStateCheck{};
 			class randStr{};
 			class getLoadout{};
+			class addMoney{};
+			class subMoney{};
+			class money{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"

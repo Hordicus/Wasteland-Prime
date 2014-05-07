@@ -17,5 +17,5 @@ BL_avgServerFps,
 playableSlotsNumber blufor,
 { side _x == resistance || side _x == sideEnemy } count playableUnits,
 playableSlotsNumber resistance,
-player getVariable ['money', 0]
+[] call BL_fnc_money
 ];

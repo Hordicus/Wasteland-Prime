@@ -46,7 +46,7 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 	
 		// Give killer their money
 		_moneyToGive = ('killBounty' call BL_fnc_config) * _bounty;
-		_killer setVariable ['money', (_killer getVariable ['money', 0]) + _moneyToGive, true];
+		[_moneyToGive, _killer] call BL_fnc_addMoney;
 		
 		[format['$%1 bounty awarded for killing %2', _moneyToGive, _playerName], "BL_fnc_systemChat", owner _killer] call BIS_fnc_MP;
 	};

@@ -77,11 +77,11 @@ _dialog = [
 				<t font='PuristaMedium'>Money:</t> $%1<br />
 				<t font='PuristaMedium'>Purchase Total:</t> $%2<br />
 			",
-				0,
+				[] call BL_fnc_money,
 				_purchaseTotal
 			];
 			
-			if ( count (_this select 0) == 1 ) then {
+			if ( count (_this select 0) == 1 && ([] call BL_fnc_money) >= _purchaseTotal ) then {
 				_purchaseBtn ctrlEnable true;
 			};
 		}
@@ -111,11 +111,11 @@ _dialog = [
 				_roomUsed,
 				_cartSize,
 				_containerSize - _roomUsed - _cartSize,
-				0,
+				[] call BL_fnc_money,
 				_purchaseTotal
 			];
 			
-			if ( _containerSize - _roomUsed - _cartSize >= 0 && count _cartItems > 0) then {
+			if ( _containerSize - _roomUsed - _cartSize >= 0 && count _cartItems > 0 && ([] call BL_fnc_money) >= _purchaseTotal) then {
 				_purchaseBtn ctrlEnable true;
 			};
 		};
@@ -139,6 +139,8 @@ _dialog = [
 		else {
 			[_cartClasses select 0, buildingStoreLoadingArea, "basePart"] call BL_fnc_createVehicle;
 		};
+		
+		_purchaseTotal call BL_fnc_subMoney;
 	}
 ] call BL_fnc_showStore;
 

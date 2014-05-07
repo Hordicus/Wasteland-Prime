@@ -96,8 +96,8 @@ BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 	[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 };
 
-[format['Redeploy ($%1)', 'redeployCost' call BL_fnc_config], { (_this select 0) isKindOf "Land_Communication_F" && {(player getVariable ['money', 0]) >= ('redeployCost' call BL_fnc_config)}}, {
+[format['Redeploy ($%1)', 'redeployCost' call BL_fnc_config], { (_this select 0) isKindOf "Land_Communication_F" && {([] call BL_fnc_money) >= ('redeployCost' call BL_fnc_config)}}, {
 	createDialog 'respawnDialog';
 	player setPosATL (markerPos 'respawn_west');
-	player setVariable ['money', player getVariable 'money' - 100 ];
+	100 call BL_fnc_subMoney;
 }, 5] call BL_fnc_addAction;

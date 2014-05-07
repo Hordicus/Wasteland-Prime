@@ -104,7 +104,7 @@
 					_killer = _this select 1;
 					
 					if ( isPlayer _killer ) then {
-						_killer setVariable ['money', (_killer getVariable ['money', 0]) + 1000, true];
+						[1000, _killer] call BL_fnc_addMoney;
 						[format['$%1 bounty awarded', 1000], "BL_fnc_systemChat", owner _killer] spawn BIS_fnc_MP;
 					}
 					else {
