@@ -12,4 +12,5 @@ GEAR_activeLoadout = ([GEAR_presets, _presetName] call CBA_fnc_hashGet) call GEA
 profileNamespace setVariable ["GEAR_activeLoadout", GEAR_activeLoadout];
 saveProfileNamespace;
 
+[] call BL_fnc_showPresets;
 [] call BL_fnc_showActiveLoadout;
