@@ -10,6 +10,7 @@ player enableSimulation false;
 [player] join grpNull;
 enableRadio false;
 0 fadeRadio 0;
+player setVariable ['side', playerSide, true];
 
 [] spawn {
 	["Waiting for player data", 0.1] call BL_fnc_loadingScreen;
@@ -81,6 +82,7 @@ player addEventHandler ["killed", {
 
 player addEventHandler ["respawn", {
 	['respawn', _this] call CBA_fnc_globalEvent;
+	(_this select 0) setVariable ['side', playerSide, true];
 	
 	player addRating 100000;
 }];

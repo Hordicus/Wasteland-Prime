@@ -8,9 +8,9 @@ _friendly = 0;
 _state = "";
 
 {
-	if ( _friendlyTo != _x && side _x != civilian ) then {
-		if ( side _friendlyTo in [east, west] ) then {
-			if ( side _friendlyTo == side _x ) then {
+	if ( _friendlyTo != _x ) then {
+		if ( (_friendlyTo getVariable ['side', civilian]) in [east, west] ) then {
+			if ( (_friendlyTo getVariable ['side', civilian]) == (_x getVariable ['side', civilian]) ) then {
 				INC(_friendly);
 			}
 			else {
@@ -27,9 +27,7 @@ _state = "";
 		};
 	}
 	else {
-		if ( side _x != civilian ) then {
-			INC(_friendly);
-		};
+		INC(_friendly);
 	};
 } forEach _players;
 

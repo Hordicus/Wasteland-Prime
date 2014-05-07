@@ -19,6 +19,6 @@ _result = objNull;
 		_result = _x;
 	};
 	
-} count playableUnits;
+} count (playableUnits + allDead);
 
 _result
