@@ -12,13 +12,22 @@
 	
 	_addActions = {
 		player addAction ['Lock Object', {
-				[5, "Locking Object %1", [cursorTarget], {
-					(_this select 0) setVariable ['objectLocked', true, true];
-					(_this select 0) setVariable ['objectOwner', getPlayerUID player, true];
-					
-					PVAR_requestSave = [player, _this select 0, false];
-					publicVariableServer "PVAR_requestSave";
-				}] call BL_fnc_animDoWork;
+				if(
+					({
+						(player distance (_x select 0)) <= (_x select 2)
+					} count (([[] call BL_fnc_storeConfig, 'buildingStore'] call CBA_fnc_hashGet) select 2)) == 0
+				) then {
+					[5, "Locking Object %1", [cursorTarget], {
+						(_this select 0) setVariable ['objectLocked', true, true];
+						(_this select 0) setVariable ['objectOwner', getPlayerUID player, true];
+						
+						PVAR_requestSave = [player, _this select 0, false];
+						publicVariableServer "PVAR_requestSave";
+					}] call BL_fnc_animDoWork;
+				}
+				else {
+					hint "You can not lock parts inside the building store radius";
+				};
 			},
 			[],
 			0,
