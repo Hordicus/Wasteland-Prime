@@ -9,5 +9,6 @@
 	execVM 'client\systems\miscellaneous\noFriendlyFire.sqf';
 	execVM 'client\systems\miscellaneous\playerSaveLoop.sqf';
 	execVM 'client\systems\miscellaneous\jump.sqf';
+	execVM 'client\systems\miscellaneous\monitorVON.sqf';
 	execVM 'client\systems\miscellaneous\mapMarkerTitling.sqf';
 };
