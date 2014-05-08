@@ -12,6 +12,32 @@ enableRadio false;
 0 fadeRadio 0;
 player setVariable ['side', playerSide, true];
 
+GEAR_activeLoadout = profileNamespace getVariable ["GEAR_activeLoadout", []];
+_itemCount = {
+	if ( isNil "_x" ) then {
+		false
+	}
+	else {
+		[typeName _x, _x] call {
+			if ( (_this select 0) == "STRING" ) exitwith { (_this select 1) != "" };
+			if ( (_this select 0) == "ARRAY" ) exitwith { count (_this select 1) > 0 };
+			true
+		};
+	};
+} count GEAR_activeLoadout;
+
+if ( _itemCount == 0 ) then {
+	if ( playerSide == west ) then {
+		GEAR_activeLoadout = "defaultWest" call BL_fnc_config;
+	}
+	else {
+		GEAR_activeLoadout = "defaultIndy" call BL_fnc_config;	
+	};
+	
+	profileNamespace setVariable ["GEAR_activeLoadout", GEAR_activeLoadout];
+	saveProfileNamespace;
+};
+
 [] spawn {
 	["Waiting for player data", 0.1] call BL_fnc_loadingScreen;
 	PVAR_loadPlayer = player;

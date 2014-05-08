@@ -7,6 +7,10 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, 'moneyModel', 'EvMoney'] call CBA_fnc_hashSet;
 [_config, 'redeployCost', 100] call CBA_fnc_hashSet;
 
+// Default loadouts
+[_config, "defaultWest", []] call CBA_fnc_hashSet;
+[_config, "defaultIndy", []] call CBA_fnc_hashSet;
+
 [_config, 'HUDServerInfo', format['
 	<t font="EtelkaNarrowMediumPro" color="#80FFFFFF">
 	<t size="2">%1</t><br />

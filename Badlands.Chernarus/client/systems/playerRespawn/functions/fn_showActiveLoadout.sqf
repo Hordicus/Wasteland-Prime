@@ -2,7 +2,6 @@
 disableSerialization;
 
 _display = findDisplay respawnDialogIDD;
-GEAR_activeLoadout = profileNamespace getVariable ["GEAR_activeLoadout", []];
 
 {
 	_idc = _forEachIndex call GEAR_fnc_loadoutIndexToIDC;
