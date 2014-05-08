@@ -6,4 +6,6 @@ class missions {
 	
 	file = "client\systems\missions\functions";
 	class setTaskVars{};
+	class particleSourceCreate{};
+	class particleSourceDelete{};
 };

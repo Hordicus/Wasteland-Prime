@@ -15,6 +15,10 @@ class missionsServer {
 	class missionRandomField{};
 	class spawnMissionVehWithCrew{};
 	
+	class particleSourceCreateServer{};
+	class particleSourceDeleteServer{};
+	class cargoDrop{};
+	
 	// BIS task functions
 	class deleteTask{};
 	class setTask{};

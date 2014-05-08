@@ -1,5 +1,14 @@
 missionCount = 0;
 runningMissionLocations = [] call CBA_fnc_hashCreate;
+BL_particleSources = missionNamespace getVariable ["BL_particleSources", [[], []] call CBA_fnc_hashCreate];
+
+// JIP for particle sources
+["initPlayerServer", {
+	_player = _this select 0;
+	[BL_particleSources, {
+		[_value, "BL_fnc_particleSourceCreate", _player] call BIS_fnc_MP;
+	}] call CBA_fnc_hashEachPair;
+}] call CBA_fnc_addEventHandler;
 
 [] spawn {
 	_config = call BL_fnc_missionsConfig;
