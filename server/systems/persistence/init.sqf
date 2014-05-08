@@ -35,7 +35,7 @@ PERS_init_done = true;
 		{
 			_netId = netId _x;
 			_index = PERS_trackedObjectsNetIDs find _netId;
-			if ( _index == -1 ) then {
+			if ( _index == -1 && !(_x isKindOf "ParachuteBase") ) then {
 				[_x] call BL_fnc_logUntrackedVehicle;
 				deleteVehicle _x;
 			};
