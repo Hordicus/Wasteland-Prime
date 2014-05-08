@@ -30,10 +30,6 @@ _saveLoadOut = [_this, 4, true, [true]] call BIS_fnc_param;
 
 //Validate parameters
 if (isNull _unit) exitWith {"Unit parameter must not be objNull. Accepted: OBJECT" call BIS_fnc_error};
-if (_altitude < 500) exitWith {"Altitude is too low for HALO. Accepted: 500 and greater." call BIS_fnc_error};
-
-//create a log entry
-["HALO function has started"] call BIS_fnc_log;
 
 //add a chemlight to helmet
 if (_chemLight) then {
@@ -60,7 +56,7 @@ if (_chemLight) then {
 			_light setVectorDirAndUp [[0,0,1],[0,1,0]];
 		};
 		
-		waitUntil {isTouchingGround _unit || (getPos _unit select 2) < 1};
+		waitUntil {isTouchingGround _unit || (getPosATL _unit select 2) < 1};
 		detach _light;
 		deleteVehicle _light; //delete the chemlight
 	};
@@ -101,7 +97,7 @@ if (_saveLoadOut && !isNull (unitBackpack _unit) && (backpack _unit) != "b_parac
 		_packHolder attachTo [vehicle _unit,[-0.07,0.67,-0.13],"pelvis"]; 
 		_packHolder setVectorDirAndUp [[0,-0.2,-1],[0,1,0]];
 				
-		waitUntil {isTouchingGround _unit || (getPos _unit select 2) < 1};
+		waitUntil {isTouchingGround _unit || (getPosATL _unit select 2) < 1};
 		detach _packHolder;
 		deleteVehicle _packHolder; //delete the backpack in front
 			
@@ -123,33 +119,15 @@ if (_saveLoadOut && !isNull (unitBackpack _unit) && (backpack _unit) != "b_parac
 	if ((backpack _unit) != "b_parachute") then {_unit addBackpack "B_parachute"}; //add the parachute if unit has no backpack
 };
 
-if (_altitude > 3040 && (headgear _unit) != "H_CrewHelmetHeli_B") then {_unit addHeadgear "H_CrewHelmetHeli_B"};
-_unit setPos [(getPos _unit select 0), (getPos _unit select 1), _altitude]; //Set the altitude of the HALO jump
+_unit setPosATL [(getPosATL _unit select 0), (getPosATL _unit select 1), _altitude]; //Set the altitude of the HALO jump
 
 if (!isPlayer _unit) then {
-	_unit allowDamage FALSE; //god mode :)
 	_unit switchMove "HaloFreeFall_non"; //place the AI into the free fall animation
 	_unit disableAI "ANIM"; //disable the AI animation so they cant switch back to standing
-};
-
-if (isPlayer _unit) then {
-	[_unit,_autoOpen] spawn {
-		private ["_unit","_autoOpen"];
-		_unit 	  = _this select 0;
-		_autoOpen = _this select 1;
-		
-		if (_autoOpen) then {
-			waitUntil {(getPos _unit select 2) < 150 || animationState _unit == "para_pilot" && alive _unit};
-			_unit action ["OpenParachute", _unit]; //open parachute if 150m above ground
-		};
-	};
-};
-
-if ( isPlayer player && side player == sideEnemy ) then {
-	_actionId = player addAction ['Open parachute', {player action ["OpenParachute", player]}, [], 20];
-	_actionId spawn {
-		waitUntil { isTouchingGround player || !alive player };
-		player removeAction _this;
+	
+	_unit spawn {
+		waitUntil { (vehicle _this) != _this };
+		(vehicle _this) allowDamage false;
 	};
 };
 
@@ -157,18 +135,17 @@ if ( isPlayer player && side player == sideEnemy ) then {
 	private "_unit";
 	_unit = _this select 0;
 			
+	waitUntil {isTouchingGround _unit || (getPosATL _unit select 2) < 1 && alive _unit};
+
 	if (!isPlayer _unit) then {
 		_unit enableAI "ANIM";  //enable the animations
-		_unit setPos [(getPos _unit select 0), (getPos _unit select 1), 0]; //this removes the unit from the parachute
+		_unit setPosATL [(getPosATL _unit select 0), (getPosATL _unit select 1), 0]; //this removes the unit from the parachute
 		_unit setVelocity [0,0,0]; //set speed to zero
 		_unit setVectorUp [0,0,1]; //set the unit upright
 		sleep 1;
 		_unit allowDamage TRUE; //allow unit to be damaged again
 	};
 };
-
-//create a log
-["HALO function has completed"] call BIS_fnc_log;
 
 //Return Value
 _unit;
