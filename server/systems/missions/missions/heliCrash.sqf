@@ -31,7 +31,11 @@ BL_fnc_missionRandomField,
 	_crashSite = [_loc, 100 + random 500, random 359] call BIS_fnc_relPos;
 	_crash = createVehicle ['Land_Wreck_Heli_Attack_01_F', _crashSite, [], 0, "NONE"];
 	_crash setDir (random 359);
+	_crash setPos getPos _crash;
+	
 	[_crash] call BL_fnc_trackVehicle;
+	
+	[[_crash, [0,0,0]], "BigDestructionSmoke", -1, [], _code] call BL_fnc_particleSourceCreateServer;
 	
 	_units = [];
 	_groups = [
@@ -100,17 +104,18 @@ BL_fnc_missionRandomField,
 			true
 		} count _unitsInArea;
 		
-		if ( count _nearUnits > 0 && {alive _x && _x distance _crashSite <= 200} count _units == 0) exitwith {
+		if ( count _nearUnits > 0 && {alive _x && _x distance _crashSite <= 100} count _units == 0) exitwith {
 			[_code] call BL_fnc_missionDone;
 		};
 	};
 	
-	[_crash, _units] spawn {
+	[_crash, _units, _code] spawn {
 		while { !isNull (_this select 0) || {alive _x} count (_this select 1) > 0} do {
 			sleep 60;
 		
 			if !( [[getPosATL (_this select 0), 1000] call BL_fnc_nearUnits, (_this select 0)] call BL_fnc_hasLOS ) then {
 				deleteVehicle (_this select 0);
+				[(_this select 1)] call BL_fnc_particleSourceDeleteServer;
 			};
 			
 			{
