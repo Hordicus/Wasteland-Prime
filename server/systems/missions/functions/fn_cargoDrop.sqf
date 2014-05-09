@@ -8,9 +8,6 @@ _objPos set [2, _altitude];
 
 _obj setPosATL _objPos;
 
-_particalCode = 10 call BL_fnc_randStr;
-[[[_obj, [0,0,0]], "", [], _particalCode], "BL_fnc_particalSourceCreate"] call BIS_fnc_MP;
-
 [_obj, _autoOpen] spawn {
 	private ['_obj', '_autoOpen', '_parachute'];
 	_obj = _this select 0;
