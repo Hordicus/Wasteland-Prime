@@ -1,5 +1,3 @@
-#include "\x\cba\addons\main\script_macros_common.hpp"
-
 private ["_players", "_friendlies"];
 _players = _this;
 _friendlies = [];
