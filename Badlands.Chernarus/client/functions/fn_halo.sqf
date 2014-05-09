@@ -125,10 +125,23 @@ if (!isPlayer _unit) then {
 	_unit switchMove "HaloFreeFall_non"; //place the AI into the free fall animation
 	_unit disableAI "ANIM"; //disable the AI animation so they cant switch back to standing
 	
+	_unit setVariable ['HandleDamageEH', _unit addEventHandler ['HandleDamage', {
+		if ( !isPlayer (_this select 3)) then {
+			0
+		};
+	}]];
+
 	_unit spawn {
 		waitUntil { (vehicle _this) != _this };
 		(vehicle _this) allowDamage false;
-	};
+		
+		waitUntil { (getPosATL _this) select 2 < 5 };
+		_this allowDamage false;
+		
+		waitUntil {isTouchingGround _this};
+		_this allowDamage true;
+		_this removeEventHandler ['HandleDamage', _this getVariable 'HandleDamageEH'];
+	};	
 };
 
 [_unit] spawn {
