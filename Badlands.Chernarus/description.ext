@@ -39,6 +39,7 @@ class CfgFunctions {
 			class stateColor{};
 			class requestSave{};
 			class switchMove{};
+			class say3D{};
 			class config {
 				file = "config\config.sqf";
 			};
@@ -84,25 +85,13 @@ class CfgFunctions {
 
 class CfgSounds 
 {
-	sounds[] = {}; 
-	class flapping 
-	{
-		sound[] = {"sounds\flapping.ogg", 10, 1};
-		titles[] = {};
-	};
-	class open_chute 
-	{
-		sound[] = {"sounds\open_chute.ogg", 10, 1};
-		titles[] = {};
-	};
-	class para_pilot 
-	{
-		sound[] = {"sounds\para_pilot.ogg", 10, 1};
-		titles[] = {};
-	};
-	
+	sounds[] = {}; 	
 	class beacon { 
 	  sound[] = {"sounds\scoreAdded.wss", 1, 1, 200}; 
+	  titles[] = {}; 
+	};
+	class air_raid { 
+	  sound[] = {"sounds\air_raid.ogg", 40, 1, 2000};
 	  titles[] = {}; 
 	};
 };
