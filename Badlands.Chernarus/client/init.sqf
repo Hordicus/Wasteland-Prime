@@ -5,6 +5,7 @@ waitUntil {!isNull player && player == player};
 waitUntil{!isNil "BIS_fnc_init"};
 waitUntil {!(isNull (findDisplay 46))};
 
+player setDamage 1;
 player allowDamage false;
 player enableSimulation false;
 [player] join grpNull;
@@ -74,6 +75,12 @@ if ( _itemCount == 0 ) then {
 		[] call BL_fnc_loadingScreen;
 		createDialog 'respawnDialog';
 	};
+	
+
+	player addEventHandler ["respawn", {
+		BL_playerSpawning = true;
+		createDialog "respawnDialog";
+	}];	
 };
 
 // Get radar JIP update

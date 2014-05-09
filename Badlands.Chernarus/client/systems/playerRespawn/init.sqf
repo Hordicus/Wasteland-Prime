@@ -98,11 +98,6 @@ BL_playerSpawning = false;
 	player addEventHandler ["killed", {
 		playerRespawn_lastDeath = getPosATL (_this select 0);
 	}];
-
-	player addEventHandler ["respawn", {
-		BL_playerSpawning = true;
-		createDialog "respawnDialog";
-	}];
 	
 	['groupChange', {
 		[playerRespawnOptions, 'towns', [playerRespawn_towns] call BL_fnc_townRespawnOptions] call CBA_fnc_hashSet;
