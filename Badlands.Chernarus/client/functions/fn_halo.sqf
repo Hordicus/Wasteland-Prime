@@ -152,7 +152,7 @@ if (!isPlayer _unit) then {
 
 	if (!isPlayer _unit) then {
 		_unit enableAI "ANIM";  //enable the animations
-		_unit setPosATL [(getPosATL _unit select 0), (getPosATL _unit select 1), 0]; //this removes the unit from the parachute
+		_unit setPosATL getPosATL _unit; //this removes the unit from the parachute
 		_unit setVelocity [0,0,0]; //set speed to zero
 		_unit setVectorUp [0,0,1]; //set the unit upright
 		sleep 1;
