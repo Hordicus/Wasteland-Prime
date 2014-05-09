@@ -8,12 +8,12 @@ CBA_EVENTS_DONE = false;
 if (isServer || alive player) then {
 	// We want all events, as soon as they start arriving.
 	"CBA_e" addPublicVariableEventHandler { (_this select 1) call CBA_fnc_localEvent };
-	"CBA_l" addPublicVariableEventHandler { (_this select 1) call FUNC(remoteLocalEvent) };
+	"CBA_l" addPublicVariableEventHandler { (_this select 1) call CBA_fnc_remoteLocalEvent };
 } else {
 	// Ignore the last event that was sent out before we joined.
 	[] spawn {
 		waitUntil { alive player };
 		"CBA_e" addPublicVariableEventHandler { (_this select 1) call CBA_fnc_localEvent };
-		"CBA_l" addPublicVariableEventHandler { (_this select 1) call FUNC(remoteLocalEvent) };
+		"CBA_l" addPublicVariableEventHandler { (_this select 1) call CBA_fnc_remoteLocalEvent };
 	};
 };

@@ -27,6 +27,6 @@ if (!local _locobj) exitWith {
 	nil
 };
 
-_this call FUNC(remoteLocalEvent);
+_this call CBA_fnc_remoteLocalEvent;
 
 nil; // Return.
