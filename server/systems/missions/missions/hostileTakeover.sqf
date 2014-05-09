@@ -25,7 +25,6 @@
 	_location    = _this select 2;
 
 	_outerGroup = createGroup east;
-	_innerGroup = createGroup east;
 	_unitTypes = [
 		"O_sniper_F",
 		"O_Soldier_GL_F",
@@ -33,36 +32,26 @@
 		"O_Soldier_LAT_F"
 	];
 
+	_allUnits = [];
+
 	for "_i" from 0 to 19 do {
 		_unitPos = [_location, random (_initResult select 2), random 359] call BIS_fnc_relPos;
 		_unitPos set [2, 3000];
 		
 		_unit = _outerGroup createUnit [_unitTypes select floor random count _unitTypes, _unitPos, [], 0, "FORM"];
 		[_unit, 3000, false, true] call COB_fnc_halo;
+		_allUnits set [count _allUnits, _unit];
 	};
 	
-	for "_i" from 0 to 9 do {
-		_unitPos = [_location, 25, random 359] call BIS_fnc_relPos;
-		_unitPos set [2, 3000];
-		
-		_unit = _innerGroup createUnit [_unitTypes select floor random count _unitTypes, _unitPos, [], 0, "FORM"];
-		[_unit, 3000, false, true] call COB_fnc_halo;
-	};
-
 	_outerGroup allowFleeing 0;
 	_outerGroup setCombatMode "RED";
 	_outerGroup setBehaviour "COMBAT";
-	
-	_innerGroup allowFleeing 0;
-	_innerGroup setCombatMode "RED";
-	_innerGroup setBehaviour "COMBAT";
-	
+		
 	_wp = _outerGroup addWaypoint [_location, 50];
 	_wp setWaypointType "SAD";
 	_outerGroup setCurrentWaypoint _wp;
 		
 	[_outerGroup] call BL_fnc_statTrackAIUnits;
-	[_innerGroup] call BL_fnc_statTrackAIUnits;
 	
 	_soundSource = createVehicle ["FlagSmall_F", [_location select 0, _location select 1, 50], [], 0, "CAN_COLLIDE"];
 	_soundSource enableSimulationGlobal false;
@@ -78,25 +67,84 @@
 		deleteVehicle _this;
 	};
 	
-	_rewardLoc = [];
-	while { count _rewardLoc == 0 } do {
-		_rewardLoc = [_location, random (_initResult select 2), random 359] call BIS_fnc_relPos;
-		_rewardLoc = _rewardLoc findEmptyPosition [0, 15, "Land_Cargo40_military_green_F"];
+	_rewardOptions = [[] call BL_fnc_missionsConfig, 'hostileTakeoverRewards'] call CBA_fnc_hashGet;
+	if ( isNil "_rewardOptions" ) then {
+		_rewardOptions = [
+			["O_Truck_03_ammo_F", 1],
+			["O_Truck_03_repair_F", 1],
+			["O_MRAP_02_gmg_F", 1],
+			["O_MRAP_02_hmg_F", 1]
+		];
 	};
 	
-	_reward = createVehicle ["Land_Cargo40_military_green_F", _rewardLoc, [], 0, "CAN_COLLIDE"];
-	[_reward, 'reward'] call BL_fnc_trackVehicle;
-	[_reward, 6000, 150] call BL_fnc_cargoDrop;
+	_rewardGroups = [];
+	_rewards = [];
 	
-	[_reward, _innerGroup, _outerGroup] spawn {
-		waitUntil { isTouchingGround (_this select 0) || (getPosATL (_this select 0)) select 2 < 2 };
-		waitUntil { { (getPosATL _x) select 2 > 1 } count (units (_this select 1)) == 0 };
+	for "_i" from 0 to 2 do {
+		_group = createGroup east;
+		_rewardGroups set [_i, _group];
+
+		_class = ([_rewardOptions] call BL_fnc_selectRandom) select 0;
+		_rewardLoc = [];
+		while { count _rewardLoc == 0 } do {
+			_rewardLoc = [_location, random (_initResult select 2), random 359] call BIS_fnc_relPos;
+			_rewardLoc = _rewardLoc findEmptyPosition [0, 15, _class];
+			
+			if ( { _x distance _rewardLoc < 20 } count _rewards > 0 ) then {
+				_rewardLoc = [];
+			};
+		};
+
+		// AI to defend reward
+		for "_i" from 0 to 4 do {
+			_unitPos = [_rewardLoc, random 50, random 359] call BIS_fnc_relPos;
+			_unitPos set [2, 3000];
+			
+			_unit = _group createUnit [_unitTypes select floor random count _unitTypes, _unitPos, [], 0, "FORM"];
+			[_unit, 3000, false, true] call COB_fnc_halo;
+			_allUnits set [count _allUnits, _unit];
+		};
 		
-		_wp = (_this select 1) addWaypoint [getPosATL (_this select 0), 5];
-		_wp setWaypointType "HOLD";
-		(_this select 1) setCurrentWaypoint _wp;
+		_group allowFleeing 0;
+		_group setCombatMode "RED";
+		_group setBehaviour "COMBAT";
+		
+		_reward = createVehicle [_class, _rewardLoc, [], 0, "CAN_COLLIDE"];
+		[_reward, 'reward'] call BL_fnc_trackVehicle;
+		[_reward, 6000, 150] call BL_fnc_cargoDrop;
+		
+		_rewards set [_i, _reward];
+		
+		// Task
+		_subTaskCode = [format['%1Veh%2', _missionCode, _i], _missionCode];
+		_displayName = getText (configFile >> "CfgVehicles" >> _class >> "displayName");
+		[
+			true,
+			_subTaskCode,
+			["", _displayName, _displayName],
+			_rewardLoc,
+			'CREATED',
+			_i,
+			false
+		] call BL_fnc_taskCreate;
+		
+		[_reward, _subTaskCode select 0, [_group, _outerGroup], {
+			(units (_this select 0 select 0)) join (_this select 0 select 1);
+		}] call BL_fnc_failOnKilled;
+		
+		_reward call BL_fnc_saveOnGetIn;
+
+		[_reward, _group] spawn {
+			waitUntil { isTouchingGround (_this select 0) || (getPosATL (_this select 0)) select 2 < 2 };
+			waitUntil { { (getPosATL _x) select 2 > 1 } count (units (_this select 1)) == 0 };
+			
+			_wp = (_this select 1) addWaypoint [getPosATL (_this select 0), 5];
+			_wp setWaypointType "HOLD";
+			(_this select 1) setCurrentWaypoint _wp;
+		};
 	};
 	
+	[_allUnits] call BL_fnc_statTrackAIUnits;
 	
 	while { true } do {
 		sleep 5;
@@ -104,22 +152,37 @@
 		_unitsInArea = [_location, (_initResult select 2) + 100] call BL_fnc_nearUnits;
 		
 		{
-			_outerGroup reveal [_x, 2];
-			_innerGroup reveal [_x, 4];
+			_unit = _x;
+			_outerGroup reveal [_unit, 2];
+			
+			{
+				_x reveal [_unit, 4];
+			} count _rewardGroups;
 			true
 		} count _unitsInArea;
 		
-		// Keep innerGroup at 10 units as long as possible
-		while { count units _innerGroup < 9 && count units _outerGroup > 0 } do {
-			[(units _outerGroup) select ((count units _outerGroup)-1)] join _innerGroup;
-		};
-		
-		if ( (count ([getPosATL _reward, 25] call BL_fnc_nearUnits) > 0 && {_reward distance _x <= 25 && alive _x} count ((units _outerGroup) + (units _innerGroup)) == 0) ) exitwith {
-			[_missionCode] call BL_fnc_missionDone;
-		};
+		{
+			// Keep reward groups at 5 units as long as possible
+			while { count units _x < 5 && count units _outerGroup > 0 } do {
+				[(units _outerGroup) select ((count units _outerGroup)-1)] join _x;
+			};
+
+			_reward = _rewards select _forEachIndex;
+			if ( (count ([getPosATL _reward, 10] call BL_fnc_nearUnits) > 0 && {_reward distance _x <= 25 && alive _x} count _allUnits == 0) ) exitwith {
+				_subTaskCode = format['%1Veh%2', _missionCode, _forEachIndex];
+				[_subTaskCode] call BL_fnc_missionDone;
+				// [_subTaskCode, 'SUCCEEDED'] call BL_fnc_taskSetState;
+				(units _x) join _outerGroup;
+				_rewardGroups = _rewardGroups - [_x];
+				// _subTaskCode spawn {
+					// sleep 15;
+					// [_this] call BL_fnc_deleteTask;
+				// };
+			};
+		} forEach _rewardGroups;		
 	};
-	
-	[((units _outerGroup) + (units _innerGroup))] spawn {
+		
+	[_allUnits] spawn {
 		sleep (60 * 5);
 		while { {alive _x} count (_this select 0) > 0} do {
 			{
