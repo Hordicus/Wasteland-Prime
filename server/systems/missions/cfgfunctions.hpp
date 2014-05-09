@@ -14,6 +14,8 @@ class missionsServer {
 	class nearMissions{};
 	class missionRandomField{};
 	class spawnMissionVehWithCrew{};
+	class failOnKilled{};
+	class saveOnGetIn{};
 	
 	class particleSourceCreateServer{};
 	class particleSourceDeleteServer{};
