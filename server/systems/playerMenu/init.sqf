@@ -1,3 +1,7 @@
+['playerMenu', 'onPlayerDisconnected', {
+	['groupChange', []] call CBA_fnc_globalEvent;
+}] call BIS_fnc_addStackedEventHandler;
+
 ["killed", {
 	private ["_player","_invItems","_position","_type","_item"];
 	_player = _this select 0;
