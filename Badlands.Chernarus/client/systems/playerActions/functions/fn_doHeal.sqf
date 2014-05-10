@@ -36,7 +36,7 @@ _this spawn {
 		};
 	}];
 	
-	while { damage _healingTarget > 0 && !scriptDone BL_animDoWorkAnimLoop && alive player && vehicle player == player } do {
+	while { damage _healingTarget > 0 && !scriptDone BL_animDoWorkAnimLoop && alive player && vehicle player == player && player distance _healingTarget < 5 && alive _healingTarget} do {
 		format['%1 %2 %3%4', _action, _itemName, round((1-damage _healingTarget)*100), '%'] call BL_fnc_actionText;
 		sleep (_minTime max ((_time * (1-damage _healingTarget))));
 		_healingTarget setDamage ((damage _healingTarget) - _step);
@@ -45,7 +45,7 @@ _this spawn {
 	BL_animDoWorkInProgress = false;
 	(findDisplay 46) displayRemoveEventHandler ['KeyDown', BL_animDoWorkKeyDown];
 	
-	if ( !scriptDone BL_animDoWorkAnimLoop && alive player && vehicle player == player ) then {
+	if ( !scriptDone BL_animDoWorkAnimLoop && alive player && vehicle player == player && player distance _healingTarget < 5 && alive _healingTarget) then {
 		[format['%1 %2 100%3', _action, _itemName, '%'], 3] call BL_fnc_actionText;
 		player switchMove "amovpknlmstpsraswrfldnon"; // Crouch
 	}
