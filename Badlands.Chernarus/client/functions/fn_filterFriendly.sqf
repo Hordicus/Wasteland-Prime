@@ -3,21 +3,9 @@ _players = _this;
 _friendlies = [];
 
 {
-	if ( player != _x ) then {
-		if ( playerSide in [east, west] ) then {
-			if ( side player == side _x ) then {
-				_friendlies set [count _friendlies, _x];
-			};
-		}
-		else {
-			if ( group player == group _x ) then {
-				_friendlies set [count _friendlies, _x];
-			};
-		};
-	}
-	else {
+	if ( [[_x]] call BL_fnc_friendlyState == "FRIENDLY" ) then {
 		_friendlies set [count _friendlies, _x];
 	};
-} forEach _players;
+} count _players;
 
 _friendlies
