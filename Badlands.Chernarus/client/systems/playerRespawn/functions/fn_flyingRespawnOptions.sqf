@@ -57,7 +57,7 @@ _result = [];
 		_result set [count _result, [
 			name (_value select 0),
 			_info,
-			round(_veh distance playerRespawn_lastDeath),
+			_veh,
 			count _errors > 0,
 			[_key],
 			_spawnInVehicle

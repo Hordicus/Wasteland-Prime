@@ -55,7 +55,7 @@ _display = (findDisplay respawnDialogIDD);
 _offset = _numButtons * playerRespawnPage;
 
 // Sort by distance
-_spawn_options = [_spawn_options, [], { _x select 2 }, "ASCEND"] call BIS_fnc_sortBy;
+_spawn_options = [_spawn_options, [], { (_x select 2) distance playerRespawn_lastDeath }, "ASCEND"] call BIS_fnc_sortBy;
 
 {
 	private['_btn', '_info', '_dist', '_show', '_data'];
@@ -68,7 +68,7 @@ _spawn_options = [_spawn_options, [], { _x select 2 }, "ASCEND"] call BIS_fnc_so
 		_data = _spawn_options select (_forEachIndex + _offset);
 		_btn  ctrlSetText (_data select 0);
 		_info ctrlSetText (_data select 1);
-		_dist ctrlSetText format['%1m', _data select 2];
+		_dist ctrlSetText format['%1m', round((_data select 2) distance playerRespawn_lastDeath)];
 		_btn  ctrlEnable !(_data select 3);
 		
 		playerRespawnOptionEventHandlers set [count playerRespawnOptionEventHandlers, [_x select 0, _data select 4, _data select 5]];

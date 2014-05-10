@@ -25,7 +25,7 @@ _townRespawn = {
 		_result set [count _result, [
 			_key, // Btn text
 			[_friendlies, ', '] call CBA_fnc_join, // Info
-			round((_value select 2 select 0) distance playerRespawn_lastDeath), // Dist
+			_value select 2 select 0, // Location
 			(_value select 1) != "FRIENDLY", // Blocked
 			_town, // Data to pass to handler
 			_townRespawn // Btn click handler

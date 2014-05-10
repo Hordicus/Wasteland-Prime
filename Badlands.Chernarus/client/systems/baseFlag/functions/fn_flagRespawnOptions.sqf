@@ -25,7 +25,7 @@ _spawnOnFlag = {
 		_result set [count _result, [
 			name _owner,
 			_info,
-			round((_x select 2) distance playerRespawn_lastDeath),
+			_x select 2,
 			_state in ["MIXED", "ENEMY"],
 			_x,
 			_spawnOnFlag
