@@ -65,6 +65,7 @@ if ( _itemCount == 0 ) then {
 		}
 		else {
 			[] call BL_fnc_loadingScreen;
+			BL_playerSpawning = true;
 			createDialog 'respawnDialog';
 		};
 	}
@@ -72,6 +73,7 @@ if ( _itemCount == 0 ) then {
 		["No player data found", 0.9] call BL_fnc_loadingScreen;
 		sleep 1;
 		[] call BL_fnc_loadingScreen;
+		BL_playerSpawning = true;
 		createDialog 'respawnDialog';
 	};
 };
