@@ -96,25 +96,8 @@
 				"O_G_Soldier_exp_F"
 			]] call BL_fnc_spawnMissionVehWithCrew];
 			
-			// Have AI drop money when killed
 			{
-				_x addEventHandler ["Killed", {
-					private ['_loc'];
-					_loc = getPosATL (_this select 0);
-					_killer = _this select 1;
-					
-					if ( isPlayer _killer ) then {
-						[1000, _killer] call BL_fnc_addMoney;
-						[format['$%1 bounty awarded', 1000], "BL_fnc_systemChat", owner _killer] spawn BIS_fnc_MP;
-					}
-					else {
-						// Unknown killer, drop on ground
-						_money = createVehicle [('moneyModel' call BL_fnc_config), _loc, [], 0, "CAN_COLLIDE"];
-						[_money] call BL_fnc_trackVehicle;
-						_money setVariable ['moneyAmount', 1000, true];
-					};
-				}];
-				true
+				_x setVariable ['bounty', 1000];
 			} count (units _group);
 			
 		};

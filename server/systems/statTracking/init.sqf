@@ -1,7 +1,8 @@
 statTrackingQueue = [];
 playerBounty = [[], 1] call CBA_fnc_hashCreate;
 BL_scoreboard = [];
-BL_bountyAmount = ('killBounty' call BL_fnc_config);
+BL_playerBountyAmount = [call BL_fnc_statTrackingConfig, "playerBounty"] call CBA_fnc_hashGet;
+BL_aiBountyAmount = [call BL_fnc_statTrackingConfig, "aiBounty"] call CBA_fnc_hashGet;
 BL_scoreboardLookup = [];
 BL_totalPoints = [[], 0] call CBA_fnc_hashCreate;
 BL_addPointsLog = [];
@@ -26,30 +27,30 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 
 // Player bounty
 ['killed', {
-	private ["_player","_killer","_bounty","_moneyToGive","_playerName","_killerName"];
+	private ["_player","_killer","_bounty","_playerName","_killerName"];
 	_player = _this select 0;
 	_killer = [_this select 1] call BL_fnc_getKiller;
 
-	if ( !isPlayer _player ) exitwith{};
-
-	_playerName = _player getVariable 'name';
 	_killerName = _killer getVariable 'name';
+	_playerName = _player getVariable 'name';
+	_bounty = 0;
 	
-	_bounty = [playerBounty, _playerName] call CBA_fnc_hashGet;
-	
-	// Reset players bounty
-	[playerBounty, _playerName, 1] call CBA_fnc_hashSet;
-	
-	if ( _player != _killer && isPlayer _killer) then {
-		// Add to killer's bounty
-		[playerBounty, _killerName, ([playerBounty, _killerName] call CBA_fnc_hashGet)+1] call CBA_fnc_hashSet;
-	
-		// Give killer their money
-		_moneyToGive = ('killBounty' call BL_fnc_config) * _bounty;
-		[_moneyToGive, _killer] call BL_fnc_addMoney;
+	if ( isPlayer _player ) then {
+		// Reset players bounty
+		[playerBounty, _playerName, 1] call CBA_fnc_hashSet;
 		
-		[format['$%1 bounty awarded for killing %2', _moneyToGive, _playerName], "BL_fnc_systemChat", owner _killer] call BIS_fnc_MP;
+		_bounty = BL_playerBountyAmount * ([playerBounty, _playerName] call CBA_fnc_hashGet);
+	}
+	else {
+		_bounty = _player getVariable ['bounty', BL_aiBountyAmount];
 	};
+	
+	if ( _player != _killer && isPlayer _killer && isPlayer _player ) then {
+		// Add to killer's bounty
+		[playerBounty, _killerName, ([playerBounty, _killerName] call CBA_fnc_hashGet)+1] call CBA_fnc_hashSet;	
+	};
+	
+	[_bounty, _killer] call BL_fnc_addMoney;
 }] call CBA_fnc_addEventHandler;
 
 // Database logging
@@ -133,7 +134,7 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 		[_points] call BL_fnc_pointsToRank,
 		side _player,
 		name _player,
-		BL_bountyAmount,
+		BL_playerBountyAmount,
 		0,
 		0,
 		0
