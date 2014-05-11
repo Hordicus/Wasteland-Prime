@@ -115,7 +115,7 @@ BL_fnc_missionRandomField,
 		
 			if !( [[getPosATL (_this select 0), 1000] call BL_fnc_nearUnits, (_this select 0)] call BL_fnc_hasLOS ) then {
 				deleteVehicle (_this select 0);
-				[(_this select 1)] call BL_fnc_particleSourceDeleteServer;
+				[(_this select 2)] call BL_fnc_particleSourceDeleteServer;
 			};
 			
 			{
