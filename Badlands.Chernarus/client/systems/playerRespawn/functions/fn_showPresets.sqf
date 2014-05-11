@@ -16,7 +16,7 @@ lbClear ((findDisplay respawnDialogIDD) displayCtrl respawnListPresetsIDC);
 }] call CBA_fnc_hashEachPair;
 
 _money = [] call BL_fnc_money;
-_loadoutTotal = GEAR_activeLoadout call GEAR_fnc_loadoutTotal;
+_loadoutTotal = (GEAR_activeLoadout call GEAR_fnc_filterLoadout) call GEAR_fnc_loadoutTotal;
 _color = "#FFFFFF";
 if ( _loadoutTotal > _money ) then {
 	_color = "#FF0000";
