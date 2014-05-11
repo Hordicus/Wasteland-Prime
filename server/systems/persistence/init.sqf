@@ -84,10 +84,7 @@ PERS_init_done = true;
 	private ["_index","_dbID"];
 	while { true } do {		
 		{
-			_index = PERS_trackedObjectsNetIDs find (netId _x);
-			_dbID = PERS_trackedObjectsIDs select _index;
-
-			if ( !isNil "_dbID" && (_x getVariable ['lastSaveState', '']) != (_x call BL_fnc_vehicleState)) then {
+			if ( [_x] call BL_fnc_databaseId > -1 && (_x getVariable ['lastSaveState', '']) != (_x call BL_fnc_vehicleState)) then {
 				[_x] call BL_fnc_saveVehicle;
 			};
 			true

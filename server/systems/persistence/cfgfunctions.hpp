@@ -32,6 +32,7 @@ class persistence {
 	class persistanceEventHandler{};
 	class log{};
 	class MySQLEscape{};
+	class databaseId{};
 	
 	class persRegisterTypeHandler{};
 	class persRunTypeHandler{};
