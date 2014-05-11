@@ -105,9 +105,16 @@ BL_playerSpawning = false;
 	}];
 	
 	['groupChange', {
+		// Update state of all towns
+		[playerRespawn_towns, {
+			_value set [1, [_value select 0] call BL_fnc_friendlyState];
+		}] call CBA_fnc_hashEachPair;
+		
 		[playerRespawnOptions, 'towns', [playerRespawn_towns] call BL_fnc_townRespawnOptions] call CBA_fnc_hashSet;
 		[playerRespawnOptions, 'airVehicles', [playerRespawn_air] call BL_fnc_flyingRespawnOptions] call CBA_fnc_hashSet;
 		[playerRespawnOptions, 'beacons', [playerRespawn_beacons] call BL_fnc_beaconRespawnOptions] call CBA_fnc_hashSet;
+
+		['respawnDialogUpdate'] call CBA_fnc_localEvent;
 	}] call CBA_fnc_addEventHandler;
 
 	// Do an update of all beacons

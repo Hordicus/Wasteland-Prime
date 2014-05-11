@@ -11,7 +11,7 @@ _cities = call BL_fnc_findCities;
 	_name setMarkerAlphaLocal 0.5;
 } forEach _cities;
 
-stateHistory = [[], "EMPTY"] call CBA_fnc_hashCreate;
+stateHistory = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 
 ["radarUpdate", {
 	private ["_town", "_players", "_color", "_last", "_state"];
@@ -26,12 +26,21 @@ stateHistory = [[], "EMPTY"] call CBA_fnc_hashCreate;
 	
 	// Alerts for when player is in area
 	if ( player in _players ) then {
-		_last = [stateHistory, _town] call CBA_fnc_hashGet;
+		_last = ([stateHistory, _town] call CBA_fnc_hashGet) select 1;
 		
 		if ( _last in ["EMPTY", "FRIENDLY"] && _state in ["ENEMY", "MIXED"] ) then {
 			hint "Warning! An enemy player has entered the area";
 		};
 	};
 	
-	[stateHistory, _town, _state] call CBA_fnc_hashSet;
+	[stateHistory, _town, [_players, _state]] call CBA_fnc_hashSet;
+}] call CBA_fnc_addEventHandler;
+
+['groupChange', {
+	// Update state of town radar
+	[stateHistory, {
+		_state = [_value select 0] call BL_fnc_friendlyState;
+		_value set [1, _state];
+		(format["marker_%1", _key]) setMarkerColorLocal (_state call BL_fnc_stateColor);
+	}] call CBA_fnc_hashEachPair;
 }] call CBA_fnc_addEventHandler;
