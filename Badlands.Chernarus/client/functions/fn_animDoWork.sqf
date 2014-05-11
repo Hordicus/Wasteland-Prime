@@ -16,7 +16,7 @@ _this spawn {
 
 	BL_animDoWorkAnimLoop = [] spawn {
 		while { BL_animDoWorkInProgress } do {
-			player switchMove "ainvpknlmstpslaywrfldnon_medic";
+			"ainvpknlmstpslaywrfldnon_medic" call BL_fnc_switchMove;
 			waitUntil {animationState player != "ainvpknlmstpslaywrfldnon_medic"};
 		};
 	};
@@ -38,7 +38,7 @@ _this spawn {
 	(findDisplay 46) displayRemoveEventHandler ['KeyDown', BL_animDoWorkKeyDown];
 	
 	if ( !scriptDone BL_animDoWorkAnimLoop && alive player && vehicle player == player ) then {
-		player switchMove "amovpknlmstpsraswrfldnon"; // Crouch
+		"amovpknlmstpsraswrfldnon" call BL_fnc_switchMove; // Crouch
 		[format[_message, '100%'], 1] call BL_fnc_actionText;
 		_params call _doAfter;
 	}
@@ -75,7 +75,7 @@ _this spawn {
 			
 			['Action interrupted', 3] call BL_fnc_actionText;
 			_params call _onCancel;
-			player switchMove "amovpknlmstpsraswrfldnon"; // Crouch
+			"amovpknlmstpsraswrfldnon" call BL_fnc_switchMove; // Crouch
 		};
 	};
 };

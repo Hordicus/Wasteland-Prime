@@ -6,7 +6,7 @@ BL_movingForward = false;
 	else {
 		if ( BL_movingForward && (_this select 1) in (actionKeys "GetOver") ) then {
 			if ( animationState player != "AovrPercMrunSrasWrflDf" ) then {
-				[[player, "AovrPercMrunSrasWrflDf"], "BL_fnc_switchMove"] call BIS_fnc_MP;
+				"AovrPercMrunSrasWrflDf" call BL_fnc_switchMove;
 			};
 			true
 		};

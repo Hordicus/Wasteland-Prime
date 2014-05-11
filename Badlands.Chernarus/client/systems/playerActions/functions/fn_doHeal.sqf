@@ -25,7 +25,7 @@ _this spawn {
 	
 	BL_animDoWorkAnimLoop = [] spawn {
 		while { BL_animDoWorkInProgress } do {
-			player switchMove "ainvpknlmstpslaywrfldnon_medic";
+			"ainvpknlmstpslaywrfldnon_medic" call BL_fnc_switchMove;
 			waitUntil {animationState player != "ainvpknlmstpslaywrfldnon_medic"};
 		};
 	};
@@ -47,7 +47,7 @@ _this spawn {
 	
 	if ( !scriptDone BL_animDoWorkAnimLoop && alive player && vehicle player == player && player distance _healingTarget < 5 && alive _healingTarget) then {
 		[format['%1 %2 100%3', _action, _itemName, '%'], 3] call BL_fnc_actionText;
-		player switchMove "amovpknlmstpsraswrfldnon"; // Crouch
+		"amovpknlmstpsraswrfldnon" call BL_fnc_switchMove; // Crouch
 	}
 	else {
 		[] call {
@@ -80,7 +80,7 @@ _this spawn {
 			};
 			
 			['Action interrupted', 3] call BL_fnc_actionText;
-			player switchMove "amovpknlmstpsraswrfldnon"; // Crouch
+			"amovpknlmstpsraswrfldnon" call BL_fnc_switchMove; // Crouch
 		};
 	};
 };
