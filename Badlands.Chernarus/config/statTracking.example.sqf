@@ -13,4 +13,7 @@ _vehicles = [] call CBA_fnc_hashCreate;
 
 [_config, 'vehicleBonus', _vehicles] call CBA_fnc_hashSet;
 
+[_config, 'playerBounty', 250] call CBA_fnc_hashSet;
+[_config, 'aiBounty', 250] call CBA_fnc_hashSet;
+
 _config

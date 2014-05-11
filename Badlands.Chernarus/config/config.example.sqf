@@ -130,7 +130,6 @@ _config = [] call CBA_fnc_hashCreate;
 ]] call CBA_fnc_hashSet;
 
 [_config, 'minMoney', 250] call CBA_fnc_hashSet;
-[_config, 'killBounty', 250] call CBA_fnc_hashSet;
 
 // See addons\randomWeather2.sqf for config options
 [_config, 'weatherTemplates', [
