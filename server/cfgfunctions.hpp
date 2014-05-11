@@ -13,6 +13,7 @@ class cfgFunctions {
 		#include "systems\statTracking\cfgfunctions.hpp"
 		#include "systems\adminPanel\cfgfunctions.hpp"
 		#include "systems\staticVehicleSpawns\cfgfunctions.hpp"
+		#include "systems\donators\cfgfunctions.hpp"
 
 		class Server {
 			class serverInit {
