@@ -127,7 +127,7 @@
 		
 		{
 			deleteVehicle _x;
-		} count ((allMissionObjects "CraterLong"));
+		} count ((allMissionObjects "CraterLong") + (allMissionObjects "Ruins"));
 		
 		{
 			if ( count units _x == 0 ) then {

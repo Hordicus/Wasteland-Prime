@@ -58,6 +58,8 @@ PERS_init_done = true;
 				if ( _x isKindOf 'CraterLong' ) exitwith {true};
 				if ( _x isKindOf 'WeaponHolderSimulated' ) exitwith {true};
 				if ( _x isKindOf 'GroundWeaponHolder' ) exitwith {true};
+				if ( _x isKindOf 'MineBase' ) exitwith {true};
+				if ( _x isKindOf 'Ruins' ) exitwith {true};
 
 				if ( _x isKindOf 'Man' ) exitwith {true};
 				if ( _x isKindOf 'Logic' ) exitwith {true};
