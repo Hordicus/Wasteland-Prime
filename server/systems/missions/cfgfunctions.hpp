@@ -16,6 +16,7 @@ class missionsServer {
 	class spawnMissionVehWithCrew{};
 	class failOnKilled{};
 	class saveOnGetIn{};
+	class lockVehicle{};
 	
 	class particleSourceCreateServer{};
 	class particleSourceDeleteServer{};

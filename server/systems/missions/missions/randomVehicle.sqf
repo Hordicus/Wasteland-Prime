@@ -37,7 +37,7 @@ BL_fnc_missionRandomField,
 	
 	_missionReward = createVehicle [_initResult, _location, [], 0, "CAN_COLLIDE"];
 	[_missionReward, 'reward'] call BL_fnc_trackVehicle;
-	_missionReward lock true; // Don't let anyone in until they complete the mission
+	[_missionReward] call BL_fnc_lockVehicle; // Don't let anyone in until they complete the mission
 	
 	_grp = createGroup east;
 	_grp createUnit ["O_Soldier_SL_F", _location, [], 0, "FORM"];
@@ -70,7 +70,7 @@ BL_fnc_missionRandomField,
 	};
 	
 	if ( alive _missionReward ) then {
-		_missionReward lock false;
+		[_missionReward, false] call BL_fnc_lockVehicle;
 		_missionReward setVariable ['getInEH', _missionReward addEventHandler ['GetIn', {
 			[_this select 0] call BL_fnc_saveVehicle;
 			(_this select 0) removeEventHandler ['GetIn', (_this select 0) getVariable 'getInEH'];
