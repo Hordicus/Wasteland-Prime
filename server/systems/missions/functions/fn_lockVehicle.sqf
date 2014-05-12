@@ -6,7 +6,7 @@ _veh lock _lock;
 _veh lockCargo _lock;
 _veh lockDriver _lock;
 
-_weapons = [_veh] call BL_fnc_vehicleWeapons;
+_weapons = [typeOf _veh] call BL_fnc_vehicleWeapons;
 
 {
 	_veh lockTurret [_x select 1, _lock];
