@@ -32,17 +32,7 @@
 	// Monitor helicopters. Notify players when state changes.
 	while { true } do {
 		{
-			_allPassengerSlots = getArray (configFile >> "CfgVehicles" >> (typeOf _x) >> "cargoAction");
-			_crew = crew _x;
-			_usedPassengerSlots = 0;
-			
-			{
-				if ( "Cargo" in (assignedVehicleRole _x) ) then {
-					_usedPassengerSlots = _usedPassengerSlots + 1;
-				};
-			} count _crew;
-			
-			_cargoRoom = (count _allPassengerSlots) - _usedPassengerSlots;
+			_cargoRoom = _x emptyPositions "Cargo";
 			_altitude = (getPosATL _x) select 2;
 			_netId = netId _x;
 			_lastCheck = [_helicopters, _netId] call CBA_fnc_hashGet;
