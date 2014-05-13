@@ -57,9 +57,10 @@
 					[cursorTarget] call _doUnlock;
 				}
 				else {
-					[getPosATL cursorTarget, 100, _owner, [cursorTarget], {
-						_state = _this select 0;
-						_obj   = _this select 1 select 0;
+					[getPosATL cursorTarget, 100, _owner, [cursorTarget, _doUnlock], {
+						_state    = _this select 0;
+						_obj      = _this select 1 select 0;
+						_doUnlock = _this select 1 select 1;
 						
 						if ( _state == "ENEMY" ) then {
 							// The owner of the object shows the area as only
