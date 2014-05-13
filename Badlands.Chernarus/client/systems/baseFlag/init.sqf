@@ -11,7 +11,8 @@ BL_PVAR_baseFlags = [
 
 BL_PVAR_baseFlags = missionNamespace getVariable ['BL_PVAR_baseFlags', []];
 BL_baseFlagMarkers = [];
-BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
+BL_baseFlagRadarState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
+BL_baseFlagBlockState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 
 ['baseFlag', 'Base flag', "Land_Suitcase_F", [], {
 	[15, "Deploying Base Flag %1", [], {
@@ -49,20 +50,20 @@ BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 	
 	"BL_PVAR_baseFlags" addPublicVariableEventHandler {
 		[] call BL_fnc_createFlagMarkers;
-		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
+		[playerRespawnOptions, 'flags', [BL_baseFlagBlockState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 	};
 	
 	['updateBaseFlags', {
 		[] call BL_fnc_createFlagMarkers;
-		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
+		[playerRespawnOptions, 'flags', [BL_baseFlagBlockState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 	}] call CBA_fnc_addEventHandler;
 
 	['groupChange', {
 		[] call BL_fnc_createFlagMarkers;
-		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
+		[playerRespawnOptions, 'flags', [BL_baseFlagBlockState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 	}] call CBA_fnc_addEventHandler;
 
-	['baseFlag', {
+	['baseFlagRadar', {
 		_players = _this select 0;
 		_code = _this select 1 select 0;
 		_state = [_players] call BL_fnc_friendlyState;
@@ -72,7 +73,7 @@ BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 			(format["baseFlag%1", _code]) setMarkerColorLocal (_state call BL_fnc_stateColor);
 			
 			if ( player in _players ) then {
-				_last = ([BL_baseFlagState, _code] call CBA_fnc_hashGet) select 1;
+				_last = ([BL_baseFlagRadarState, _code] call CBA_fnc_hashGet) select 1;
 				
 				if ( _last in ["EMPTY", "FRIENDLY"] && _state in ["ENEMY", "MIXED"] ) then {
 					hint "Warning! An enemy player has entered the area";
@@ -80,20 +81,21 @@ BL_baseFlagState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 			};
 		};
 		
-		[BL_baseFlagState, _code, [_players, _state]] call CBA_fnc_hashSet;
+		[BL_baseFlagRadarState, _code, [_players, _state]] call CBA_fnc_hashSet;
 	}] call CBA_fnc_addEventHandler;
-	
-	['baseFlag', {
+		
+	['baseFlagBlock', {
 		_players = _this select 0;
 		_code = _this select 1 select 0;
 		_state = [_players] call BL_fnc_friendlyState;
-		_owner = (_this select 1 select 1) call BL_fnc_playerByUID;
 		
-		[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
+		[BL_baseFlagBlockState, _code, [_players, _state]] call CBA_fnc_hashSet;
+
+		[playerRespawnOptions, 'flags', [BL_baseFlagBlockState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 		['respawnDialogUpdate'] call CBA_fnc_localEvent;
 	}] call CBA_fnc_addEventHandler;
 	
-	[playerRespawnOptions, 'flags', [BL_baseFlagState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
+	[playerRespawnOptions, 'flags', [BL_baseFlagBlockState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 };
 
 [format['Redeploy ($%1)', 'redeployCost' call BL_fnc_config], { (_this select 0) isKindOf "Land_Communication_F" && {([] call BL_fnc_money) >= ('redeployCost' call BL_fnc_config)}}, {
