@@ -7,7 +7,7 @@ if ( isPlayer _player ) then {
 	_msg = format['%1 was killed', _player getVariable 'name'];
 
 	if ( isPlayer _killer && _killer != _player ) then {
-		_msg = _msg + format[' by %1 [$%1]', _killer getVariable 'name', _bounty];
+		_msg = _msg + format[' by %1 [$%2]', _killer getVariable 'name', _bounty];
 	};
 
 	[[_msg], 'BL_fnc_showKillMsg'] call BIS_fnc_MP;
