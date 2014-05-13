@@ -3,6 +3,7 @@ _obj = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 _altitude = [_this, 1, 500, [0]] call BIS_fnc_param;
 _autoOpen = [_this, 2, 150, [0]] call BIS_fnc_param;
 
+_obj allowDamage false;
 _objPos = getPosATL _obj;
 _objPos set [2, _altitude];
 
@@ -71,4 +72,5 @@ _obj setPosATL _objPos;
 	playSound3D ["a3\sounds_f\weapons\Flare_Gun\flaregun_1_shoot.wss", _obj];
 	detach _obj;
 	deleteVehicle _parachute;
+	_obj allowDamage true;
 };
