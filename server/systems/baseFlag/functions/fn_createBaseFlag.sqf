@@ -5,10 +5,14 @@ _object    = [_this, 2, objNull, [objNull]] call BIS_fnc_param;
 
 if ( isNull _object ) then {
 	_object = createVehicle ["Land_Communication_F", _location, [], 0, "CAN_COLLIDE"];
+	_object setVectorUp [0,0,1];
 	_object setVariable ['ownerUID', _playerUID];
 	[_object, 'baseFlag'] call BL_fnc_trackVehicle;
 	[_object] call BL_fnc_saveVehicle;
 };
+
+_object allowDamage false;
+_object enableSimulationGlobal false;
 
 _info = [
 	9 call BL_fnc_randStr, // random code to use for radar updates
