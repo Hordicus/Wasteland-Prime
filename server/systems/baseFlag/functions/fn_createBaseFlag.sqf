@@ -4,8 +4,10 @@ _location  = [_this, 1, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 _object    = [_this, 2, objNull, [objNull]] call BIS_fnc_param;
 
 if ( isNull _object ) then {
+	_location set [2, (_location select 2) - 3];
 	_object = createVehicle ["Land_Communication_F", _location, [], 0, "CAN_COLLIDE"];
 	_object setVectorUp [0,0,1];
+	_object setPosATL _location;
 	_object setVariable ['ownerUID', _playerUID];
 	[_object, 'baseFlag'] call BL_fnc_trackVehicle;
 	[_object] call BL_fnc_saveVehicle;
@@ -13,6 +15,7 @@ if ( isNull _object ) then {
 
 _object allowDamage false;
 _object enableSimulationGlobal false;
+_object removeAllEventHandlers 'Killed'; // Disables deleting from DB on killed... just in case.
 
 _info = [
 	9 call BL_fnc_randStr, // random code to use for radar updates
