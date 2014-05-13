@@ -20,6 +20,7 @@
 
 // Function to call to start the mission
 {
+	private ["_initResult","_missionCode","_location","_outerGroup","_unitTypes","_allUnits","_unitPos","_unit","_wp","_soundSource","_rewardOptions","_rewardGroups","_rewards","_i","_class","_rewardLoc","_reward","_subTaskCode","_displayName","_unitsInArea"];
 	_initResult  = _this select 0;
 	_missionCode = _this select 1;
 	_location    = _this select 2;
@@ -90,7 +91,7 @@
 			_rewardLoc = [_location, random (_initResult select 2), random 359] call BIS_fnc_relPos;
 			_rewardLoc = _rewardLoc findEmptyPosition [0, 15, _class];
 			
-			if ( { _x distance _rewardLoc < 20 } count _rewards > 0 ) then {
+			if ( count _rewardLoc == 0 || {{ _x distance _rewardLoc < 20 } count _rewards > 0} ) then {
 				_rewardLoc = [];
 			};
 		};
@@ -122,7 +123,7 @@
 			true,
 			_subTaskCode,
 			["", _displayName, _displayName],
-			_rewardLoc,
+			[_reward, true],
 			'CREATED',
 			_i,
 			false
@@ -146,7 +147,7 @@
 	
 	[_allUnits] call BL_fnc_statTrackAIUnits;
 	
-	while { true } do {
+	while { [_missionCode] call BL_fnc_taskExists && {!([_missionCode] call BL_fnc_taskCompleted)} } do {
 		sleep 5;
 	
 		_unitsInArea = [_location, (_initResult select 2) + 100] call BL_fnc_nearUnits;
@@ -168,16 +169,11 @@
 			};
 
 			_reward = _rewards select _forEachIndex;
-			if ( (count ([getPosATL _reward, 10] call BL_fnc_nearUnits) > 0 && {_reward distance _x <= 25 && alive _x} count _allUnits == 0) ) exitwith {
+			diag_log [_forEachIndex, typeof _reward, getPosATL _reward, ([getPosATL _reward, 10] call BL_fnc_nearUnits)];
+			if ( (count ([getPosATL _reward, 10] call BL_fnc_nearUnits) > 0 && {_reward distance _x <= 25 && alive _x} count _allUnits == 0) ) then {
 				_subTaskCode = format['%1Veh%2', _missionCode, _forEachIndex];
 				[_subTaskCode] call BL_fnc_missionDone;
-				// [_subTaskCode, 'SUCCEEDED'] call BL_fnc_taskSetState;
 				(units _x) join _outerGroup;
-				_rewardGroups = _rewardGroups - [_x];
-				// _subTaskCode spawn {
-					// sleep 15;
-					// [_this] call BL_fnc_deleteTask;
-				// };
 			};
 		} forEach _rewardGroups;		
 	};
