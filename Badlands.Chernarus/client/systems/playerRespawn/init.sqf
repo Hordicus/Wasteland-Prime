@@ -101,6 +101,8 @@ BL_playerSpawning = false;
 
 	player addEventHandler ["respawn", {
 		BL_playerSpawning = true;
+		(_this select 0) allowDamage false;
+		(_this select 0) enableSimulation false;
 		createDialog "respawnDialog";
 	}];
 	
