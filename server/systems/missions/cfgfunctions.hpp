@@ -23,9 +23,7 @@ class missionsServer {
 	class cargoDrop{};
 	
 	// BIS task functions
-	class deleteTask{};
 	class setTask{};
-	class setTaskLocal{};
 	class taskChildren{};
 	class taskCompleted{};
 	class taskCreate{};

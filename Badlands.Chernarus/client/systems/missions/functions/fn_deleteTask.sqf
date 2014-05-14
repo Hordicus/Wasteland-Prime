@@ -22,10 +22,10 @@ _taskID = [_this,0,"",[""]] call BIS_fnc_param;
 _targets = [_this,1,[],[true,sideunknown,grpnull,objnull,[]]] call bis_fnc_param;
 _init = [_this,2,true,[true]] call bis_fnc_param;
 
-_taskVar = _taskID call BL_fnc_taskVar;
+_taskVar = _taskID call BIS_fnc_taskVar;
 if (typename _targets != typename []) then {_targets = [_targets];};
 
-if (_init) then {
+if (_init && isServer) then {
 
 	//--- Terminate when the task does not exist
 	if (isnil {missionnamespace getvariable _taskVar}) exitwith {
@@ -38,7 +38,7 @@ if (_init) then {
 	_params = _data select 0;
 	_taskChildren = _params select 2;
 	{
-		_taskVar = _x call BL_fnc_taskVar;
+		_taskVar = _x call BIS_fnc_taskVar;
 		_data = +(missionnamespace getvariable [_taskVar,[["",""],[],["","",""],objnull,"CREATED",-1]]);
 
 		missionnamespace setvariable [_taskVar,nil];

@@ -8,4 +8,7 @@ class missions {
 	class setTaskVars{};
 	class particleSourceCreate{};
 	class particleSourceDelete{};
+	
+	class setTaskLocal{};
+	class deleteTask{};
 };

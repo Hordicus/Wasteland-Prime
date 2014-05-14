@@ -186,7 +186,7 @@ if (_isGlobal && ismultiplayer) then {
 
 	[
 		_args,
-		"BIS_fnc_setTaskLocal",
+		"BL_fnc_setTaskLocal",
 		true
 	] call BIS_fnc_MP;
 } else {
