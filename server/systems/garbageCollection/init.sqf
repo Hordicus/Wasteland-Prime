@@ -18,7 +18,9 @@
 	
 	_detectionRange = 500;
 	while { true } do {
+		PERF_START("GC");
 		// Clean up town cars.
+		PERF_START("GC_townCars");
 		{
 			_vehPos = getPosATL _x;
 			// Anyone around?
@@ -39,11 +41,13 @@
 				};
 			};			
 		} forEach ((getPosATL mapCenter) nearEntities [_townCarClasses, 100000]);
+		PERF_STOP("GC_townCars", true);
 		
 		// Remove rare cars.
 		// Conditions:
 		//  Haven't been used in 30min
 		//	AND no one within _detectionRange
+		PERF_START("GC_rareCars");
 		{
 			_vehPos = getPosATL _x;
 			_lastUsed = _x getVariable ['GC_lastUsed', time];
@@ -75,8 +79,10 @@
 			
 			true
 		} count ((getPosATL mapCenter) nearEntities [_rareCarClasses, 100000]);
+		PERF_STOP("GC_rareCars", true);
 		
 		// Remove dead things
+		PERF_START("GC_dead");
 		{
 			if ( _x isKindOf "LandVehicle" || _x isKindOf "Air" ) then {
 				if ( _x getVariable ['PERS_type', 'veh'] == 'static' ) then {
@@ -97,7 +103,9 @@
 			};
 			true
 		} count allDead;
+		PERF_STOP("GC_dead", true);
 		
+		PERF_STOP("GC", true);
 		sleep 60;
 	};
 };

@@ -1,3 +1,4 @@
+#include "\x\bl_server\addons\performance.sqf"
 radarLocations = [
 	/*
 	[
@@ -59,6 +60,7 @@ radarState = [];
 [] spawn {
 	radarState = [];
 	while { true } do {
+		PERF_START('radar');
 		{
 			private ["_loc","_radius","_nearUnits","_last","_count"];
 			if ( typeName _x == "ARRAY" ) then {
@@ -81,7 +83,8 @@ radarState = [];
 				radarState set [ _forEachIndex, _nearUnits ];
 			};
 		} forEach radarLocations;
-
-		sleep 1;
+		PERF_STOP('radar', true);
+		
+		sleep .1;
 	};
 };

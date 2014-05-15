@@ -1,3 +1,4 @@
+#include "\x\bl_server\addons\performance.sqf"
 ['playerMenu', 'onPlayerDisconnected', {
 	['groupChange', []] call CBA_fnc_globalEvent;
 }] call BIS_fnc_addStackedEventHandler;
@@ -37,10 +38,12 @@
 	private ['_mission_start'];
 	_mission_start = diag_tickTime;
 	while { true } do {
+		PERF_START('serverUpdate');
 		['serverUpdate', [
 			round diag_fps,
 			diag_tickTime - _mission_start
 		]] call CBA_fnc_globalEvent;
+		PERF_STOP('serverUpdate', true);
 		sleep 10;
 	};
 };

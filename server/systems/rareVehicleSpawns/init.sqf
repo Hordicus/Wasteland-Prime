@@ -1,3 +1,4 @@
+#include "\x\bl_server\addons\performance.sqf"
 private ['_cities', '_config', '_lowestChances', '_groupClasses'];
 _cities = [] call BL_fnc_findCities;
 _config = [] call BL_fnc_rareVehiclesConfig;
@@ -33,6 +34,7 @@ _groupClasses = [] call CBA_fnc_hashCreate;
 while { true } do {
 	waitUntil { !isNil "PERS_init_done" };
 
+	PERF_START("rareVehicleSpawns");
 	[_config, {
 		private ['_maxCount', '_classes', '_lowestChance', '_count'];
 		_maxCount = _value select 0;
@@ -73,7 +75,8 @@ while { true } do {
 			};
 		};
 	}] call CBA_fnc_hashEachPair;
-
+	PERF_STOP("rareVehicleSpawns", true);
+	
 	sleep (60 * 5);
 };
 

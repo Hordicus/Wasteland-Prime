@@ -1,3 +1,4 @@
+#include "\x\bl_server\addons\performance.sqf"
 ['townVeh', [
 	// Save
 	{},
@@ -34,8 +35,9 @@
 		};
 	} forEach _vehicles;
 
+	waitUntil { !isNil "PERS_init_done" };
 	while { true } do {
-		waitUntil { !isNil "PERS_init_done" };
+		PERF_START("vehicleTownSpawns");
 		{
 			_cityCenter = _x select 1;
 			_cityRadius = _x select 2;
@@ -91,6 +93,7 @@
 			};	
 		// } forEach [(_cities select 0)];
 		} forEach _cities;
+		PERF_STOP("vehicleTownSpawns", true);
 
 		sleep (60 * 5);
 	};

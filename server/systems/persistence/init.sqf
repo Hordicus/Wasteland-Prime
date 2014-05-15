@@ -1,3 +1,4 @@
+#include "\x\bl_server\addons\performance.sqf"
 PERS_trackedObjectsNetIDs = [];
 PERS_trackedObjectsIDs = [];
 PERS_typeData = [];
@@ -32,6 +33,7 @@ PERS_init_done = true;
 [] spawn {
 	private ["_netId","_index"];
 	while { true } do {
+		PERF_START("untracked_entities");
 		{
 			_netId = netId _x;
 			_index = PERS_trackedObjectsNetIDs find _netId;
@@ -40,7 +42,8 @@ PERS_init_done = true;
 				deleteVehicle _x;
 			};
 		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
-	
+		PERF_STOP("untracked_entities", true);
+		
 		sleep 60;
 	};
 };
@@ -49,6 +52,7 @@ PERS_init_done = true;
 [] spawn {
 	private ["_netId","_index"];
 	while { true } do {
+		PERF_START("untracked_objects");
 		{
 			_ignore = _x call {
 				// Entities, tracked above.
@@ -75,7 +79,8 @@ PERS_init_done = true;
 				};
 			};
 		} count allMissionObjects "All";
-	
+		PERF_STOP("untracked_objects", true);
+		
 		sleep (60 * 5);
 	};
 };
@@ -84,13 +89,15 @@ PERS_init_done = true;
 [] spawn {
 	sleep 60;
 	private ["_index","_dbID"];
-	while { true } do {		
+	while { true } do {
+		PERF_START("saveLoop");
 		{
 			if ( [_x] call BL_fnc_databaseId > -1 && (_x getVariable ['lastSaveState', '']) != (_x call BL_fnc_vehicleState)) then {
 				[_x] call BL_fnc_saveVehicle;
 			};
 			true
 		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
+		PERF_STOP("saveLoop", true);
 		
 		sleep (60 * 5);
 	};
