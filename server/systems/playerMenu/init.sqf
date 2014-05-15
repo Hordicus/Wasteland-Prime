@@ -4,6 +4,7 @@
 }] call BIS_fnc_addStackedEventHandler;
 
 ["killed", {
+	PERF_START("playerInvDrop");
 	private ["_player","_invItems","_position","_type","_item"];
 	_player = _this select 0;
 	_invItems = _player getVariable ['BL_playerInv', []];
@@ -28,6 +29,7 @@
 		} count BL_playerInventoryHandlers;
 		true
 	} count _invItems;
+	PERF_STOP("playerInvDrop");
 }] call CBA_fnc_addEventHandler;
 
 ["respawn", {

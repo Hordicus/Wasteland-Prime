@@ -1,3 +1,4 @@
+#include "\x\bl_server\addons\performance.sqf"
 statTrackingQueue = [];
 playerBounty = [[], 1] call CBA_fnc_hashCreate;
 BL_scoreboard = [];
@@ -18,15 +19,18 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 	while { true } do {
 		sleep 1;
 		
+		PERF_START("scoreboardBroadcast");
 		if !( _lastBroadcast isEqualTo BL_scoreboard ) then {
 			_lastBroadcast = +BL_scoreboard;
 			publicVariable "BL_scoreboard";
 		};
+		PERF_STOP("scoreboardBroadcast",true);
 	};
 };
 
 // Player bounty
 ['killed', {
+	PERF_START("playerBounty");
 	private ["_player","_killer","_bounty","_playerName","_killerName"];
 	_player = _this select 0;
 	_killer = [_this select 1] call BL_fnc_getKiller;
@@ -51,10 +55,12 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 	};
 	
 	[_bounty, _killer] call BL_fnc_addMoney;
+	PERF_STOP("playerBounty", true);
 }] call CBA_fnc_addEventHandler;
 
 // Database logging
 ['killed', {
+	PERF_START("player_kills");
 	private ["_player","_killer","_weapon","_friendlyFire","_playerVehicle","_killerVehicle"];
 	_player = _this select 0;
 	_killer = [_this select 1] call BL_fnc_getKiller;
@@ -100,6 +106,7 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 		_command = _command + ([_values, ','] call CBA_fnc_join);
 		[_command] call BL_fnc_MySQLCommand;
 	};
+	PERF_START("player_stop");
 }] call CBA_fnc_addEventHandler;
 
 // Scoreboard
