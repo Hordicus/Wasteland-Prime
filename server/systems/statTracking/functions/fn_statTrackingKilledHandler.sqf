@@ -1,4 +1,6 @@
+#include "\x\bl_server\addons\performance.sqf"
 #include "macro.sqf"
+PERF_START("statTrackingKilledHandler");
 private ['_player', '_killer', '_playerIndex', '_playerVehicle'];
 _player = _this select 0;
 _killer = [_this select 1] call BL_fnc_getKiller;
@@ -73,3 +75,4 @@ if ( _killer != _player && isPlayer _killer ) then {
 		[_killer, _bonus, "vehicleBonus"] call BL_fnc_addPoints;
 	};
 };
+PERF_STOP("statTrackingKilledHandler", false);
