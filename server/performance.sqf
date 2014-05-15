@@ -1,5 +1,8 @@
 #include "debug_console.hpp"
-#define PERF_START(NAME) PERFS = missionNamespace getVariable ['PERFS', [] call CBA_fnc_hashCreate]; [PERFS, NAME, diag_tickTime] call CBA_fnc_hashSet;
+#define PERF_START(NAME) \
+	PERFS = missionNamespace getVariable ['PERFS', [] call CBA_fnc_hashCreate]; \
+	[PERFS, NAME, diag_tickTime] call CBA_fnc_hashSet;
+	
 #define PERF_STOP(NAME, LOG) \
 	PERF_HISTORY  = missionNamespace getVariable ['PERF_HISTORY', [[], []] call CBA_fnc_hashCreate]; \
 	private "_perf_history"; \

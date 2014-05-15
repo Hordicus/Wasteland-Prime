@@ -24,7 +24,7 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 			_lastBroadcast = +BL_scoreboard;
 			publicVariable "BL_scoreboard";
 		};
-		PERF_STOP("scoreboardBroadcast",true);
+		PERF_STOP("scoreboardBroadcast", false);
 	};
 };
 

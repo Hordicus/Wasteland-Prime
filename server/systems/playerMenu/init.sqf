@@ -29,7 +29,7 @@
 		} count BL_playerInventoryHandlers;
 		true
 	} count _invItems;
-	PERF_STOP("playerInvDrop");
+	PERF_STOP("playerInvDrop", true);
 }] call CBA_fnc_addEventHandler;
 
 ["respawn", {
@@ -45,7 +45,7 @@
 			round diag_fps,
 			diag_tickTime - _mission_start
 		]] call CBA_fnc_globalEvent;
-		PERF_STOP('serverUpdate', true);
+		PERF_STOP('serverUpdate', false);
 		sleep 10;
 	};
 };

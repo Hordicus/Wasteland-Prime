@@ -1,3 +1,4 @@
+#include "\x\bl_server\addons\performance.sqf"
 [] spawn {
 	waitUntil { !isNil "PERS_init_done" };
 	sleep (60 * 5);

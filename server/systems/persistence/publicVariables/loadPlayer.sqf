@@ -10,5 +10,5 @@
 	else {
 		[_this select 1] call BL_fnc_loadPlayer;
 	};
-	PERF_STOP("loadPlayer");
+	PERF_STOP("loadPlayer", true);
 };

@@ -83,7 +83,7 @@ radarState = [];
 				radarState set [ _forEachIndex, _nearUnits ];
 			};
 		} forEach radarLocations;
-		PERF_STOP('radar', true);
+		PERF_STOP('radar', false);
 		
 		sleep .1;
 	};
