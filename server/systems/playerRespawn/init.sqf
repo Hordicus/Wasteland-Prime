@@ -1,3 +1,4 @@
+#include "\x\bl_server\addons\performance.sqf"
 "createSpawnBeacon" addPublicVariableEventHandler {
 	(_this select 1) call BL_fnc_createBeaconServer;
 };
@@ -31,6 +32,7 @@
 
 	// Monitor helicopters. Notify players when state changes.
 	while { true } do {
+		PERF_START("heliUpdate");
 		{
 			if ( count getArray (configFile >> "CfgVehicles" >> (typeOf _x) >> "cargoAction") > 0 ) then {
 				_cargoRoom = _x emptyPositions "Cargo";
@@ -66,6 +68,7 @@
 			};
 			true
 		} count (entities 'Helicopter');
+		PERF_STOP("heliUpdate", true);
 		sleep 0.5;
 	};
 };
