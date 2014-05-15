@@ -82,6 +82,6 @@ radarState = [];
 			};
 		} forEach radarLocations;
 
-		sleep .1;
+		sleep 1;
 	};
 };

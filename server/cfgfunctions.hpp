@@ -21,7 +21,6 @@ class cfgFunctions {
 				preInit = 1;
 			};
 			file = "\x\bl_server\addons\functions";
-			class nearUnits{};
 			class safeVehicleSpawn{};
 			class selectRandom{};
 			class hasLOS{};

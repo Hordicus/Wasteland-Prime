@@ -12,4 +12,13 @@ radarLocations set [count radarLocations, [
 	_data
 ]];
 
+if ( !isNil "radarLocationsUpdateTimeout" ) then {
+	terminate radarLocationsUpdateTimeout;
+};
+
+radarLocationsUpdateTimeout = [] spawn {
+	sleep 5;
+	publicVariable "radarLocations";
+};
+
 true

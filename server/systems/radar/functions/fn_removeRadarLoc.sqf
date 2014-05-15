@@ -9,5 +9,6 @@ _eventName = [_this, 1, '', ['']] call BIS_fnc_param;
 	};
 } forEach radarLocations;
 
+publicVariable "radarLocations";
 
 true

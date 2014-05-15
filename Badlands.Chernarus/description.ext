@@ -64,6 +64,7 @@ class CfgFunctions {
 			class addMoney{};
 			class subMoney{};
 			class money{};
+			class nearUnits{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
@@ -77,6 +78,7 @@ class CfgFunctions {
 		#include "client\systems\missions\cfgfunctions.hpp"
 		#include "client\systems\stores\cfgfunctions.hpp"
 		#include "client\systems\statTracking\cfgfunctions.hpp"
+		#include "client\systems\radar\cfgfunctions.hpp"
 	};
 
 	#include "gear\cfgfunctions.hpp"
