@@ -40,6 +40,7 @@ class CfgFunctions {
 			class requestSave{};
 			class switchMove{};
 			class say3D{};
+			class serverEvent{};
 			class config {
 				file = "config\config.sqf";
 			};

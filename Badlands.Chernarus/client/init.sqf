@@ -98,7 +98,7 @@ player setVariable ['money', ('minMoney' call BL_fnc_config), true];
 player addEventHandler ["killed", {
 	// Seems to be my only option if I want a killed event without
 	// sending code...
-	['killed', _this] call CBA_fnc_globalEvent;
+	['killed', _this] call BL_fnc_serverEvent;
 
 	private ['_money', '_minMoney'];
 	_money = player getVariable ['money', 0];
@@ -109,7 +109,7 @@ player addEventHandler ["killed", {
 }];
 
 player addEventHandler ["respawn", {
-	['respawn', _this] call CBA_fnc_globalEvent;
+	['respawn', _this] call BL_fnc_serverEvent;
 	(_this select 0) setVariable ['side', playerSide, true];
 	
 	player addRating 100000;
