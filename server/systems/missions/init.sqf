@@ -1,5 +1,6 @@
 missionCount = 0;
 runningMissionLocations = [] call CBA_fnc_hashCreate;
+runningMissions = [] call CBA_fnc_hashCreate;
 BL_particleSources = missionNamespace getVariable ["BL_particleSources", [[], []] call CBA_fnc_hashCreate];
 
 // JIP for particle sources

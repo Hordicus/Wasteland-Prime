@@ -37,7 +37,7 @@ if ( typeName _missionDesc == "CODE" ) then {
 ], _missionLoc, 'CREATED', 0] call BL_fnc_taskCreate;
 
 // Spawn mission's init
-[_initResult, _missionCode, _missionLoc] spawn _missionRun;
+[runningMissions, _missionCode, [_initResult, _missionCode, _missionLoc] spawn _missionRun] call CBA_fnc_hashSet;
 
 if ( count _missionLoc == 2 && typeName (_missionLoc select 0) == "OBJECT" ) then {
 	_missionLoc = _missionLoc select 0
