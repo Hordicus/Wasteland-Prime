@@ -4,9 +4,9 @@
 */
 
 private ["_city","_loc","_cityName","_radius"];
-_city = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
+_city = _this;
 
-_loc = position _city;
+_loc = getPosATL _city;
 _cityName = _city getVariable ["name", ""];
 _radius = _city getVariable "radius";
 
