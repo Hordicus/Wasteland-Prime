@@ -6,5 +6,5 @@ if ( typeName _loc == "OBJECT" ) then {
 };
 
 ({
-	_loc distance (_x select 2) <= 100
+	_loc distance (_x select 2) <= 125
 } count BL_PVAR_baseFlags) > 0
