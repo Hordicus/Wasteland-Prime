@@ -54,7 +54,9 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 		[playerBounty, _killerName, ([playerBounty, _killerName] call CBA_fnc_hashGet)+1] call CBA_fnc_hashSet;	
 	};
 	
-	[_bounty, _killer] call BL_fnc_addMoney;
+	if ( _player != _killer ) then {
+		[_bounty, _killer] call BL_fnc_addMoney;
+	};
 	PERF_STOP("playerBounty", true);
 }] call CBA_fnc_addEventHandler;
 

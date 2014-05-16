@@ -84,21 +84,3 @@ PERS_init_done = true;
 		sleep (60 * 5);
 	};
 };
-
-// Periodic saving loops
-[] spawn {
-	sleep 60;
-	private ["_index","_dbID"];
-	while { true } do {
-		PERF_START("saveLoop");
-		{
-			if ( [_x] call BL_fnc_databaseId > -1 && (_x getVariable ['lastSaveState', '']) != (_x call BL_fnc_vehicleState)) then {
-				[_x] call BL_fnc_saveVehicle;
-			};
-			true
-		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
-		PERF_STOP("saveLoop", true);
-		
-		sleep (60 * 5);
-	};
-};
