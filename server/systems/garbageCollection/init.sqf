@@ -20,19 +20,26 @@
 	_detectionRange = 500;
 	while { true } do {
 		PERF_START("GC");
-		// Clean up town cars.
 		PERF_START("GC_townCars");
+		// Clean up town cars.
+		// Find cars that are in towns
+		_carsInTowns = [];
+		{
+			_carsInTowns = _carsInTowns + ((_x select 1) nearEntities [_townCarClasses, _x select 2]);
+			nil
+		} count ([] call BL_fnc_findCities);
+
 		{
 			_vehPos = getPosATL _x;
 			// Anyone around?
-			if ( count crew _x == 0 && { count ([_vehPos, _detectionRange] call BL_fnc_nearUnits) == 0 } && {count (_x getVariable ['LOG_contents', []]) == 0} && !([_x] call BL_fnc_isInBase)) then {
-				// Is it in a town?
-				_nearestCity = [_vehPos] call BL_fnc_nearestCity;
-				if ( (_nearestCity select 1) distance _vehPos <= (_nearestCity select 2) ) then {
-					// Vehicle is in town
+			if ( count crew _x == 0 && count ([_vehPos, _detectionRange] call BL_fnc_nearUnits) == 0 && count (_x getVariable ['LOG_contents', []]) == 0 ) then {
+				if ( _x in _carsInTowns ) then {
 					if ( !canMove _x || fuel _x < 0.1 ) then {
-						deleteVehicle _x;
-						[_x] call BL_fnc_deleteVehicleDB;
+						// Vehicle is in town
+						if ( !canMove _x || fuel _x < 0.1 ) then {
+							deleteVehicle _x;
+							[_x] call BL_fnc_deleteVehicleDB;
+						};
 					};
 				}
 				else {
@@ -40,8 +47,9 @@
 					deleteVehicle _x;
 					[_x] call BL_fnc_deleteVehicleDB;
 				};
-			};			
-		} forEach ((getPosATL mapCenter) nearEntities [_townCarClasses, 100000]);
+			};
+			true
+		} count ((getPosATL mapCenter) nearEntities [_townCarClasses, 100000]);
 		PERF_STOP("GC_townCars", true);
 		
 		// Remove rare cars.
