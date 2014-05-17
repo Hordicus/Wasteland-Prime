@@ -20,6 +20,7 @@ BL_particleSources = missionNamespace getVariable ["BL_particleSources", [[], []
 	// Spawn initial missions
 	for "_i" from 1 to ([_config, 'count'] call CBA_fnc_hashGet) do {
 		[] call BL_fnc_spawnMission;
+		sleep 30;
 	};
 	
 	// Spawn new mission after a mission completes
