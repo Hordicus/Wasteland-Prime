@@ -3,6 +3,7 @@ BL_animDoWorkInProgress = false;
 call compile preprocessFileLineNumbers "client\systems\playerActions\actions\treatPlayer.sqf";
 call compile preprocessFileLineNumbers "client\systems\playerActions\actions\repairVehicle.sqf";
 
+if ( !hasInterface ) exitwith{};
 [] spawn {
 	BL_playerActionsIDs = [];
 	BL_playerActionTargets = [];

@@ -41,6 +41,8 @@ BL_baseFlagBlockState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 	}] call BL_fnc_animDoWork;
 }] call BL_fnc_addAction;
 
+if ( isDedicated ) exitwith{};
+
 [] spawn {
 	waitUntil {!isNull player && player == player};
 	waitUntil{!isNil "BIS_fnc_init"};

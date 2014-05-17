@@ -1,7 +1,7 @@
 [
 // Init. Result of this will be passed to all
 // following functions as _this select 0.
-{false},
+{[false, _this select 1] call (_this select 0);},
 
 // Name
 'Helicopter Crash',

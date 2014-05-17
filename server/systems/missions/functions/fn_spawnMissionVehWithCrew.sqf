@@ -4,10 +4,9 @@ _class = [_this, 1, "", [""]] call BIS_fnc_param;
 _loc   = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 _units = [_this, 3, [], [[]]] call BIS_fnc_param;
 
-_veh = createVehicle [_class, _loc, [], 0, "CAN_COLLIDE"];
+_veh = [_class, _loc] call BL_fnc_safeVehicleSpawn;
 [_veh, 'reward'] call BL_fnc_trackVehicle;
 
-_createdUnits = [];
 _turrets = count (configFile >> "CfgVehicles" >> _class >> "Turrets");
 
 // If a list of units to use wasn't provided add riflemen for driver/turret(s)
@@ -17,19 +16,32 @@ if ( count _units == 0 ) then {
 	};
 };
 
-{
-	_createdUnits set [_forEachIndex, _group createUnit [_x, _loc, [], 0, "FORM"]];
-} forEach _units;
+[_group, _loc, _units, _veh, _turrets] spawn {
+	_group   = _this select 0;
+	_loc     = _this select 1;
+	_units   = _this select 2;
+	_veh     = _this select 3;
+	_turrets = _this select 4;
+	
+	diag_log _this;
 
-(_createdUnits select 0) moveInDriver _veh;
+	_createdUnits = [];
+	{
+		_createdUnits set [_forEachIndex, _group createUnit [_x, _loc, [], 0, "CAN_COLLIDE"]];
+		sleep 0.1;
+	} forEach _units;
 
-for "_i" from 1 to _turrets do {
-	if ( _i > count _createdUnits ) exitwith{};
-	(_createdUnits select _i) moveInTurret [_veh, [_i-1]];
+	(_createdUnits select 0) moveInDriver _veh;
+
+	for "_i" from 1 to _turrets do {
+		if ( _i > count _createdUnits ) exitwith{};
+		(_createdUnits select _i) moveInTurret [_veh, [_i-1]];
+	};
+
+	for "_i" from (1 + _turrets) to (count _createdUnits) - 1 do {
+		(_createdUnits select _i) moveInCargo _veh;
+	};
 };
 
-for "_i" from (1 + _turrets) to (count _createdUnits) - 1 do {
-	(_createdUnits select _i) moveInCargo _veh;
-};
 
 _veh

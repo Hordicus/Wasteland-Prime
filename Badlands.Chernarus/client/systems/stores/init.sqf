@@ -1,3 +1,4 @@
+if ( !hasInterface ) exitwith{};
 BL_PVAR_storeAccessObjects = missionNamespace getVariable ['BL_PVAR_storeAccessObjects', []];
 
 [[] call BL_fnc_storeConfig, {

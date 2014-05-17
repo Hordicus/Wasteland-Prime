@@ -10,11 +10,11 @@
 	while { count _city == 0 } do {
 		_city = _cities select floor random count _cities;
 		
-		if ( count ([_city select 1, 1000] call BL_fnc_nearUnits) > 0 || count ([_city select 1, 1000] call BL_fnc_nearMissions) > 0) then {
+		if ( count ([_city select 1, 1000] call BL_fnc_nearMissions) > 0) then {
 			_city = [];
 		};
 	};
-	
+		
 	_spawnSpot = (selectBestPlaces [_city select 1, 500, "meadow - houses", 1, 1]) select 0 select 0;
 	_group = createGroup east;
 	_vehicles = [];
@@ -114,7 +114,7 @@
 	
 	[_group] call BL_fnc_statTrackAIUnits;
 	
-	_vehicles
+	[_vehicles, _this select 1] call (_this select 0);
 },
 
 'Convoy',

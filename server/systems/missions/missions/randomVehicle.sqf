@@ -15,7 +15,7 @@
 		];
 	};
 	
-	([_possible] call BL_fnc_selectRandom) select 0
+	[([_possible] call BL_fnc_selectRandom) select 0, _this select 1] call (_this select 0);
 },
 
 {format['Secure %1', getText (configFile >> "CfgVehicles" >> (_this select 0) >> "displayName")]},
