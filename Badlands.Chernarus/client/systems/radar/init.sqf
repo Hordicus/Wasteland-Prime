@@ -1,4 +1,4 @@
-if ( isServer ) exitwith{};
+if ( !hasInterface ) exitwith{};
 
 radarLocations = missionNamespace getVariable ['radarLocations', [
 	/*

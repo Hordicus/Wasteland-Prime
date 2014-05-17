@@ -1,3 +1,4 @@
+if ( !hasInterface ) exitwith{};
 _cities = call BL_fnc_findCities;
 
 {
