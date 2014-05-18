@@ -1,5 +1,9 @@
 private ['_value', '_a', '_str'];
-_value = [_this, 0, "", ["", 0, true, false, [], sideLogic, nil]] call BIS_fnc_param;
+_value = _this;
+
+if ( typeName _this == "ARRAY" ) then {
+	_value = _this select 0;
+};
 
 if ( isNil "_value" ) then {
 	_value = "NULL";
