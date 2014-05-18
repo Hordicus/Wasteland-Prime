@@ -34,8 +34,12 @@
 					if ( !canMove _x || fuel _x < 0.1 ) then {
 						// Vehicle is in town
 						if ( !canMove _x || fuel _x < 0.1 ) then {
-							deleteVehicle _x;
-							[_x] call BL_fnc_deleteVehicleDB;
+							_x setDamage 0;
+							
+							if ( local _x ) then {
+								_x setFuel 1;
+								_x engineOn false;
+							};
 						};
 					};
 				}
