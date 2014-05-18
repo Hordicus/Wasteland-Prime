@@ -45,7 +45,9 @@
 				}
 				else {
 					// Not in town... probably (hopefully) abandoned
-					BL_townVehiclesToRespawn set [count BL_townVehiclesToRespawn, _x];
+					if !( _x in BL_townVehiclesToRespawn ) then {
+						BL_townVehiclesToRespawn set [count BL_townVehiclesToRespawn, _x];
+					};
 				};
 			};
 			true
