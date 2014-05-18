@@ -34,8 +34,8 @@
 		};
 	} forEach _vehicles;
 
+	waitUntil { !isNil "PERS_init_done" };
 	while { true } do {
-		waitUntil { !isNil "PERS_init_done" };
 		{
 			_cityCenter = _x select 1;
 			_cityRadius = _x select 2;
