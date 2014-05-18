@@ -66,6 +66,6 @@
 			};
 			true
 		} count (entities 'Helicopter');
-		sleep 1;
+		sleep 3;
 	};
 };

@@ -40,6 +40,6 @@ radarState = [];
 				};
 			};
 		} forEach radarLocations;
-		sleep 0.1;
+		sleep 1;
 	};
 };
