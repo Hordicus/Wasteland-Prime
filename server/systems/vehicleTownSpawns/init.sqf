@@ -15,6 +15,8 @@
 	}
 ]] call BL_fnc_persRegisterTypeHandler;
 
+BL_townVehiclesToRespawn = [];
+
 [] spawn {
 	private ["_cities","_config","_vehicles","_classes","_lowestChance","_maxPerCity","_vehiclesPerMeter","_cargoGroups","_cityCenter","_cityRadius","_sqMeters","_playersInTown","_vehiclesInTown","_currentCount","_maxCount","_searchDistance","_chance","_possible","_class","_distance","_direction","_nearCars","_veh","_cargoAdded","_cargo","_originalCargo"];
 	_cities = call BL_fnc_findCities;
@@ -54,7 +56,17 @@
 				// Bring vehicle count up to max count
 				for "_i" from 1 to ( _maxCount - _currentCount ) do {
 					_pos = [];
-					_class = ([_vehicles, 1, _lowestChance] call BL_fnc_selectRandom) select 0;
+					_class = "";
+					_veh = objNull;
+					
+					if ( count BL_townVehiclesToRespawn > 0 ) then {
+						_veh = BL_townVehiclesToRespawn select 0;
+						BL_townVehiclesToRespawn = BL_townVehiclesToRespawn - [_veh];
+						_class = typeOf _veh;
+					}
+					else {
+						_class = ([_vehicles, 1, _lowestChance] call BL_fnc_selectRandom) select 0;
+					};
 					
 					// Keep trying until we find a good spot.
 					// Good spot = emptyPosition and no car within 20m
@@ -72,11 +84,22 @@
 							_pos = [];
 						};
 					};
-					
-					_veh = [_class, _pos] call BL_fnc_safeVehicleSpawn;
-					_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
-					_veh setVariable ['originalCargo', _cargoAdded];
-					[[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;					
+
+				
+					if ( !isNull _veh ) then {
+						[_veh, _pos] call BL_fnc_safeVehicleSetPos;
+						
+						if ( local _veh ) then {
+							_veh setFuel 1;
+							_veh engineOn false;
+						};
+					}
+					else {						
+						_veh = [_class, _pos] call BL_fnc_safeVehicleSpawn;
+						_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
+						_veh setVariable ['originalCargo', _cargoAdded];
+						[[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
+					};
 				};
 				
 				// Check cargo of existing vehicles

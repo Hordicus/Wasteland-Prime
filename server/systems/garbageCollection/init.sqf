@@ -45,8 +45,7 @@
 				}
 				else {
 					// Not in town... probably (hopefully) abandoned
-					deleteVehicle _x;
-					[_x] call BL_fnc_deleteVehicleDB;
+					BL_townVehiclesToRespawn set [count BL_townVehiclesToRespawn, _x];
 				};
 			};
 			true
