@@ -30,12 +30,9 @@ PERS_init_done = true;
 
 // Delete entities that aren't in our system.
 [] spawn {
-	private ["_netId","_index"];
 	while { true } do {
 		{
-			_netId = netId _x;
-			_index = PERS_trackedObjectsNetIDs find _netId;
-			if ( _index == -1 && !(_x isKindOf "ParachuteBase") ) then {
+			if ( (PERS_trackedObjectsNetIDs find (netId _x)) == -1 && !(_x isKindOf "ParachuteBase") ) then {
 				[_x] call BL_fnc_logUntrackedVehicle;
 				deleteVehicle _x;
 			};
@@ -50,7 +47,7 @@ PERS_init_done = true;
 	private ["_netId","_index"];
 	while { true } do {
 		{
-			_ignore = _x call {
+			if !(_x call {
 				// Entities, tracked above.
 				if ( _x isKindOf 'LandVehicle' ) exitwith {true};
 				if ( _x isKindOf 'Air' ) exitwith {true};
@@ -64,12 +61,8 @@ PERS_init_done = true;
 				if ( _x isKindOf 'Man' ) exitwith {true};
 				if ( _x isKindOf 'Logic' ) exitwith {true};
 				false
-			};
-			
-			if ( !_ignore ) then {
-				_netId = netId _x;
-				_index = PERS_trackedObjectsNetIDs find _netId;
-				if ( _index == -1 ) then {
+			}) then {
+				if ( (PERS_trackedObjectsNetIDs find (netId _x)) == -1 ) then {
 					[_x] call BL_fnc_logUntrackedVehicle;
 					deleteVehicle _x;
 				};
