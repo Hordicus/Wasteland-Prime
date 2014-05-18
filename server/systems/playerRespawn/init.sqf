@@ -69,6 +69,6 @@
 			true
 		} count (entities 'Helicopter');
 		PERF_STOP("heliUpdate", false);
-		sleep 1;
+		sleep 3;
 	};
 };

@@ -85,6 +85,6 @@ radarState = [];
 		} forEach radarLocations;
 		PERF_STOP('radar', false);
 		
-		sleep 1;
+		sleep 5;
 	};
 };

@@ -17,7 +17,7 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 	// Broadcast BL_scoreboard up to once a second, but only if
 	// it has changed.
 	while { true } do {
-		sleep 1;
+		sleep 5;
 		
 		PERF_START("scoreboardBroadcast");
 		if !( _lastBroadcast isEqualTo BL_scoreboard ) then {

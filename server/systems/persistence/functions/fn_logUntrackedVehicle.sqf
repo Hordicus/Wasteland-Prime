@@ -1,6 +1,8 @@
 private ['_obj', '_owner', '_city', '_dir', '_location', '_msg', '_nearPlayers', '_info'];
 _obj = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 
+if ( isNull _obj ) exitwith{};
+
 _owner = objNull;
 
 // Find player object with same owner as obj

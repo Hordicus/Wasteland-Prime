@@ -22,6 +22,7 @@ class cfgFunctions {
 			};
 			file = "\x\bl_server\addons\functions";
 			class safeVehicleSpawn{};
+			class safeVehicleSetPos{};
 			class selectRandom{};
 			class hasLOS{};
 			
