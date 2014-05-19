@@ -1,4 +1,4 @@
-_database   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
+_defaultDatabase   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
 
 while { count MySQLQueue > 0 } do {
 	_item = MySQLQueue select 0;
@@ -7,6 +7,12 @@ while { count MySQLQueue > 0 } do {
 	
 	_command = _item select 0;
 	_arguments = _item select 1;
+	_database = _item select 4;
+	
+	if ( _database == "" ) then {
+		_database = _defaultDatabase;
+	};
+	
 	_query = format['Arma2NETMySQLCommandAsync ["%1", "%2"]', _database, format ([_command] + _arguments )];
 	
 	"Arma2Net.Unmanaged" callExtension _query;
