@@ -50,17 +50,24 @@ if ( _itemCount == 0 ) then {
 		// By this point player has been restored. Give them control ASAP.
 		// Check if they are in spawn. If their last save was at a respawn
 		// marker they logged out dead.
-		if (
-			(getMarkerPos 'respawn_west') distance player > 100 &&
-			(getMarkerPos 'respawn_east') distance player > 100 &&
-			(getMarkerPos 'respawn_guerrila') distance player > 100 &&
-			count PVAR_playerLoaded != 1 // Length will be one when player logged out dead
-		) then {
+		if ( count PVAR_playerLoaded != 1 ) then { // Length will be one when player logged out dead
+			["Setting up player", 0.6] call BL_fnc_loadingScreen;
+			
 			[player, PVAR_playerLoaded select 0] call GEAR_fnc_setLoadout;
-			player allowDamage true;
-			player enableSimulation true;
 			player playMove (PVAR_playerLoaded select 1);
 			player setDir (PVAR_playerLoaded select 2);
+
+			// Server will call setPos on player. Wait for client to notice.
+			["Waiting for position update", 0.9] call BL_fnc_loadingScreen;
+			waitUntil {
+				(getMarkerPos 'respawn_west') distance player > 100 &&
+				(getMarkerPos 'respawn_east') distance player > 100 &&
+				(getMarkerPos 'respawn_guerrila') distance player > 100
+			};
+
+			player allowDamage true;
+			player enableSimulation true;
+
 			[] call BL_fnc_loadingScreen;
 		}
 		else {
