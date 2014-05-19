@@ -124,23 +124,27 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 	_player setVariable ['side', side _player];
 	_player setVariable ['uid', getPlayerUID _player];
 	
-	_points = (["SELECT SUM(`points`) FROM `player_points` WHERE `player_uid` = '%1'", [getPlayerUID _player]] call BL_fnc_MySQLCommandSync) select 0 select 0 select 0;
-	[BL_totalPoints, getPlayerUID _player, _points] call CBA_fnc_hashSet;
-	
-	// Player could be reconnecting. Don't add player if they are already on the scoreboard
-	_playerIndex = BL_scoreboardLookup find (format['%1%2', side _player, name _player]);
-	if ( _playerIndex > -1 ) exitwith{};
-	
-	_index = count BL_scoreboard;
-	BL_scoreboard set [_index, [
-		[_points] call BL_fnc_pointsToRank,
-		side _player,
-		name _player,
-		BL_playerBountyAmount,
-		0,
-		0,
-		0
-	]];
-	
-	BL_scoreboardLookup set [_index, format['%1%2', side _player, name _player]];
+	["SELECT SUM(`points`) FROM `player_points` WHERE `player_uid` = '%1'", [getPlayerUID _player], [_player], {
+		_points = _this select 0 select 0 select 0 select 0;
+		_player = _this select 1 select 0;
+		
+		[BL_totalPoints, getPlayerUID _player, _points] call CBA_fnc_hashSet;
+		
+		// Player could be reconnecting. Don't add player if they are already on the scoreboard
+		_playerIndex = BL_scoreboardLookup find (format['%1%2', side _player, name _player]);
+		if ( _playerIndex > -1 ) exitwith{};
+		
+		_index = count BL_scoreboard;
+		BL_scoreboard set [_index, [
+			[_points] call BL_fnc_pointsToRank,
+			side _player,
+			name _player,
+			BL_playerBountyAmount,
+			0,
+			0,
+			0
+		]];
+		
+		BL_scoreboardLookup set [_index, format['%1%2', side _player, name _player]];
+	}] call BL_fnc_MySQLCommand;
 }] call CBA_fnc_addEventHandler;
