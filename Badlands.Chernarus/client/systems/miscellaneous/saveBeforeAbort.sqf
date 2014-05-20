@@ -6,6 +6,8 @@
 */
 _menuIDD = getNumber (configFile >> "RscDisplayMPInterrupt" >> "idd");
 _abortIDC = getNumber (configFile >> "RscDisplayMPInterrupt" >> "controls" >> "ButtonAbort" >> "idc");
+waitUntil { !isNil "PVAR_playerLoaded" };
+waitUntil { simulationEnabled player };
 
 while { true } do {
 	waitUntil { !isNull findDisplay _menuIDD };
