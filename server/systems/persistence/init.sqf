@@ -21,12 +21,16 @@ _result = [] call compile preprocessFileLineNumbers _result;
 
 _result = [_result] call BL_fnc_processQueryResult;
 
-{
-	[_x] call BL_fnc_loadVehicle;
-	true
-} count (_result select 0);
+(_result select 0) spawn {
+	{
+		[_x] call BL_fnc_loadVehicle;
+		if ( _forEachIndex % 10 == 0 ) then { sleep 0.1 };
+		true
+	} forEach _this;
 
-PERS_init_done = true;
+	PERS_init_done = true;
+	publicVariable "PERS_init_done";
+};
 
 // Delete entities that aren't in our system.
 [] spawn {

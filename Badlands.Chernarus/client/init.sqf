@@ -39,6 +39,9 @@ if ( _itemCount == 0 ) then {
 };
 
 [] spawn {
+	["Waiting for server to initialize", 0.5] call BL_fnc_loadingScreen;
+	waitUntil {!isNil"PERS_init_done"};
+
 	["Waiting for player data", 0.1] call BL_fnc_loadingScreen;
 	PVAR_loadPlayer = player;
 	publicVariableServer "PVAR_loadPlayer";
