@@ -2,7 +2,9 @@ private ['_veh'];
 _veh = _this select 0;
 
 if ( _veh isKindOf "AllVehicles" && isNil {_veh getVariable 'simManaged'}) then {
-	_veh enableSimulation false;
+	if ( count crew _veh == 0 ) then {
+		_veh enableSimulation false;
+	};
 
 	_veh addEventHandler ['GetIn', {
 		(_this select 0) enableSimulation true;
