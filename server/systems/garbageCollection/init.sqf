@@ -29,7 +29,7 @@
 		{
 			_vehPos = getPosATL _x;
 			// Anyone around?
-			if ( count crew _x == 0 && count ([_vehPos, _detectionRange] call BL_fnc_nearUnits) == 0 && count (_x getVariable ['LOG_contents', []]) == 0 ) then {
+			if ( count crew _x == 0 && count ([_vehPos, _detectionRange] call BL_fnc_nearUnits) == 0 && count (_x getVariable ['LOG_contents', []]) == 0 && !([_x] call BL_fnc_isInBase)) then {
 				if ( _x in _carsInTowns ) then {
 					if ( !canMove _x || fuel _x < 0.1 ) then {
 						// Vehicle is in town
