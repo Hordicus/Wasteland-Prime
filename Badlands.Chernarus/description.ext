@@ -41,6 +41,7 @@ class CfgFunctions {
 			class switchMove{};
 			class say3D{};
 			class serverEvent{};
+			class showMPInterrupt{};
 			class config {
 				file = "config\config.sqf";
 			};
