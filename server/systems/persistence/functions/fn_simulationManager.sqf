@@ -9,6 +9,8 @@ if ( _veh isKindOf "AllVehicles" && isNil {_veh getVariable 'simManaged'}) then 
 	}];
 	
 	_veh addEventHandler ['GetOut', {
+		if ( count crew (_this select 0) > 0 ) exitwith{};
+	
 		if ( (_this select 0) call BIS_fnc_absSpeed < 1 ) then {
 			(_this select 0) enableSimulation false;
 		}
