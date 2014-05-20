@@ -5,7 +5,7 @@ _loc   = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 _units = [_this, 3, [], [[]]] call BIS_fnc_param;
 
 _veh = [_class, _loc] call BL_fnc_safeVehicleSpawn;
-[_veh, 'reward'] call BL_fnc_trackVehicle;
+[_veh, 'reward', 0] call BL_fnc_trackVehicle;
 
 _turrets = count (configFile >> "CfgVehicles" >> _class >> "Turrets");
 
@@ -22,17 +22,17 @@ if ( count _units == 0 ) then {
 	_units   = _this select 2;
 	_veh     = _this select 3;
 	_turrets = _this select 4;
-	
-	diag_log _this;
 
 	_createdUnits = [];
-	{
-		_createdUnits set [_forEachIndex, _group createUnit [_x, _loc, [], 0, "CAN_COLLIDE"]];
-		sleep 0.1;
-	} forEach _units;
-
+	_createdUnits set [0, (_group createUnit [_units select 0, _loc, [], 0, "CAN_COLLIDE"])];
+	
 	(_createdUnits select 0) moveInDriver _veh;
-
+	
+	for "_i" from 1 to (count _units) - 1 do {
+		_createdUnits set [_i, _group createUnit [_units select _i, _loc, [], 0, "CAN_COLLIDE"]];
+		sleep 1;
+	};
+	
 	for "_i" from 1 to _turrets do {
 		if ( _i > count _createdUnits ) exitwith{};
 		(_createdUnits select _i) moveInTurret [_veh, [_i-1]];
