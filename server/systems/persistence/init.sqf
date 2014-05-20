@@ -7,6 +7,7 @@ PERS_typeData = [];
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\deleteVehicle.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\loadPlayer.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\requestSave.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\setVelocity.sqf";
 
 // Handlers that don't have their own system
 [] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\typeHandlers\baseParts.sqf";

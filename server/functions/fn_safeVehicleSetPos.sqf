@@ -7,6 +7,7 @@ if ( count _position == 2 ) then {
 	_position set [2, 0];
 };
 
+_veh enableSimulation true;
 _veh allowDamage false;
 _veh setDir _dir;
 _veh setPosATL _position;
@@ -30,6 +31,8 @@ _veh spawn {
 	if ( isNil {_this getVariable 'lastSaveState'} ) then {
 		_this setVariable ['lastSaveState', _this call BL_fnc_vehicleState];
 	};
+	
+	[_this] call BL_fnc_simulationManager;
 };
 
 _veh
