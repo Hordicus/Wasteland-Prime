@@ -13,7 +13,13 @@ while { count MySQLQueue > 0 } do {
 		_database = _defaultDatabase;
 	};
 	
-	_query = format['Arma2NETMySQLCommandAsync ["%1", "%2"]', _database, format ([_command] + _arguments )];
+	_query = _command;
+	
+	if !( _arguments isEqualTo [] ) then {
+		_query = format ([_command] + _arguments );
+	};
+	
+	_query = 'Arma2NETMySQLCommandAsync ["'+_database+'", "'+_query+'"]';
 	
 	"Arma2Net.Unmanaged" callExtension _query;
 	_result = "";

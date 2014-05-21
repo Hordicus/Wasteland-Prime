@@ -24,6 +24,7 @@ class persistence {
 	
 	class processQueryResult{};
 	class MySQLCommand{};
+	class MySQLGroupCommand{};
 	class MySQLCommandSync{};
 	class MySQLProcessQueue{};
 	class noEmptyArrayValues{};

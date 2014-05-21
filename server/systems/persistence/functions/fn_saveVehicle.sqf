@@ -88,7 +88,7 @@ if ( _isNew ) then {
 }
 else {
 	_query = _query + "WHERE `id` = '%17'";
-	[_query, _data] call BL_fnc_MySQLCommand;
+	[_query, _data] call BL_fnc_MySQLGroupCommand;
 };
 
 _veh

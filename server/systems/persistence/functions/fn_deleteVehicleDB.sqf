@@ -8,6 +8,6 @@ if ( _index != -1 ) then {
 	PERS_trackedObjectsIDs set [_index, nil];
 	
 	if ( !isNil "_id" ) then {
-		["DELETE FROM `vehicles` WHERE `id` = %1", [_id]] call BL_fnc_MySQLCommand;
+		["DELETE FROM `vehicles` WHERE `id` = %1", [_id]] call BL_fnc_MySQLGroupCommand;
 	};
 };

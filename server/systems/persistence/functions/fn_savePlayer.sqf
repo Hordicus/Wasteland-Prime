@@ -28,4 +28,4 @@ WHERE `uid` = '%11' AND `side` = '%12'", [
 	_player getVariable ['BL_playerInv', []],
 	_playerUID,
 	str side _player
-]] call BL_fnc_MySQLCommand;
+]] call BL_fnc_MySQLGroupCommand;
