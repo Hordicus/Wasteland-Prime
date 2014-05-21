@@ -37,9 +37,6 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 	
 	if ( isPlayer _player ) then {	
 		_bounty = BL_playerBountyAmount * ([playerBounty, _playerName] call CBA_fnc_hashGet);
-
-		// Reset players bounty
-		[playerBounty, _playerName, 1] call CBA_fnc_hashSet;
 	}
 	else {
 		_bounty = _player getVariable ['bounty', BL_aiBountyAmount];

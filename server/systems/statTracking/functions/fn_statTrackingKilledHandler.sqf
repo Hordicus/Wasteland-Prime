@@ -7,7 +7,10 @@ _playerIndex = _player call BL_fnc_playerIndex;
 _playerVehicle = typeOf vehicle _player;
 
 if ( isPlayer _player ) then {
-	[_player, _killer, BL_scoreboard select _playerIndex select INDEX_BOUNTY] call BL_fnc_sendKillMsg;
+	[_player, _killer, BL_playerBountyAmount * ([playerBounty, _player getVariable 'name'] call CBA_fnc_hashGet)] call BL_fnc_sendKillMsg;
+
+	// Reset players bounty
+	[playerBounty, _player getVariable 'name', 1] call CBA_fnc_hashSet;
 }
 else {
 	[_player, _killer, _player getVariable ['bounty', BL_aiBountyAmount]] call BL_fnc_sendKillMsg;
