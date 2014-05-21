@@ -19,16 +19,21 @@ while { count MySQLQueue > 0 } do {
 		_query = format ([_command] + _arguments );
 	};
 	
-	_query = 'Arma2NETMySQLCommandAsync ["'+_database+'", "'+_query+'"]';
-	
-	"Arma2Net.Unmanaged" callExtension _query;
-	_result = "";
-	
-	while { _result == "" } do {
-		_result = "Arma2Net.Unmanaged" callExtension "Arma2NETMySQLCommandAsync []";
-		sleep 0.1;
-	};
+	if ( typeName (_item select 3) == "CODE" ) then {
+		_query = 'Arma2NETMySQLCommandAsync ["'+_database+'", "'+_query+'"]';
+		
+		"Arma2Net.Unmanaged" callExtension _query;
+		_result = "";
+		
+		while { _result == "" } do {
+			_result = "Arma2Net.Unmanaged" callExtension "Arma2NETMySQLCommandAsync []";
+			sleep 0.1;
+		};
 
-	_result = [[_result] call BL_fnc_processQueryResult] call BL_fnc_emptyArrayValues;
-	[_result, (_item select 2)] call (_item select 3);
+		_result = [[_result] call BL_fnc_processQueryResult] call BL_fnc_emptyArrayValues;
+		[_result, (_item select 2)] call (_item select 3);
+	}
+	else {
+		"Arma2Net.Unmanaged" callExtension ('Arma2NETMySQLCommandAsyncNoResult ["'+_database+'", "'+_query+'"]');
+	};
 };

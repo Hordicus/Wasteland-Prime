@@ -2,7 +2,7 @@ private ['_database', '_command', '_arguments', '_argStr'];
 _command    = [_this, 0, "", [""]] call BIS_fnc_param;
 _arguments  = [_this, 1, [], [[]]] call BIS_fnc_param;
 _cbArgs     = [_this, 2, [], [[]]] call BIS_fnc_param;
-_callback   = [_this, 3, {}, [{}]] call BIS_fnc_param;
+_callback   = [_this, 3, false, [{}, false]] call BIS_fnc_param;
 _database   = [_this, 4, "", [""]] call BIS_fnc_param;
 
 _arguments = [_arguments] call BL_fnc_noEmptyArrayValues;
