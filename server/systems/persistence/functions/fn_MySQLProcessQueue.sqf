@@ -20,7 +20,7 @@ while { count MySQLQueue > 0 } do {
 	
 	while { _result == "" } do {
 		_result = "Arma2Net.Unmanaged" callExtension "Arma2NETMySQLCommandAsync []";
-		sleep 0.5;
+		sleep 0.1;
 	};
 
 	_result = [[_result] call BL_fnc_processQueryResult] call BL_fnc_emptyArrayValues;
