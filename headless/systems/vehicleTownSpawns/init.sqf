@@ -1,20 +1,3 @@
-['townVeh', [
-	// Save
-	{},
-	
-	// Load
-	{
-		private ['_veh'];
-		_veh = _this select 0;
-		
-		_veh setVariable ['originalCargo', [
-			getWeaponCargo _veh,
-			getMagazineCargo _veh,
-			getItemCargo _veh
-		]];
-	}
-]] call BL_fnc_persRegisterTypeHandler;
-
 BL_townVehiclesToRespawn = [];
 
 [] spawn {
@@ -93,7 +76,7 @@ BL_townVehiclesToRespawn = [];
 					_veh = [_class, _pos] call BL_fnc_safeVehicleSpawn;
 					_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
 					_veh setVariable ['originalCargo', _cargoAdded];
-					[[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
+					// [[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
 				};
 			};
 			

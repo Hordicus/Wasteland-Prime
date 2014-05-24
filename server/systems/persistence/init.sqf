@@ -1,3 +1,20 @@
+['townVeh', [
+	// Save
+	{},
+	
+	// Load
+	{
+		private ['_veh'];
+		_veh = _this select 0;
+		
+		_veh setVariable ['originalCargo', [
+			getWeaponCargo _veh,
+			getMagazineCargo _veh,
+			getItemCargo _veh
+		]];
+	}
+]] call BL_fnc_persRegisterTypeHandler;
+
 PERS_trackedObjectsNetIDs = [];
 PERS_trackedObjectsIDs = [];
 PERS_typeData = [];
@@ -34,46 +51,46 @@ _result = [_result] call BL_fnc_processQueryResult;
 };
 
 // Delete entities that aren't in our system.
-[] spawn {
-	while { true } do {
-		{
-			if ( (PERS_trackedObjectsNetIDs find (netId _x)) == -1 && !(_x isKindOf "ParachuteBase") ) then {
-				[_x] call BL_fnc_logUntrackedVehicle;
-				deleteVehicle _x;
-			};
-		} count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
+// [] spawn {
+	// while { true } do {
+		// {
+			// if ( (PERS_trackedObjectsNetIDs find (netId _x)) == -1 && !(_x isKindOf "ParachuteBase") ) then {
+				// [_x] call BL_fnc_logUntrackedVehicle;
+				// deleteVehicle _x;
+			// };
+		// } count ((getPosATL mapCenter) nearEntities [["LandVehicle","Air","ReammoBox_F"], 100000]);
 	
-		sleep 60;
-	};
-};
+		// sleep 60;
+	// };
+// };
 
 // Check all objects, delete anything that isn't tracked
-[] spawn {
-	private ["_netId","_index"];
-	while { true } do {
-		{
-			if !(_x call {
+// [] spawn {
+	// private ["_netId","_index"];
+	// while { true } do {
+		// {
+			// if !(_x call {
 				// Entities, tracked above.
-				if ( _x isKindOf 'LandVehicle' ) exitwith {true};
-				if ( _x isKindOf 'Air' ) exitwith {true};
-				if ( _x isKindOf 'ReammoBox_F' ) exitwith {true};
-				if ( _x isKindOf 'CraterLong' ) exitwith {true};
-				if ( _x isKindOf 'WeaponHolderSimulated' ) exitwith {true};
-				if ( _x isKindOf 'GroundWeaponHolder' ) exitwith {true};
-				if ( _x isKindOf 'MineBase' ) exitwith {true};
-				if ( _x isKindOf 'Ruins' ) exitwith {true};
+				// if ( _x isKindOf 'LandVehicle' ) exitwith {true};
+				// if ( _x isKindOf 'Air' ) exitwith {true};
+				// if ( _x isKindOf 'ReammoBox_F' ) exitwith {true};
+				// if ( _x isKindOf 'CraterLong' ) exitwith {true};
+				// if ( _x isKindOf 'WeaponHolderSimulated' ) exitwith {true};
+				// if ( _x isKindOf 'GroundWeaponHolder' ) exitwith {true};
+				// if ( _x isKindOf 'MineBase' ) exitwith {true};
+				// if ( _x isKindOf 'Ruins' ) exitwith {true};
 
-				if ( _x isKindOf 'Man' ) exitwith {true};
-				if ( _x isKindOf 'Logic' ) exitwith {true};
-				false
-			}) then {
-				if ( (PERS_trackedObjectsNetIDs find (netId _x)) == -1 ) then {
-					[_x] call BL_fnc_logUntrackedVehicle;
-					deleteVehicle _x;
-				};
-			};
-		} count allMissionObjects "All";
+				// if ( _x isKindOf 'Man' ) exitwith {true};
+				// if ( _x isKindOf 'Logic' ) exitwith {true};
+				// false
+			// }) then {
+				// if ( (PERS_trackedObjectsNetIDs find (netId _x)) == -1 ) then {
+					// [_x] call BL_fnc_logUntrackedVehicle;
+					// deleteVehicle _x;
+				// };
+			// };
+		// } count allMissionObjects "All";
 	
-		sleep (60 * 5);
-	};
-};
+		// sleep (60 * 5);
+	// };
+// };

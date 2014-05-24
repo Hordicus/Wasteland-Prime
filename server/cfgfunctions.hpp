@@ -1,7 +1,6 @@
 class cfgFunctions {
 	class BL {
 		#include "systems\radar\cfgfunctions.hpp"
-		#include "systems\vehicleTownSpawns\cfgfunctions.hpp"
 		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
 		#include "systems\persistence\cfgfunctions.hpp"
