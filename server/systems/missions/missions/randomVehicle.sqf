@@ -62,26 +62,14 @@ BL_fnc_missionRandomField,
 	_grp setCombatMode "RED";
 	
 	[_grp] call BL_fnc_statTrackAIUnits;
-		
-	waitUntil {
-		sleep 1;
-		({alive _x} count units _grp) == 0
-		|| !alive _missionReward
-	};
 	
-	if ( alive _missionReward ) then {
-		[_missionReward, false] call BL_fnc_lockVehicle;
-		_missionReward setVariable ['getInEH', _missionReward addEventHandler ['GetIn', {
-			[_this select 0] call BL_fnc_saveVehicle;
-			(_this select 0) removeEventHandler ['GetIn', (_this select 0) getVariable 'getInEH'];
-		}]];
-		
-		[_missionCode, true] call BL_fnc_missionDone;
-	}
-	else {
-		[_missionCode, false] call BL_fnc_missionDone;
-		
-		// Make units flee. Wait until they are out of sight and then delete them.
+	[_missionReward] call BL_fnc_saveOnGetIn;
+	[_grp, _missionCode, [_missionReward], {
+		[_this select 0 select 0, false] call BL_fnc_lockVehicle;
+	}] call BL_fnc_missionDoneWhenKilled;
+	
+	[_missionReward, _missionCode, [_grp], {
+		_grp = _this select 0 select 0;
 		_grp allowFleeing 1;
 		
 		_grp spawn {
@@ -96,5 +84,5 @@ BL_fnc_missionRandomField,
 				} count (units _this);
 			};
 		};
-	};
+	}] call BL_fnc_failOnKilled;
 }];
