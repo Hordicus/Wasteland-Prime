@@ -15,6 +15,17 @@
 	}
 ]] call BL_fnc_persRegisterTypeHandler;
 
+['rareVeh', [
+	// Save
+	{(_this select 0) getVariable ['originalSpawnPoint', getPosATL (_this select 0)]},
+	
+	// Load
+	{
+		(_this select 0) setVariable ['originalSpawnPoint', _this select 1];
+	}
+]] call BL_fnc_persRegisterTypeHandler;
+
+
 PERS_trackedObjectsNetIDs = [];
 PERS_trackedObjectsIDs = [];
 PERS_typeData = [];

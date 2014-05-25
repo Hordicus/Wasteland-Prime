@@ -20,16 +20,6 @@ _groupClasses = [] call CBA_fnc_hashCreate;
 	[_groupClasses, _key, _classes] call CBA_fnc_hashSet;
 }] call CBA_fnc_hashEachPair;
 
-['rareVeh', [
-	// Save
-	{(_this select 0) getVariable ['originalSpawnPoint', getPosATL (_this select 0)]},
-	
-	// Load
-	{
-		(_this select 0) setVariable ['originalSpawnPoint', _this select 1];
-	}
-]] call BL_fnc_persRegisterTypeHandler;
-
 while { true } do {
 	waitUntil { !isNil "PERS_init_done" };
 
@@ -68,7 +58,10 @@ while { true } do {
 
 					_class = (_possible select floor random count _possible) select 0;
 					_veh = [_class, _matchPos] call BL_fnc_safeVehicleSpawn;
-					[[_veh, 'rareVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
+					
+					[_veh, 'rareVeh', [], {
+						[_this select 0] call BL_fnc_saveVehicle;
+					}] call BL_fnc_trackVehicle;					
 				};
 			};
 		};

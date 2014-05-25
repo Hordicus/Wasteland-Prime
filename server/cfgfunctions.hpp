@@ -1,7 +1,6 @@
 class cfgFunctions {
 	class BL {
 		#include "systems\radar\cfgfunctions.hpp"
-		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
 		#include "systems\persistence\cfgfunctions.hpp"
 		#include "systems\playerRespawn\cfgfunctions.hpp"
@@ -30,11 +29,6 @@ class cfgFunctions {
 
 			class townRadarInit {
 				file = "\x\bl_server\addons\systems\townRadar\init.sqf";
-				preInit = 1;
-			};
-			
-			class garbageCollectionInit {
-				file = "\x\bl_server\addons\systems\garbageCollection\init.sqf";
 				preInit = 1;
 			};
 		};
