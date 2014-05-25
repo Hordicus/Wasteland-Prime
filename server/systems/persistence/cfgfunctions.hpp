@@ -15,7 +15,6 @@ class persistence {
 	
 	class saveVehicle{};
 	class loadVehicle{};
-	class vehicleWeapons{};
 	class trackVehicle{};
 	class deleteVehicleDB{};
 	class queueSaveVehicle{};

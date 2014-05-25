@@ -5,7 +5,6 @@ class cfgFunctions {
 		#include "systems\persistence\cfgfunctions.hpp"
 		#include "systems\playerRespawn\cfgfunctions.hpp"
 		#include "systems\weather\cfgfunctions.hpp"
-		#include "systems\missions\cfgfunctions.hpp"
 		#include "systems\baseFlag\cfgfunctions.hpp"
 		#include "systems\stores\cfgfunctions.hpp"
 		#include "systems\statTracking\cfgfunctions.hpp"

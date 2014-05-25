@@ -3,6 +3,7 @@ class cfgFunctions {
 		#include "systems\vehicleTownSpawns\cfgfunctions.hpp"
 		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
 		#include "systems\persistence\cfgfunctions.hpp"
+		#include "systems\missions\cfgfunctions.hpp"
 		class Headless {
 			class HeadlessInit {
 				file = "\x\bl_headless\addons\init.sqf";

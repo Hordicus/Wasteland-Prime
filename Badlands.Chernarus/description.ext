@@ -70,6 +70,7 @@ class CfgFunctions {
 			class safeVehicleSetPos{};
 			class safeVehicleSpawn{};
 			class simulationManager{};
+			class vehicleWeapons{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"

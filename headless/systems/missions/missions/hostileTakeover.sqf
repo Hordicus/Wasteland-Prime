@@ -52,7 +52,7 @@
 	_wp setWaypointType "SAD";
 	_outerGroup setCurrentWaypoint _wp;
 		
-	[_outerGroup] call BL_fnc_statTrackAIUnits;
+	[[_outerGroup], "BL_fnc_statTrackAIUnits"] call BL_fnc_call;
 	
 	_soundSource = createVehicle ["FlagSmall_F", [_location select 0, _location select 1, 50], [], 0, "CAN_COLLIDE"];
 	_soundSource enableSimulationGlobal false;
@@ -145,7 +145,7 @@
 		};
 	};
 	
-	[_allUnits] call BL_fnc_statTrackAIUnits;
+	[[_allUnits], "BL_fnc_statTrackAIUnits"] call BL_fnc_call;
 	
 	while { [_missionCode] call BL_fnc_taskExists && {!([_missionCode] call BL_fnc_taskCompleted)} } do {
 		sleep 5;

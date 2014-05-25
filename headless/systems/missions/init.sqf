@@ -13,9 +13,23 @@ BL_particleSources = missionNamespace getVariable ["BL_particleSources", [[], []
 
 [] spawn {
 	_config = call BL_fnc_missionsConfig;
-	
-	// Wait configured amount of time before first mission
-	sleep ([_config, 'roundStartDelay'] call CBA_fnc_hashGet);
+
+	if ( !isNil "BL_PVAR_currentTasks" ) then {
+		// End all missions first
+		[BL_PVAR_currentTasks, {
+			[_value select 0 select 0] call BL_fnc_deleteTask;
+		}] call CBA_fnc_hashEachPair;
+		
+		{
+			_x setDamage 1;
+			deleteVehicle _x;
+			nil
+		} count (allUnits - playableUnits);
+	}
+	else {
+		// Wait configured amount of time before first mission
+		sleep ([_config, 'roundStartDelay'] call CBA_fnc_hashGet);
+	};	
 	
 	// Spawn initial missions
 	for "_i" from 1 to ([_config, 'count'] call CBA_fnc_hashGet) do {
