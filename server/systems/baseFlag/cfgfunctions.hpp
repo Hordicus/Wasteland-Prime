@@ -6,5 +6,4 @@ class baseFlagServer {
 	
 	file = "\x\bl_server\addons\systems\baseFlag\functions";
 	class createBaseFlag{};
-	class isInBase{};
 };

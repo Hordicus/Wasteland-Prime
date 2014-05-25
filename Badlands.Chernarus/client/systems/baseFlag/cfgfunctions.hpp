@@ -8,4 +8,5 @@ class baseFlag {
 	class createFlagMarkers{};
 	class drawBaseFlags{};
 	class flagRespawnOptions{};
+	class isInBase{};
 };
