@@ -76,7 +76,10 @@ BL_townVehiclesToRespawn = [];
 					_veh = [_class, _pos] call BL_fnc_safeVehicleSpawn;
 					_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
 					_veh setVariable ['originalCargo', _cargoAdded];
-					// [[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
+					
+					[_veh, 'townVeh', [], {
+						[_this select 0] call BL_fnc_saveVehicle;
+					}] call BL_fnc_trackVehicle
 				};
 			};
 			
