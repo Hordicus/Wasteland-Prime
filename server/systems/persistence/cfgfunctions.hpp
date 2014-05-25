@@ -19,8 +19,6 @@ class persistence {
 	class trackVehicle{};
 	class deleteVehicleDB{};
 	class queueSaveVehicle{};
-	class vehicleState{};
-	class simulationManager{};
 	
 	class processQueryResult{};
 	class MySQLCommand{};
