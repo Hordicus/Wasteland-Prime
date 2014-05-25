@@ -66,6 +66,9 @@ class CfgFunctions {
 			class subMoney{};
 			class money{};
 			class nearUnits{};
+			class selectRandom{};
+			class safeVehicleSetPos{};
+			class safeVehicleSpawn{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"

@@ -20,9 +20,6 @@ class cfgFunctions {
 				preInit = 1;
 			};
 			file = "\x\bl_server\addons\functions";
-			class safeVehicleSpawn{};
-			class safeVehicleSetPos{};
-			class selectRandom{};
 			class hasLOS{};
 			
 			class playerMenuServerInit {
