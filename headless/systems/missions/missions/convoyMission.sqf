@@ -97,7 +97,7 @@
 			]] call BL_fnc_spawnMissionVehWithCrew];
 			
 			{
-				_x setVariable ['bounty', 1000];
+				_x setVariable ['bounty', 1000, true];
 			} count (units _group);
 			
 		};
