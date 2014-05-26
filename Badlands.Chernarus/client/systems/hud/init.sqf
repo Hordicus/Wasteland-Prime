@@ -1,4 +1,4 @@
-if ( isDedicated ) exitwith{};
+if ( !hasInterface ) exitwith{};
 
 #include "functions\macro.sqf"
 [] spawn {
