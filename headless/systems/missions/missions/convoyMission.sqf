@@ -112,7 +112,7 @@
 		};
 	};
 	
-	[[_group], "BL_fnc_statTrackAIUnits"] call BL_fnc_call;
+	[_group] call BL_fnc_statTrackAIUnits;
 	
 	[_vehicles, _this select 1] call (_this select 0);
 },

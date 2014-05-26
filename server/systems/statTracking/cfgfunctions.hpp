@@ -9,7 +9,6 @@ class statTracking {
 	class playerIndex{};
 	class playerScoreboard{};
 	class addPoints{};
-	class statTrackAIUnits{};
 	class statTrackingKilledHandler{};
 	class getKiller{};
 	class pointsToRank{};

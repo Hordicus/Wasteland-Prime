@@ -18,6 +18,7 @@ class missionsServer {
 	class saveOnGetIn{};
 	class lockVehicle{};
 	class missionDoneWhenKilled{};
+	class statTrackAIUnits{};
 	
 	class particleSourceCreateServer{};
 	class particleSourceDeleteServer{};

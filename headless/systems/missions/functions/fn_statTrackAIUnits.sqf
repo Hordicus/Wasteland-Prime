@@ -12,7 +12,7 @@ if ( typeName _units == "GROUP" ) then {
 {
 	if ( local _x ) then {
 		_x addEventHandler ['Killed', {
-			['killed', _this] call CBA_fnc_localEvent;
+			['killed', _this] call BL_fnc_serverEvent;
 		}];
 	};
 	true
