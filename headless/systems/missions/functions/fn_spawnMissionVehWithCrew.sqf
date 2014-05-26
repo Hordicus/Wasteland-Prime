@@ -5,7 +5,7 @@ _loc   = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 _units = [_this, 3, [], [[]]] call BIS_fnc_param;
 
 _veh = [_class, _loc] call BL_fnc_safeVehicleSpawn;
-[_veh, 'reward', 0] call BL_fnc_trackVehicle;
+[_veh, 'reward'] call BL_fnc_trackVehicle;
 
 _turrets = count (configFile >> "CfgVehicles" >> _class >> "Turrets");
 
