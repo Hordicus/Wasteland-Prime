@@ -25,7 +25,7 @@ _init = [_this,2,true,[true]] call bis_fnc_param;
 _taskVar = _taskID call BIS_fnc_taskVar;
 if (typename _targets != typename []) then {_targets = [_targets];};
 
-if (_init && isServer) then {
+if (_init && !hasInterface) then {
 
 	//--- Terminate when the task does not exist
 	if (isnil {missionnamespace getvariable _taskVar}) exitwith {
