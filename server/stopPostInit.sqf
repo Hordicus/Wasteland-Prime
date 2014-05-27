@@ -1,3 +1,3 @@
 while { true } do {
-	sleep (60 * 24);
+	sleep (60 * 60 * 24);
 };
