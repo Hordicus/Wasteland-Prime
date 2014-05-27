@@ -18,6 +18,12 @@ class cfgFunctions {
 				file = "\x\bl_server\addons\init.sqf";
 				preInit = 1;
 			};
+
+			class stopPostInit {
+				file = "\x\bl_server\addons\stopPostInit.sqf";
+				postInit = 1;
+			};
+
 			file = "\x\bl_server\addons\functions";
 			class hasLOS{};
 			
