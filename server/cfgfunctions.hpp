@@ -2,7 +2,6 @@ class cfgFunctions {
 	class BL {
 		#include "systems\radar\cfgfunctions.hpp"
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
-		#include "systems\persistence\cfgfunctions.hpp"
 		#include "systems\playerRespawn\cfgfunctions.hpp"
 		#include "systems\weather\cfgfunctions.hpp"
 		#include "systems\baseFlag\cfgfunctions.hpp"
@@ -17,11 +16,6 @@ class cfgFunctions {
 			class serverInit {
 				file = "\x\bl_server\addons\init.sqf";
 				preInit = 1;
-			};
-
-			class stopPostInit {
-				file = "\x\bl_server\addons\stopPostInit.sqf";
-				postInit = 1;
 			};
 
 			file = "\x\bl_server\addons\functions";

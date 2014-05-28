@@ -32,35 +32,36 @@ PERS_typeData = [];
 MySQLQueue = missionNamespace getVariable ["MySQLQueue", []];
 MySQLGroupQueue = missionNamespace getVariable ["MySQLGroupQueue", []];
 
-[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\createVehicle.sqf";
-[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\trackVehicle.sqf";
-[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\deleteVehicle.sqf";
-[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\loadPlayer.sqf";
-[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\requestSave.sqf";
-[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\publicVariables\setVelocity.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\createVehicle.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\trackVehicle.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\deleteVehicle.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\loadPlayer.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\requestSave.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\setVelocity.sqf";
 
 // Handlers that don't have their own system
-[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\typeHandlers\baseParts.sqf";
-[] call compile preprocessFileLineNumbers "\x\bl_server\addons\systems\persistence\typeHandlers\spawnBeacons.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\baseParts.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\spawnBeacons.sqf";
 
 private ["_count","_lastStep","_i","_vehicles","_result"];
+if ( isServer ) then {
+	_database   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
 
-_database   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
+	_result = "Arma2Net.Unmanaged" callExtension format['Arma2NETMySQLBigCommand ["%1", "%2"]', _database, "SELECT * FROM `vehicles`"];
+	_result = [] call compile preprocessFileLineNumbers _result;
 
-_result = "Arma2Net.Unmanaged" callExtension format['Arma2NETMySQLBigCommand ["%1", "%2"]', _database, "SELECT * FROM `vehicles`"];
-_result = [] call compile preprocessFileLineNumbers _result;
+	_result = [_result] call BL_fnc_processQueryResult;
 
-_result = [_result] call BL_fnc_processQueryResult;
+	(_result select 0) spawn {
+		{
+			[_x] call BL_fnc_loadVehicle;
+			if ( _forEachIndex % 10 == 0 ) then { sleep 0.1 };
+			true
+		} forEach _this;
 
-(_result select 0) spawn {
-	{
-		[_x] call BL_fnc_loadVehicle;
-		if ( _forEachIndex % 10 == 0 ) then { sleep 0.1 };
-		true
-	} forEach _this;
-
-	PERS_init_done = true;
-	publicVariable "PERS_init_done";
+		PERS_init_done = true;
+		publicVariable "PERS_init_done";
+	};
 };
 
 // Delete entities that aren't in our system.

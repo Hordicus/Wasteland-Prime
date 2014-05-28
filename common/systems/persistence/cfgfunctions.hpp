@@ -1,14 +1,14 @@
 class persistence {
 	class persistenceInit {
-		file = "\x\bl_server\addons\systems\persistence\init.sqf";
+		file = "\x\bl_common\addons\systems\persistence\init.sqf";
 		preInit = 1;
 	};
 	
 	class persistenceConfig {
-		file = "\x\bl_server\addons\config\persistence.sqf";
+		file = "\x\bl_common\addons\config\persistence.sqf";
 	};
 
-	file = "\x\bl_server\addons\systems\persistence\functions";
+	file = "\x\bl_common\addons\systems\persistence\functions";
 	class loadPlayer{};
 	class savePlayer{};
 	class createPlayer{};
