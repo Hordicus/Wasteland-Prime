@@ -1,31 +1,3 @@
-['townVeh', [
-	// Save
-	{},
-	
-	// Load
-	{
-		private ['_veh'];
-		_veh = _this select 0;
-		
-		_veh setVariable ['originalCargo', [
-			getWeaponCargo _veh,
-			getMagazineCargo _veh,
-			getItemCargo _veh
-		]];
-	}
-]] call BL_fnc_persRegisterTypeHandler;
-
-['rareVeh', [
-	// Save
-	{(_this select 0) getVariable ['originalSpawnPoint', getPosATL (_this select 0)]},
-	
-	// Load
-	{
-		(_this select 0) setVariable ['originalSpawnPoint', _this select 1];
-	}
-]] call BL_fnc_persRegisterTypeHandler;
-
-
 PERS_trackedObjectsNetIDs = [];
 PERS_trackedObjectsIDs = [];
 PERS_typeData = [];
@@ -42,6 +14,8 @@ MySQLGroupQueue = missionNamespace getVariable ["MySQLGroupQueue", []];
 // Handlers that don't have their own system
 [] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\baseParts.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\spawnBeacons.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\townVeh.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\rareVeh.sqf";
 
 private ["_count","_lastStep","_i","_vehicles","_result"];
 if ( !isServer ) then {
