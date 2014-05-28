@@ -10,7 +10,6 @@ class cfgFunctions {
 		#include "systems\adminPanel\cfgfunctions.hpp"
 		#include "systems\staticVehicleSpawns\cfgfunctions.hpp"
 		#include "systems\donators\cfgfunctions.hpp"
-		#include "systems\headless\cfgfunctions.hpp"
 
 		class Server {
 			class serverInit {
