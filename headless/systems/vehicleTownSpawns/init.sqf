@@ -1,8 +1,9 @@
 BL_townVehiclesToRespawn = [];
 
 [] spawn {
-	private ["_cities","_config","_vehicles","_classes","_lowestChance","_maxPerCity","_minPerCity","_vehiclesPerMeter","_cargoGroups","_cityCenter","_cityRadius","_vehiclesInTown","_currentCount","_searchDistance","_maxCount","_class","_veh","_distance","_direction","_nearCars","_cargoAdded","_cargo","_originalCargo"];
+	waitUntil { !isNil "PERS_init_done" };
 
+	private ["_cities","_config","_vehicles","_classes","_lowestChance","_maxPerCity","_minPerCity","_vehiclesPerMeter","_cargoGroups","_cityCenter","_cityRadius","_vehiclesInTown","_currentCount","_searchDistance","_maxCount","_class","_veh","_distance","_direction","_nearCars","_cargoAdded","_cargo","_originalCargo"];
 	_cities = call BL_fnc_findCities;
 	_config = [] call BL_fnc_vehicleTownSpawnsConfig;
 	_vehicles = [_config, "vehicles"] call CBA_fnc_hashGet;
@@ -20,7 +21,6 @@ BL_townVehiclesToRespawn = [];
 		};
 	} forEach _vehicles;
 
-	waitUntil { !isNil "PERS_init_done" };
 	while { true } do {
 		{
 			_cityCenter = _x select 1;
@@ -77,9 +77,7 @@ BL_townVehiclesToRespawn = [];
 					_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
 					_veh setVariable ['originalCargo', _cargoAdded];
 					
-					[_veh, 'townVeh', [], {
-						[_this select 0] call BL_fnc_saveVehicle;
-					}] call BL_fnc_trackVehicle
+					[[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
 				};
 			};
 			

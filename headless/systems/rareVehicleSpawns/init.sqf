@@ -1,4 +1,6 @@
 [] spawn {
+	waitUntil { !isNil "PERS_init_done" };
+
 	private ['_cities', '_config', '_lowestChances', '_groupClasses'];
 	_cities = [] call BL_fnc_findCities;
 	_config = [] call BL_fnc_rareVehiclesConfig;
@@ -21,7 +23,6 @@
 		[_groupClasses, _key, _classes] call CBA_fnc_hashSet;
 	}] call CBA_fnc_hashEachPair;
 
-	waitUntil { !isNil "PERS_init_done" };
 	while { true } do {
 
 		[_config, {
@@ -60,9 +61,7 @@
 						_class = (_possible select floor random count _possible) select 0;
 						_veh = [_class, _matchPos] call BL_fnc_safeVehicleSpawn;
 						
-						[_veh, 'rareVeh', [], {
-							[_this select 0] call BL_fnc_saveVehicle;
-						}] call BL_fnc_trackVehicle;					
+						[[_veh, 'rareVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
 					};
 				};
 			};

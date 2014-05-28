@@ -1,7 +1,7 @@
 class rareVehicleSpawns {
 	class rareVehicleSpawnsInit {
 		file = "\x\bl_headless\addons\systems\rareVehicleSpawns\init.sqf";
-		postInit = 1;
+		preInit = 1;
 	};
 	
 	class rareVehiclesConfig {
