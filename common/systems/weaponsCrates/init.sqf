@@ -12,18 +12,21 @@
 ]] call BL_fnc_persRegisterTypeHandler;
 
 [] spawn {
+	waitUntil {isServer || isPlayer player};
+	waitUntil { !isNil "PERS_init_done" };
+	if !( 'weaponsCrates' call BL_fnc_shouldRun ) exitwith{};
+
 	private ['_config', '_amount', '_crates', '_cities', '_searchDistance', '_classes'];
 	_config = [] call BL_fnc_weaponsCrates_config;
 	_amount = [_config, 'amount'] call CBA_fnc_hashGet;
 	_crates = [_config, 'crates'] call CBA_fnc_hashGet;
+	_cities = [] call BL_fnc_findCities;
 	_searchDistance = 5;
 	
 	_classes = [];
 	{
 		_classes set [_forEachIndex, _x select 0];
 	} forEach _crates;
-
-	waituntil { _cities = [] call BL_fnc_findCities; count _cities > 0 };
 	
 	for "_i" from 1 to _amount do {
 		_crate = [_crates, 1] call BL_fnc_selectRandom;
