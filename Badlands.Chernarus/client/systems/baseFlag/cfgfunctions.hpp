@@ -1,6 +1,6 @@
 class baseFlag {
 	class baseFlagInit {
-		postInit = 1;
+		preInit = 1;
 		file = "client\systems\baseFlag\init.sqf";
 	};
 
