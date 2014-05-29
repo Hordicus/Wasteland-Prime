@@ -1,7 +1,7 @@
 class cfgFunctions {
 	class BLCommon {
 		tag = "BL";	
-		// #include "systems\radar\cfgfunctions.hpp"
+		#include "systems\radar\cfgfunctions.hpp"
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
 		// #include "systems\playerRespawn\cfgfunctions.hpp"
 		// #include "systems\weather\cfgfunctions.hpp"
@@ -11,6 +11,11 @@ class cfgFunctions {
 		// #include "systems\donators\cfgfunctions.hpp"
 		
 		class Common {
+			class commonInit {
+				file = "\x\bl_common\addons\init.sqf";
+				preInit = 1;
+			};
+			
 			class stopPostInit {
 				file = "\x\bl_common\addons\stopPostInit.sqf";
 				postInit = 1;
@@ -32,7 +37,9 @@ class cfgFunctions {
 			
 			file = "\x\bl_common\addons\functions";
 			class shouldRun{};
-			class hasLOS{};			
+			class hasLOS{};
+			class addPublicVariableEventHandler{};
+			class pvarEventHandler{};
 		};
 	};
 };

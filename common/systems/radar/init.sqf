@@ -12,7 +12,7 @@ radarLocations = [
 
 radarState = [];
 
-"PVAR_radarFriendlyCheck" addPublicVariableEventHandler {
+["PVAR_radarFriendlyCheck", 'radar', {
 	_returnTo   = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_position   = [_this select 1, 1, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 	_radius     = [_this select 1, 2, 5, [5]] call BIS_fnc_param;
@@ -22,10 +22,10 @@ radarState = [];
 	
 	PVAR_radarFriendlyCheck_result = [_nearUnits, _friendlyTo] call BL_fnc_friendlyState;
 	
-	(owner _returnTo) publicVariableClient "PVAR_radarFriendlyCheck_result";
-};
+	[_returnTo, "PVAR_radarFriendlyCheck_result"] call BL_fnc_publicVariableClient;
+}] call BL_fnc_addPublicVariableEventHandler;
 
-"PVAR_radarRequestJIPUpdate" addPublicVariableEventHandler {
+["PVAR_radarRequestJIPUpdate", 'radar', {
 	_player = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_events = [[], []];
 	
@@ -53,35 +53,42 @@ radarState = [];
 	} forEach radarLocations;
 	
 	PVAR_radarRequestJIPUpdateResponse = _events;
-	(owner _player) publicVariableClient "PVAR_radarRequestJIPUpdateResponse";
-};
+	[_player, "PVAR_radarRequestJIPUpdateResponse"] call BL_fnc_publicVariableClient;
+}] call BL_fnc_addPublicVariableEventHandler;
 
 [] spawn {
 	radarState = [];
+	_shouldRun = 'radar' call BL_fnc_shouldRun;
 	while { true } do {
-		{
-			private ["_loc","_radius","_nearUnits","_last","_count"];
-			if ( typeName _x == "ARRAY" ) then {
-				_loc = _x select 0;
-				_radius = _x select 1;
-				
-				_nearUnits = [_loc, _radius] call BL_fnc_nearUnits;
-				
-				if ( count radarState < _forEachIndex || {isNil {radarState select _forEachIndex}} ) then {
-					radarState set [_forEachIndex, []];
+		if ( _shouldRun ) then {
+			{
+				private ["_loc","_radius","_nearUnits","_last","_count"];
+				if ( typeName _x == "ARRAY" ) then {
+					_loc = _x select 0;
+					_radius = _x select 1;
+					
+					_nearUnits = [_loc, _radius] call BL_fnc_nearUnits;
+					
+					if ( count radarState < _forEachIndex || {isNil {radarState select _forEachIndex}} ) then {
+						radarState set [_forEachIndex, []];
+					};
+					
+					_last = count (radarState select _forEachIndex);
+					_count = count _nearUnits;
+					
+					if ( _last != _count ) then {
+						[_x select 2, [_nearUnits, _x select 3]] call CBA_fnc_globalEvent;
+					};
+					
+					radarState set [ _forEachIndex, _nearUnits ];
 				};
-				
-				_last = count (radarState select _forEachIndex);
-				_count = count _nearUnits;
-				
-				if ( _last != _count ) then {
-					[_x select 2, [_nearUnits, _x select 3]] call CBA_fnc_globalEvent;
-				};
-				
-				radarState set [ _forEachIndex, _nearUnits ];
-			};
-		} forEach radarLocations;
+			} forEach radarLocations;
 
-		sleep 5;
+			sleep 5;
+		}
+		else {
+			sleep 30;
+			_shouldRun = 'radar' call BL_fnc_shouldRun;
+		};
 	};
 };
