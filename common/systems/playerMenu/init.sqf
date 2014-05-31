@@ -33,14 +33,16 @@
 	(_this select 0) setVariable['BL_playerInv', [], true];
 }] call CBA_fnc_addEventHandler;
 
-[] spawn {
-	private ['_mission_start'];
-	_mission_start = diag_tickTime;
-	while { true } do {
-		['serverUpdate', [
-			round diag_fps,
-			diag_tickTime - _mission_start
-		]] call CBA_fnc_globalEvent;
-		sleep 10;
+if ( isServer ) then {
+	[] spawn {
+		private ['_mission_start'];
+		_mission_start = diag_tickTime;
+		while { true } do {
+			['serverUpdate', [
+				round diag_fps,
+				diag_tickTime - _mission_start
+			]] call CBA_fnc_globalEvent;
+			sleep 10;
+		};
 	};
 };
