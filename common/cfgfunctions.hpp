@@ -3,11 +3,11 @@ class cfgFunctions {
 		tag = "BL";
 		#include "systems\radar\cfgfunctions.hpp"
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
-		// #include "systems\playerRespawn\cfgfunctions.hpp"
-		// #include "systems\baseFlag\cfgfunctions.hpp"
+		#include "systems\playerRespawn\cfgfunctions.hpp"
+		#include "systems\baseFlag\cfgfunctions.hpp"
 		#include "systems\persistence\cfgfunctions.hpp"
-		// #include "systems\statTracking\cfgfunctions.hpp"
-		// #include "systems\donators\cfgfunctions.hpp"
+		#include "systems\statTracking\cfgfunctions.hpp"
+		#include "systems\donators\cfgfunctions.hpp"
 		
 		class Common {
 			class commonInit {
@@ -38,6 +38,7 @@ class cfgFunctions {
 			class shouldRun{};
 			class hasLOS{};
 			class addPublicVariableEventHandler{};
+			class publicVariableClient{};
 			class pvarEventHandler{};
 			class forwardEventToAllHCs{};
 		};
