@@ -40,6 +40,7 @@ class cfgFunctions {
 			class hasLOS{};
 			class addPublicVariableEventHandler{};
 			class pvarEventHandler{};
+			class forwardEventToAllHCs{};
 		};
 	};
 };
