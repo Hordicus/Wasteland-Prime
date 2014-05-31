@@ -1,15 +1,15 @@
 BL_PVAR_baseFlags = missionNamespace getVariable ['BL_PVAR_baseFlags', []];
 
-"PVAR_createBaseFlag" addPublicVariableEventHandler {
+["PVAR_createBaseFlag", "PVAR_createBaseFlag", {
 	_player   = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_location = [_this select 1, 1, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 	
 	if ( !isPlayer _player ) exitwith{};
 	
 	[getPlayerUID _player, _location] call BL_fnc_createBaseFlag;
-};
+}] call BL_fnc_addPublicVariableEventHandler;
 
-"PVAR_destroyBaseFlag" addPublicVariableEventHandler {
+["PVAR_destroyBaseFlag", "PVAR_destroyBaseFlag", {
 	_player   = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_flag     = [_this select 1, 1, objNull, [objNull]] call BIS_fnc_param;
 	
@@ -30,12 +30,12 @@ BL_PVAR_baseFlags = missionNamespace getVariable ['BL_PVAR_baseFlags', []];
 	
 	BL_PVAR_baseFlags = BL_PVAR_baseFlags - ["REMOVE"];
 	publicVariable "BL_PVAR_baseFlags";
-};
+}] call BL_fnc_addPublicVariableEventHandler;
 
 // Update clients when a player disconnects or connects
-['baseFlag', 'onPlayerDisconnected', {
+['onPlayerDisconnected', {
 	['updateBaseFlags'] call CBA_fnc_globalEvent;
-}] call BIS_fnc_addStackedEventHandler;
+}] call CBA_fnc_addEventHandler;
 
 ['initPlayerServer', {
 	['updateBaseFlags'] call CBA_fnc_globalEvent;

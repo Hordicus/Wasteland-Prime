@@ -1,4 +1,4 @@
-"PVAR_createVehicle" addPublicVariableEventHandler {
+["PVAR_createVehicle", "PVAR_createVehicle", {
 	_requestedBy = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_class       = [_this select 1, 1, "", [""]] call BIS_fnc_param;
 	_position    = [_this select 1, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
@@ -19,6 +19,6 @@
 		};
 		
 		PVAR_createVehicleResponse = _veh;
-		(owner _requestedBy) publicVariableClient "PVAR_createVehicleResponse";
+		[_requestedBy, "PVAR_createVehicleResponse"] call BL_fnc_publicVariableClient;
 	};
-};
+}] call BL_fnc_addPublicVariableEventHandler;

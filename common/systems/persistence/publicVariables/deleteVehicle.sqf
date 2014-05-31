@@ -1,4 +1,4 @@
-"PVAR_deleteVehicle" addPublicVariableEventHandler {
+["PVAR_deleteVehicle", "PVAR_deleteVehicle", {
 	_requestedBy = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_veh         = [_this select 1, 1, objNull, [objNull]] call BIS_fnc_param;
 	_class       = typeOf _veh;
@@ -13,6 +13,6 @@
 		_veh call BL_fnc_deleteVehicleDB;
 	
 		PVAR_deleteVehicleResponse = true;
-		(owner _requestedBy) publicVariableClient "PVAR_deleteVehicleResponse";
+		[_requestedBy, "PVAR_deleteVehicleResponse"] call BL_fnc_publicVariableClient;
 	};
-};
+}] call BL_fnc_addPublicVariableEventHandler;

@@ -1,4 +1,4 @@
-"PVAR_requestSave" addPublicVariableEventHandler {
+["PVAR_requestSave", "PVAR_requestSave", {
 	_requestedBy = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_obj         = [_this select 1, 1, objNull, [objNull]] call BIS_fnc_param;
 	_returnDone  = [_this select 1, 2, false, [false]] call BIS_fnc_param;
@@ -23,4 +23,4 @@
 		PVAR_requestSaveDone = true;
 		(owner _requestedBy) publicVariableClient "PVAR_requestSaveDone";
 	};
-};
+}] call BL_fnc_addPublicVariableEventHandler;
