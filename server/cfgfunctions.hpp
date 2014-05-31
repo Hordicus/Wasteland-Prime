@@ -3,6 +3,7 @@ class cfgFunctions {
 		#include "systems\stores\cfgfunctions.hpp"
 		#include "systems\adminPanel\cfgfunctions.hpp"
 		#include "systems\staticVehicleSpawns\cfgfunctions.hpp"
+		#include "systems\weather\cfgfunctions.hpp"
 
 		class Server {
 			class serverInit {

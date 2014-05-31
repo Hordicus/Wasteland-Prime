@@ -1,10 +1,9 @@
 class cfgFunctions {
 	class BLCommon {
-		tag = "BL";	
+		tag = "BL";
 		#include "systems\radar\cfgfunctions.hpp"
 		#include "systems\weaponsCrates\cfgfunctions.hpp"
 		// #include "systems\playerRespawn\cfgfunctions.hpp"
-		// #include "systems\weather\cfgfunctions.hpp"
 		// #include "systems\baseFlag\cfgfunctions.hpp"
 		#include "systems\persistence\cfgfunctions.hpp"
 		// #include "systems\statTracking\cfgfunctions.hpp"
