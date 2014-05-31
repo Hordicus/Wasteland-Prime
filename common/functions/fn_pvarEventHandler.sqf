@@ -12,7 +12,7 @@ else {
 		
 		{
 			if ( _runsOn == getPlayerUID _x ) exitwith {
-				missionNamespace setVariable [_pvar, _this];
+				missionNamespace setVariable [_pvar, _this select 1];
 				(owner _x) publicVariableClient _pvar;
 			};
 		} count allUnits;
