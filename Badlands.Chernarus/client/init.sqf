@@ -112,7 +112,7 @@ player addEventHandler ["killed", {
 	['killed', _this] call BL_fnc_serverEvent;
 
 	if ( BL_donatorInfo > -1 ) then {
-		[player] call ([call BL_fnc_donatorsConfig, 'tiers'] select BL_donatorInfo);
+		[player] call (([call BL_fnc_donatorsConfig, 'tiers'] call CBA_fnc_hashGet) select BL_donatorInfo);
 	}
 	else {
 		private ['_money', '_minMoney'];
