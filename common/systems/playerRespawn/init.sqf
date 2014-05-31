@@ -1,8 +1,8 @@
-"createSpawnBeacon" addPublicVariableEventHandler {
+["createSpawnBeacon", "createSpawnBeacon", {
 	(_this select 1) call BL_fnc_createBeaconServer;
-};
+}] call BL_fnc_addPublicVariableEventHandler;
 
-"destroySpawnBeacon" addPublicVariableEventHandler {
+["destroySpawnBeacon", "destroySpawnBeacon", {
 	_player = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 	_beacon = [_this select 1, 1, objNull, [objNull]] call BIS_fnc_param;
 	
@@ -22,7 +22,7 @@
 	
 	[_beacon] call BL_fnc_deleteVehicleDB;
 	deleteVehicle _beacon;
-};
+}] call BL_fnc_addPublicVariableEventHandler;
 
 [] spawn {
 	// Altitude, available slots
