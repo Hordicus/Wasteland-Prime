@@ -1,4 +1,4 @@
-if ( !isDedicated ) then {
+if ( isNil "CBA_eventHandlers" && isNil "CBA_eventHandlersLocal" && isNil "CBA_EVENTS_DONE" ) then {
 	#include "script_macros_common.hpp"
 	// Initialisation required by CBA events.
 	CBA_eventHandlers = "Logic" createVehicleLocal [0, 0];
