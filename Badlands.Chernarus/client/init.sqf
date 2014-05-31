@@ -11,6 +11,7 @@ player enableSimulation false;
 enableRadio false;
 0 fadeRadio 0;
 player setVariable ['side', playerSide, true];
+BL_donatorInfo = missionNamespace getVariable ["BL_donatorInfo", -1];
 
 GEAR_activeLoadout = profileNamespace getVariable ["GEAR_activeLoadout", []];
 _itemCount = {
@@ -110,11 +111,16 @@ player addEventHandler ["killed", {
 	// sending code...
 	['killed', _this] call BL_fnc_serverEvent;
 
-	private ['_money', '_minMoney'];
-	_money = player getVariable ['money', 0];
-	_minMoney = ('minMoney' call BL_fnc_config);
-	if ( _money < _minMoney ) then {
-		player setVariable ['money', _minMoney, true];
+	if ( BL_donatorInfo > -1 ) then {
+		[player] call ([call BL_fnc_donatorsConfig, 'tiers'] select BL_donatorInfo);
+	}
+	else {
+		private ['_money', '_minMoney'];
+		_money = player getVariable ['money', 0];
+		_minMoney = ('minMoney' call BL_fnc_config);
+		if ( _money < _minMoney ) then {
+			player setVariable ['money', _minMoney, true];
+		};
 	};
 }];
 

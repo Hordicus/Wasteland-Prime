@@ -1,31 +1,24 @@
-BL_donatorInfo = [[], 0] call CBA_fnc_hashCreate;
-BL_donatorTiers = [[] call BL_fnc_donatorsConfig, 'tiers'] call CBA_fnc_hashGet;
 BL_donatorDatabase = [[] call BL_fnc_donatorsConfig, 'database'] call CBA_fnc_hashGet;
 
 ['initPlayerServer', {
-	// Get and store donator level
-	private ['_uid', '_result'];
-	_uid = getPlayerUID (_this select 0);
-	
-	["SELECT `tier` FROM `donators` WHERE `uid` = '%1' AND `expires` > NOW() ORDER BY `expires` ASC", [_uid], [_uid], {
-		_uid = _this select 1 select 0;
-		_result = _this select 0 select 0;
+	if ( 'donators' call BL_fnc_shouldRun ) then {
+		// Get and store donator level
+		private ['_uid', '_result'];
+		_uid = getPlayerUID (_this select 0);
 		
-		if ( count _result > 0 ) then {
-			[BL_donatorInfo, _uid, _result select 0 select 0] call CBA_fnc_hashSet;
-		}
-		else {
-			[BL_donatorInfo, _uid, -1] call CBA_fnc_hashSet;
-		};
-	}, BL_donatorDatabase] call BL_fnc_MySQLCommand;	
-}] call CBA_fnc_addEventHandler;
-
-['respawn', {
-	// Apply donator benefits
-	private ['_tier'];
-	_tier = [BL_donatorInfo, getPlayerUID (_this select 0)] call CBA_fnc_hashGet;
-	
-	if ( _tier != -1 ) then {
-		[_this select 0] call (BL_donatorTiers select _tier);
+		["SELECT `tier` FROM `donators` WHERE `uid` = '%1' AND `expires` > NOW() ORDER BY `expires` ASC", [_uid], [_uid, _this select 1], {
+			_uid = _this select 1 select 0;
+			_result = _this select 0 select 0;
+			[
+			
+			if ( count _result > 0 ) then {
+				BL_donatorInfo = _result select 0 select 0;
+			}
+			else {
+				BL_donatorInfo = -1;
+			};
+			
+			[_this select 1 select 1, "BL_donatorInfo"] call BL_fnc_publicVariableClient;
+		}, BL_donatorDatabase] call BL_fnc_MySQLCommand;
 	};
 }] call CBA_fnc_addEventHandler;

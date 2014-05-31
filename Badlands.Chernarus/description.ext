@@ -45,6 +45,10 @@ class CfgFunctions {
 			class config {
 				file = "config\config.sqf";
 			};
+			
+			class donatorsConfig {
+				file = "config\donators.sqf";
+			};
 
 			class miscellaneous {
 				file = "client\systems\miscellaneous\init.sqf";
