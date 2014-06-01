@@ -1,3 +1,5 @@
+if !( 'statTracking' call BL_fnc_shouldRun ) exitwith{};
+
 #include "macro.sqf"
 private ['_player', '_killer', '_playerIndex', '_playerVehicle'];
 _player = _this select 0;

@@ -12,21 +12,30 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 [] spawn {
 	private ['_lastBroadcast'];
 	_lastBroadcast = [];
+	_shouldRun = 'statTracking' call BL_fnc_shouldRun;
 	
 	// Broadcast BL_scoreboard up to once a second, but only if
 	// it has changed.
 	while { true } do {
-		sleep 5;
+		if ( _shouldRun ) then {
+			sleep 5;
 		
-		if !( _lastBroadcast isEqualTo BL_scoreboard ) then {
-			_lastBroadcast = +BL_scoreboard;
-			publicVariable "BL_scoreboard";
+			if !( _lastBroadcast isEqualTo BL_scoreboard ) then {
+				_lastBroadcast = +BL_scoreboard;
+				publicVariable "BL_scoreboard";
+			};
+		}
+		else {
+			sleep 30;
+			_shouldRun = 'statTracking' call BL_fnc_shouldRun;
 		};
 	};
 };
 
 // Player bounty
 ['killed', {
+	if !( 'statTracking' call BL_fnc_shouldRun ) exitwith{};
+
 	private ["_player","_killer","_bounty","_playerName","_killerName"];
 	_player = _this select 0;
 	_killer = [_this select 1] call BL_fnc_getKiller;
@@ -54,6 +63,8 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 
 // Database logging
 ['killed', {
+	if !( 'statTracking' call BL_fnc_shouldRun ) exitwith{};
+
 	private ["_player","_killer","_weapon","_friendlyFire","_playerVehicle","_killerVehicle"];
 	_player = _this select 0;
 	_killer = [_this select 1] call BL_fnc_getKiller;
@@ -106,6 +117,8 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 ['killed', BL_fnc_statTrackingKilledHandler] call CBA_fnc_addEventHandler;
 
 ['respawn', {
+	if !( 'statTracking' call BL_fnc_shouldRun ) exitwith{};
+
 	private ['_player', '_playerIndex'];
 	_player = _this select 0;	
 	_player setVariable ['name', name _player];
@@ -115,6 +128,8 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 
 // Add player to scoreboard on connect
 ['initPlayerServer', {
+	if !( 'statTracking' call BL_fnc_shouldRun ) exitwith{};
+
 	private ['_player', '_playerIndex'];
 	_player = _this select 0;
 	_player setVariable ['name', name _player];
