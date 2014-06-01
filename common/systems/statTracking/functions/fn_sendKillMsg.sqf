@@ -10,10 +10,10 @@ if ( isPlayer _player ) then {
 		_msg = _msg + format[' by %1 [$%2]', _killer getVariable 'name', _bounty];
 	};
 
-	[[_msg], 'BL_fnc_showKillMsg'] call BIS_fnc_MP;
+	[[_msg], 'BL_fnc_showKillMsg', true] call BIS_fnc_MP;
 }
 else {
 	if ( _bounty != -1 && isPlayer _killer ) then {
-		[format['$%1 bounty awarded', _bounty], "BL_fnc_showKillMsg", owner _killer] call BIS_fnc_MP;
+		[format['$%1 bounty awarded', _bounty], "BL_fnc_showKillMsg", _killer] call BIS_fnc_MP;
 	};
 };
