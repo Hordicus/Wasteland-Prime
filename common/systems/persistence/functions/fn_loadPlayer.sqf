@@ -38,7 +38,7 @@ _playerUID = getPlayerUID _player;
 			PVAR_playerLoaded = [true];
 		};
 		
-		(owner _player) publicVariableClient "PVAR_playerLoaded";
+		[_player, "PVAR_playerLoaded"] call BL_fnc_publicVariableClient;
 		
 		// Update last login
 		["UPDATE `players` SET `last_login` = NOW() WHERE `uid` = '%1' AND `side` = '%2'", [_playerUID, str side _player]] call BL_fnc_MySQLCommand;
@@ -48,6 +48,6 @@ _playerUID = getPlayerUID _player;
 		[_player] call BL_fnc_createPlayer;
 		
 		PVAR_playerLoaded = [];
-		(owner _player) publicVariableClient "PVAR_playerLoaded";
+		[_player, "PVAR_playerLoaded"] call BL_fnc_publicVariableClient
 	};
 }] call BL_fnc_MySQLCommand;
