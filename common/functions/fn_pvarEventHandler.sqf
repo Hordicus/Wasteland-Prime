@@ -11,10 +11,10 @@ else {
 		_runsOn = [call BL_fnc_systemsConfig, (_pvarEh select 0)] call CBA_fnc_hashGet;
 		
 		{
-			if ( _runsOn == getPlayerUID _x ) exitwith {
+			if ( _runsOn == (_x select 1) ) exitwith {
 				missionNamespace setVariable [_pvar, _this select 1];
-				(owner _x) publicVariableClient _pvar;
+				(_x select 0) publicVariableClient _pvar;
 			};
-		} count allUnits;
+		} count BL_HCs;
 	};
 };

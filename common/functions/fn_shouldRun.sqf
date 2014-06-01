@@ -9,7 +9,7 @@ _shouldRun = _runsOn call {
 	if ( _this == "" && isServer ) exitwith { true };
 	if ( _this != "" && (getPlayerUID player == _this) ) exitwith { true };
 	if ( _this != "" && isServer ) exitwith {
-		{ _this == getPlayerUID _x } count allUnits == 0
+		{ _this == (_x select 1) } count BL_HCs == 0
 	};
 	
 	false

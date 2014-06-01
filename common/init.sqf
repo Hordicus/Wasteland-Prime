@@ -10,8 +10,8 @@ if ( isServer ) then {
 		_player = _this select 1;
 		_uid = getPlayerUID _player;
 		
-		if !( (owner _player) in BL_HCs && _uid in (call BL_fnc_systemsConfig select 2)) then {
-			BL_HCs set [count BL_HCs, owner _player];
+		if ( ({owner _player == _x select 0} count BL_HCs) == 0 && _uid in (call BL_fnc_systemsConfig select 2) ) then {
+			BL_HCs set [count BL_HCs, [owner _player, getPlayerUID _player]];
 		};
 	};
 

@@ -1,5 +1,5 @@
 {
 	CBA_e = _this;
-	_x publicVariableClient "CBA_e";
+	(_x select 0) publicVariableClient "CBA_e";
 	nil
 } count BL_HCs;
