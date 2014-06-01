@@ -1,6 +1,6 @@
-['playerMenu', 'onPlayerDisconnected', {
+['onPlayerDisconnected', {
 	['groupChange', []] call CBA_fnc_globalEvent;
-}] call BIS_fnc_addStackedEventHandler;
+}] call CBA_fnc_addEventHandler;
 
 ["killed", {
 	private ["_player","_invItems","_position","_type","_item"];
