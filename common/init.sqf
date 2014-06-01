@@ -1,19 +1,19 @@
+if ( isNil "CBA_eventHandlers" && !isServer ) then {
+	CBA_eventHandlers = "Logic" createVehicleLocal [0, 0];
+	CBA_eventHandlersLocal = "Logic" createVehicleLocal [0, 0];
+};
+
 if ( isServer ) then {
-	BL_HCs = [] call CBA_fnc_hashCreate;
+	BL_HCs = [];
 	
-	["initPlayerServer", {
-		_player = _this select 0;
+	"BL_HC_register" addPublicVariableEventHandler {
+		_player = _this select 1;
 		_uid = getPlayerUID _player;
-		[call BL_fnc_systemsConfig, {
-			if ( _uid == _value ) exitwith {
-				[BL_HCs, _uid, owner _player] call CBA_fnc_hashSet;
-			};
-		}] call CBA_fnc_hashEachPair;
-	}] call CBA_fnc_addEventHandler;
-	
-	["HCTracking", "onPlayerDisconnected", {
-		[BL_HCs, _uid] call CBA_fnc_hashRem;
-	}] call BIS_fnc_addStackedEventHandler;
+		
+		if !( (owner _player) in BL_HCs && _uid in (call BL_fnc_systemsConfig select 2)) then {
+			BL_HCs set [count BL_HCs, owner _player];
+		};
+	};
 
 	[] spawn {
 		"BL_PVAR_publicVariableClientRelay" addPublicVariableEventHandler {
@@ -59,5 +59,9 @@ else {
 		player allowDamage false;
 		player enableSimulation false;
 		player hideObjectGlobal true;
+		
+		// Let server know we're here.
+		BL_HC_register = player;
+		publicVariableServer "BL_HC_register";
 	};
 };
