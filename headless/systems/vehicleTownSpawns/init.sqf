@@ -89,7 +89,7 @@ BL_townVehiclesToRespawn = [];
 			};
 			
 			// Make sure vehicle count doesn't go over _maxCount
-			for "_i" from _maxCount to _currentCount do {
+			for "_i" from _maxCount to _currentCount-1 do {
 				// First unoccupied vehicle
 				_veh = objNull;
 				{
