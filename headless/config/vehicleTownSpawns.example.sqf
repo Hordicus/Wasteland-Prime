@@ -19,6 +19,7 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, "minPerCity", 3] call CBA_fnc_hashSet;
 [_config, "maxPerCity", 20] call CBA_fnc_hashSet;
 [_config, "vehiclesPerMeter", 15000] call CBA_fnc_hashSet;
+[_config, "maxOverPop", 20] call CBA_fnc_hashSet;
 
 [_config, "vehicleCargo", [
 	[

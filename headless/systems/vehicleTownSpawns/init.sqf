@@ -12,6 +12,7 @@ BL_townVehiclesToRespawn = [];
 	_maxPerCity = [_config, "maxPerCity"] call CBA_fnc_hashGet;
 	_minPerCity = [_config, "minPerCity"] call CBA_fnc_hashGet;
 	_vehiclesPerMeter = [_config, "vehiclesPerMeter"] call CBA_fnc_hashGet;
+	_maxOverPop = [_config, "maxOverPop"] call CBA_fnc_hashGet;
 	_cargoGroups = [_config, "vehicleCargo"] call CBA_fnc_hashGet;
 
 	{
@@ -30,6 +31,8 @@ BL_townVehiclesToRespawn = [];
 			_searchDistance = 5;
 			
 			_maxCount = (round ((PI * _cityRadius^2) / _vehiclesPerMeter)) min _maxPerCity max _minPerCity;
+			
+			diag_log format['%1 Vehicle pop: %2 of %3', _x select 0, _currentCount, _maxCount];
 			
 			// Bring vehicle count up to max count
 			for "_i" from 1 to ( _maxCount - _currentCount ) do {
@@ -65,6 +68,8 @@ BL_townVehiclesToRespawn = [];
 
 			
 				if ( !isNull _veh ) then {
+					diag_log format['Respawning vehicle %1 (%2) from %3 to %4 in %5', typeOf _veh, netId _veh, getPosATL _veh, _pos, _x select 0];
+					
 					[_veh, _pos] call BL_fnc_safeVehicleSetPos;
 					
 					if ( local _veh ) then {
@@ -73,12 +78,37 @@ BL_townVehiclesToRespawn = [];
 					};
 				}
 				else {
+					diag_log format['Spawning vehicle %1 to %2 in %3', _class, _pos, _x select 0];
+
 					_veh = [_class, _pos] call BL_fnc_safeVehicleSpawn;
 					_cargoAdded = [_veh, _cargoGroups] call BL_fnc_addVehicleCargo;
 					_veh setVariable ['originalCargo', _cargoAdded];
 					
 					[[_veh, 'townVeh'] call BL_fnc_trackVehicle] call BL_fnc_saveVehicle;
 				};
+			};
+			
+			// Make sure vehicle count doesn't go over _maxCount
+			for "_i" from _maxCount to _currentCount do {
+				// First unoccupied vehicle
+				_veh = objNull;
+				{
+					if ( count crew _x == 0 && !(_veh in BL_townVehiclesToRespawn)) exitwith {
+						_veh = _x;
+					};
+					nil
+				} count _vehiclesInTown;
+				
+				BL_townVehiclesToRespawn set [count BL_townVehiclesToRespawn, _veh];
+			};
+			
+			while { count BL_townVehiclesToRespawn > _maxOverPop } do {
+				_veh = BL_townVehiclesToRespawn select 0;
+				diag_log format['Deleting over pop veh: %1 (%2)', typeOf _veh, netId _veh];
+				
+				[_veh] call BL_fnc_deleteVehicleDB;
+				deleteVehicle _veh;
+				BL_townVehiclesToRespawn = BL_townVehiclesToRespawn - [_veh];
 			};
 			
 			// Check cargo of existing vehicles
