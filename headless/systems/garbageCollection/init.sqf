@@ -101,6 +101,8 @@
 			};
 
 			if ( _x isKindOf "Man" ) then {
+				_x enableSimulation false;
+				
 				if ( count ([getPosATL _x, 600] call BL_fnc_nearUnits) == 0 ) then {
 					deleteVehicle _x;
 				}
