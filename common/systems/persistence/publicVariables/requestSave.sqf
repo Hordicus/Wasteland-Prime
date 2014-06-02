@@ -21,6 +21,6 @@
 	
 	if ( _returnDone ) then {
 		PVAR_requestSaveDone = true;
-		(owner _requestedBy) publicVariableClient "PVAR_requestSaveDone";
+		[_requestedBy, "PVAR_requestSaveDone"] call BL_fnc_publicVariableClient;
 	};
 }] call BL_fnc_addPublicVariableEventHandler;
