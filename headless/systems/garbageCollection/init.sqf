@@ -81,8 +81,8 @@
 			
 			if ( (_vehPos distance _originalSpawn) > 10 ) then {
 				if (count crew _x == 0 && {time - _lastUsed >= (30 * 60)} && { count ([_vehPos, _detectionRange] call BL_fnc_nearUnits) == 0 } && {count (_x getVariable ['LOG_contents', []]) == 0} && !([_x] call BL_fnc_isInBase)) then {
-					deleteVehicle _x;
 					[_x] call BL_fnc_deleteVehicleDB;
+					deleteVehicle _x;
 				};
 			};
 			
@@ -96,8 +96,8 @@
 					[_x] call BL_fnc_staticVehKilled;
 				};					
 
-				deleteVehicle _x;
 				[_x] call BL_fnc_deleteVehicleDB;
+				deleteVehicle _x;
 			};
 
 			if ( _x isKindOf "Man" ) then {
