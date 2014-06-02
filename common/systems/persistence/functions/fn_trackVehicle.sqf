@@ -13,7 +13,7 @@ else {
 	PERS_trackedObjectsIDs set [_index, nil];
 };
 
-_veh setVariable ['PERS_type', _type];
+_veh setVariable ['PERS_type', _type, true];
 
 _veh addEventHandler ['Put', BL_fnc_persistanceEventHandler];
 _veh addEventHandler ['Take', BL_fnc_persistanceEventHandler];
