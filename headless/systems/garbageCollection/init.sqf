@@ -100,13 +100,18 @@
 				[_x] call BL_fnc_deleteVehicleDB;
 			};
 
-			if ( _x isKindOf "Man" && isNil {_x getVariable 'despawnScript'}) then {
-				_x setVariable ['despawnScript', _x spawn {
-					sleep (60 * 5);
-					hideBody _this;
-					sleep 5;
-					deleteVehicle _this;
-				}];
+			if ( _x isKindOf "Man" ) then {
+				if ( count ([getPosATL _x, 600] call BL_fnc_nearUnits) == 0 ) then {
+					deleteVehicle _x;
+				}
+				else {
+					if ( isNil {_x getVariable 'despawnScript'} ) then {
+						_x setVariable ['despawnScript', _x spawn {
+							sleep (60 * 2);
+							deleteVehicle _this;
+						}];
+					};
+				};
 			};
 			true
 		} count allDead;
