@@ -9,4 +9,12 @@ class CfgPatches
 	};
 };
 
+class Extended_Init_Eventhandlers
+{
+    class AllVehicles
+    {
+		init = "_this call BL_fnc_simulationManager;";
+    };
+};
+
 #include "cfgfunctions.hpp"
