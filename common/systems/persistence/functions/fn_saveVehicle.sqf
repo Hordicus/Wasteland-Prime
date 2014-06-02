@@ -1,7 +1,7 @@
 private ["_veh","_netId","_index","_dbID","_isNew","_type","_position","_variables","_fuelCargo","_ammoCargo","_data","_query"];
 _veh = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 
-if ( isNull _veh ) exitwith {};
+if ( isNull _veh || isNil {_veh getVariable 'PERS_type'}) exitwith {};
 
 _netId = netId _veh;
 _index = PERS_trackedObjectsNetIDs find _netId;
