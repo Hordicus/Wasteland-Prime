@@ -16,6 +16,7 @@ if ( _msg == "" ) then {
 else {
 	if ( isNull _loadingScreen ) then {
 		createDialog 'BLLoadingScreen';
+		_loadingScreen = uiNamespace getVariable ['loadingScreen', displayNull];
 	};
 	
 	_msgCtrl = _loadingScreen displayCtrl 101;
