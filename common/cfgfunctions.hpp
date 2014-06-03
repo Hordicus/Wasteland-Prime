@@ -42,5 +42,6 @@ class cfgFunctions {
 		#include "systems\persistence\cfgfunctions.hpp"
 		#include "systems\statTracking\cfgfunctions.hpp"
 		#include "systems\donators\cfgfunctions.hpp"		
+		#include "systems\stores\cfgfunctions.hpp"
 	};
 };
