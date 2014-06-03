@@ -5,6 +5,9 @@ if ( isNull _veh || isNil {_veh getVariable 'PERS_type'}) exitwith {};
 
 _netId = netId _veh;
 _index = PERS_trackedObjectsNetIDs find _netId;
+
+if ( _index == -1 ) exitwith{};
+
 _dbID = PERS_trackedObjectsIDs select _index;
 _isNew = isNil "_dbID";
 
@@ -82,6 +85,14 @@ if ( _isNew ) then {
 
 	[_query, _data, [_index], {
 		PERS_trackedObjectsIDs set [_this select 1 select 0, (_this select 0 select 0 select 0 select 0)];
+		if ( isServer ) then {
+			{
+				(_x select 0) publicVariableClient "PERS_trackedObjectsIDs";
+			} count BL_HCs;
+		}
+		else {
+			publicVariableServer "PERS_trackedObjectsIDs";
+		};		
 	}] call BL_fnc_MySQLCommand;
 }
 else {

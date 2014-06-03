@@ -13,6 +13,17 @@ else {
 	PERS_trackedObjectsIDs set [_index, nil];
 };
 
+if ( isServer ) then {
+	{
+		(_x select 0) publicVariableClient "PERS_trackedObjectsNetIDs";
+		(_x select 0) publicVariableClient "PERS_trackedObjectsIDs";
+	} count BL_HCs;
+}
+else {
+	publicVariableServer "PERS_trackedObjectsNetIDs";
+	publicVariableServer "PERS_trackedObjectsIDs";
+};
+
 _veh setVariable ['PERS_type', _type, true];
 
 _veh addEventHandler ['Put', BL_fnc_persistanceEventHandler];
