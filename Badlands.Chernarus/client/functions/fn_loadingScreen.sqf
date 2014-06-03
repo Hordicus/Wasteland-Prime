@@ -16,14 +16,6 @@ if ( _msg == "" ) then {
 else {
 	if ( isNull _loadingScreen ) then {
 		createDialog 'BLLoadingScreen';
-		_loadingScreen = uiNamespace getVariable ['loadingScreen', displayNull];
-		
-		_loadingScreen displayAddEventHandler ['KeyDown', {
-			if ( (_this select 1) == 1 ) then {
-				[] call BL_fnc_showMPInterrupt;
-				true
-			};
-		}];
 	};
 	
 	_msgCtrl = _loadingScreen displayCtrl 101;

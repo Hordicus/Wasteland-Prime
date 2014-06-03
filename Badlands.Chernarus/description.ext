@@ -10,6 +10,7 @@ onLoadName = "Wasteland";
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
 #include "client\dialogs\loadingScreen.hpp"
+#include "client\dialogs\abortConfirm.hpp"
 #include "client\systems\playerMenu\playerMenu.hpp"
 #include "client\systems\playerRespawn\respawnDialog.hpp"
 #include "logistics\objectContents.hpp"
@@ -41,7 +42,8 @@ class CfgFunctions {
 			class switchMove{};
 			class say3D{};
 			class serverEvent{};
-			class showMPInterrupt{};
+			class abortConfirm{};
+			
 			class config {
 				file = "config\config.sqf";
 			};

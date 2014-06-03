@@ -5,7 +5,7 @@ class respawnDialog {
 	idd = respawnDialogIDD;
 	movingEnable = false;
 	enableSimulation = true;
-	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_onLoad.sqf'";
+	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_onLoad.sqf'; _this call BL_fnc_abortConfirm;";
 	onChildDestroyed = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_updateGEARInfo.sqf';";
 	
 	class controlsBackground {

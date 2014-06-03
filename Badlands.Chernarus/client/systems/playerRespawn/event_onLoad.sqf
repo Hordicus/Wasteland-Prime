@@ -2,14 +2,6 @@
 _dialog = _this select 0;
 BL_showLowMoneyWarning = true;
 
-// Prevent closing of dialog using ESC
-_dialog displayAddEventHandler ["KeyDown", {
-	if ((_this select 1) == 1) then {
-		[] call BL_fnc_showMPInterrupt;
-		true
-	}
-}];
-
 (_dialog displayCtrl respawnServerInfoIDC) ctrlSetStructuredText parseText ('RespawnServerInfo' call BL_fnc_config);
 
 // Set up map background
