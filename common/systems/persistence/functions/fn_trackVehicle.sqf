@@ -26,14 +26,4 @@ else {
 
 _veh setVariable ['PERS_type', _type, true];
 
-_veh addEventHandler ['Put', BL_fnc_persistanceEventHandler];
-_veh addEventHandler ['Take', BL_fnc_persistanceEventHandler];
-_veh addEventHandler ['Dammaged', BL_fnc_persistanceEventHandler];
-_veh addEventHandler ['Killed', BL_fnc_persistanceEventHandler];
-
-if ( _veh isKindOf 'LandVehicle' || _veh isKindOf 'Air' ) then {
-	_veh addEventHandler ['GetIn', BL_fnc_persistanceEventHandler];
-	_veh addEventHandler ['GetOut', BL_fnc_persistanceEventHandler];
-};
-
 _veh
