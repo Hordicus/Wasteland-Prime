@@ -41,11 +41,22 @@ BL_townVehiclesToRespawn = [];
 				_veh = objNull;
 				
 				if ( count BL_townVehiclesToRespawn > 0 ) then {
-					_veh = BL_townVehiclesToRespawn select 0;
+					{
+						if ( count ([getPosATL _x, 100] call BL_fnc_nearUnits) == 0 ) then {
+							_veh = _x;
+							if ( true ) exitwith{}; // Can't exit from if/else
+						}
+						else {
+							BL_townVehiclesToRespawn = BL_townVehiclesToRespawn - [_x];
+						};
+						true
+					} count BL_townVehiclesToRespawn;
+					
 					BL_townVehiclesToRespawn = BL_townVehiclesToRespawn - [_veh];
 					_class = typeOf _veh;
-				}
-				else {
+				};
+				
+				if ( isNull _veh ) then {
 					_class = ([_vehicles, 1, _lowestChance] call BL_fnc_selectRandom) select 0;
 				};
 				
@@ -99,7 +110,9 @@ BL_townVehiclesToRespawn = [];
 					nil
 				} count _vehiclesInTown;
 				
-				BL_townVehiclesToRespawn set [count BL_townVehiclesToRespawn, _veh];
+				if !( _veh in BL_townVehiclesToRespawn ) then {
+					BL_townVehiclesToRespawn set [count BL_townVehiclesToRespawn, _veh];
+				};
 			};
 			
 			while { count BL_townVehiclesToRespawn > _maxOverPop } do {
