@@ -5,7 +5,13 @@ PVAR_adminLog = [player, format['%1 (%2) began spectating %3 (%4)', name player,
 publicVariableServer "PVAR_adminLog";
 
 cutrsc ['RscSpectator','plain'];
-RscSpectator_player = _player;
+
+_player spawn {
+	waitUntil { !isNil "RscSpectator_player" };
+	RscSpectator_player = _this;
+	vehicle RscSpectator_player switchcamera cameraview;
+	("RscSpectator_fade" call bis_fnc_rscLayer) cuttext ["","black in"];
+};
 
 uiNamespace setVariable ['specKeyDown', (findDisplay 46) displayAddEventHandler ['KeyDown', {
 	// User hit esc
