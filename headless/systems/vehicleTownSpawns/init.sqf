@@ -104,7 +104,7 @@ BL_townVehiclesToRespawn = [];
 				// First unoccupied vehicle
 				_veh = objNull;
 				{
-					if ( count crew _x == 0 && !(_veh in BL_townVehiclesToRespawn)) exitwith {
+					if ( count crew _x == 0 && !(_x in BL_townVehiclesToRespawn)) exitwith {
 						_veh = _x;
 					};
 					nil
