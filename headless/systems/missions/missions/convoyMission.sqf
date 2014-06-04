@@ -71,7 +71,7 @@
 				"O_G_officer_F",
 				"O_G_Soldier_AR_F",
 				"O_G_Soldier_exp_F"
-			]] call BL_fnc_spawnMissionVehWithCrew];
+			], 1000] call BL_fnc_spawnMissionVehWithCrew];
 
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_vehicles set [count _vehicles, [_group, "C_SUV_01_F", _spawnSpot, [
@@ -79,7 +79,7 @@
 				"O_G_Soldier_GL_F",
 				"O_G_Soldier_exp_F",
 				"O_G_engineer_F"
-			]] call BL_fnc_spawnMissionVehWithCrew];
+			], 1000] call BL_fnc_spawnMissionVehWithCrew];
 			
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_vehicles set [count _vehicles, [_group, "C_SUV_01_F", _spawnSpot, [
@@ -87,19 +87,14 @@
 				"O_G_Soldier_GL_F",
 				"O_G_Soldier_exp_F",
 				"O_G_engineer_F"
-			]] call BL_fnc_spawnMissionVehWithCrew];
+			], 1000] call BL_fnc_spawnMissionVehWithCrew];
 			
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_vehicles set [count _vehicles, [_group, "B_G_Offroad_01_armed_F", _spawnSpot, [
 				"O_G_officer_F",
 				"O_G_Soldier_AR_F",
 				"O_G_Soldier_exp_F"
-			]] call BL_fnc_spawnMissionVehWithCrew];
-			
-			{
-				_x setVariable ['bounty', 1000, true];
-			} count (units _group);
-			
+			], 1000] call BL_fnc_spawnMissionVehWithCrew];
 		};
 		
 		if ( _this == 'bobcat' ) exitwith {
@@ -111,8 +106,6 @@
 			]] call BL_fnc_spawnMissionVehWithCrew];
 		};
 	};
-	
-	[_group] call BL_fnc_statTrackAIUnits;
 	
 	[_vehicles, _this select 1] call (_this select 0);
 },

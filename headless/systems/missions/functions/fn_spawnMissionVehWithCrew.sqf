@@ -1,8 +1,9 @@
-private ['_group', '_class', '_loc', '_units', '_veh', '_createdUnits', '_turrets'];
+private ['_group', '_class', '_loc', '_units', '_bounty', '_veh', '_createdUnits', '_turrets'];
 _group = [_this, 0, grpNull, [grpNull]] call BIS_fnc_param;
 _class = [_this, 1, "", [""]] call BIS_fnc_param;
 _loc   = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 _units = [_this, 3, [], [[]]] call BIS_fnc_param;
+_bounty = [_this, 4, BL_aiBountyAmount, [0]] call BIS_fnc_param;
 
 _veh = [_class, _loc] call BL_fnc_safeVehicleSpawn;
 [_veh, 'reward'] call BL_fnc_trackVehicle;
@@ -16,12 +17,13 @@ if ( count _units == 0 ) then {
 	};
 };
 
-[_group, _loc, _units, _veh, _turrets] spawn {
+[_group, _loc, _units, _veh, _turrets, _bounty] spawn {
 	_group   = _this select 0;
 	_loc     = _this select 1;
 	_units   = _this select 2;
 	_veh     = _this select 3;
 	_turrets = _this select 4;
+	_bounty  = _this select 5;
 
 	_createdUnits = [];
 	_createdUnits set [0, (_group createUnit [_units select 0, _loc, [], 0, "CAN_COLLIDE"])];
@@ -41,6 +43,12 @@ if ( count _units == 0 ) then {
 	for "_i" from (1 + _turrets) to (count _createdUnits) - 1 do {
 		(_createdUnits select _i) moveInCargo _veh;
 	};
+	
+	if ( _bounty != BL_aiBountyAmount ) then {
+		{ _x setVariable ['bounty', _bounty, true] } count _createdUnits;
+	};
+	
+	[_createdUnits] call BL_fnc_statTrackAIUnits;	
 };
 
 
