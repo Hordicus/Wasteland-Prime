@@ -12,6 +12,8 @@ class BLAdmin {
 		class setMoney{};
 		class slay{};
 		class hud{};
+		class deleteCam{};
+		class camera{};
 		
 		class hideCtrls{};
 		class setButton{};
