@@ -11,6 +11,7 @@ class BLAdmin {
 		class freelook{};
 		class setMoney{};
 		class slay{};
+		class hud{};
 		
 		class hideCtrls{};
 		class setButton{};
