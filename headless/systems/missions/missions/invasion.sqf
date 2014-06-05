@@ -7,11 +7,17 @@
 		count ([_x select 1, 3000] call BL_fnc_nearUnits)
 	}, "DESCEND"] call BIS_fnc_sortBy;
 
-	(_cities select 0)
+	[(_cities select 0), _this select 1] call (_this select 0);
 },
 
-"Hostile Takeover",
-"Description",
+"Invasion",
+{
+	format["
+	OPFOR are trying to regain a foothold in the Area of Operation.
+	Multiple well armed and well trained troops, with combat multipliers, are taking over the town of %1.
+	Liberate %1 for substantial reward.",
+	([(_this select 1)] call BL_fnc_nearestCity) select 0]
+},
 
 // Mission location. Array or code
 {
@@ -51,8 +57,6 @@
 	_wp = _outerGroup addWaypoint [_location, 50];
 	_wp setWaypointType "SAD";
 	_outerGroup setCurrentWaypoint _wp;
-		
-	[_outerGroup] call BL_fnc_statTrackAIUnits;
 	
 	_soundSource = createVehicle ["FlagSmall_F", [_location select 0, _location select 1, 50], [], 0, "CAN_COLLIDE"];
 	_soundSource enableSimulationGlobal false;
@@ -112,7 +116,7 @@
 		
 		_reward = createVehicle [_class, _rewardLoc, [], 0, "CAN_COLLIDE"];
 		[_reward, 'reward'] call BL_fnc_trackVehicle;
-		[_reward, 6000, 150] call BL_fnc_cargoDrop;
+		[_reward, 6000, 300] call BL_fnc_cargoDrop;
 		
 		_rewards set [_i, _reward];
 		
@@ -146,6 +150,7 @@
 	};
 	
 	[_allUnits] call BL_fnc_statTrackAIUnits;
+	{ _x setVariable ['bounty', 500] } count _allUnits;
 	
 	while { [_missionCode] call BL_fnc_taskExists && {!([_missionCode] call BL_fnc_taskCompleted)} } do {
 		sleep 5;
