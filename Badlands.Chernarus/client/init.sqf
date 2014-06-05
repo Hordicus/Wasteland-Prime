@@ -69,6 +69,7 @@ if ( _itemCount == 0 ) then {
 				(getMarkerPos 'respawn_guerrila') distance player > 100
 			};
 
+			player addRating 9999999999999999999999999;
 			player allowDamage true;
 			player enableSimulation true;
 
@@ -127,6 +128,4 @@ player addEventHandler ["killed", {
 player addEventHandler ["respawn", {
 	['respawn', _this] call BL_fnc_serverEvent;
 	(_this select 0) setVariable ['side', playerSide, true];
-	
-	player addRating 100000;
 }];
