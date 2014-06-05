@@ -5,5 +5,6 @@ config/stores.sqf
 config/description.hpp
 config/statTracking.sqf
 config/donators.sqf
+config/generalStore.sqf
 mission.sqm
 loadScreen.paa
