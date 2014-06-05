@@ -6,6 +6,8 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, 'groundBeaconModel', 'Land_SurvivalRadio_F'] call CBA_fnc_hashSet;
 [_config, 'moneyModel', 'EvMoney'] call CBA_fnc_hashSet;
 [_config, 'redeployCost', 100] call CBA_fnc_hashSet;
+[_config, 'lockCost', 100] call CBA_fnc_hashSet;
+[_config, 'unlockCost', 50] call CBA_fnc_hashSet;
 
 // Default loadouts
 [_config, "defaultWest", []] call CBA_fnc_hashSet;
