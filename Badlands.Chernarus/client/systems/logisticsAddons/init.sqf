@@ -6,6 +6,8 @@ if ( !hasInterface ) exitwith{};
 	BL_objectLockDoingCheck = false;
 	BL_lockCost = 'lockCost' call BL_fnc_config;
 	BL_unlockCost = 'unlockCost' call BL_fnc_config;
+	LOG_currentObject = objNull;
+	LOG_cursorTarget_moveable = objNull;
 
 	if ( isNil "BL_animDoWorkInProgress" ) then {
 		BL_animDoWorkInProgress = false;
