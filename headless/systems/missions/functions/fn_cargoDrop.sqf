@@ -3,7 +3,6 @@ _obj = [_this, 0, objNull, [objNull]] call BIS_fnc_param;
 _altitude = [_this, 1, 500, [0]] call BIS_fnc_param;
 _autoOpen = [_this, 2, 150, [0]] call BIS_fnc_param;
 
-_obj allowDamage false;
 _objPos = getPosATL _obj;
 _objPos set [2, _altitude];
 
@@ -14,6 +13,7 @@ _obj setPosATL _objPos;
 	_obj = _this select 0;
 	_autoOpen = _this select 1;
 	_parachute = createVehicle ["O_Parachute_02_F", [0,0,0], [], 0, "FLY"];
+	_obj allowDamage false;
 
 	waitUntil { (getPosATL _obj) select 2 <= _autoOpen };
 	
@@ -67,10 +67,14 @@ _obj setPosATL _objPos;
 		""
 	], 60] call BL_fnc_particleSourceCreateServer;
 	
+	sleep 5;
 	waitUntil { isTouchingGround _obj || (getPosATL _obj) select 2 < 2 };
 	
 	playSound3D ["a3\sounds_f\weapons\Flare_Gun\flaregun_1_shoot.wss", _obj];
 	detach _obj;
 	deleteVehicle _parachute;
+	
+	waitUntil { (velocity _obj) isEqualTo [0,0,0] };
+	
 	_obj allowDamage true;
 };
