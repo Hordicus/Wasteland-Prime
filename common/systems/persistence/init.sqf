@@ -39,6 +39,17 @@ if ( !isServer ) then {
 			PERS_init_done = true;
 			publicVariable "PERS_init_done";
 		};
+		
+		["SELECT `value` FROM `settings` WHERE `key` = 'reset'", [], [], {
+			if ( count (_this select 0 select 0) > 0 && {(_this select 0 select 0 select 0 select 0) == 1}) then {
+				{
+					if ( _x getVariable ['PERS_type', 'veh'] in ['basePart', 'crate'] ) then {
+						[_x] call BL_fnc_deleteVehicleDB;
+						_x setVariable ['objectLocked', false, true];
+					};
+				} count allMissionObjects "All";
+			};
+		}] call BL_fnc_MySQLCommand;
 	};
 };
 
