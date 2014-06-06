@@ -84,6 +84,9 @@ else {
 			_action call {
 				if ( _this == "Man" ) exitwith {
 					["Toggle Players on map", {
+						PVAR_adminLog = [player, format['%1 (%2) toggled players on map', name player, getPlayerUID player]];
+						publicVariableServer "PVAR_adminLog";
+						
 						["Man"] call BLAdmin_fnc_revealOnMap;
 						closeDialog 0;
 					}] call BLAdmin_fnc_setButton;
@@ -91,6 +94,9 @@ else {
 				
 				if ( _this == "AllVehicles" ) exitwith {
 					["Toggle Vehicles on map", {
+						PVAR_adminLog = [player, format['%1 (%2) toggled vehicles on map', name player, getPlayerUID player]];
+						publicVariableServer "PVAR_adminLog";
+
 						["AllVehicles"] call BLAdmin_fnc_revealOnMap;
 						closeDialog 0;
 					}] call BLAdmin_fnc_setButton;
@@ -98,6 +104,9 @@ else {
 				
 				if ( _this == "Static" ) exitwith {
 					["Toggle Base parts on map", {
+						PVAR_adminLog = [player, format['%1 (%2) toggled base parts on map', name player, getPlayerUID player]];
+						publicVariableServer "PVAR_adminLog";
+
 						["Static"] call BLAdmin_fnc_revealOnMap;
 						closeDialog 0;
 					}] call BLAdmin_fnc_setButton;
@@ -105,6 +114,9 @@ else {
 				
 				if ( _this == "Reammobox_F" ) exitwith {
 					["Toggle Ammo boxes on map", {
+						PVAR_adminLog = [player, format['%1 (%2) toggled ammo boxes on map', name player, getPlayerUID player]];
+						publicVariableServer "PVAR_adminLog";
+
 						["Reammobox_F"] call BLAdmin_fnc_revealOnMap;
 						closeDialog 0;
 					}] call BLAdmin_fnc_setButton;
@@ -112,6 +124,9 @@ else {
 				
 				if ( _this == "All" ) exitwith {
 					["Show all types on map", {
+						PVAR_adminLog = [player, format['%1 (%2) revealed all types on map', name player, getPlayerUID player]];
+						publicVariableServer "PVAR_adminLog";
+
 						BLAdmin_drawClasses = [];
 						["Man"] call BLAdmin_fnc_revealOnMap;
 						["AllVehicles"] call BLAdmin_fnc_revealOnMap;
@@ -124,6 +139,9 @@ else {
 				
 				if ( _this == "" ) exitwith {
 					["Hide all types on map", {
+						PVAR_adminLog = [player, format['%1 (%2) hid all types on map', name player, getPlayerUID player]];
+						publicVariableServer "PVAR_adminLog";
+
 						BLAdmin_drawClasses = [];
 						closeDialog 0;
 					}] call BLAdmin_fnc_setButton;
