@@ -1,22 +1,35 @@
+_veh = [_this, 0, vehicle player, [objNull]] call BIS_fnc_param;
+
 _veh = vehicle player;
 
 if ( _veh == player ) then {
-	_cars = (getPosATL player) nearEntities ['Car', 5];
-	if ( count _cars > 0 ) then {
-		_veh = _cars select 0;
-	};
+	{
+		if !( _x isKindOf "Man" ) exitwith {
+			_veh = _x;
+		};
+	} count (nearestObjects [getPosATL player, ["AllVehicles"], 10]);
 };
 
-if ( _veh != player ) then {
+if ( _veh != player && !isNull _veh ) then {
 	if ( (_veh call BIS_fnc_absSpeed) < 5 ) then {
-		_veh setVectorUp [0,0,1];
 		if ( local _veh ) then {
+			_veh allowDamage false;
+			_veh setVectorUp [0,0,1];
 			_veh setVelocity [0,0,5];
+			
+			_veh spawn {
+				_time = diag_tickTime;
+				waitUntil { (velocity _this isEqualTo [0,0,0]) || diag_tickTime - _time > 5 };
+				_this allowDamage true;
+			};
+		}
+		else {
+			[[_veh], "BL_fnc_flipVehicle", _veh] call BIS_fnc_MP;
 		};
+		
+		closeDialog 0;
 	}
 	else {
 		hint "You can't flip a moving vehicle";
 	};
-	
-	closeDialog 0;
 };
