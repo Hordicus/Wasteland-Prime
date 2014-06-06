@@ -13,5 +13,6 @@ _config = [[], ""] call CBA_fnc_hashCreate;
 [_config, 'PVAR_createBaseFlag',  'uid'] call CBA_fnc_hashSet;
 [_config, 'PVAR_destroyBaseFlag', 'uid'] call CBA_fnc_hashSet;
 [_config, 'PVAR_trackVehicle',    'uid'] call CBA_fnc_hashSet;
+[_config, 'adminPanel',           ''] call CBA_fnc_hashSet;
 
 _config
