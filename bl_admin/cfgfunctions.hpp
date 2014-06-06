@@ -14,6 +14,7 @@ class BLAdmin {
 		class hud{};
 		class deleteCam{};
 		class camera{};
+		class revealOnMap{};
 		
 		class hideCtrls{};
 		class setButton{};
