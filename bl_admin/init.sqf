@@ -9,7 +9,8 @@ BLAdmin_actions = [];
 		['Slay', 'slay', false],
 		['Show group members', 'group', false],
 		['Delete Cam', 'delete', true],
-		['Reveal items on Map', 'reveal', true]
+		['Reveal items on Map', 'reveal', true],
+		['Mark mission as failed', 'missions', true]
 	];
 	
 	PVAR_adminPermissions = player;

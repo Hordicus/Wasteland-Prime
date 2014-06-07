@@ -148,5 +148,45 @@ else {
 				};
 			};
 		};
+		
+		if ( _this == "missions" ) exitwith {
+			_mission = [];
+			
+			{
+				if ( (_x select 0 select 0) == _action ) exitwith {
+					_mission = _x;
+				};
+				nil
+			} count (BL_PVAR_currentTasks select 2);			
+			
+			_pos = _mission select 3;
+			if ( typeName (_pos select 0) == "OBJECT" ) then {
+				_pos = getPosATL (_pos select 0);
+			};
+			
+			_nearestCity = [_pos] call BL_fnc_nearestCity;
+			_info = format['%1 of %2', [_pos, _nearestCity select 1] call BL_fnc_directionToString, _nearestCity select 0];
+
+			[format['
+			%1<br />
+			%2<br />
+			<br />
+			%3<br />
+			%4',
+			_mission select 2 select 1 select 0, // Name
+			_mission select 2 select 0 select 0, // Desc
+			_mission select 0 select 0, // Code
+			_info // Rel pos
+			]] call BLAdmin_fnc_setText;
+			
+			BLAdmin_fnc_selectedMission = _mission select 0 select 0;
+			["Fail Mission", {
+				PVAR_failMission = [player, BLAdmin_fnc_selectedMission];
+				publicVariableServer "PVAR_failMission";
+				
+				closeDialog 0;
+			}] call BLAdmin_fnc_setButton;
+
+		};
 	};
 };

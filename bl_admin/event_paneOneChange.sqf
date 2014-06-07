@@ -34,6 +34,17 @@ if ( { _data == _x select 1 } count BLAdmin_actions == 1 ) then {
 				['Hide All', '']
 			];
 		};
+		
+		if ( _this == "missions" ) exitwith {
+			{
+				_code = _x select 0 select 0;
+				_name = _x select 2 select 1 select 0;
+				
+				_index = _paneTwo lbAdd _name;
+				_paneTwo lbSetData [_index, _code];
+				nil
+			} count (BL_PVAR_currentTasks select 2);
+		};
 	};
 }
 else {
