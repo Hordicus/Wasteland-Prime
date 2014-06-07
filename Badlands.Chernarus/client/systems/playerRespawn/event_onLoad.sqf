@@ -2,6 +2,8 @@
 _dialog = _this select 0;
 BL_showLowMoneyWarning = true;
 
+openMap [false, false];
+
 (_dialog displayCtrl respawnServerInfoIDC) ctrlSetStructuredText parseText ('RespawnServerInfo' call BL_fnc_config);
 
 // Set up map background
