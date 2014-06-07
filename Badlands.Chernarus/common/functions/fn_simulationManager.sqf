@@ -19,11 +19,11 @@ if ( _veh isKindOf "AllVehicles" && isNil {_veh getVariable 'simManaged'}) then 
 		else {
 			// Wait until vehicle has stopped
 			(_this select 0) spawn {
-				while { (_this select 0) call BIS_fnc_absSpeed > 1 } do {
+				while { !((velocity _this) isEqualTo [0,0,0]) } do {
 					sleep 5;
 				};
 				
-				(_this select 0) enableSimulation false;
+				_this enableSimulation false;
 			};
 		};
 	}];

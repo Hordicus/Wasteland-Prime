@@ -47,4 +47,10 @@ class Extended_GetOut_Eventhandlers {
 	};
 };
 
+class CfgVehicles {
+	class Reammobox_F {
+		simulation = "house";
+	};
+};
+
 #include "cfgfunctions.hpp"

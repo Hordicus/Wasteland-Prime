@@ -128,4 +128,11 @@ if ( !hasInterface ) exitwith{};
 	['releasedVehicle', { (_this select 1) call BL_fnc_requestSave; }] call LOG_fnc_addEventHandler;
 	['unloadedItem', {(_this select 0) call BL_fnc_requestSave;}] call LOG_fnc_addEventHandler;
 	['objectLoadedIn', {(_this select 0) call BL_fnc_requestSave;}] call LOG_fnc_addEventHandler;
+	
+	['beforeReleaseObject', {
+		if ( (_this select 0) isKindOf "Reammobox_F" ) then {
+			[_this select 0, [0,0,0]] call BL_fnc_setVelocity;
+		};
+		nil;
+	}] call LOG_fnc_addEventHandler;
 };
