@@ -1,6 +1,11 @@
 #include "functions\macro.sqf"
 // Register beacon types with playerMenu
 ['airBeacon', 'Air Beacon', 'airBeaconModel' call BL_fnc_config, [], {
+	_uid = getPlayerUID player;
+	if ( { (_x select 1) == _uid } count BL_spawnBeacons >= 2 ) exitwith {
+		hint 'You may only have two beacons deployed at a time.';
+	};
+
 	[15, "Deploying Air Beacon %1", [], {
 		['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
 		['airBeacon'] call BL_fnc_removeInventoryItem;
@@ -8,6 +13,11 @@
 }] call BL_fnc_addInventoryType;
 
 ['groundBeacon', 'Ground Beacon', 'groundBeaconModel' call BL_fnc_config, [], {
+	_uid = getPlayerUID player;
+	if ( { (_x select 1) == _uid } count BL_spawnBeacons >= 2 ) exitwith {
+		hint 'You may only have two beacons deployed at a time.';
+	};
+	
 	[15, "Deploying Ground Beacon %1", [], {
 		['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
 		['groundBeacon'] call BL_fnc_removeInventoryItem;
