@@ -51,9 +51,11 @@ else {
 	BL_adminPlayer = [_data] call BL_fnc_playerByUID;
 
 	{
-		_index = _paneTwo lbAdd (_x select 0);
-		_paneTwo lbSetData [_index, _x select 1];
-		
+		// True is non player action, false is player action.
+		if !( _x select 2 ) then {
+			_index = _paneTwo lbAdd (_x select 0);
+			_paneTwo lbSetData [_index, _x select 1];
+		};
 		true
 	} count BLAdmin_actions;
 };
