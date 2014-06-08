@@ -216,6 +216,7 @@ if ( !hasInterface ) exitwith{};
 	(findDisplay 12 displayCtrl 51) ctrlAddEventHandler ["Draw", BL_fnc_DrawMapIcons];
 	
 	[] spawn {
+		disableSerialization;
 		_banners = 'banners' call BL_fnc_config;
 		_banner = (uiNamespace getVariable 'HUD') displayCtrl HUDbannerIDC;
 		
