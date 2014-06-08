@@ -139,6 +139,10 @@ _config = [] call CBA_fnc_hashCreate;
 
 [_config, 'weatherCycleTime', 20 * 60] call CBA_fnc_hashSet;
 
+[_config, 'banners', [
+	// ['banners\image.jpg', displayTime, pauseTime]
+]] call CBA_fnc_hashSet;
+
 _return = '';
 if ( _key == '' ) then {
 	_return = _config;
