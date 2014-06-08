@@ -53,6 +53,17 @@ class respawnDialog {
 			h = safezoneH * (1 - 0.57 - 0.1);
 		};
 		
+		class serverBanner : RscCommon {
+			x = safezoneX + safezoneW * ( 0.1 + 0.02 + 0.16 );
+			w = safezoneW * 0.45;
+			h = safezoneH * 0.07;
+			y = safezoneY + safezoneH * ( 0.1 + 0.005 + 0.05 + 0.02 );
+			
+			colorBackground[] = {1,0,0,1};
+			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
+			text = "banners\deathscreen.jpg";
+		};
+		
 		class serverInfo : RscStructuredText {
 			text = "";
 
