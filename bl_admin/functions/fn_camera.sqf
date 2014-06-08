@@ -3,7 +3,7 @@ _position = _this select 0;
 
 ['Paste', [worldname,_position,0,0.7,[0,0],0,0,daytime * 60,overcast,0]] call BIS_fnc_camera;
 
-[] spawn {
+_this spawn {
 	disableSerialization;
 	waituntil {!isnil {uinamespace getvariable "BIS_fnc_camera_display"}};
 	[] call BLAdmin_fnc_hud;
@@ -32,4 +32,8 @@ _position = _this select 0;
 		false call BLAdmin_fnc_hud;
 		nil
 	}];
+	
+	_cb = [_this, 1, {}, [{}]] call BIS_fnc_param;
+	
+	[_display] call _cb;
 };

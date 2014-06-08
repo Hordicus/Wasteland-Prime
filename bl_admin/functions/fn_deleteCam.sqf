@@ -3,14 +3,8 @@ BL_deleteSafetyOn = true;
 PVAR_adminLog = [player, format['%1 (%2) started delete camera', name player, getPlayerUID player]];
 publicVariableServer "PVAR_adminLog";
 
-[getPosATL player] call BLAdmin_fnc_camera;
-
-[] spawn {
-	disableSerialization;
-	waituntil {!isnil {uinamespace getvariable "BIS_fnc_camera_display"}};
-	_display = uinamespace getvariable "BIS_fnc_camera_display";
-	
-	_display displayAddEventHandler ["KeyDown", {
+[getPosATL player, {
+	(_this select 0) displayAddEventHandler ["KeyDown", {
 		if ( (_this select 1) == DIK_DELETE ) then {
 			if ( BL_deleteSafetyOn || (_this select 2) ) then {
 				if ( (_this select 2) ) then {
@@ -34,5 +28,5 @@ publicVariableServer "PVAR_adminLog";
 			};
 			true
 		};
-	}];	
-};
+	}]
+}] call BLAdmin_fnc_camera;
