@@ -78,6 +78,7 @@ class CfgFunctions {
 			class simulationManager{};
 			class vehicleWeapons{};
 			class setVelocity{};
+			class enableSimulation{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"
