@@ -1,5 +1,6 @@
 execVM 'client\systems\townRadar\init.sqf';
 execVM 'addons\fpsFix\vehicleManager.sqf';
+execVM 'addons\zlt_fastrope.sqf';
 
 waitUntil {!isNull player && player == player};
 waitUntil{!isNil "BIS_fnc_init"};
