@@ -28,7 +28,22 @@ BL_fnc_missionRandomField,
 		_loc set [2, 0];
 	};
 
-	_crashSite = [_loc, 100 + random 500, random 359] call BIS_fnc_relPos;
+	_crashSite = [];
+	
+	while { true } do {
+		_match = (selectBestPlaces [
+			[_loc, 100 + random 500, random 359] call BIS_fnc_relPos,
+			50,
+			"meadow - (hills + sea/2)",
+			1,
+			1
+		]) select 0;
+		
+		if ( (_match select 1) > 0 ) exitwith {
+			_crashSite = _match select 0;
+		};
+	};
+	
 	_crash = createVehicle ['Land_Wreck_Heli_Attack_01_F', _crashSite, [], 0, "NONE"];
 	_crash setDir (random 359);
 	_crash setPos getPos _crash;
