@@ -42,7 +42,7 @@ _data = [
 	getMagazineCargo _veh,
 	getItemCargo _veh,
 	getDir _veh,
-	vectorUp _veh,
+	str vectorUp _veh,
 	_fuelCargo,
 	_ammoCargo,
 	magazines _veh,
