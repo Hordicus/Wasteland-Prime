@@ -4,7 +4,7 @@ BL_movingForward = false;
 		BL_movingForward = true;
 	}
 	else {
-		if ( BL_movingForward && (_this select 1) in (actionKeys "GetOver") ) then {
+		if ( BL_movingForward && (_this select 1) in (actionKeys "GetOver") && vehicle player == player ) then {
 			if ( animationState player != "AovrPercMrunSrasWrflDf" ) then {
 				"AovrPercMrunSrasWrflDf" call BL_fnc_switchMove;
 			};
