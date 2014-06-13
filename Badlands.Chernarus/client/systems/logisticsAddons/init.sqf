@@ -47,7 +47,7 @@ if ( !hasInterface ) exitwith{};
 					(_this select 0) setVariable ['objectLocked', true, true];
 					(_this select 0) setVariable ['objectOwner', getPlayerUID player, true];
 					
-					PVAR_requestSave = [player, _this select 0, false];
+					PVAR_requestSave = [player, _this select 0, false, vectorUp (_this select 0)];
 					publicVariableServer "PVAR_requestSave";
 
 					if ( (_this select 0) isKindOf "Reammobox_F" ) then {

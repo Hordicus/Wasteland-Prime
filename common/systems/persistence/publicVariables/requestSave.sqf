@@ -15,6 +15,10 @@
 			[_obj] call BL_fnc_deleteVehicleDB;
 		}
 		else {
+			if ( _obj getVariable ['PERS_type', 'veh'] == 'basePart' && count _extra == 3 ) then {
+				_obj setVectorUp _extra;
+			};
+		
 			[_obj] call BL_fnc_queueSaveVehicle;
 		};
 	};
