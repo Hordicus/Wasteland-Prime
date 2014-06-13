@@ -28,6 +28,10 @@ BL_spawnBeacons set [count BL_spawnBeacons, _info];
 
 publicVariable "BL_spawnBeacons";
 
+if ( surfaceIsWater _loc ) then {
+	_loc = ATLtoASL _loc;
+};
+
 [
 	_loc,
 	100,
