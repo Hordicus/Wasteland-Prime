@@ -1,7 +1,5 @@
 _veh = [_this, 0, vehicle player, [objNull]] call BIS_fnc_param;
 
-_veh = vehicle player;
-
 if ( _veh == player ) then {
 	{
 		if !( _x isKindOf "Man" ) exitwith {
