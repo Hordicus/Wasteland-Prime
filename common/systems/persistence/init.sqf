@@ -10,6 +10,7 @@ MySQLGroupQueue = missionNamespace getVariable ["MySQLGroupQueue", []];
 [] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\loadPlayer.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\requestSave.sqf";
 [] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\setVelocity.sqf";
+[] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\publicVariables\setDirAndUp.sqf";
 
 // Handlers that don't have their own system
 [] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\baseParts.sqf";
