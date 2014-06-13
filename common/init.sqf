@@ -14,6 +14,19 @@ if ( isServer ) then {
 			BL_HCs set [count BL_HCs, [owner _player, getPlayerUID _player]];
 		};
 	};
+	
+	['onPlayerDisconnected', {
+		_uid = _this select 1;
+		
+		if ( _uid in (call BL_fnc_systemsConfig select 2) ) then {
+			{
+				if ( (_x select 1) == _uid ) then {
+					BL_HCs = BL_HCs - [_x];
+				};
+				nil
+			} count BL_HCs;
+		};
+	}] call CBA_fnc_addEventHandler;
 
 	[] spawn {
 		"BL_PVAR_publicVariableClientRelay" addPublicVariableEventHandler {
