@@ -12,6 +12,9 @@ if ( isServer ) then {
 		
 		if ( ({owner _player == _x select 0} count BL_HCs) == 0 && _uid in (call BL_fnc_systemsConfig select 2) ) then {
 			BL_HCs set [count BL_HCs, [owner _player, getPlayerUID _player]];
+			
+			BL_HC_registerAck = true;
+			(owner _player) publicVariableClient "BL_HC_registerAck";
 		};
 	};
 	
@@ -74,7 +77,14 @@ else {
 		player hideObjectGlobal true;
 		
 		// Let server know we're here.
-		BL_HC_register = player;
-		publicVariableServer "BL_HC_register";
+		// Retry every 10 sec until we get an ack
+		_start = 0;
+		while { isNil "BL_HC_registerAck" } do {
+			_start = diag_tickTime;
+			BL_HC_register = player;
+			publicVariableServer "BL_HC_register";
+			
+			waitUntil { diag_tickTime - _start > 10 || !isNil "BL_HC_registerAck" };
+		};
 	};
 };
