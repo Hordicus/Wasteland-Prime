@@ -130,3 +130,10 @@ player addEventHandler ["respawn", {
 	['respawn', _this] call BL_fnc_serverEvent;
 	(_this select 0) setVariable ['side', playerSide, true];
 }];
+
+0.99 spawn {
+	while { true} do {
+		sleep 1;
+		player setFatigue ((getFatigue player) * _this);
+	};
+};
