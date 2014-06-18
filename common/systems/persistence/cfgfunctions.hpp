@@ -24,6 +24,7 @@ class persistence {
 	class MySQLGroupCommand{};
 	class MySQLCommandSync{};
 	class MySQLProcessQueue{};
+	class MySQLProcessGroupQueue{};
 	class noEmptyArrayValues{};
 	class emptyArrayValues{};
 	class floatToString{};
