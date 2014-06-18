@@ -5,19 +5,7 @@ if ( isNil "CBA_eventHandlers" && !isServer ) then {
 
 if ( isServer ) then {
 	BL_HCs = [];
-	
-	"BL_HC_register" addPublicVariableEventHandler {
-		_player = _this select 1;
-		_uid = getPlayerUID _player;
 		
-		if ( ({owner _player == _x select 0} count BL_HCs) == 0 && _uid in (call BL_fnc_systemsConfig select 2) ) then {
-			BL_HCs set [count BL_HCs, [owner _player, getPlayerUID _player]];
-			
-			BL_HC_registerAck = true;
-			(owner _player) publicVariableClient "BL_HC_registerAck";
-		};
-	};
-	
 	['onPlayerDisconnected', {
 		_uid = _this select 1;
 		
@@ -37,6 +25,18 @@ if ( isServer ) then {
 			
 			missionNamespace setVariable [_pvar select 2, _pvar select 1];
 			(owner (_pvar select 0)) publicVariableClient (_pvar select 2);
+		};
+
+		"BL_HC_register" addPublicVariableEventHandler {
+			_player = _this select 1;
+			_uid = getPlayerUID _player;
+			
+			if ( ({owner _player == _x select 0} count BL_HCs) == 0 && _uid in (call BL_fnc_systemsConfig select 2) ) then {
+				BL_HCs set [count BL_HCs, [owner _player, getPlayerUID _player]];
+				
+				BL_HC_registerAck = true;
+				(owner _player) publicVariableClient "BL_HC_registerAck";
+			};
 		};
 	};
 
