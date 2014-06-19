@@ -30,6 +30,7 @@ class persistence {
 	class floatToString{};
 	class allFloatsToStrings{};
 	class persistanceEventHandler{};
+	class enableSimulationTemp{};
 	class log{};
 	class MySQLEscape{};
 	class databaseId{};

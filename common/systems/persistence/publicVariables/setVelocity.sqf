@@ -8,17 +8,7 @@
 			_velocity = [_this select 1, 1, [0,0,0], [[]], [3]] call BIS_fnc_param;
 			_client   = owner _veh;
 			
-			_veh enableSimulation true;
-			_veh spawn {
-				sleep 30;
-				if ( count crew _this == 0 ) then {
-					while { !((velocity _this) isEqualTo [0,0,0]) } do {
-						sleep 5;
-					};
-					
-					_this enableSimulation false;
-				};
-			};
+			[_veh] call BL_fnc_enableSimulationTemp;
 			
 			if ( local _veh ) then {
 				_veh setVelocity _velocity;
@@ -35,6 +25,8 @@
 			private ["_veh","_velocity"];
 			_veh      = [_this select 1, 0, objNull, [objNull]] call BIS_fnc_param;
 			_velocity = [_this select 1, 1, [0,0,0], [[]], [3]] call BIS_fnc_param;
+			
+			[_veh] call BL_fnc_enableSimulationTemp;
 			
 			_veh setVelocity _velocity;
 		};	
