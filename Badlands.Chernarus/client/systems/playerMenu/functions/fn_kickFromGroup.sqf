@@ -16,5 +16,3 @@ _grp  = [_this, 1, group player, [grpNull]] call BIS_fnc_param;
 		[_x] join grpNull;
 	};
 } forEach units _grp;
-
-['groupChange', [_grp]] call CBA_fnc_globalEvent;

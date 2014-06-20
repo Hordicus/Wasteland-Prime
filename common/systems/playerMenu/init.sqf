@@ -1,7 +1,5 @@
 ['onPlayerDisconnected', {
 	if ( 'objectLoad' call BL_fnc_shouldRun ) then {
-		['groupChange', []] call CBA_fnc_globalEvent;
-		
 		// Delete dropped money on player DC
 		{
 			if ( (_x getVariable ['player', '']) == (_this select 1) ) then {
