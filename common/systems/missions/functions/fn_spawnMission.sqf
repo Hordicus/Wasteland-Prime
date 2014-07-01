@@ -3,7 +3,7 @@ _config = call BL_fnc_missionsConfig;
 _missions = [_config, 'missions'] call CBA_fnc_hashGet;
 
 _mission = [_missions, 1] call BL_fnc_selectRandom;
-_mission = call compile preprocessFileLineNumbers format['\x\bl_headless\addons\systems\missions\missions\%1.sqf', _mission select 0];
+_mission = call compile preprocessFileLineNumbers format['\x\bl_common\addons\systems\missions\missions\%1.sqf', _mission select 0];
 
 private ['_missionInit'];
 _missionInit = [_mission, 0, {}, [{}]] call BIS_fnc_param;

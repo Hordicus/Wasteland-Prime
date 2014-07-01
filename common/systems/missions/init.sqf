@@ -1,3 +1,5 @@
+if !( 'missions' call BL_fnc_shouldrun ) exitwith{};
+
 missionCount = 0;
 runningMissionLocations = [] call CBA_fnc_hashCreate;
 runningMissions = [] call CBA_fnc_hashCreate;
