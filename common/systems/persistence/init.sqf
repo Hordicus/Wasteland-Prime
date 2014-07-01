@@ -19,7 +19,7 @@ MySQLGroupQueue = missionNamespace getVariable ["MySQLGroupQueue", []];
 [] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\rareVeh.sqf";
 
 private ["_count","_lastStep","_i","_vehicles","_result"];
-if ( !isServer ) then {
+if ( isNil "PERS_init_done" && 'objectLoad' call BL_fnc_shouldRun ) then {
 	_database   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
 
 	_result = "Arma2Net.Unmanaged" callExtension format['Arma2NETMySQLBigCommand ["%1", "%2"]', _database, "SELECT * FROM `vehicles`"];
@@ -27,19 +27,15 @@ if ( !isServer ) then {
 
 	_result = [_result] call BL_fnc_processQueryResult;
 
-	(_result select 0) spawn {
-		waitUntil { isPlayer player };
-		
-		if ( 'objectLoad' call BL_fnc_shouldRun && isNil "PERS_init_done") then {
-			{
-				[_x] call BL_fnc_loadVehicle;
-				if ( _forEachIndex % 10 == 0 ) then { sleep 0.1 };
-				true
-			} forEach _this;
+	(_result select 0) spawn {		
+		{
+			[_x] call BL_fnc_loadVehicle;
+			if ( _forEachIndex % 10 == 0 ) then { sleep 0.1 };
+			true
+		} forEach _this;
 
-			PERS_init_done = true;
-			publicVariable "PERS_init_done";
-		};
+		PERS_init_done = true;
+		publicVariable "PERS_init_done";
 		
 		["SELECT `value` FROM `settings` WHERE `key` = 'reset'", [], [], {
 			if ( count (_this select 0 select 0) > 0 && {(_this select 0 select 0 select 0 select 0) == 1}) then {

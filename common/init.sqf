@@ -1,4 +1,4 @@
-if ( isNil "CBA_eventHandlers" && !isServer ) then {
+if ( isNil "CBA_eventHandlers" ) then {
 	CBA_eventHandlers = "Logic" createVehicleLocal [0, 0];
 	CBA_eventHandlersLocal = "Logic" createVehicleLocal [0, 0];
 };

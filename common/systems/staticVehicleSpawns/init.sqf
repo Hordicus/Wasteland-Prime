@@ -1,3 +1,5 @@
+if !( 'vehicleSpawns' call BL_fnc_shouldRun ) exitwith{};
+
 [] spawn {
 	private ['_config', '_spawns', '_veh'];
 	_config = [] call BL_fnc_staticVehicleSpawnsConfig;

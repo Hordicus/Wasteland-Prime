@@ -1,3 +1,5 @@
+if !( 'vehicleSpawns' call BL_fnc_shouldRun ) exitwith{};
+
 BL_townVehiclesToRespawn = [];
 
 [] spawn {

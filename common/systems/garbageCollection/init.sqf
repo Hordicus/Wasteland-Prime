@@ -1,3 +1,5 @@
+if !( 'vehicleSpawns' call BL_fnc_shouldRun ) exitwith{};
+
 [] spawn {
 	waitUntil { !isNil "PERS_init_done" };
 	sleep (60 * 5);
