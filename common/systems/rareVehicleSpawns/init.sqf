@@ -1,3 +1,5 @@
+if !( 'rareVehicleSpawns' call BL_fnc_shouldrun ) exitwith{};
+
 [] spawn {
 	waitUntil { !isNil "PERS_init_done" };
 

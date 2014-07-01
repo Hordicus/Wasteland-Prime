@@ -15,5 +15,6 @@ _config = [[], ""] call CBA_fnc_hashCreate;
 [_config, 'PVAR_trackVehicle',    'uid'] call CBA_fnc_hashSet;
 [_config, 'adminPanel',           ''] call CBA_fnc_hashSet;
 [_config, 'missions',             'uid'] call CBA_fnc_hashSet;
+[_config, 'rareVehicleSpawns',    'uid'] call CBA_fnc_hashSet;
 
 _config
