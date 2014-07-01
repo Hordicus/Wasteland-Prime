@@ -2,3 +2,7 @@ persistence.sqf
 systems.sqf
 weaponsCrates.sqf
 adminPanel.sqf
+staticVehicleSpawns.sqf
+vehicleTownSpawns.sqf
+rareVehicles.sqf
+missions.sqf

@@ -25,6 +25,11 @@ class cfgFunctions {
 				file = "\x\bl_common\addons\systems\townRadar\init.sqf";
 				preInit = 1;
 			};
+
+			class garbageCollectionInit {
+				file = "\x\bl_headless\addons\systems\garbageCollection\init.sqf";
+				preInit = 1;
+			};
 			
 			file = "\x\bl_common\addons\functions";
 			class shouldRun{};
@@ -44,5 +49,10 @@ class cfgFunctions {
 		#include "systems\donators\cfgfunctions.hpp"		
 		#include "systems\stores\cfgfunctions.hpp"
 		#include "systems\adminPanel\cfgfunctions.hpp"
+		#include "systems\vehicleTownSpawns\cfgfunctions.hpp"
+		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
+		#include "systems\missions\cfgfunctions.hpp"
+		#include "systems\staticVehicleSpawns\cfgfunctions.hpp"
+		#include "systems\weather\cfgfunctions.hpp"
 	};
 };
