@@ -27,7 +27,7 @@ class cfgFunctions {
 			};
 
 			class garbageCollectionInit {
-				file = "\x\bl_headless\addons\systems\garbageCollection\init.sqf";
+				file = "\x\bl_common\addons\systems\garbageCollection\init.sqf";
 				preInit = 1;
 			};
 			
