@@ -22,6 +22,7 @@ else {
 		player setPosATL _loc;
 		[player, 1000, false, false, true] call COB_fnc_HALO;
 	};
-
+	
+	[] call BL_fnc_showLocationInfo;
 	closeDialog respawnDialogIDD;
 };

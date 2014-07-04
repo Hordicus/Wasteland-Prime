@@ -73,7 +73,8 @@ if ( _itemCount == 0 ) then {
 			player addRating 9999999999999999999999999;
 			player allowDamage true;
 			player enableSimulation true;
-
+			
+			[] call BL_fnc_showLocationInfo;
 			[] call BL_fnc_loadingScreen;
 		}
 		else {

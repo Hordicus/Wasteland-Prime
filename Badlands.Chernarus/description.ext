@@ -43,6 +43,7 @@ class CfgFunctions {
 			class say3D{};
 			class serverEvent{};
 			class abortConfirm{};
+			class showLocationInfo{};
 			
 			class config {
 				file = "config\config.sqf";

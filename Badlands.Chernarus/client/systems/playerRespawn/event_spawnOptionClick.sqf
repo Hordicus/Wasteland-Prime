@@ -14,6 +14,7 @@ else {
 				[player] call BL_fnc_playerSetup;
 			};
 			(_x select 1) call (_x select 2);
+			[] call BL_fnc_showLocationInfo;
 		};
 
 	} count playerRespawnOptionEventHandlers;
