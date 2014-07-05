@@ -4,6 +4,7 @@ _class = [_this, 1, "", [""]] call BIS_fnc_param;
 _loc   = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 _units = [_this, 3, [], [[]]] call BIS_fnc_param;
 _bounty = [_this, 4, BL_aiBountyAmount, [0]] call BIS_fnc_param;
+_cb = [_this, 5, {}, [{}]] call BIS_fnc_param;
 
 _veh = [_class, _loc] call BL_fnc_safeVehicleSpawn;
 [_veh, 'reward'] call BL_fnc_trackVehicle;
@@ -17,13 +18,14 @@ if ( count _units == 0 ) then {
 	};
 };
 
-[_group, _loc, _units, _veh, _turrets, _bounty] spawn {
+[_group, _loc, _units, _veh, _turrets, _bounty, _cb] spawn {
 	_group   = _this select 0;
 	_loc     = _this select 1;
 	_units   = _this select 2;
 	_veh     = _this select 3;
 	_turrets = _this select 4;
 	_bounty  = _this select 5;
+	_cb      = _this select 6;
 
 	_createdUnits = [];
 	_createdUnits set [0, (_group createUnit [_units select 0, _loc, [], 0, "CAN_COLLIDE"])];
@@ -48,7 +50,9 @@ if ( count _units == 0 ) then {
 		{ _x setVariable ['bounty', _bounty, true] } count _createdUnits;
 	};
 	
-	[_createdUnits] call BL_fnc_statTrackAIUnits;	
+	[_createdUnits] call BL_fnc_statTrackAIUnits;
+	
+	[_veh, _createdUnits] call _cb;
 };
 
 

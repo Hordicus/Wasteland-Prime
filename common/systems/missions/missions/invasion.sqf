@@ -152,6 +152,8 @@
 	[_allUnits] call BL_fnc_statTrackAIUnits;
 	{ _x setVariable ['bounty', 500] } count _allUnits;
 	
+	[_location, _allUnits] call BL_fnc_aliveObjectCounter;
+	
 	while { [_missionCode] call BL_fnc_taskExists && {!([_missionCode] call BL_fnc_taskCompleted)} } do {
 		sleep 5;
 	

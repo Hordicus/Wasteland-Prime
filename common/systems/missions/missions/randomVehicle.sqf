@@ -62,6 +62,7 @@ BL_fnc_missionRandomField,
 	_grp setCombatMode "RED";
 	
 	[_grp] call BL_fnc_statTrackAIUnits;
+	[_location, units _grp] call BL_fnc_aliveObjectCounter;
 	
 	[_missionReward] call BL_fnc_saveOnGetIn;
 	[_grp, _missionCode, [_missionReward], {

@@ -81,7 +81,9 @@ BL_fnc_missionRandomField,
 	};
 	
 	[_units] call BL_fnc_statTrackAIUnits;
-	_reward = [call BL_fnc_missionsConfig, 'recoveryMissionReward'] call CBA_fnc_hashGet;
+	[_loc, _units] call BL_fnc_aliveObjectCounter;
+	
+	_reward = [call BL_fnc_missionsConfig, 'recoveryMissionReward'] call BL_fnc_hashGet;
 	
 	if ( isNil "_reward" ) then {
 		_rewards = [

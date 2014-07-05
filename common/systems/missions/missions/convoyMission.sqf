@@ -26,6 +26,10 @@
 		'bobcat'
 	];
 	
+	_trackAI = {
+		_this call BL_fnc_aliveObjectCounter;
+	};
+	
 	(_variations select floor random count _variations) call {
 		if ( _this == "repair" || _this == "ammo" ) exitwith {
 			/*
@@ -40,10 +44,10 @@
 				(_types select floor random count _types)
 			};
 			
-			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot, [], BL_aiBountyAmount, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 					
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
-			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot, [], BL_aiBountyAmount, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 			
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_vehicles set [count _vehicles, [_group, "O_Truck_02_transport_F", _spawnSpot, [
@@ -56,14 +60,14 @@
 				"O_Soldier_F",
 				"O_Soldier_F",
 				"O_Soldier_F"
-			]] call BL_fnc_spawnMissionVehWithCrew];
+			], BL_aiBountyAmount, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_rewardClass = if ( _this == "repair" ) then {"O_Truck_03_repair_F"} else {"O_Truck_03_ammo_F"};
-			_vehicles set [count _vehicles, [_group, _rewardClass, _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+			_vehicles set [count _vehicles, [_group, _rewardClass, _spawnSpot, [], BL_aiBountyAmount, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 			
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
-			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+			_vehicles set [count _vehicles, [_group, call _vehClass, _spawnSpot, [], BL_aiBountyAmount, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 		};
 	
 		if ( _this == "pmc" ) exitwith {
@@ -71,7 +75,7 @@
 				"O_G_officer_F",
 				"O_G_Soldier_AR_F",
 				"O_G_Soldier_exp_F"
-			], 1000] call BL_fnc_spawnMissionVehWithCrew];
+			], 1000, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_vehicles set [count _vehicles, [_group, "C_SUV_01_F", _spawnSpot, [
@@ -79,7 +83,7 @@
 				"O_G_Soldier_GL_F",
 				"O_G_Soldier_exp_F",
 				"O_G_engineer_F"
-			], 1000] call BL_fnc_spawnMissionVehWithCrew];
+			], 1000, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 			
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_vehicles set [count _vehicles, [_group, "C_SUV_01_F", _spawnSpot, [
@@ -87,23 +91,23 @@
 				"O_G_Soldier_GL_F",
 				"O_G_Soldier_exp_F",
 				"O_G_engineer_F"
-			], 1000] call BL_fnc_spawnMissionVehWithCrew];
+			], 1000, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 			
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_vehicles set [count _vehicles, [_group, "B_G_Offroad_01_armed_F", _spawnSpot, [
 				"O_G_officer_F",
 				"O_G_Soldier_AR_F",
 				"O_G_Soldier_exp_F"
-			], 1000] call BL_fnc_spawnMissionVehWithCrew];
+			], 1000, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 		};
 		
 		if ( _this == 'bobcat' ) exitwith {
-			_vehicles set [count _vehicles, [_group, "O_APC_Tracked_02_cannon_F", _spawnSpot] call BL_fnc_spawnMissionVehWithCrew];
+			_vehicles set [count _vehicles, [_group, "O_APC_Tracked_02_cannon_F", _spawnSpot, [], BL_aiBountyAmount, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 
 			_spawnSpot = [_spawnSpot, -10, 0] call BIS_fnc_relPos;
 			_vehicles set [count _vehicles, [_group, "B_APC_Tracked_01_CRV_F", _spawnSpot, [
 				"O_Soldier_F"
-			]] call BL_fnc_spawnMissionVehWithCrew];
+			], BL_aiBountyAmount, _trackAI] call BL_fnc_spawnMissionVehWithCrew];
 		};
 	};
 	
