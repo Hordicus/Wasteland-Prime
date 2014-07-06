@@ -41,7 +41,17 @@ if ( _itemCount == 0 ) then {
 };
 
 [] spawn {
-	["Waiting for server to initialize", 0.5] call BL_fnc_loadingScreen;
+	["Waiting for server to initialize", 0.01] call BL_fnc_loadingScreen;
+	if ( isNil "PERS_init_done" ) then {
+		[] spawn {
+			waitUntil {!isNil "PERS_init_count"};
+			while { isNil "PERS_init_done" } do {
+				["Waiting for server to initialize", (count allMissionObjects "All") / PERS_init_count] call BL_fnc_loadingScreen;
+				sleep 0.5;
+			};
+		};
+	};
+	
 	waitUntil {!isNil"PERS_init_done"};
 
 	["Waiting for player data", 0.1] call BL_fnc_loadingScreen;

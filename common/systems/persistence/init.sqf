@@ -26,6 +26,8 @@ if ( isNil "PERS_init_done" && 'objectLoad' call BL_fnc_shouldRun ) then {
 	_result = [] call compile preprocessFileLineNumbers _result;
 
 	_result = [_result] call BL_fnc_processQueryResult;
+	PERS_init_count = count (_result select 0);
+	publicVariable "PERS_init_count";
 
 	(_result select 0) spawn {		
 		{
