@@ -90,4 +90,16 @@ else {
 			waitUntil { diag_tickTime - _start > 10 || !isNil "BL_HC_registerAck" };
 		};
 	};
+	
+	// http://killzonekid.com/arma-scripting-tutorials-how-to-skip-briefing-screen-in-mp/
+	[] spawn {
+		waitUntil {
+			if (!isNull findDisplay 53) exitWith {
+				ctrlActivate (findDisplay 53 displayCtrl 1);
+				findDisplay 53 closeDisplay 1;
+				true
+			};
+			false
+		};
+	};	
 };
