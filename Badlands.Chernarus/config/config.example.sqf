@@ -13,6 +13,7 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, 'autoRemoveBeacon', false] call CBA_fnc_hashSet;
 [_config, 'airBeaconBlockRadius', 300] call CBA_fnc_hashSet;
 [_config, 'groundBeaconBlockRadius', 100] call CBA_fnc_hashSet;
+[_config, 'ignoreDropTypes', []] call CBA_fnc_hashSet;
 
 // Default loadouts
 [_config, "defaultWest", []] call CBA_fnc_hashSet;
