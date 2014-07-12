@@ -9,6 +9,7 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, 'lockCost', 100] call CBA_fnc_hashSet;
 [_config, 'unlockCost', 50] call CBA_fnc_hashSet;
 [_config, 'secondsPerHundred', 10] call CBA_fnc_hashSet;
+[_config, 'haloSpawnHeight', 500] call CBA_fnc_hashSet;
 
 // Default loadouts
 [_config, "defaultWest", []] call CBA_fnc_hashSet;

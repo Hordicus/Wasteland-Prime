@@ -11,7 +11,7 @@ _spawnOnBeacon = {
 	_dir = getDir (_this select 2);
 	
 	if ( _type == 'air' ) then {
-		_loc set [2, 1000];
+		_loc set [2, 'haloSpawnHeight' call BL_fnc_config];
 		player setPosATL _loc;
 		[player, 1000, false, false, true] call COB_fnc_HALO;
 	}
