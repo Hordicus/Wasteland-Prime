@@ -15,6 +15,10 @@ class cfgFunctions {
 			class systemsConfig {
 				file = "\x\bl_common\addons\config\systems.sqf";
 			};
+			
+			class objTweaksConfig {
+				file = "\x\bl_common\addons\config\objTweaks.sqf";
+			};
 
 			class playerMenuServerInit {
 				file = "\x\bl_common\addons\systems\playerMenu\init.sqf";
@@ -38,6 +42,7 @@ class cfgFunctions {
 			class publicVariableClient{};
 			class pvarEventHandler{};
 			class forwardEventToAllHCs{};
+			class objTweak{};
 		};
 		
 		#include "systems\radar\cfgfunctions.hpp"

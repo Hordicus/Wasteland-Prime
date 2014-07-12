@@ -9,6 +9,12 @@ class CfgPatches
 	};
 };
 
+class Extended_Init_Eventhandlers {
+	class All {
+		BL_Common_ObjTweak = "_this call BL_fnc_objTweak;";
+	};
+};
+
 class Extended_Dammaged_Eventhandlers {
 	class All {
 		dammaged = "_this call BL_fnc_persistanceEventHandler;";
