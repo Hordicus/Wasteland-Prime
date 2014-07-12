@@ -144,6 +144,10 @@ if (!isPlayer _unit) then {
 	};	
 };
 
+if ( isPlayer player ) then {
+	["HALO jump activated. Open your parachute before you hit the ground!<br />Press E to detach chute.", 5] call BL_fnc_actionText;
+};
+
 [_unit] spawn {
 	private "_unit";
 	_unit = _this select 0;
