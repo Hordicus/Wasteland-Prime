@@ -12,7 +12,7 @@ _spawnOnFlag = {
 {
 	_owner = (_x select 1) call BL_fnc_playerByUID;
 	_state = ([_flags, (_x select 0)] call CBA_fnc_hashGet) select 1;
-	_friendly = [[_owner, player]] call BL_fnc_friendlyState;
+	_friendly = [[_owner]] call BL_fnc_friendlyState;
 
 	if ( _friendly == "FRIENDLY" ) then {
 		_nearestCity = [_x select 2] call BL_fnc_nearestCity;

@@ -25,7 +25,7 @@ _spawnOnBeacon = {
 {
 	_owner = (_x select 1) call BL_fnc_playerByUID;
 	_state = ([_beacons, (_x select 3)] call CBA_fnc_hashGet) select 1;
-	_friendlyBeacon = [[_owner, player]] call BL_fnc_friendlyState;
+	_friendlyBeacon = [[_owner]] call BL_fnc_friendlyState;
 	_dir = getDir (_x select 2);
 
 	if ( _friendlyBeacon == "FRIENDLY" ) then {
