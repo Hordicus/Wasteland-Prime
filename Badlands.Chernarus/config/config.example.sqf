@@ -15,6 +15,11 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, "defaultWest", []] call CBA_fnc_hashSet;
 [_config, "defaultIndy", []] call CBA_fnc_hashSet;
 
+// Location, Radius, Slay
+[_config, 'safeZones', [
+	[getMarkerPos 'respawn_west', 1000, true]
+]] call CBA_fnc_hashSet;
+
 [_config, 'HUDServerInfo', format['
 	<t font="EtelkaNarrowMediumPro" color="#80FFFFFF">
 	<t size="2">%1</t><br />

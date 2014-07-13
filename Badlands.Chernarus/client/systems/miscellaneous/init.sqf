@@ -13,4 +13,5 @@ if ( !hasInterface ) exitwith{};
 	execVM 'client\systems\miscellaneous\monitorVON.sqf';
 	execVM 'client\systems\miscellaneous\mapMarkerTitling.sqf';
 	execVM 'client\systems\miscellaneous\extendedParachuteOptions.sqf';
+	execVM 'client\systems\miscellaneous\safezones.sqf';
 };
