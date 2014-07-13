@@ -57,6 +57,11 @@ class CfgFunctions {
 				file = "client\systems\miscellaneous\init.sqf";
 				postInit = 1;
 			};
+			
+			class repairPads {
+				file = "client\systems\repairPads\init.sqf";
+				postInit = 1;
+			};
 		};
 		class Common {
 			file = "common\functions";

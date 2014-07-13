@@ -136,6 +136,7 @@ BL_fnc_nearUnits = compile preprocessFileLineNumbers 'common\functions\fn_nearUn
 BL_fnc_param = compile preprocessFileLineNumbers 'common\functions\fn_param.sqf';
 BL_fnc_paramIn = compile preprocessFileLineNumbers 'common\functions\fn_paramIn.sqf';
 BL_fnc_playerByUID = compile preprocessFileLineNumbers 'common\functions\fn_playerByUID.sqf';
+BL_fnc_protect = compile preprocessFileLineNumbers 'common\functions\fn_protect.sqf';
 BL_fnc_randStr = compile preprocessFileLineNumbers 'common\functions\fn_randStr.sqf';
 BL_fnc_safeVehicleSetPos = compile preprocessFileLineNumbers 'common\functions\fn_safeVehicleSetPos.sqf';
 BL_fnc_safeVehicleSpawn = compile preprocessFileLineNumbers 'common\functions\fn_safeVehicleSpawn.sqf';
