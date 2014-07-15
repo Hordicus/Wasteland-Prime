@@ -1,6 +1,21 @@
 private ['_vehicles'];
 _vehicles = [];
 
+// Show mortar shells
+{
+	(_this select 0) drawIcon [
+		MISSION_ROOT + "client\systems\hud\icons\mortar.paa",
+		[1,1,1,1],
+		getPosATL _x,
+		35,
+		35,
+		0,
+		""
+	];
+	
+	nil
+} count (allMissionObjects "Sh_82mm_AMOS");
+
 {
 	if ( _x in (units group player) || (playerSide in [east,west] && side player == side _x) ) then {
 		if ( vehicle _x != _x ) then {
