@@ -2,26 +2,54 @@
 // Register beacon types with playerMenu
 ['airBeacon', 'Air Beacon', 'airBeaconModel' call BL_fnc_config, [], {
 	_uid = getPlayerUID player;
-	if ( { (_x select 1) == _uid } count BL_spawnBeacons >= 2 ) exitwith {
-		hint 'You may only have two beacons deployed at a time.';
+	_continue = true;
+	
+	if ( { (_x select 1) == _uid } count BL_spawnBeacons >= 2 ) then {
+		if ( 'autoRemoveBeacon' call BL_fnc_config ) then {
+			{
+				if ( (_x select 1) == _uid ) exitwith {
+					[_x select 2] call BL_fnc_destroySpawnBeacon;
+				};
+			} count BL_spawnBeacons;
+		}
+		else {
+			hint 'You may only have two beacons deployed at a time.';
+			_continue = false;
+		};
 	};
 
-	[15, "Deploying Air Beacon %1", [], {
-		['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
-		['airBeacon'] call BL_fnc_removeInventoryItem;
-	}] call BL_fnc_animDoWork;
+	if ( _continue ) then {
+		[15, "Deploying Air Beacon %1", [], {
+			['air', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
+			['airBeacon'] call BL_fnc_removeInventoryItem;
+		}] call BL_fnc_animDoWork;
+	};
 }] call BL_fnc_addInventoryType;
 
 ['groundBeacon', 'Ground Beacon', 'groundBeaconModel' call BL_fnc_config, [], {
 	_uid = getPlayerUID player;
-	if ( { (_x select 1) == _uid } count BL_spawnBeacons >= 2 ) exitwith {
-		hint 'You may only have two beacons deployed at a time.';
-	};
+	_continue = true;
 	
-	[15, "Deploying Ground Beacon %1", [], {
-		['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
-		['groundBeacon'] call BL_fnc_removeInventoryItem;
-	}] call BL_fnc_animDoWork;
+	if ( { (_x select 1) == _uid } count BL_spawnBeacons >= 2 ) then {
+		if ( 'autoRemoveBeacon' call BL_fnc_config ) then {
+			{
+				if ( (_x select 1) == _uid ) exitwith {
+					[_x select 2] call BL_fnc_destroySpawnBeacon;
+				};
+			} count BL_spawnBeacons;
+		}
+		else {
+			hint 'You may only have two beacons deployed at a time.';
+			_continue = false;
+		};
+	};
+
+	if ( _continue ) then {
+		[15, "Deploying Ground Beacon %1", [], {
+			['ground', getPosATL player, getDir player] call BL_fnc_createSpawnBeacon;
+			['groundBeacon'] call BL_fnc_removeInventoryItem;
+		}] call BL_fnc_animDoWork;
+	};
 }] call BL_fnc_addInventoryType;
 
 if ( !hasInterface ) exitwith {};
