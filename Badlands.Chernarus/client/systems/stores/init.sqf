@@ -2,7 +2,8 @@ if ( !hasInterface ) exitwith{};
 BL_PVAR_storeAccessObjects = missionNamespace getVariable ['BL_PVAR_storeAccessObjects', []];
 
 [[] call BL_fnc_storeConfig, {
-	private ['_marker', '_markerLabel'];
+	private ['_marker', '_markerLabel', '_radius', '_color'];
+	_color = [_value, 3, "ColorBlack", [""]] call BIS_fnc_param;
 	
 	{
 		_radius = [_x, 2, 0, [0]] call BIS_fnc_param;
@@ -20,7 +21,7 @@ BL_PVAR_storeAccessObjects = missionNamespace getVariable ['BL_PVAR_storeAccessO
 		createMarkerLocal [_markerLabel, _x select 0];
 		_markerLabel setMarkerShapeLocal "ICON";
 		_markerLabel setMarkerTypeLocal "mil_dot_noshadow";
-		_markerLabel setMarkerColorLocal "ColorBlack";
+		_markerLabel setMarkerColorLocal _color;
 		_markerLabel setMarkerAlphaLocal 0.5;
 		_markerLabel setMarkerTextLocal (_value select 0);
 	} forEach (_value select 2);
