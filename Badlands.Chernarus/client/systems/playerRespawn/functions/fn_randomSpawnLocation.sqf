@@ -13,14 +13,15 @@ Returns:
 
 ---------------------------------------------------------------------------- */
 
-private ["_cities","_city","_vehicles","_vehicle","_vehPos","_spawnPos","_distance","_direction"];
+private ["_cities","_city","_vehicles","_vehicle","_vehPos","_spawnPos","_distance","_direction","_attempts"];
 
 // Select city to spawn in
 _cities = call BL_fnc_findCities;
 _vehPos = [];
-_restrictCity = [_this, 0, [], [[]]] call BIS_fnc_param;
+_restrictCity = [_this, 0, [], [[]]] call BL_fnc_param;
+_attempts = 0;
 
-while { count _vehPos == 0 } do {
+while { count _vehPos == 0 && _attempts < 10 } do {
 	_city = [];
 	if ( count _restrictCity == 0 ) then {
 		// Select random city if one wasn't provided
@@ -42,6 +43,14 @@ while { count _vehPos == 0 } do {
 			_vehPos = [_city select 1, random (_city select 2), random 359] call BIS_fnc_relPos;
 		};
 	};
+	
+	_attempts = _attempts + 1;
+};
+
+// Fallback if no vehicles were found
+if ( count _vehPos == 0 ) then {
+	_city = _cities select floor random count _cities;
+	_vehPos = [_city select 1, random (_city select 2), random 359] call BIS_fnc_relPos;
 };
 
 _spawnPos = [];
