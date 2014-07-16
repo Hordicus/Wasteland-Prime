@@ -1,7 +1,7 @@
 #include "functions\macro.sqf"
 #define spawnOptionY(OFFSET) safezoneY + safezoneH * ( 0.22 + 0.005 + 0.05 + 0.02 + (0.01 + 0.03)*OFFSET)
 
-class respawnDialog {
+class BLrespawnDialog {
 	idd = respawnDialogIDD;
 	movingEnable = false;
 	enableSimulation = true;

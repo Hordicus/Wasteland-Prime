@@ -101,7 +101,7 @@ if ( !hasInterface ) exitwith{};
 };
 
 [format['Redeploy ($%1)', 'redeployCost' call BL_fnc_config], { (_this select 0) isKindOf "Land_Communication_F" && {([] call BL_fnc_money) >= ('redeployCost' call BL_fnc_config)}}, {
-	createDialog 'respawnDialog';
+	createDialog 'BLrespawnDialog';
 	player setPosATL (markerPos 'respawn_west');
 	100 call BL_fnc_subMoney;
 }, 5] call BL_fnc_addAction;

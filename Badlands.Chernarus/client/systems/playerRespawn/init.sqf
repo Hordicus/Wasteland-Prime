@@ -141,7 +141,7 @@ BL_playerSpawning = false;
 		BL_playerSpawning = true;
 		(_this select 0) allowDamage false;
 		(_this select 0) enableSimulation false;
-		createDialog "respawnDialog";
+		createDialog "BLrespawnDialog";
 	}];
 	
 	['groupChange', {

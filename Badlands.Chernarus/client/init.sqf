@@ -90,7 +90,7 @@ if ( _itemCount == 0 ) then {
 		else {
 			[] call BL_fnc_loadingScreen;
 			BL_playerSpawning = true;
-			createDialog 'respawnDialog';
+			createDialog 'BLrespawnDialog';
 		};
 	}
 	else {
@@ -98,7 +98,7 @@ if ( _itemCount == 0 ) then {
 		sleep 1;
 		[] call BL_fnc_loadingScreen;
 		BL_playerSpawning = true;
-		createDialog 'respawnDialog';
+		createDialog 'BLrespawnDialog';
 	};
 };
 
