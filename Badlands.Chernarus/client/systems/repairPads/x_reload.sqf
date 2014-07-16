@@ -1,7 +1,7 @@
 private ["_config","_count","_i","_magazines","_object","_type","_type_name"];
 _object = _this select 0;
 _type = typeof _object;
-if (_object isKindOf "ParachuteBase" || !local _object) exitWith {};
+if (_object isKindOf "ParachuteBase") exitWith {};
 if (isNil "x_reload_time_factor") then {x_reload_time_factor = .1;};
 if (!alive _object) exitWith {};
 _object setVehicleAmmo 1;
