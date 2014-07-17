@@ -20,6 +20,7 @@ class missionsServer {
 	class missionDoneWhenKilled{};
 	class statTrackAIUnits{};
 	class aliveObjectCounter{};
+	class groupSpawn{};
 	
 	class particleSourceCreateServer{};
 	class particleSourceDeleteServer{};
