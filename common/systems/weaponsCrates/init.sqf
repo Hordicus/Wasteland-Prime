@@ -12,6 +12,7 @@
 ]] call BL_fnc_persRegisterTypeHandler;
 
 [] spawn {
+	if ( !isNil "PERS_init_done" ) exitwith{};
 	waitUntil {isServer || isPlayer player};
 	waitUntil { !isNil "PERS_init_done" };
 	if !( 'weaponsCrates' call BL_fnc_shouldRun ) exitwith{};
