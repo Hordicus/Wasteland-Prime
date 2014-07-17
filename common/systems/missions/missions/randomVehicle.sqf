@@ -39,36 +39,38 @@ BL_fnc_missionRandomField,
 	[_missionReward, 'reward'] call BL_fnc_trackVehicle;
 	[_missionReward] call BL_fnc_lockVehicle; // Don't let anyone in until they complete the mission
 	
-	_grp = createGroup east;
-	_grp createUnit ["O_Soldier_SL_F", _location, [], 0, "FORM"];
+	_grp = [false, _location, [
+		"O_Soldier_SL_F",
+		"O_Soldier_F",
+		"O_Soldier_F",
+		"O_Soldier_F",
+		"O_Soldier_F",
+		"O_Soldier_F",
+		"O_Soldier_GL_F",
+		"O_Soldier_GL_F",
+		"O_Soldier_LAT_F",
+		"O_Soldier_LAT_F",
+		"O_Sniper_F",
+		"O_Sniper_F"
+	], [_location, _missionCode, _missionReward], {
+		_location      = _this select 0 select 0;
+		_missionCode   = _this select 0 select 1;
+		_missionReward = _this select 0 select 2;
+		
+		_grp = _this select 1 select 0;
+		_grp allowFleeing 0;
+		_grp setBehaviour "COMBAT";
+		_grp setCombatMode "RED";
+		
+		[_location, units _grp] call BL_fnc_aliveObjectCounter;
+		
+		[_grp, _missionCode, [_missionReward], {
+			[_this select 0 select 0, false] call BL_fnc_lockVehicle;
+		}] call BL_fnc_missionDoneWhenKilled;
+	}] call BL_fnc_groupSpawn;
 	
-	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
-	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
-	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
-	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
-	_grp createUnit ["O_Soldier_F", _location, [], 0, "FORM"];
-	
-	_grp createUnit ["O_Soldier_GL_F", _location, [], 0, "FORM"];
-	_grp createUnit ["O_Soldier_GL_F", _location, [], 0, "FORM"];
-	
-	_grp createUnit ["O_Soldier_LAT_F", _location, [], 0, "FORM"];
-	_grp createUnit ["O_Soldier_LAT_F", _location, [], 0, "FORM"];
-	
-	_grp createUnit ["O_Soldier_M_F", _location, [], 0, "FORM"];
-	_grp createUnit ["O_Soldier_M_F", _location, [], 0, "FORM"];
-	
-	_grp allowFleeing 0;
-	_grp setBehaviour "COMBAT";
-	_grp setCombatMode "RED";
-	
-	[_grp] call BL_fnc_statTrackAIUnits;
-	[_location, units _grp] call BL_fnc_aliveObjectCounter;
 	
 	[_missionReward] call BL_fnc_saveOnGetIn;
-	[_grp, _missionCode, [_missionReward], {
-		[_this select 0 select 0, false] call BL_fnc_lockVehicle;
-	}] call BL_fnc_missionDoneWhenKilled;
-	
 	[_missionReward, _missionCode, [_grp], {
 		_grp = _this select 0 select 0;
 		_grp allowFleeing 1;
