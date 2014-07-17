@@ -9,7 +9,6 @@ waitUntil {!(isNull (findDisplay 46))};
 player allowDamage false;
 player enableSimulation false;
 [player] join grpNull;
-enableRadio false;
 0 fadeRadio 0;
 player setVariable ['side', playerSide, true];
 BL_donatorInfo = missionNamespace getVariable ["BL_donatorInfo", -1];
