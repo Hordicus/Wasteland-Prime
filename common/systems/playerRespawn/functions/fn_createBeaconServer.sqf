@@ -1,4 +1,4 @@
-private ["_type","_ownerUID","_loc","_dir","_model","_beacon","_info"];
+private ["_type","_ownerUID","_loc","_dir","_model","_beacon","_info","_blockRadius"];
 _type     = [_this, 0, "ground", [""]] call BIS_fnc_param;
 _ownerUID = [_this, 1, "", [""]] call BIS_fnc_param;
 _loc      = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
@@ -32,9 +32,17 @@ if ( surfaceIsWater _loc ) then {
 	_loc = ATLtoASL _loc;
 };
 
+_blockRadius = 0;
+if ( _type == 'air' ) then {
+	_blockRadius = 'airBeaconBlockRadius' call BL_fnc_config;
+}
+else {
+	_blockRadius = 'groundBeaconBlockRadius' call BL_fnc_config;
+};
+
 [
 	_loc,
-	100,
+	_blockRadius,
 	'beaconUpdate',
 	[_info select 3]
 ] call BL_fnc_registerLocWithRadar;
