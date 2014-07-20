@@ -44,8 +44,9 @@ if ( _itemCount == 0 ) then {
 	if ( isNil "PERS_init_done" ) then {
 		[] spawn {
 			waitUntil {!isNil "PERS_init_count"};
+			PERS_init_currentCount = missionNamespace getVariable ['PERS_init_currentCount', 0];
 			while { isNil "PERS_init_done" } do {
-				["Waiting for server to initialize", (count allMissionObjects "All") / PERS_init_count] call BL_fnc_loadingScreen;
+				["Waiting for server to initialize", PERS_init_currentCount / PERS_init_count] call BL_fnc_loadingScreen;
 				sleep 0.5;
 			};
 		};

@@ -19,26 +19,43 @@ MySQLGroupQueue = missionNamespace getVariable ["MySQLGroupQueue", []];
 [] call compile preprocessFileLineNumbers "\x\bl_common\addons\systems\persistence\typeHandlers\rareVeh.sqf";
 
 private ["_count","_lastStep","_i","_vehicles","_result"];
-if ( isNil "PERS_init_done" && 'objectLoad' call BL_fnc_shouldRun ) then {
+if ( isServer ) then {
 	_database   = [call BL_fnc_persistenceConfig, 'database'] call CBA_fnc_hashGet;
 
 	_result = "Arma2Net.Unmanaged" callExtension format['Arma2NETMySQLBigCommand ["%1", "%2"]', _database, "SELECT * FROM `vehicles`"];
 	_result = [] call compile preprocessFileLineNumbers _result;
 
 	_result = [_result] call BL_fnc_processQueryResult;
+	
 	PERS_init_count = count (_result select 0);
 	publicVariable "PERS_init_count";
-
-	(_result select 0) spawn {		
+	
+	PERS_init_currentCount = 0;
+	PERS_start = diag_tickTime;
+	
+	(_result select 0) spawn {
+		_threads = [];
+		
 		{
-			[_x] call BL_fnc_loadVehicle;
-			if ( _forEachIndex % 10 == 0 ) then { sleep 0.1 };
-			true
+			_threads set [_forEachIndex, [_x] spawn BL_fnc_loadVehicle];
+			PERS_init_currentCount = _forEachIndex;
+			
+			waitUntil { {!scriptDone _x} count _threads < 5 };
 		} forEach _this;
-
+	};
+	
+	[] spawn {
+		while { PERS_init_currentCount < PERS_init_count-1 } do {
+			sleep 1;
+			publicVariable "PERS_init_currentCount";
+		};
+		
 		PERS_init_done = true;
 		publicVariable "PERS_init_done";
 		
+		diag_log format['Init object count: %1', PERS_init_count];
+		diag_log format['Init time: %1', diag_tickTime - PERS_start];
+
 		["SELECT `value` FROM `settings` WHERE `key` = 'reset'", [], [], {
 			if ( count (_this select 0 select 0) > 0 && {(_this select 0 select 0 select 0 select 0) == 1}) then {
 				{
