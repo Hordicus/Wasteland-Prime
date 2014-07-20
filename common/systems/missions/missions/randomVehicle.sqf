@@ -35,6 +35,9 @@ BL_fnc_missionRandomField,
 	_missionCode = [_this, 1, "", [""]] call BIS_fnc_param;
 	_location    = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 	
+	_base = [[call BL_fnc_missionsConfig, 'randomVehicleBases'] call BL_fnc_hashGet, -1, 0] call BL_fnc_selectRandom;
+	_base = [_location, 0, _base select 1] call BL_fnc_spawnCollection;
+	
 	_missionReward = createVehicle [_initResult, _location, [], 0, "CAN_COLLIDE"];
 	[_missionReward, 'reward'] call BL_fnc_trackVehicle;
 	[_missionReward] call BL_fnc_lockVehicle; // Don't let anyone in until they complete the mission
@@ -88,4 +91,30 @@ BL_fnc_missionRandomField,
 			};
 		};
 	}] call BL_fnc_failOnKilled;
+	
+	[_base, _missionCode, _location] spawn {
+		private ['_base', '_missionCode', '_location'];
+		_base = _this select 0;
+		_missionCode = _this select 1;
+		_location = _this select 2;
+		
+		{ _x setVariable ['LOG_disabled', true, true] } count _base;
+		
+		waitUntil {
+			sleep 5;
+			!([_missionCode] call BL_fnc_taskExists) ||
+			{[_missionCode] call BL_fnc_taskCompleted}
+		};
+		
+		{ _x setVariable ['LOG_disabled', false, true] } count _base;
+		
+		waitUntil { sleep 60; count ([_location, 1000] call BL_fnc_nearUnits) == 0 };
+		
+		{
+			if ( !(_x getVariable ['objectLocked', false]) && _x distance _location < 100 ) then {
+				deleteVehicle _x;
+			};
+			nil
+		} count _base;
+	};
 }];
