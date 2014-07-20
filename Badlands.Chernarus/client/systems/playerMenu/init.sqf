@@ -62,10 +62,10 @@ if ( !hasInterface ) exitwith{};
 
 	player addEventHandler ['respawn', {
 		(_this select 1) removeAction BL_playerMenuActionID;
-		BL_playerMenuActionID = player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1, false, true];
+		BL_playerMenuActionID = player addAction ['<t color="#FF0000"><img image="client\systems\playerMenu\icons\playermenu.paa" /> Player Menu</t>', "createDialog 'playerMenuDialog';", [], -1, false, true];
 	}];
 
-	BL_playerMenuActionID = player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1, false, true];
+	BL_playerMenuActionID = player addAction ['<t color="#FF0000"><img image="client\systems\playerMenu\icons\playermenu.paa" /> Player Menu</t>', "createDialog 'playerMenuDialog';", [], -1, false, true];
 };
 
 [] spawn {

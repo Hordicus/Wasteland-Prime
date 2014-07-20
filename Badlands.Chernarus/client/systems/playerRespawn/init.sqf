@@ -176,7 +176,7 @@ _condition = compile format['((_this select 0) isKindOf "%1" || (_this select 0)
 	'airBeaconModel' call BL_fnc_config,
 	'groundBeaconModel' call BL_fnc_config
 ];
-['Repack beacon', _condition,
+['<t color="#3cff00">Repack beacon</t>', _condition,
 {
 	[60, "Repacking Beacon %1", _this, {
 		(format['%1Beacon', (_this select 0) getVariable 'beaconType']) call BL_fnc_addInventoryItem;
@@ -184,7 +184,7 @@ _condition = compile format['((_this select 0) isKindOf "%1" || (_this select 0)
 	}] call BL_fnc_animDoWork;
 }, 1] call BL_fnc_addAction;
 
-['Destroy beacon', _condition,
+['<t color="#ff0000">Destroy beacon</t>', _condition,
 {
 	[30, "Destroying Beacon %1", _this, {
 		[_this select 0] call BL_fnc_destroySpawnBeacon;

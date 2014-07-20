@@ -56,7 +56,7 @@ BL_storeRadarState = [[], "EMPTY"] call CBA_fnc_hashCreate;
 
 	{
 		_store = [_config, _x select 0] call CBA_fnc_hashGet;
-		(_x select 1) addAction [_store select 0, _store select 1, [], 1.5, true, true];
+		(_x select 1) addAction [format['<t color="#ff0000"><img image="client\systems\stores\icons\store.paa" /> %1</t>', _store select 0], _store select 1, [], 1.5, true, true];
 		true
 	} count BL_PVAR_storeAccessObjects;
 };

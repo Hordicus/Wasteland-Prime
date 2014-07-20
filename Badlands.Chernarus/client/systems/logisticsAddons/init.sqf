@@ -17,14 +17,14 @@ if ( !hasInterface ) exitwith{};
 		{
 			if ( (_this select 0) isKindOf "Reammobox_F" ) then {
 				if ( [] call BL_fnc_money >= BL_lockCost ) then {
-					format["Lock Object [<t color='#FF0000'>-$%1</t>]", BL_lockCost]
+					format["<t color='#ff9c00'>Lock Object [<t color='#FF0000'>-$%1</t>]</t>", BL_lockCost]
 				}
 				else {
 					format["<t color='#FF0000'>Lock Object [-$%1]</t>", BL_lockCost]
 				};
 			}
 			else {
-				"Lock Object"
+				"<t color='#ff9c00'>Lock Object</t>"
 			};
 		},
 		{
@@ -66,10 +66,10 @@ if ( !hasInterface ) exitwith{};
 	[
 		{
 			if ( (_this select 0) isKindOf "Reammobox_F" ) then {
-				format["Unlock Object [<t color='#00FF00'>+$%1</t>]", BL_unlockCost]
+				format["<t color='#ff9c00'>Unlock Object [<t color='#00FF00'>+$%1</t>]</t>", BL_unlockCost]
 			}
 			else {
-				"Unlock Object"
+				"<t color='#ff9c00'>Unlock Object</t>"
 			};
 		},
 		{
