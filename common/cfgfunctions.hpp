@@ -43,6 +43,7 @@ class cfgFunctions {
 			class pvarEventHandler{};
 			class forwardEventToAllHCs{};
 			class objTweak{};
+			class spawnCollection{};
 		};
 		
 		#include "systems\radar\cfgfunctions.hpp"
@@ -59,5 +60,6 @@ class cfgFunctions {
 		#include "systems\missions\cfgfunctions.hpp"
 		#include "systems\staticVehicleSpawns\cfgfunctions.hpp"
 		#include "systems\weather\cfgfunctions.hpp"
+		#include "systems\fobs\cfgfunctions.hpp"
 	};
 };
