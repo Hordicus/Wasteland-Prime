@@ -2,8 +2,10 @@ if ( isNil "PERS_init_done" ) then {
 	[] spawn {
 		waitUntil { isServer || isPlayer player };
 		if ( 'objectLoad' call BL_fnc_shouldRun ) then {
+			private ['_fobs'];
 			_fobs = [call BL_fnc_fobsConfig, 'fobs'] call CBA_fnc_hashGet;
 
+			private ['_name', '_pos', '_parts', '_marker', '_spawnedParts'];
 			{
 				_name  = _x select 0;
 				_pos   = _x select 1;
@@ -20,6 +22,7 @@ if ( isNil "PERS_init_done" ) then {
 				{
 					_x allowDamage false;
 					_x enableSimulationGlobal false;
+					_x setVariable ['LOG_disabled', true, true];
 					nil
 				} count _spawnedParts;
 				
