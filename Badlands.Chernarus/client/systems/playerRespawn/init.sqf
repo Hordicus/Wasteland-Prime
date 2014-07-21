@@ -176,7 +176,32 @@ _condition = compile format['((_this select 0) isKindOf "%1" || (_this select 0)
 	'airBeaconModel' call BL_fnc_config,
 	'groundBeaconModel' call BL_fnc_config
 ];
-['<t color="#3cff00">Repack beacon</t>', _condition,
+
+private ['_beaconText'];
+_beaconText = "
+	private ['_owner', '_text'];
+	_owner = objNull;
+	_text = '<t color=''%1''>%2 beacon';
+	
+	{
+		if ( (_x select 2) == (_this select 0) ) exitwith {
+			_owner = [_x select 1] call BL_fnc_playerByUID;
+		};
+	} count BL_spawnBeacons;
+	
+	if ( [[_owner]] call BL_fnc_friendlyState == 'FRIENDLY' ) then {
+		_text = _text + ' (Friendly)';
+	}
+	else {
+		if ( !isNull _owner ) then {
+			_text = _text + ' (Enemy)';
+		};
+	};
+
+	_text + '</t>';
+";
+
+[compile format[_beaconText, '#3cff00', 'Repack'], _condition,
 {
 	[60, "Repacking Beacon %1", _this, {
 		(format['%1Beacon', (_this select 0) getVariable 'beaconType']) call BL_fnc_addInventoryItem;
@@ -184,7 +209,7 @@ _condition = compile format['((_this select 0) isKindOf "%1" || (_this select 0)
 	}] call BL_fnc_animDoWork;
 }, 1] call BL_fnc_addAction;
 
-['<t color="#ff0000">Destroy beacon</t>', _condition,
+[compile format[_beaconText, '#ff0000', 'Destroy'], _condition,
 {
 	[30, "Destroying Beacon %1", _this, {
 		[_this select 0] call BL_fnc_destroySpawnBeacon;
