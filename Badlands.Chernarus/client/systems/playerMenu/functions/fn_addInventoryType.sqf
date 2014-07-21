@@ -28,7 +28,7 @@ _actionIndex = -1;
 if ( _addAct && hasInterface ) then {
 	_actionIndex = [
 		format['<t color="#00a3e0"><img image="client\systems\playerMenu\icons\pickup.paa" /> Pick up %1</t>', _itemName],
-		compile format['(_this select 0) isKindOf "%1" && (_this select 0) getVariable["BL_invDroppedItem", false]', _itemModel],
+		compile format['(_this select 0) isKindOf "%1" && "%2" == ((_this select 0) getVariable["BL_invDroppedType", ""])', _itemModel, _itemType],
 		{
 			_item = BL_playerInventoryHandlers select (BL_playerInventoryCodes find ((_this select 0) getVariable 'BL_invDroppedType'));
 			[5, (format['Picking up %1 ', _item select 1]) + '%1', [_this, _item], {
