@@ -21,6 +21,8 @@ removeAllAssignedItems player;
 _money = [] call BL_fnc_money;
 _loadoutTotal = GEAR_activeLoadout call GEAR_fnc_loadoutTotal;
 
+player setVariable ['BL_playerInv', ['fuelEmpty'], true];
+
 if ( _money >= _loadoutTotal ) then {
 	[player, ((GEAR_activeLoadout call GEAR_fnc_filterLoadout) call GEAR_fnc_toLoadoutArray)] call GEAR_fnc_setLoadout;
 	_loadoutTotal call BL_fnc_subMoney;
