@@ -71,6 +71,35 @@ if ( isServer ) then {
 	["onPlayerConnected", {
 		["onPlayerConnected", _this] call BL_fnc_forwardEventToAllHCs;
 	}] call CBA_fnc_addEventHandler;
+	[] spawn {
+		while { true } do {
+			sleep (60*10);
+			
+			_classes = [[], 0] call BL_fnc_hashCreate;
+			
+			{
+				_type = typeOf _x;
+				[_classes, _type, ([_classes, _type] call BL_fnc_hashGet)+1] call BL_fnc_hashSet;
+				
+				nil
+			} count (allMissionObjects "All");
+			
+			_flatArray = [];
+			[_classes, {
+				_flatArray set [count _flatArray, [_key, _value]];
+			}] call BL_fnc_hashEachPair;
+			
+			_flatArray = [_flatArray, [], {_x select 1}, "DESCEND"] call BL_fnc_sortBy;
+			
+			diag_log "======= Begin object count dump =======";
+			{
+				diag_log format['%1: %2', _x select 0, _x select 1];
+				
+				nil
+			} count _flatArray;
+			diag_log "======= End object count dump =======";
+		};
+	};
 }
 else {
 	[] spawn {
