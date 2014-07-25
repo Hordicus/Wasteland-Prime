@@ -17,14 +17,14 @@ if ( !hasInterface ) exitwith{};
 		{
 			if ( (_this select 0) isKindOf "Reammobox_F" ) then {
 				if ( [] call BL_fnc_money >= BL_lockCost ) then {
-					format["<t color='#ff9c00'>Lock Object [<t color='#FF0000'>-$%1</t>]</t>", BL_lockCost]
+					format["<t color='#ff9c00'><img image='client\systems\logisticsAddons\icons\lock.paa' /> Lock Object [<t color='#FF0000'>-$%1</t>]</t>", BL_lockCost]
 				}
 				else {
-					format["<t color='#FF0000'>Lock Object [-$%1]</t>", BL_lockCost]
+					format["<t color='#FF0000'><img image='client\systems\logisticsAddons\icons\lock.paa' /> Lock Object [-$%1]</t>", BL_lockCost]
 				};
 			}
 			else {
-				"<t color='#ff9c00'>Lock Object</t>"
+				"<t color='#ff9c00'><img image='client\systems\logisticsAddons\icons\lock.paa' /> Lock Object</t>"
 			};
 		},
 		{
@@ -66,10 +66,10 @@ if ( !hasInterface ) exitwith{};
 	[
 		{
 			if ( (_this select 0) isKindOf "Reammobox_F" ) then {
-				format["<t color='#ff9c00'>Unlock Object [<t color='#00FF00'>+$%1</t>]</t>", BL_unlockCost]
+				format["<t color='#ff9c00'><img image='client\systems\logisticsAddons\icons\unlock.paa' /> Unlock Object [<t color='#00FF00'>+$%1</t>]</t>", BL_unlockCost]
 			}
 			else {
-				"<t color='#ff9c00'>Unlock Object</t>"
+				"<t color='#ff9c00'><img image='client\systems\logisticsAddons\icons\unlock.paa' /> Unlock Object</t>"
 			};
 		},
 		{
