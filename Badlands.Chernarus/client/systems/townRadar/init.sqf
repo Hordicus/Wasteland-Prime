@@ -15,9 +15,7 @@ _cities = call BL_fnc_findCities;
 stateHistory = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 
 ["radarUpdate", {
-	private ["_town", "_players", "_color", "_last", "_state"];
-	diag_log format["Got radarUpdate: %1", _this];
-	
+	private ["_town", "_players", "_color", "_last", "_state"];	
 	_players = _this select 0;
 	_town = _this select 1 select 0;
 	_state = [_players] call BL_fnc_friendlyState;

@@ -105,7 +105,6 @@ BL_playerSpawning = false;
 	}] call CBA_fnc_addEventHandler;
 	
 	["airUpdate", {
-		diag_log format['Got airUpdate: %1', _this];
 		_netId     = _this select 0;
 		_pilot     = _this select 1;
 		_altitude  = _this select 2;
