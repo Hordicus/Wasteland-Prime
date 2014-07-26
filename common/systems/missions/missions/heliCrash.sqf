@@ -107,11 +107,13 @@ BL_fnc_missionRandomField,
 		[_crashSite] call _reward;
 	};
 	
+	_allDeadAt = -1;
 	while { true } do {
 		sleep 5;
 	
-		_nearUnits = [_crashSite, 10] call BL_fnc_nearUnits;
+		_nearUnits = [_crashSite, 30] call BL_fnc_nearUnits;
 		_unitsInArea = [_crashSite, 500] call BL_fnc_nearUnits;
+		_aliveUnits = {alive _x && _x distance _crashSite <= 100} count _units;
 		
 		{
 			_unit = _x;
@@ -120,10 +122,14 @@ BL_fnc_missionRandomField,
 			} count _groups;
 			true
 		} count _unitsInArea;
-		
-		if ( count _nearUnits > 0 && {alive _x && _x distance _crashSite <= 100} count _units == 0) exitwith {
-			[_code] call BL_fnc_missionDone;
+
+		if ( _aliveUnits == 0 && _allDeadAt == -1 ) then {
+			_allDeadAt = diag_tickTime;
 		};
+		
+		if ( (count _nearUnits > 0 && _aliveUnits == 0) || (_allDeadAt > 0 && diag_tickTime - _allDeadAt > (5*60)) ) exitwith {
+			[_code] call BL_fnc_missionDone;
+		};		
 	};
 	
 	[_crash, _units, _code] spawn {
