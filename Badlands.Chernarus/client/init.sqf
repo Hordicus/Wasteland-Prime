@@ -137,6 +137,15 @@ player addEventHandler ["killed", {
 	};
 }];
 
+"BL_donatorTime" addPublicVariableEventHandler {
+	_this spawn {
+		_time = _this select 1;
+		waitUntil { isPlayer player && alive player && !dialog };
+		
+		[format['Your donation expires in %1 days', _time], 5] call BL_fnc_actionText;
+	};
+};
+
 player addEventHandler ["respawn", {
 	['respawn', _this] call BL_fnc_serverEvent;
 	(_this select 0) setVariable ['side', playerSide, true];
