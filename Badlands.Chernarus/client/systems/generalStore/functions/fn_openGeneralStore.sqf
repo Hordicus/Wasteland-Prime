@@ -10,7 +10,7 @@
 */
 
 private ['_generalStore'];
-_generalStore = 'generalStore' call BL_fnc_config;
+_generalStore = [[] call BL_fnc_generalStoreConfig, 'items'] call CBA_fnc_hashGet;
 
 [
 	"General Store", // Title

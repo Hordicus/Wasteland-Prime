@@ -10,6 +10,7 @@ onLoadName = "Wasteland";
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
 #include "client\dialogs\loadingScreen.hpp"
+#include "client\dialogs\abortConfirm.hpp"
 #include "client\systems\playerMenu\playerMenu.hpp"
 #include "client\systems\playerRespawn\respawnDialog.hpp"
 #include "logistics\objectContents.hpp"
@@ -41,9 +42,14 @@ class CfgFunctions {
 			class switchMove{};
 			class say3D{};
 			class serverEvent{};
-			class showMPInterrupt{};
+			class abortConfirm{};
+			
 			class config {
 				file = "config\config.sqf";
+			};
+			
+			class donatorsConfig {
+				file = "config\donators.sqf";
 			};
 
 			class miscellaneous {
@@ -66,6 +72,13 @@ class CfgFunctions {
 			class subMoney{};
 			class money{};
 			class nearUnits{};
+			class selectRandom{};
+			class safeVehicleSetPos{};
+			class safeVehicleSpawn{};
+			class simulationManager{};
+			class vehicleWeapons{};
+			class setVelocity{};
+			class enableSimulation{};
 		};
 		
 		#include "client\systems\playerRespawn\cfgfunctions.hpp"

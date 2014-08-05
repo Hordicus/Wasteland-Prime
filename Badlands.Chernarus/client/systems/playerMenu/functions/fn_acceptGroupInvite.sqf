@@ -31,7 +31,4 @@ _grp = grpNull;
 
 BL_groupInvites = [];
 [player] join _grp;
-
-['groupChange', [_grp]] call CBA_fnc_globalEvent;
-
 _grp

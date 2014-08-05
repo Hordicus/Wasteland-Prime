@@ -5,7 +5,7 @@ class respawnDialog {
 	idd = respawnDialogIDD;
 	movingEnable = false;
 	enableSimulation = true;
-	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_onLoad.sqf'";
+	onLoad = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_onLoad.sqf'; _this call BL_fnc_abortConfirm;";
 	onChildDestroyed = "_this call compile preprocessFileLineNumbers 'client\systems\playerRespawn\event_updateGEARInfo.sqf';";
 	
 	class controlsBackground {
@@ -51,6 +51,17 @@ class respawnDialog {
 			y = safezoneY + safezoneH * 0.57;
 			w = safezoneW * 0.3975;
 			h = safezoneH * (1 - 0.57 - 0.1);
+		};
+		
+		class serverBanner : RscCommon {
+			x = safezoneX + safezoneW * ( 0.1 + 0.02 + 0.16 );
+			w = safezoneW * 0.45;
+			h = safezoneH * 0.07;
+			y = safezoneY + safezoneH * ( 0.1 + 0.005 + 0.05 + 0.02 );
+			
+			colorBackground[] = {1,0,0,1};
+			style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_CENTER;
+			text = "banners\deathscreen.jpg";
 		};
 		
 		class serverInfo : RscStructuredText {

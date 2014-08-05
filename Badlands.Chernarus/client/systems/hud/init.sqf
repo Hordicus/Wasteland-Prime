@@ -1,4 +1,4 @@
-if ( isDedicated ) exitwith{};
+if ( !hasInterface ) exitwith{};
 
 #include "functions\macro.sqf"
 [] spawn {
@@ -214,6 +214,35 @@ if ( isDedicated ) exitwith{};
 	mapCursorTarget = objNull;
 	(findDisplay 12 displayCtrl 51) ctrlAddEventHandler ["MouseMoving", BL_fnc_trackMapMouse];
 	(findDisplay 12 displayCtrl 51) ctrlAddEventHandler ["Draw", BL_fnc_DrawMapIcons];
+	
+	[] spawn {
+		disableSerialization;
+		_banners = 'banners' call BL_fnc_config;
+		_banner = (uiNamespace getVariable 'HUD') displayCtrl HUDbannerIDC;
+		
+		_banner ctrlSetFade 0;
+		_banner ctrlCommit 0;
+		
+		while { true } do {
+			{
+				_banner = (uiNamespace getVariable 'HUD') displayCtrl HUDbannerIDC;
+				_banner ctrlSetText (_x select 0);
+				_banner ctrlSetFade 0;
+				_banner ctrlCommit 3;
+				
+				sleep (_x select 1);
+				_banner ctrlSetFade 1;
+				_banner ctrlCommit 3;				
+				sleep (_x select 2);
+				
+				while { (vehicle player) != player } do {
+					sleep 5;
+				};
+				
+				nil
+			} count _banners;
+		};
+	};
 		
 	private ["_role","_img","_damageColor","_damagePercent","_height"];
 	while { true } do {

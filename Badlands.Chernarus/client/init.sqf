@@ -1,5 +1,6 @@
 execVM 'client\systems\townRadar\init.sqf';
 execVM 'addons\fpsFix\vehicleManager.sqf';
+execVM 'addons\zlt_fastrope.sqf';
 
 waitUntil {!isNull player && player == player};
 waitUntil{!isNil "BIS_fnc_init"};
@@ -11,6 +12,7 @@ player enableSimulation false;
 enableRadio false;
 0 fadeRadio 0;
 player setVariable ['side', playerSide, true];
+BL_donatorInfo = missionNamespace getVariable ["BL_donatorInfo", -1];
 
 GEAR_activeLoadout = profileNamespace getVariable ["GEAR_activeLoadout", []];
 _itemCount = {
@@ -68,6 +70,7 @@ if ( _itemCount == 0 ) then {
 				(getMarkerPos 'respawn_guerrila') distance player > 100
 			};
 
+			player addRating 9999999999999999999999999;
 			player allowDamage true;
 			player enableSimulation true;
 
@@ -110,17 +113,27 @@ player addEventHandler ["killed", {
 	// sending code...
 	['killed', _this] call BL_fnc_serverEvent;
 
-	private ['_money', '_minMoney'];
-	_money = player getVariable ['money', 0];
-	_minMoney = ('minMoney' call BL_fnc_config);
-	if ( _money < _minMoney ) then {
-		player setVariable ['money', _minMoney, true];
+	if ( BL_donatorInfo > -1 ) then {
+		[player] call (([call BL_fnc_donatorsConfig, 'tiers'] call CBA_fnc_hashGet) select BL_donatorInfo);
+	}
+	else {
+		private ['_money', '_minMoney'];
+		_money = player getVariable ['money', 0];
+		_minMoney = ('minMoney' call BL_fnc_config);
+		if ( _money < _minMoney ) then {
+			player setVariable ['money', _minMoney, true];
+		};
 	};
 }];
 
 player addEventHandler ["respawn", {
 	['respawn', _this] call BL_fnc_serverEvent;
 	(_this select 0) setVariable ['side', playerSide, true];
-	
-	player addRating 100000;
 }];
+
+0.99 spawn {
+	while { true} do {
+		sleep 1;
+		player setFatigue ((getFatigue player) * _this);
+	};
+};

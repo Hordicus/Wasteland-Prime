@@ -11,6 +11,10 @@ class BLAdmin {
 		class freelook{};
 		class setMoney{};
 		class slay{};
+		class hud{};
+		class deleteCam{};
+		class camera{};
+		class revealOnMap{};
 		
 		class hideCtrls{};
 		class setButton{};

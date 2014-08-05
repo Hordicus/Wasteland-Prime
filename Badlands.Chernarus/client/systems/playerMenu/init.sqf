@@ -67,3 +67,17 @@ if ( !hasInterface ) exitwith{};
 
 	BL_playerMenuActionID = player addAction ['Player Menu', "createDialog 'playerMenuDialog';", [], -1, false, true];
 };
+
+[] spawn {
+	waitUntil {!isNull player && player == player};
+	waitUntil{!isNil "BIS_fnc_init"};
+	waitUntil {!(isNull (findDisplay 46))};
+	
+	_last = units group player;
+	
+	while { true } do {
+		waitUntil { !((units group player) isEqualTo _last) };
+		_last = units group player;
+		['groupChange', group player] call CBA_fnc_localEvent;
+	};
+};

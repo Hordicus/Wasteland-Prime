@@ -10,6 +10,14 @@ lbClear _groupPlayers;
 _leaveGrp = _display displayCtrl groupLeaveIDC;
 _leaveGrp ctrlShow false;
 
+_players = [playableUnits, [], {
+	_x call {
+		if ( (name _x) in BL_groupInvites ) exitwith { 2 };
+		if ( (name _x) in BL_groupSentInvites ) exitwith { 1 };
+		0
+	};
+}, "DESCEND"] call BIS_fnc_sortBy;
+
 {
 	if ( !(_x in units group player) && (side _x == side player || side _x == playerSide)) then {
 		_index = _allPlayers lbAdd (name _x);
@@ -22,7 +30,7 @@ _leaveGrp ctrlShow false;
 			_allPlayers lbSetPicture [_index, "client\systems\playerMenu\icons\inviteReceived.paa"];
 		};
 	};
-} forEach playableUnits;
+} forEach _players;
 
 if ( count units group player > 1 ) then {
 	_leaveGrp ctrlShow true;

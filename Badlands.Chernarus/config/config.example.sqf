@@ -6,6 +6,9 @@ _config = [] call CBA_fnc_hashCreate;
 [_config, 'groundBeaconModel', 'Land_SurvivalRadio_F'] call CBA_fnc_hashSet;
 [_config, 'moneyModel', 'EvMoney'] call CBA_fnc_hashSet;
 [_config, 'redeployCost', 100] call CBA_fnc_hashSet;
+[_config, 'lockCost', 100] call CBA_fnc_hashSet;
+[_config, 'unlockCost', 50] call CBA_fnc_hashSet;
+[_config, 'secondsPerHundred', 10] call CBA_fnc_hashSet;
 
 // Default loadouts
 [_config, "defaultWest", []] call CBA_fnc_hashSet;
@@ -120,15 +123,6 @@ _config = [] call CBA_fnc_hashCreate;
 	]]
 ]] call CBA_fnc_hashSet;
 
-[_config, 'generalStore', [
-	["General Store", [
-		["Air Beacon", 8000, "Air beacon description.", {'airBeacon' call BL_fnc_addInventoryItem;}],
-		["Ground Beacon", 4000, "Ground beacon description.", {'groundBeacon' call BL_fnc_addInventoryItem;}],
-		["Quadcopter UAV", 4000, "Quadcopter description.", {'quadcopter' call BL_fnc_addInventoryItem;}],
-		["K40 Ababil-3 UAV", 4000, "K40 Ababil-3 description.", {'ababil' call BL_fnc_addInventoryItem;}]
-	]]
-]] call CBA_fnc_hashSet;
-
 [_config, 'minMoney', 250] call CBA_fnc_hashSet;
 
 // See addons\randomWeather2.sqf for config options
@@ -144,6 +138,10 @@ _config = [] call CBA_fnc_hashCreate;
 ]] call CBA_fnc_hashSet;
 
 [_config, 'weatherCycleTime', 20 * 60] call CBA_fnc_hashSet;
+
+[_config, 'banners', [
+	// ['banners\image.jpg', displayTime, pauseTime]
+]] call CBA_fnc_hashSet;
 
 _return = '';
 if ( _key == '' ) then {
