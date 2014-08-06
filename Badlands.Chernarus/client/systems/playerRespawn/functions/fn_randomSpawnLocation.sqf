@@ -18,7 +18,7 @@ private ["_cities","_city","_vehicles","_vehicle","_vehPos","_spawnPos","_distan
 // Select city to spawn in
 _cities = call BL_fnc_findCities;
 _vehPos = [];
-_restrictCity = [_this, 0, [], [[]]] call BL_fnc_param;
+_restrictCity = [_this, 0, [], [[]]] call BIS_fnc_param;
 _attempts = 0;
 
 while { count _vehPos == 0 && _attempts < 10 } do {
