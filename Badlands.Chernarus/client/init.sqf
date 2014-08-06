@@ -8,6 +8,7 @@ waitUntil {!(isNull (findDisplay 46))};
 
 player allowDamage false;
 player enableSimulation false;
+player enableFatigue false;
 [player] join grpNull;
 0 fadeRadio 0;
 player setVariable ['side', playerSide, true];
@@ -149,11 +150,5 @@ player addEventHandler ["killed", {
 player addEventHandler ["respawn", {
 	['respawn', _this] call BL_fnc_serverEvent;
 	(_this select 0) setVariable ['side', playerSide, true];
+	(_this select 0) enableFatigue false;
 }];
-
-0.99 spawn {
-	while { true} do {
-		sleep 1;
-		player setFatigue ((getFatigue player) * _this);
-	};
-};

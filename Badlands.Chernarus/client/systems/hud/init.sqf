@@ -258,12 +258,10 @@ if ( !hasInterface ) exitwith{};
 			
 		_playerInfo ctrlSetStructuredText parseText format['
 		<img image="client\systems\hud\icons\health.paa" size="0.8" /> <t shadow="2">%2%1</t><br />
-		<img image="client\systems\hud\icons\stamina.paa" size="0.8" /> <t shadow="2">%3%1</t><br />
-		<img image="client\systems\hud\icons\compass.paa" size="0.8" /> <t shadow="2">%4°</t><br />
+		<img image="client\systems\hud\icons\compass.paa" size="0.8" /> <t shadow="2">%3°</t><br />
 		',
 		'%',
 		round (100-(damage player)*100),
-		round (100-(getFatigue player)*100),
 		round ((eyeDirection player) call CBA_fnc_vectDir)
 		];
 		

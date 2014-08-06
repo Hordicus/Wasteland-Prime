@@ -10,10 +10,10 @@ class HUDRsc {
 		class playerInfo : RscStructuredText {
 			idc = HUDplayerInfoIDC;
 			x = safezoneX + safezoneW - (safezoneW * (0.06 + 0.01));
-			y = safezoneY + safezoneH - (safezoneH * (0.07 + 0.01));
+			y = safezoneY + safezoneH - (safezoneH * (0.05 + 0.01));
 			
 			w = safezoneW * 0.06;
-			h = safezoneW * 0.07;
+			h = safezoneW * 0.05;
 		};
 		
 		class vehicleInfo : RscStructuredText {
