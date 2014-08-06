@@ -134,20 +134,6 @@ _config = [] call CBA_fnc_hashCreate;
 
 [_config, 'minMoney', 250] call CBA_fnc_hashSet;
 
-// See addons\randomWeather2.sqf for config options
-[_config, 'weatherTemplates', [
-	["Clear",[0,1,5],[0.30,0,0,1,1]],
-	["Overcast",[0,1,2],[0.50,0,0,2,2]],
-	["Light Rain",[1,2,3,5],[0.60,0.3,0.05,3,3]],
-	["Medium Rain",[2,3,4],[0.70,0.5,0.05,4,4]],
-	["Rainstorm",[3],[0.80,0.9,0.1,5,5]],
-	["Light Fog",[0,2,5,6],[0.4,0,[0.2,0.01,10],0,0]],
-	["Medium Fog",[5,6,7],[0.4,0,[0.4,0.005,20],0,0]],
-	["Dense Fog",[6],[0.5,0,[0.4,0.0025,30],0,0]]
-]] call CBA_fnc_hashSet;
-
-[_config, 'weatherCycleTime', 20 * 60] call CBA_fnc_hashSet;
-
 [_config, 'banners', [
 	// ['banners\image.jpg', displayTime, pauseTime]
 ]] call CBA_fnc_hashSet;

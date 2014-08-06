@@ -59,7 +59,6 @@ class cfgFunctions {
 		#include "systems\rareVehicleSpawns\cfgfunctions.hpp"
 		#include "systems\missions\cfgfunctions.hpp"
 		#include "systems\staticVehicleSpawns\cfgfunctions.hpp"
-		#include "systems\weather\cfgfunctions.hpp"
 		#include "systems\fobs\cfgfunctions.hpp"
 	};
 };
