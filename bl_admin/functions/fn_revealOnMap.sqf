@@ -30,7 +30,8 @@ _drawIcons = {
 };
 
 
-if ( isNil "BLAdmin_drawClasses" ) then {
+if ( isNil "BLAdmin_drawingClasses" ) then {
+	BLAdmin_drawingClasses = true;
 	BLAdmin_drawClasses = [];
 	
 	(findDisplay 12 displayCtrl 51) ctrlAddEventHandler ["Draw", _drawIcons];
