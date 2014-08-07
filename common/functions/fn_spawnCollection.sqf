@@ -16,7 +16,7 @@ private ['_class', '_distance', '_alt', '_dirTo', '_partDir', '_part', '_pos'];
 	_part = createVehicle [_x select 0, [0,0,0], [], 0, "CAN_COLLIDE"];
 	_part setDir (_dir + _partDir);
 	
-	_pos = [_center, _distance, _dirTo] call BIS_fnc_relPos;
+	_pos = [_center, _distance, _dirTo+_dir] call BIS_fnc_relPos;
 	_pos set [2, _alt];
 	
 	_part setPosATL _pos;
