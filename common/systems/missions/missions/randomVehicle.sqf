@@ -35,7 +35,7 @@ BL_fnc_missionRandomField,
 	_missionCode = [_this, 1, "", [""]] call BIS_fnc_param;
 	_location    = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
 	
-	_base = [[call BL_fnc_missionsConfig, 'randomVehicleBases'] call BL_fnc_hashGet, -1, 0] call BL_fnc_selectRandom;
+	_base = [[call BL_fnc_missionsConfig, 'randomVehicleBases'] call CBA_fnc_hashGet, -1, 0] call BL_fnc_selectRandom;
 	_base = [_location, 0, _base select 1] call BL_fnc_spawnCollection;
 	
 	_missionReward = createVehicle [_initResult, _location, [], 0, "CAN_COLLIDE"];
