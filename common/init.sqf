@@ -75,11 +75,11 @@ if ( isServer ) then {
 		while { true } do {
 			sleep (60*10);
 			
-			_classes = [[], 0] call BL_fnc_hashCreate;
+			_classes = [[], 0] call CBA_fnc_hashCreate;
 			
 			{
 				_type = typeOf _x;
-				[_classes, _type, ([_classes, _type] call BL_fnc_hashGet)+1] call BL_fnc_hashSet;
+				[_classes, _type, ([_classes, _type] call CBA_fnc_hashGet)+1] call CBA_fnc_hashSet;
 				
 				nil
 			} count (allMissionObjects "All");
@@ -87,9 +87,9 @@ if ( isServer ) then {
 			_flatArray = [];
 			[_classes, {
 				_flatArray set [count _flatArray, [_key, _value]];
-			}] call BL_fnc_hashEachPair;
+			}] call CBA_fnc_hashEachPair;
 			
-			_flatArray = [_flatArray, [], {_x select 1}, "DESCEND"] call BL_fnc_sortBy;
+			_flatArray = [_flatArray, [], {_x select 1}, "DESCEND"] call BIS_fnc_sortBy;
 			
 			diag_log "======= Begin object count dump =======";
 			{
