@@ -12,4 +12,6 @@ class statTracking {
 	class statTrackingKilledHandler{};
 	class getKiller{};
 	class pointsToRank{};
+	class setPlayerScore{};
+	class getPlayerScore{};
 };

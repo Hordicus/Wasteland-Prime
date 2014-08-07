@@ -1,36 +1,12 @@
+#include "functions\macro.sqf"
+
 statTrackingQueue = [];
-playerBounty = [[], 1] call CBA_fnc_hashCreate;
-BL_scoreboard = [];
 BL_playerBountyAmount = [call BL_fnc_statTrackingConfig, "playerBounty"] call CBA_fnc_hashGet;
 BL_aiBountyAmount = [call BL_fnc_statTrackingConfig, "aiBounty"] call CBA_fnc_hashGet;
-BL_scoreboardLookup = [];
 BL_totalPoints = [[], 0] call CBA_fnc_hashCreate;
 BL_addPointsLog = [];
 BL_addPointsLogMaxSize = [call BL_fnc_statTrackingConfig, "addPointsLogMaxSize"] call CBA_fnc_hashGet;
 BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueueMaxSize"] call CBA_fnc_hashGet;
-
-[] spawn {
-	private ['_lastBroadcast'];
-	_lastBroadcast = [];
-	_shouldRun = 'statTracking' call BL_fnc_shouldRun;
-	
-	// Broadcast BL_scoreboard up to once a second, but only if
-	// it has changed.
-	while { true } do {
-		if ( _shouldRun ) then {
-			sleep 5;
-		
-			if !( _lastBroadcast isEqualTo BL_scoreboard ) then {
-				_lastBroadcast = +BL_scoreboard;
-				publicVariable "BL_scoreboard";
-			};
-		}
-		else {
-			sleep 30;
-			_shouldRun = 'statTracking' call BL_fnc_shouldRun;
-		};
-	};
-};
 
 // Player bounty
 ['killed', {
@@ -44,8 +20,8 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 	_playerName = _player getVariable 'name';
 	_bounty = 0;
 	
-	if ( isPlayer _player ) then {	
-		_bounty = BL_playerBountyAmount * ([playerBounty, _playerName] call CBA_fnc_hashGet);
+	if ( isPlayer _player ) then {
+		_bounty = (_player call BL_fnc_getPlayerScore) select INDEX_BOUNTY;
 	}
 	else {
 		_bounty = _player getVariable ['bounty', BL_aiBountyAmount];
@@ -53,7 +29,11 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 	
 	if ( _player != _killer && isPlayer _killer && isPlayer _player ) then {
 		// Add to killer's bounty
-		[playerBounty, _killerName, ([playerBounty, _killerName] call CBA_fnc_hashGet)+1] call CBA_fnc_hashSet;	
+		_data = _killer call BL_fnc_getPlayerScore;
+		_data set [INDEX_BOUNTY, (_data select INDEX_BOUNTY) + BL_playerBountyAmount];
+		diag_log format["%1: %2", _killer, _data select INDEX_BOUNTY];
+		
+		[_killer, _data] call BL_fnc_setPlayerScore;
 	};
 	
 	if ( _player != _killer ) then {
@@ -142,21 +122,9 @@ BL_statTrackingQueueMaxSize = [call BL_fnc_statTrackingConfig, "statTrackingQueu
 		
 		[BL_totalPoints, getPlayerUID _player, _points] call CBA_fnc_hashSet;
 		
-		// Player could be reconnecting. Don't add player if they are already on the scoreboard
-		_playerIndex = BL_scoreboardLookup find (format['%1%2', side _player, name _player]);
-		if ( _playerIndex > -1 ) exitwith{};
+		_data = _player call BL_fnc_getPlayerScore;
+		_data set [INDEX_RANK, [_points] call BL_fnc_pointsToRank];
 		
-		_index = count BL_scoreboard;
-		BL_scoreboard set [_index, [
-			[_points] call BL_fnc_pointsToRank,
-			side _player,
-			name _player,
-			BL_playerBountyAmount,
-			0,
-			0,
-			0
-		]];
-		
-		BL_scoreboardLookup set [_index, format['%1%2', side _player, name _player]];
+		[_player, _data] call BL_fnc_setPlayerScore;		
 	}] call BL_fnc_MySQLCommand;
 }] call CBA_fnc_addEventHandler;

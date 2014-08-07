@@ -1,52 +1,42 @@
 if !( 'statTracking' call BL_fnc_shouldRun ) exitwith{};
 
 #include "macro.sqf"
-private ['_player', '_killer', '_playerIndex', '_playerVehicle'];
+private ['_player', '_killer', '_playerData', '_playerVehicle'];
 _player = _this select 0;
 _killer = [_this select 1] call BL_fnc_getKiller;
 
-_playerIndex = _player call BL_fnc_playerIndex;
 _playerVehicle = typeOf vehicle _player;
+_playerData = _player call BL_fnc_getPlayerScore;
 
 if ( isPlayer _player ) then {
-	[_player, _killer, BL_playerBountyAmount * ([playerBounty, _player getVariable 'name'] call CBA_fnc_hashGet)] call BL_fnc_sendKillMsg;
-
-	// Reset players bounty
-	[playerBounty, _player getVariable 'name', 1] call CBA_fnc_hashSet;
+	[_player, _killer, _playerData select INDEX_BOUNTY] call BL_fnc_sendKillMsg;
 }
 else {
 	[_player, _killer, _player getVariable ['bounty', BL_aiBountyAmount]] call BL_fnc_sendKillMsg;
 };
 
-if ( _playerIndex > -1 ) then {
+if ( isPlayer _player ) then {
 	// Update player bounty
-	(BL_scoreboard select _playerIndex) set [INDEX_BOUNTY, BL_playerBountyAmount];
-		
-	// Add one to player's deaths
-	(BL_scoreboard select _playerIndex) set [INDEX_DEATHS,
-		((BL_scoreboard select _playerIndex) select INDEX_DEATHS) + 1
-	];
+	if ( _player != _killer ) then {
+		_playerData set [INDEX_BOUNTY, 0];
+	};
+	
+	_playerData set [INDEX_DEATHS, (_playerData select INDEX_DEATHS) + 1];
 
 	// Add to players score
-	[_player, "death"] call BL_fnc_addPoints;		
+	[_player, "death"] call BL_fnc_addPoints;
+	
+	[_player, _playerData] call BL_fnc_setPlayerScore;
 };
 
 if ( _killer != _player && isPlayer _killer ) then {
-	private ['_killerIndex'];
-	_killerIndex = _killer call BL_fnc_playerIndex;
-	
-	if ( _killerIndex == -1 ) exitwith{};
-	
-	// Update killer's bounty
-	(BL_scoreboard select _killerIndex) set [INDEX_BOUNTY,
-		([playerBounty, _killer getVariable 'name'] call CBA_fnc_hashGet)*BL_playerBountyAmount
-	];
-	
 	if ( isPlayer _player ) then {
+		private ['_data'];
+		_data = _killer call BL_fnc_getPlayerScore;
+
 		// Add one to killers' kills
-		(BL_scoreboard select _killerIndex) set [INDEX_KILLS,
-			((BL_scoreboard select _killerIndex) select INDEX_KILLS) + 1
-		];
+		_data set [INDEX_KILLS, (_data select INDEX_KILLS) + 1];
+		[_killer, _data] call BL_fnc_setPlayerScore;
 	
 		// Add to killer score
 		[_killer, 'playerKill'] call BL_fnc_addPoints;

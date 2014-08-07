@@ -9,7 +9,7 @@ if ( typeName _points == "STRING" ) then {
 	_points = [call BL_fnc_statTrackingConfig, _code] call CBA_fnc_hashGet;
 };
 
-_scoreboard = _player call BL_fnc_playerScoreboard;
+_scoreboard = _player call BL_fnc_getPlayerScore;
 _total = _points + (_scoreboard select INDEX_SCORE);
 
 _scoreboard set [INDEX_SCORE, _total];
@@ -19,6 +19,8 @@ _allTimePoints = [BL_totalPoints, _player getVariable 'uid'] call CBA_fnc_hashGe
 [BL_totalPoints, _player getVariable 'uid', _allTimePoints + _points] call CBA_fnc_hashSet;
 
 _scoreboard set [INDEX_RANK, [_allTimePoints + _points] call BL_fnc_pointsToRank];
+
+[_player, _scoreboard] call BL_fnc_setPlayerScore;
 
 BL_addPointsLog set [count BL_addPointsLog, [
 	BL_sessionStart,

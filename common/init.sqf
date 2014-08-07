@@ -6,6 +6,9 @@ if ( isNil "CBA_eventHandlers" ) then {
 if ( isServer ) then {
 	BL_sessionStart = call compile ("Arma2Net.Unmanaged" callExtension "DateTime ['now', 'yyyy-MM-dd HH:mm:ss']");
 	publicVariable "BL_sessionStart";
+	
+	BL_Logic = (createGroup sideLogic) createUnit ['Logic', [0,0,0], [], 0, "CAN_COLLIDE"];
+	publicVariable "BL_Logic";
 
 	BL_HCs = [];
 		

@@ -2,12 +2,7 @@ private ['_scoreboard', '_page', '_players'];
 _scoreboard = [_this, 0, displayNull, [displayNull]] call BIS_fnc_param;
 _page = [_this, 1, 0, [0]] call  BIS_fnc_param;
 
-_players = [
-	BL_scoreboard,
-	[],
-	{ _x select 6 },
-	"DESCEND"
-] call BIS_fnc_sortBy;
+_players = [] call BL_fnc_buildScoreboard;
 
 _offset = 10 * _page;
 

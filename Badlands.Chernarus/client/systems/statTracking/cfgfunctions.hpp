@@ -15,4 +15,5 @@ class statTracking {
 	class showPlayers{};
 	class rankImage{};
 	class showKillMsg{};
+	class buildScoreboard{};
 };
