@@ -4,7 +4,7 @@ class FOBs {
 		preInit = 1;
 	};
 	
-	class fobConfig {
+	class fobsConfig {
 		file = "\x\bl_common\addons\config\fobs.sqf";
 	};
 };
