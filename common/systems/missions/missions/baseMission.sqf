@@ -5,8 +5,9 @@
 	[[], _this select 1] call (_this select 0);
 },
 
-"Base Mission",
-{"Mission"},
+"OPFOR Base",
+{format["OPFOR are establishing a base near %1. Stop them from completing the base.
+OPFOR will continue to receive reinforcements until the base has been secured.", ([(_this select 1)] call BL_fnc_nearestCity) select 0]},
 
 // Mission location. Array or code
 {
@@ -31,7 +32,7 @@
 		false, // Base done
 		false // Units landed
 	];
-	
+		
 	/* Attack heli loop */
 	[_location, _missionCode] spawn {
 		_location = _this select 0;
@@ -180,7 +181,7 @@
 		
 		// Wait for units to hit the ground
 		waitUntil { _conditions select 1 };
-	
+
 		_baseParts = [["Land_BagFence_Round_F","13.310132","0.0799999","262.156464","265.567657"],["Land_BagFence_Round_F","13.765927","-0.0299301","92.484253","112.241272"],["Land_BagFence_Round_F","14.397835","0.0379925","101.633858","43.288235"],["Land_BagFence_Round_F","14.812669","0.0799999","269.77713","181.857269"],["B_static_AA_F","14.998459","0.00478935","263.611206","47.996418"],["B_static_AA_F","15.484487","0.074192","96.151436","260.949036"],["Land_CncWall4_F","15.878228","0.0799999","307.686768","129.627899"],["Land_CncWall4_F","16.506449","0.0799999","326.268555","129.644348"],["Land_CncBarrierMedium_F","16.582321","-0.442074","60.252609","39.820221"],["Land_CncBarrierMedium_F","16.717579","-0.520479","25.519642","39.856659"],["Land_CncWall4_F","16.992853","0.0799999","289.662689","129.977524"],["Land_CncWall4_F","17.243206","0.0188847","133.356873","310.771118"],["Land_CncBarrierMedium_F","17.321827","-0.522106","19.706434","220.713943"],["Land_CncBarrierMedium_F","17.326109","-0.451456","65.917786","39.856659"],["Land_CncWall4_F","17.582722","0.0799999","218.0251465","39.56118"],["Land_CncWall4_F","17.785265","0.00496292","116.240044","308.876251"],["Land_BarGate_F","18.0212803","0.0718327","41.845745","224.330124"],["Land_CncWall4_F","18.193279","0.0799999","234.686493","39.665592"],["Land_CncWall4_F","18.206913","0.00570107","150.0809326","310.211029"],["Land_CncWall4_F","18.546978","0.0799999","201.643982","40.226658"],["Land_BagBunker_Small_F","22.95796","0.0712528","27.91235","222.62883"],["Land_BagBunker_Small_F","23.0417633","0.0397549","56.292419","220.103104"],["Land_BagBunker_Large_F","23.0666237","0.0745296","340.555542","130.0645447"],["Land_BagBunker_Large_F","23.202923","0.0699997","10.135099","219.847565"],["B_HMG_01_high_F","23.347319","-0.0122623","28.89143","42.349098"],["Land_BagBunker_Large_F","23.576141","0.0794392","73.521263","219.820236"],["B_HMG_01_high_F","23.611885","-0.0119209","56.229752","41.695923"],["Land_BagBunker_Large_F","24.157696","0.128725","102.260246","310.0971375"],["Land_BagBunker_Large_F","24.275145","0.0799999","276.797089","129.325378"],["Land_BagBunker_Large_F","24.545815","0.0799999","248.800964","39.861214"],["Land_BagBunker_Large_F","25.0770245","0.059185","162.349686","310.248932"],["Land_BagBunker_Large_F","25.253431","0.0799999","189.403305","40.29081"]];
 		_baseParts = [_baseParts, [], { parseNumber (_x select 1) }, "DESC"] call BIS_fnc_sortBy;
 		_lastPart = diag_tickTime;
@@ -296,6 +297,8 @@
 		_conditions  = _this select 3;
 		
 		waitUntil {_conditions select 1};
+		_aliveMarker = [_location, [_location, 300], "AI", false] call BL_fnc_aliveObjectCounter;
+		
 		_baseFlag = createVehicle ["Land_Communication_F", [
 				_location select 0,
 				_location select 1,
@@ -324,5 +327,6 @@
 		};
 		
 		[_missionCode] call BL_fnc_missionDone;
+		deleteMarker _aliveMarker;
 	};
 }];
