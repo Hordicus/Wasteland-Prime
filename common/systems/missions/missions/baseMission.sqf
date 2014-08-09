@@ -12,7 +12,7 @@
 {
 	_location = [];
 	while { _location isEqualTo [] } do {
-		_location = (call BL_fnc_missionRandomField) isFlatEmpty [15, 0, 1, 15, 0, false, objNull];
+		_location = (call BL_fnc_missionRandomField) isFlatEmpty [0, 0, 0.1, 50, 0, false, objNull];
 	};
 	
 	ASLtoATL _location
@@ -23,7 +23,6 @@
 	_initResult  = [_this, 0, "", [""]] call BIS_fnc_param;
 	_missionCode = [_this, 1, "", [""]] call BIS_fnc_param;
 	_location    = [_this, 2, [0,0,0], [[]], [2,3]] call BIS_fnc_param;
-	_location set [2, 0];
 	
 	_transport   = createGroup east;
 	_building    = createGroup east;
