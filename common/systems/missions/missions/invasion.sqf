@@ -150,7 +150,7 @@
 	};
 	
 	[_allUnits] call BL_fnc_statTrackAIUnits;
-	{ _x setVariable ['bounty', 500] } count _allUnits;
+	{ _x setVariable ['bounty', BL_aiBountyAmount * 2] } count _allUnits;
 	
 	[_location, _allUnits] call BL_fnc_aliveObjectCounter;
 	
