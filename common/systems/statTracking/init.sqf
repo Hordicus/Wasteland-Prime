@@ -1,6 +1,7 @@
 #include "functions\macro.sqf"
 
 statTrackingQueue = [];
+BL_playerStartBounty = [call BL_fnc_statTrackingConfig, "startingBounty"] call CBA_fnc_hashGet;
 BL_playerBountyAmount = [call BL_fnc_statTrackingConfig, "playerBounty"] call CBA_fnc_hashGet;
 BL_aiBountyAmount = [call BL_fnc_statTrackingConfig, "aiBounty"] call CBA_fnc_hashGet;
 BL_totalPoints = [[], 0] call CBA_fnc_hashCreate;

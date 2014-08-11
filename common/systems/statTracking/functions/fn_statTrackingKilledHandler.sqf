@@ -18,7 +18,7 @@ else {
 if ( isPlayer _player ) then {
 	// Update player bounty
 	if ( _player != _killer ) then {
-		_playerData set [INDEX_BOUNTY, 0];
+		_playerData set [INDEX_BOUNTY, BL_playerStartBounty];
 	};
 	
 	_playerData set [INDEX_DEATHS, (_playerData select INDEX_DEATHS) + 1];
