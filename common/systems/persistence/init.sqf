@@ -1,5 +1,3 @@
-PERS_trackedObjectsNetIDs = [];
-PERS_trackedObjectsIDs = [];
 PERS_typeData = [];
 MySQLQueue = missionNamespace getVariable ["MySQLQueue", []];
 MySQLGroupQueue = missionNamespace getVariable ["MySQLGroupQueue", []];

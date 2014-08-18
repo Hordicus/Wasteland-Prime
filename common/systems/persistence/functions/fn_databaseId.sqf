@@ -1,19 +1,8 @@
-private ['_netId', '_index', '_dbId'];
-_netId = [_this, 0, "", ["", objNull]] call BIS_fnc_param;
+private ['_obj'];
+_obj = [_this, 0, "", ["", objNull]] call BIS_fnc_param;
 
-if ( typeName _netId == "OBJECT" ) then {
-	_netId = netId _netId;
+if ( typeName _netId == "STRING" ) then {
+	_obj = objectFromNetId _obj;
 };
 
-_index = PERS_trackedObjectsNetIDs find _netId;
-_dbId = -1;
-
-if ( _index != -1 ) then {
-	_dbId = PERS_trackedObjectsIDs select _index;
-	
-	if ( isNil "_dbId" ) then {
-		_dbId = -1;
-	};
-};
-
-_dbId
+_obj getVariable ['PERS_id', -1]
