@@ -3,7 +3,7 @@ class CfgPatches
 	class ADDON
 	{
 		units[] = {};
-		requiredAddons[] = {};
+		requiredAddons[] = {"CBA_main"};
 		author[] = {"DJRanger"};
 		authorUrl = "http://djranger.com";
 	};
