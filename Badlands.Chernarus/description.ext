@@ -6,10 +6,10 @@ joinUnassigned = 0;
 author = "S&S Gaming";
 onLoadName = "Wasteland";
 
-//Revive changes
-reviveDelay = 4;
-reviveForceRespawnDelay = 3;
-reviveBleedOutDelay = 120;
+respawn = 3;
+respawnDelay = 15;
+respawnTemplates[] = {"Revive", "MenuPosition"};
+respawnOnStart = -1;
 
 #include "gear\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
