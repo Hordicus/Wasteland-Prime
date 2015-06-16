@@ -6,8 +6,6 @@ joinUnassigned = 0;
 author = "S&S Gaming";
 onLoadName = "Wasteland";
 
-//test hellfish change
-
 #include "gear\gear_dialog.hpp"
 #include "client\dialogs\common.hpp"
 #include "client\dialogs\styles.hpp"
