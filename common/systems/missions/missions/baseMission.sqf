@@ -299,7 +299,7 @@ OPFOR will continue to receive reinforcements until the base has been secured.",
 		waitUntil {_conditions select 1};
 		_aliveMarker = [_location, [_location, 300], "AI", false] call BL_fnc_aliveObjectCounter;
 		
-		_baseFlag = createVehicle ["Land_Communication_F", [
+		_baseFlag = createVehicle ["Land_TTowerBig_2_F", [
 				_location select 0,
 				_location select 1,
 				(_location select 2)-3
