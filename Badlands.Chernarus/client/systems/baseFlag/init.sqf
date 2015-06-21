@@ -14,7 +14,7 @@ BL_baseFlagMarkers = [];
 BL_baseFlagRadarState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 BL_baseFlagBlockState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 
-['baseFlag', 'Base flag', "Land_Suitcase_F", [], {
+['baseFlag', 'Base flag', "Land_Communication_F", [], {
 	[15, "Deploying Base Flag %1", [], {
 		PVAR_createBaseFlag = [player, getPosATL player];
 		publicVariableServer "PVAR_createBaseFlag";
