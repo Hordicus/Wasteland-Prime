@@ -87,12 +87,12 @@ BL_fnc_missionRandomField,
 	
 	if ( isNil "_reward" ) then {
 		_rewards = [
-			"Box_East_AmmoVeh_F",
-			"Box_East_WpsLaunch_F",
-			"IG_supplyCrate_F",
-			"Box_East_Grenades_F",
-			"Box_East_WpsSpecial_F",
-			"Box_East_AmmoOrd_F"
+			"Box_NATO_WpsSpecial_F",
+			"Box_EAST_WpsSpecial_F",
+			"Box_IND_WpsSpecial_F",
+			"Box_NATO_WpsLaunch_F",
+			"Box_NATO_AmmoOrd_F",
+			"Box_EAST_WpsLaunch_F"
 		];
 		
 		for "_i" from 0 to 2 do {
