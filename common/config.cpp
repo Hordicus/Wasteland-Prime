@@ -53,14 +53,14 @@ class Extended_GetOut_Eventhandlers {
 	};
 };
 
-class CfgVehicles {
-	class Land_SurvivalRadio_F {
-		simulation = "house";
-	};
-
-	class Reammobox_F {
-		simulation = "house";
-	};
-};
+//class CfgVehicles {
+//	class Land_SurvivalRadio_F {
+//		simulation = "house";
+//	};
+//
+//	class Reammobox_F {
+//		simulation = "house";
+//	};
+//};
 
 #include "cfgfunctions.hpp"
