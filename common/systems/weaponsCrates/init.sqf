@@ -49,7 +49,7 @@
 				if ( count _position > 0 ) then {
 					_abovePosition = +_position;
 					_abovePosition set [2, 15];
-					_intersects = lineIntersectsWith [ATLtoASL _position, ATLtoASL _abovePosition, objNull, objNull, false];
+					_intersects = lineIntersectsWith [ATLToASL _position, ATLToASL _abovePosition, objNull, objNull, false];
 					
 					if ( count _intersects > 0 ) then{
 						_position = [];
@@ -65,10 +65,14 @@
 		clearWeaponCargoGlobal _box;
 		clearMagazineCargoGlobal _box;
 		clearItemCargoGlobal _box;
-		clearBackpackCargoGlobal _box;
+	    clearBackpackCargoGlobal _box;
 		
 		{
-			_box addItemCargoGlobal _x;
+			_box addWeaponCargoGlobal _x;
+		} count (_crate select 2);
+		
+		{
+			_box addMagazineCargoGlobal _x;
 		} count (_crate select 2);
 		
 		[_box, 'crate'] call BL_fnc_trackVehicle;
