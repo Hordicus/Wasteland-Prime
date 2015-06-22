@@ -14,7 +14,7 @@ BL_baseFlagMarkers = [];
 BL_baseFlagRadarState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 BL_baseFlagBlockState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 
-['baseFlag', 'Base flag', "Land_Communication_F", [], {
+['baseFlag', 'Base flag', "Land_TTowerBig_2_F", [], {
 	[15, "Deploying Base Flag %1", [], {
 		PVAR_createBaseFlag = [player, getPosATL player];
 		publicVariableServer "PVAR_createBaseFlag";
@@ -23,7 +23,7 @@ BL_baseFlagBlockState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 }] call BL_fnc_addInventoryType;
 
 ["<t color='#3cff00'><img image='client\systems\baseFlag\icons\repack.paa' /> Repack Base Flag</t>",
-{(_this select 0) isKindOf "Land_SatellitePhone_F" && {{(_x select 3) == (_this select 0)} count BL_PVAR_baseFlags > 0}},
+{(_this select 0) isKindOf "Land_TTowerBig_2_F" && {{(_x select 3) == (_this select 0)} count BL_PVAR_baseFlags > 0}},
 {
 	[60, 'Repacking Base Flag %1', [_this select 0], {
 		'baseFlag' call BL_fnc_addInventoryItem;
@@ -33,7 +33,7 @@ BL_baseFlagBlockState = [[], [[], "EMPTY"]] call CBA_fnc_hashCreate;
 }] call BL_fnc_addAction;
 
 ["<t color='#ff0000'><img image='client\systems\baseFlag\icons\destroy.paa' /> Destroy Base Flag</t>",
-{(_this select 0) isKindOf "Land_SatellitePhone_F" && {{(_x select 3) == (_this select 0)} count BL_PVAR_baseFlags > 0}},
+{(_this select 0) isKindOf "Land_TTowerBig_2_F" && {{(_x select 3) == (_this select 0)} count BL_PVAR_baseFlags > 0}},
 {
 	[30, 'Destroying Base Flag %1', [_this select 0], {
 		PVAR_destroyBaseFlag = [player, _this select 0];
@@ -100,7 +100,7 @@ if ( !hasInterface ) exitwith{};
 	[playerRespawnOptions, 'flags', [BL_baseFlagBlockState] call BL_fnc_flagRespawnOptions] call CBA_fnc_hashSet;
 };
 
-[format['<t color="#3cff00"><img image="client\systems\baseFlag\icons\redeploy.paa" /> Redeploy ($%1)</t>', 'redeployCost' call BL_fnc_config], { (_this select 0) isKindOf "Land_SatellitePhone_F" && {([] call BL_fnc_money) >= ('redeployCost' call BL_fnc_config)}}, {
+[format['<t color="#3cff00"><img image="client\systems\baseFlag\icons\redeploy.paa" /> Redeploy ($%1)</t>', 'redeployCost' call BL_fnc_config], { (_this select 0) isKindOf "Land_TTowerBig_2_F" && {([] call BL_fnc_money) >= ('redeployCost' call BL_fnc_config)}}, {
 	createDialog 'BLrespawnDialog';
 	player setPosATL (markerPos 'respawn_west');
 	100 call BL_fnc_subMoney;
