@@ -212,6 +212,12 @@ class playerMenuDialog {
 			x = safezoneX + safezoneW * ( (0.5 - DIALOG_W/2) + 0.01 );
 			y = safezoneY + safezoneH * ( (0.5 - DIALOG_H/2) + 0.01 + 0.135 + 0.005 + (0.03 + 0.005) * 5 + 0.01 + 0.03 + 0.005 );
 			idc = allPlayersIDC;
+			
+			colorPicture[] = {1,1,1,1};
+			colorPictureSelected[] = {1,1,1,1};
+			colorPictureDisabled[] = {1,1,1,1};
+			colorPictudeDisabled[] = {1,1,1,0.25};
+			
 			onLBSelChanged = "call compile preprocessFileLineNumbers 'client\systems\playerMenu\event_playerLBChanged.sqf'";
 		};
 		
