@@ -15,4 +15,5 @@ if ( !hasInterface ) exitwith{};
 	execVM 'client\systems\miscellaneous\extendedParachuteOptions.sqf';
 	execVM 'client\systems\miscellaneous\safezones.sqf';
 	execVM 'client\systems\miscellaneous\protect.sqf';
+	execVM 'client\systems\miscellaneous\playArea.sqf';
 };
