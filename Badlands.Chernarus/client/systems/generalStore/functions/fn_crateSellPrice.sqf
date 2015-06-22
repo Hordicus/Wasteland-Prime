@@ -30,4 +30,6 @@ _total = 0;
 	getItemCargo _box
 ];
 
+_total = _total / 2;
+
 _total
