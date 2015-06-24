@@ -125,12 +125,15 @@ player addEventHandler ["killed", {
 	// sending code...
 	['killed', _this] call BL_fnc_serverEvent;
 
+	private ['_money'];
+_money = ([] call BL_fnc_money) * ('tax' call BL_fnc_config);
+player setVariable ['money', _money, true];
+	
 	if ( BL_donatorInfo > -1 ) then {
 		[player] call (([call BL_fnc_donatorsConfig, 'tiers'] call CBA_fnc_hashGet) select BL_donatorInfo);
 	}
 	else {
-		private ['_money', '_minMoney'];
-		_money = player getVariable ['money', 0];
+		private ['_minMoney'];
 		_minMoney = ('minMoney' call BL_fnc_config);
 		if ( _money < _minMoney ) then {
 			player setVariable ['money', _minMoney, true];
