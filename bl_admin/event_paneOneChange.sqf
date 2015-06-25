@@ -48,7 +48,12 @@ if ( { _data == _x select 1 } count BLAdmin_actions == 1 ) then {
 	};
 }
 else {
-	BL_adminPlayer = [_data] call BL_fnc_playerByUID;
+	{
+		if ( getPlayerUID _x == _data ) exitwith {
+			BL_adminPlayer = _x;
+		};
+		
+	} count (playableUnits + allDead);
 
 	{
 		// True is non player action, false is player action.
