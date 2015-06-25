@@ -1,9 +1,9 @@
 [
 	{
 		if (soundVolume == 1) then {
-			"Put on ear plugs"
+			'<t color="#32C832">Put on ear plugs</t>'
 		} else {
-			"Take off ear plugs"
+			'<t color="#32C832">Take off ear plugs</t>'
 		}
 	},
 	{
@@ -16,6 +16,7 @@
 			1 fadeSound 1;
 		}
 	},
+	-1,
 	-90,
-	20
+	true
 ]call BL_fnc_addAction;

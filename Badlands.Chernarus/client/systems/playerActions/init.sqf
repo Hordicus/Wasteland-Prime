@@ -113,15 +113,23 @@ if ( !hasInterface ) exitwith{};
 			} forEach BL_playerActions;
 		}
 		else {
-			// In vehicle. Remove all actions.
+			// In vehicle. Remove all Actions
 			{
-				if ( count BL_playerActionsIDs > _forEachIndex && {!isNil { BL_playerActionsIDs select _forEachIndex }} ) then {
-					player removeAction (BL_playerActionsIDs select _forEachIndex);
-					BL_playerActionsIDs set [_forEachIndex, nil];
-				};
+				_action = _x;
+				_actionIndex = _forEachIndex;
+				_inVehicle = _x select 5;
+				// Check if allowed in vehicle
+				if ( _inVehicle ) then {
+					[player, _forEachIndex, false, _action] call _addAction;
+				}
+				else{			
+					if ( count BL_playerActionsIDs > _forEachIndex && {!isNil { BL_playerActionsIDs select _forEachIndex }} ) then {
+						player removeAction (BL_playerActionsIDs select _forEachIndex);
+						BL_playerActionsIDs set [_forEachIndex, nil];
+					};
+				}
 			} forEach BL_playerActions;
-		};
-		
+		};	
 		sleep 0.3;
 	};
 };

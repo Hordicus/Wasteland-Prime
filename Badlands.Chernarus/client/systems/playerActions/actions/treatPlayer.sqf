@@ -25,5 +25,6 @@
 		[_cursorTarget] call BL_fnc_doHeal;
 	},
 	-1,
-	20
+	20,
+	false
 ] call BL_fnc_addAction;

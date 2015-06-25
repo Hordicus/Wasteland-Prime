@@ -15,5 +15,6 @@
 		(_this select 0) call BL_fnc_doHeal;
 	},
 	-1,
-	20
+	20,
+	false
 ] call BL_fnc_addAction;
