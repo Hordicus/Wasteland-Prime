@@ -11,7 +11,7 @@
 	},
 	{
 		if (soundVolume == 1) then {
-			1 fadeSound 0.5;
+			1 fadeSound 0.3;
 		} else {
 			1 fadeSound 1;
 		}
