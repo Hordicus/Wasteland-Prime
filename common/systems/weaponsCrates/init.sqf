@@ -68,11 +68,11 @@
 	    clearBackpackCargoGlobal _box;
 		
 		{
-			_box addWeaponCargoGlobal _x;
+			_box addBackpackCargoGlobal _x;
 		} count (_crate select 2);
 		
 		{
-			_box addMagazineCargoGlobal _x;
+			_box addItemCargoGlobal _x;
 		} count (_crate select 2);
 		
 		[_box, 'crate'] call BL_fnc_trackVehicle;
