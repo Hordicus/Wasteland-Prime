@@ -69,9 +69,6 @@
 		
 		{
 			_box addBackpackCargoGlobal _x;
-		} count (_crate select 2);
-		
-		{
 			_box addItemCargoGlobal _x;
 		} count (_crate select 2);
 		
